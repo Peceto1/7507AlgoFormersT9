@@ -7,3 +7,9 @@
 
 # Tmp Files:
 *~
+
+# IntelliJ Trash Files
+.idea/
+out/
+*.iml
+
