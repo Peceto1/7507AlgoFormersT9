@@ -1,0 +1,9 @@
+# Python Imports:
+*.pyc
+
+# C Binary Files:
+*.d
+*.o
+
+# Tmp Files:
+*~
