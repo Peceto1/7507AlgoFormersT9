@@ -17,3 +17,7 @@ README by Francisco Penovi
         $ git push origin master # realiza el push
 
 Siempre que hagan un **PULL** o un **PUSH** les pedirá su contraseña de bitbucket.
+
+
+### **Sección "ME MANDÉ UNA CAGADA" :** ###
+Ante cualquier cagada grande que se "rompa" su repositorio local, **NUNCA HACER UN PUSH**. La idea es mantener el mainline (repo online) lo más prolijo y siempre funcionando.
