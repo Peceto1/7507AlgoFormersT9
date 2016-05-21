@@ -8,8 +8,17 @@
 # Tmp Files:
 *~
 
+# Java Files:
+*.class
+
 # IntelliJ Trash Files
 .idea/
 out/
 *.iml
+*.xml
 
+# Eclipse Trash Files
+bin/
+*.classpath
+*.project
+*.settings
