@@ -11,6 +11,10 @@ public class Cuenta {
 
     public Cuenta(int monto, String titular) {
         this.monto = monto;
+        // yo edito aca un
+        // par de lineas
+        // para mostrar
+        // merge conflict
     }
 
 }
