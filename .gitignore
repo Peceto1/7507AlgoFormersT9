@@ -10,6 +10,7 @@
 
 # Java Files:
 *.class
+*.jar
 
 # IntelliJ Trash Files
 .idea/
