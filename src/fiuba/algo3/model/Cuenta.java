@@ -11,6 +11,7 @@ public class Cuenta {
 
     public Cuenta(int monto, String titular) {
         this.monto = monto;
+	this.titular = titular;
     }
 
 }
