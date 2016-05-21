@@ -24,7 +24,7 @@ Ante cualquier cagada grande que se "rompa" su repositorio local, **NUNCA HACER 
 
 En caso de que se les llegara a romper, hagan una copia de los archivos nuevos en los que trabajaron y borren toda la carpeta. Después abren la terminal y se hacen un **CLONE** del mainline en su máquina haciendo lo siguiente:
 
-        $ git clone https://fpenovi@bitbucket.org/fpenovi/algoritmos-iii-algoformers.git
+        $ git clone https://github.com/fpenovi/7507AlgoFormersT9.git
 
 Luego pegan los archivos en los que trabajaron y hacen un **PUSH**
 
@@ -38,7 +38,7 @@ Luego pegan los archivos en los que trabajaron y hacen un **PUSH**
 
 .
 
-* *Hice un commit y me salió una pantalla rara de **GNU NANO** o **VIM** pidiéndome que escriba un mensaje.*
+* *Hice un commit y me salió una pantalla rara de* **GNU NANO** *o* **VIM** *pidiéndome que escriba un mensaje.*
 
 Te olvidaste de ponerle el comando -m "<Comentario>" al commit!! **Los comentarios son obligatorios para subir algo!!**
 
