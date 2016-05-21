@@ -28,14 +28,18 @@ En caso de que se les llegara a romper, hagan una copia de los archivos nuevos e
 
 Luego pegan los archivos en los que trabajaron y hacen un **PUSH**
 
-* ¿Qué pasa si hice add de un archivo que no quiero?
+.
+
+* *¿Qué pasa si hice add de un archivo que no quiero?*
 
         $ git status # aparece en verde los agregados
         $ git reset HEAD <carpeta o archivo> # saca el "add"
         $ git status # aparece en rojo el que sacaste.
 
-* Hice un commit y me salió una pantalla rara de **GNU NANO** o **VIM** pidiéndome que escriba un mensaje.
+.
 
-Te olvidaste de ponerle el comando -m "<Comentario>" al commit!! Los comentarios son obligatorios para subir algo!!
+* *Hice un commit y me salió una pantalla rara de **GNU NANO** o **VIM** pidiéndome que escriba un mensaje.*
+
+Te olvidaste de ponerle el comando -m "<Comentario>" al commit!! **Los comentarios son obligatorios para subir algo!!**
 
 Podés escribir en esa pantalla tu comentario, después apretar **CTRL+X** después **Y** (yes) y por último **ENTER** y se habrá realizado el commit. Ya podes hacer **PUSH**
