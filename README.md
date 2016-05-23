@@ -1,4 +1,4 @@
-README by Francisco Penovi
+README
 
 ### **Instrucciones y como usar GIT**: ###
 
