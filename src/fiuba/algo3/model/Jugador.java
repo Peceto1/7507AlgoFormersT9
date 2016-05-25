@@ -1,21 +1,24 @@
 package fiuba.algo3.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+
 
 public class Jugador {
 
     private String nombre;
-    private List<Algoformer> algoformers;
+    private HashMap<String, Algoformer> algoformers;
 
 
     public Jugador(String nombre) {
         this.nombre = nombre;
-        this.algoformers = new ArrayList<>();
+        this.algoformers = new HashMap<>();
     }
 
 
     public String getNombre() {
         return nombre;
+    }
+    public void agregarAlgoformer(String nombre, Algoformer algoformer){
+    	algoformers.put(nombre, algoformer);
     }
 }
