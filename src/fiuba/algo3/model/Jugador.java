@@ -1,11 +1,11 @@
 package fiuba.algo3.model;
 
-import java.util.List;
+import java.util.Dictionary;
 
 public class Jugador {
 
     private String nombre;
-    private List<Algoformer> algoformers;
+    private Dictionary<String,Algoformer> algoformers;
 
     public Jugador(String nombre) {
         this.nombre = nombre;
@@ -13,5 +13,8 @@ public class Jugador {
 
     public String getNombre() {
         return nombre;
+    }
+    public void agregarAlgoformer(String nombre,Algoformer algoformer){
+    	algoformers.put(nombre, algoformer);
     }
 }

@@ -12,7 +12,7 @@ public class Juego {
 
     public Juego(String player1, String player2) {
 
-        this.jugadores = new ArrayList();
+        this.jugadores = new ArrayList<Jugador>();
         this.jugadores.add(new Jugador(player1));
         this.jugadores.add(new Jugador(player2));
         this.arena = new Arena();
