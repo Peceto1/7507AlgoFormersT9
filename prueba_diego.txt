@@ -1,1 +1,0 @@
-hola, si, yo aca re loco, usando git de linux en una virtual box dentro de windows bien piola
