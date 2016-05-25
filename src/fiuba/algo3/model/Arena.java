@@ -15,7 +15,7 @@ public class Arena {
         this.alto = alto;
         this.niveles = niveles;
 
-        arena = new HashMap<>();
+        this.arena = new HashMap<>();
         inicializarArena();
     }
 

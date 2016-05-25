@@ -10,7 +10,7 @@ public abstract class Algoformer {
 	private Estado alterno;
 
 
-	public Algoformer(String nombre,int vida, Estado estado, Estado alterno){
+	public Algoformer(String nombre, int vida, Estado estado, Estado alterno){
 		this. nombre = nombre;
 		this.vida = vida;
 		this.estadoActual = estado;
@@ -29,7 +29,7 @@ public abstract class Algoformer {
 
 
 	public void perderVida(int cantidad){
-		vida = vida-cantidad;
+		vida = vida - cantidad;
 	}
 
 
