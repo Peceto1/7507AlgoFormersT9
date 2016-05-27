@@ -1,4 +1,4 @@
-README
+[![Build Status](https://travis-ci.org/fpenovi/7507AlgoFormersT9.svg?branch=master)](https://travis-ci.org/fpenovi/7507AlgoFormersT9)
 
 ### **Instrucciones y como usar GIT**: ###
 
