@@ -1,6 +1,8 @@
 package fiuba.algo3.model.unidades;
 
+
 import org.junit.Test;
+import org.junit.Assert;
 
 public class AlgoformerTest {
 
@@ -8,12 +10,14 @@ public class AlgoformerTest {
     public void DecepticonAtacarseASiMismoImprimeFriendlyFire() {
         Algoformer bonecrusher = new BoneCrusher("BoneCrusher", 200, new BoneCrusherAlterno());
         bonecrusher.atacar(bonecrusher);
+        Assert.assertEquals(bonecrusher.getVida(), 200);
     }
 
     @Test
     public void AutobotAtacarseASiMismoImprimeFriendlyFire() {
         Algoformer optimusprime = new OptimusPrime("OptimusPrime", 500, new OptimusPrimeAlterno());
         optimusprime.atacar(optimusprime);
+        Assert.assertEquals(optimusprime.getVida(), 500);
     }
 
     @Test
@@ -22,6 +26,7 @@ public class AlgoformerTest {
         Algoformer bonecrusher = new BoneCrusher("BoneCrusher", 200, new BoneCrusherAlterno());
 
         optimusprime.atacar(bonecrusher);
+        Assert.assertEquals(bonecrusher.getVida(), 185);
     }
 
     @Test
@@ -30,14 +35,30 @@ public class AlgoformerTest {
         Algoformer bonecrusher = new BoneCrusher("BoneCrusher", 200, new BoneCrusherAlterno());
 
         bonecrusher.atacar(optimusprime);
+        Assert.assertEquals(optimusprime.getVida(), 470);
     }
 
     @Test
     public void AutobotAtacaAotroAutobotImprimeFriendlyFire() {
         Algoformer optimusprime = new OptimusPrime("OptimusPrime", 500, new OptimusPrimeAlterno());
-        Algoformer bumblebee = new Bumblebee("OptimusPrime", 350, new OptimusPrimeAlterno());
+        Algoformer bumblebee = new Bumblebee("Bumblebee", 350, new OptimusPrimeAlterno());
 
         optimusprime.atacar(bumblebee);
+        Assert.assertEquals(bumblebee.getVida(), 350);
+    }
+    
+    @Test
+    public void DecepticonAtacaAAutobotHastaMatarlo() {
+    	Algoformer bumblebee = new Bumblebee("Bumblebee", 350, new OptimusPrimeAlterno());
+        Algoformer bonecrusher = new BoneCrusher("BoneCrusher", 200, new BoneCrusherAlterno());
+        
+        for (int i=0;i<11;i++){
+        	bonecrusher.atacar(bumblebee);
+        }
+        Assert.assertTrue(bumblebee.estaVivo());
+        bonecrusher.atacar(bumblebee);
+        Assert.assertFalse(bumblebee.estaVivo());
+        
     }
 
 }

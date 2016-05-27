@@ -22,13 +22,13 @@ public class BoneCrusherAlterno implements Estado {
 
     @Override
     public void atacar(Algoformer otro, Autobot atacante) {
-        otro.recibirAtaque(atacante);
+        otro.recibirAtaque(atacante,ataque);
     }
 
 
     @Override
     public void atacar(Algoformer otro, Decepticon atacante) {
-        otro.recibirAtaque(atacante);
+        otro.recibirAtaque(atacante,ataque);
     }
 
 

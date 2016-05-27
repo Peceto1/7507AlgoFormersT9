@@ -12,8 +12,15 @@ public abstract class Algoformer {
 		this.vida = vida;
 		this.estado = estado;
 	}
-
-
+	
+	int getVida(){
+		return this.vida;
+	}
+	
+	boolean estaVivo(){
+		return (this.vida>0);
+	}
+	
 	Estado getEstado() {
 		return this.estado;
 	}
@@ -35,7 +42,7 @@ public abstract class Algoformer {
 
 
 	public abstract void atacar(Algoformer atacado);
-	abstract void recibirAtaque(Algoformer atacante);	// <--- revisar si es necesario
-	abstract void recibirAtaque(Autobot atacante);
-	abstract void recibirAtaque(Decepticon atacante);
+	abstract void recibirAtaque(Algoformer atacante,int danio);	// <--- revisar si es necesario
+	abstract void recibirAtaque(Autobot atacante,int danio);
+	abstract void recibirAtaque(Decepticon atacante,int danio);
 }
