@@ -12,13 +12,17 @@
 *.class
 *.jar
 
-# IntelliJ Trash Files
+# IntelliJ Trash Files:
 .idea/
 out/
 *.iml
 
-# Eclipse Trash Files
+# Eclipse Trash Files:
 bin/
 *.classpath
 *.project
 *.settings
+
+# Ant Build Files:
+/build
+/libs
