@@ -1,6 +1,9 @@
 package fiuba.algo3.model;
 
+import fiuba.algo3.model.arena.Arena;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Juego {
@@ -12,10 +15,11 @@ public class Juego {
 
     public Juego(String player1, String player2) {
 
-        this.jugadores = new ArrayList<Jugador>();
+        this.jugadores = new ArrayList<>();
         this.jugadores.add(new Jugador(player1));
         this.jugadores.add(new Jugador(player2));
-        this.arena = new Arena(51, 51, 2);
+        Collections.shuffle(this.jugadores);
+        this.arena = new Arena();
         this.turno = 0;
     }
 
