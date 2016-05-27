@@ -1,8 +1,5 @@
 package fiuba.algo3.model.arena;
 
-import fiuba.algo3.model.Casillero;
-import fiuba.algo3.model.Punto;
-
 import java.util.HashMap;
 
 public class Arena {
