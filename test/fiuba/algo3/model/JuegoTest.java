@@ -3,7 +3,7 @@ package fiuba.algo3.model;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class JuegoTests {
+public class JuegoTest {
 
     @Test
     public void crearJuegoNuevoYPreguntarPorJugadorEnTurnoActualDebeSerElPrimerJugador() {
