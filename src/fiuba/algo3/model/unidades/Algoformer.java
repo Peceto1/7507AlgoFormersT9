@@ -1,42 +1,44 @@
 package fiuba.algo3.model.unidades;
 
-
 public abstract class Algoformer {
 
-
-	private String nombre;
-	private int vida;
-	private Estado estadoActual;
-	private Estado alterno;
+	protected String nombre;
+	protected int vida;
+	protected Estado estado;
 
 
-	public Algoformer(String nombre, int vida, Estado estado, Estado alterno){
-		this. nombre = nombre;
+	Algoformer(String nombre, int vida, Estado estado) {
+		this.nombre = nombre;
 		this.vida = vida;
-		this.estadoActual = estado;
-		this.alterno = alterno;
+		this.estado = estado;
 	}
 
 
-	public void mover(){
-		estadoActual.mover();
+	Estado getEstado() {
+		return this.estado;
 	}
 
 
-	public void atacar(Algoformer otro){
-		estadoActual.atacar(otro);
+	void setEstado(Estado nuevo) {
+		this.estado = nuevo;
 	}
 
 
-	public void perderVida(int cantidad){
-		vida = vida - cantidad;
+	public void mover() {
+		estado.mover();
 	}
 
 
-	public void transformarse(){
-		Estado trancision = estadoActual;
-		this.estadoActual = alterno;
-		this.alterno = trancision;
+	public void transformarse() {
+		this.estado.transformar(this);
 	}
 
+
+	public void atacar(Algoformer otro) {
+		this.estado.atacar(otro);
+	}
+
+
+	abstract void recibirAtaque(Autobot otro);
+	abstract void recibirAtaque(Decepticon otro);
 }

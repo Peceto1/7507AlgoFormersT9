@@ -20,6 +20,8 @@ public class Jugador {
     public String getNombre() {
         return nombre;
     }
+
+
     public void agregarAlgoformer(String nombre, Algoformer algoformer){
     	algoformers.put(nombre, algoformer);
     }
