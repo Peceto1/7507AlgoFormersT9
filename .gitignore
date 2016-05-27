@@ -19,6 +19,7 @@ out/
 
 # Eclipse Trash Files:
 bin/
+.metadata/
 *.classpath
 *.project
 *.settings
