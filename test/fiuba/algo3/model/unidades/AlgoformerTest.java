@@ -55,7 +55,8 @@ public class AlgoformerTest {
         for (int i=0;i<11;i++){
         	bonecrusher.atacar(bumblebee);
         }
-        Assert.assertTrue(bumblebee.estaVivo());
+
+        // bumblebee sigue vivo (le quedan 20 de vida)
         bonecrusher.atacar(bumblebee);
         Assert.assertFalse(bumblebee.estaVivo());
         
