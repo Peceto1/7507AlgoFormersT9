@@ -1,5 +1,7 @@
 package fiuba.algo3.model;
 
+import fiuba.algo3.model.unidades.Algoformer;
+
 import java.util.HashMap;
 
 
