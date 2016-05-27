@@ -12,4 +12,9 @@ class MegatronHumanoide extends EstadoHumanoide{
 	static MegatronHumanoide getInstance(){
 		return instancia;
 	}
+	
+	@Override
+    public void transformar(Algoformer a_transformar){
+    	a_transformar.setEstado(MegatronAlterno.getInstance());
+    }
 }

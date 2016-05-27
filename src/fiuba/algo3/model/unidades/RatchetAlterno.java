@@ -12,4 +12,9 @@ class RatchetAlterno extends EstadoAlterno{
 	static RatchetAlterno getInstance(){
 		return instancia;
 	}
+	
+	@Override
+    public void transformar(Algoformer a_transformar){
+    	a_transformar.setEstado(RatchetHumanoide.getInstance());
+    }
 }

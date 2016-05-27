@@ -9,10 +9,12 @@ class BoneCrusherAlterno extends EstadoAlterno {
         this.rango = 3;
         this.velocidad = 8;
     }
-
-    public void transformarse(Algoformer a_transformar){
+    
+    @Override
+    public void transformar(Algoformer a_transformar){
     	a_transformar.setEstado(BoneCrusherHumanoide.getInstance());
     }
+    
     
 	static BoneCrusherAlterno getInstance(){
 		return instancia;

@@ -14,7 +14,8 @@ class BoneCrusherHumanoide extends EstadoHumanoide {
 		return instancia;
 	}
 	
-    public void transformarse(Algoformer a_transformar){
+	@Override
+    public void transformar(Algoformer a_transformar){
     	a_transformar.setEstado(BoneCrusherAlterno.getInstance());
     }
 }

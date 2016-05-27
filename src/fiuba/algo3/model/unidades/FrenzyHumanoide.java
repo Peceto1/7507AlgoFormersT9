@@ -12,4 +12,9 @@ class FrenzyHumanoide extends EstadoHumanoide{
 	static FrenzyHumanoide getInstance(){
 		return instancia;
 	}
+	
+	@Override
+    public void transformar(Algoformer a_transformar){
+    	a_transformar.setEstado(FrenzyAlterno.getInstance());
+    }
 }
