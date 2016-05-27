@@ -1,8 +1,6 @@
 package fiuba.algo3.model.unidades;
 
 
-import fiuba.algo3.model.Estado;
-
 public abstract class Algoformer {
 
 
