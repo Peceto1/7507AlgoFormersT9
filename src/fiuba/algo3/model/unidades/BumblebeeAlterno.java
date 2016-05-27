@@ -1,16 +1,17 @@
 package fiuba.algo3.model.unidades;
 
-public class BoneCrusherAlterno implements Estado {
+public class BumblebeeAlterno implements Estado {
+
 
     private int ataque;
     private int rango;
     private int velocidad;
 
 
-    public BoneCrusherAlterno() {
-        this.ataque = 30;
+    public BumblebeeAlterno() {
+        this.ataque = 20;
         this.rango = 3;
-        this.velocidad = 8;
+        this.velocidad = 5;
     }
 
 
@@ -37,10 +38,12 @@ public class BoneCrusherAlterno implements Estado {
 
     }
 
+
     @Override
     public void capturarChispa() {
 
     }
+
 
     @Override
     public void combinarse(Algoformer otro1, Algoformer otro2) {

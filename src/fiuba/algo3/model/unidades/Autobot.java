@@ -7,9 +7,22 @@ public abstract class Autobot extends Algoformer {
         super(nombre, vida, estado);
     }
 
+
+    @Override
+    public void atacar(Algoformer atacado) {
+        this.estado.atacar(atacado, this);
+    }
+
+
+    @Override
+    void recibirAtaque(Algoformer atacante) {
+        this.recibirAtaque(atacante);
+    }
+
+
     @Override
     void recibirAtaque(Autobot otro) {
-        System.out.println("No pasa nada, friendly-fire");
+        System.out.println("No pasa nada, friendly-fire Autobot-Autobot");
     }
 
 

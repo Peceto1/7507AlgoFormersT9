@@ -34,11 +34,8 @@ public abstract class Algoformer {
 	}
 
 
-	public void atacar(Algoformer otro) {
-		this.estado.atacar(otro);
-	}
-
-
-	abstract void recibirAtaque(Autobot otro);
-	abstract void recibirAtaque(Decepticon otro);
+	public abstract void atacar(Algoformer atacado);
+	abstract void recibirAtaque(Algoformer atacante);	// <--- revisar si es necesario
+	abstract void recibirAtaque(Autobot atacante);
+	abstract void recibirAtaque(Decepticon atacante);
 }
