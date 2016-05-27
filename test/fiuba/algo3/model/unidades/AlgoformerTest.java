@@ -8,7 +8,7 @@ public class AlgoformerTest {
 
     @Test
     public void DecepticonAtacarseASiMismoImprimeFriendlyFire() {
-        Algoformer bonecrusher = new BoneCrusher("BoneCrusher", 200, new BoneCrusherAlterno());
+        Algoformer bonecrusher = new BoneCrusher("BoneCrusher", 200, BoneCrusherAlterno.getInstance());
         bonecrusher.atacar(bonecrusher);
         Assert.assertEquals(bonecrusher.getVida(), 200);
     }
@@ -23,7 +23,7 @@ public class AlgoformerTest {
     @Test
     public void AutobotAtacaADecepticonImprimeAutobotAtacaADecepticon() {
         Algoformer optimusprime = new OptimusPrime("OptimusPrime", 500, new OptimusPrimeAlterno());
-        Algoformer bonecrusher = new BoneCrusher("BoneCrusher", 200, new BoneCrusherAlterno());
+        Algoformer bonecrusher = new BoneCrusher("BoneCrusher", 200, BoneCrusherAlterno.getInstance());
 
         optimusprime.atacar(bonecrusher);
         Assert.assertEquals(bonecrusher.getVida(), 185);
@@ -32,7 +32,7 @@ public class AlgoformerTest {
     @Test
     public void DecepticonAtacaAAutobotImprimeDecepticonAtacaAAutobot() {
         Algoformer optimusprime = new OptimusPrime("OptimusPrime", 500, new OptimusPrimeAlterno());
-        Algoformer bonecrusher = new BoneCrusher("BoneCrusher", 200, new BoneCrusherAlterno());
+        Algoformer bonecrusher = new BoneCrusher("BoneCrusher", 200, BoneCrusherAlterno.getInstance());
 
         bonecrusher.atacar(optimusprime);
         Assert.assertEquals(optimusprime.getVida(), 470);
@@ -50,7 +50,7 @@ public class AlgoformerTest {
     @Test
     public void DecepticonAtacaAAutobotHastaMatarlo() {
     	Algoformer bumblebee = new Bumblebee("Bumblebee", 350, new OptimusPrimeAlterno());
-        Algoformer bonecrusher = new BoneCrusher("BoneCrusher", 200, new BoneCrusherAlterno());
+        Algoformer bonecrusher = new BoneCrusher("BoneCrusher", 200, BoneCrusherAlterno.getInstance());
         
         for (int i=0;i<11;i++){
         	bonecrusher.atacar(bumblebee);
