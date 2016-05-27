@@ -1,4 +1,4 @@
-package fiuba.algo3.model;
+package fiuba.algo3.model.arena;
 
 public class Punto {
 

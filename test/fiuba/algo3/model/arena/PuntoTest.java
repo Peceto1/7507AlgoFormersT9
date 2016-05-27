@@ -1,5 +1,6 @@
-package fiuba.algo3.model;
+package fiuba.algo3.model.arena;
 
+import fiuba.algo3.model.arena.Punto;
 import org.junit.Assert;
 import org.junit.Test;
 
