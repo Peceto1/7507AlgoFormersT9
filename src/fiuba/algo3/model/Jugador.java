@@ -3,12 +3,13 @@ package fiuba.algo3.model;
 import fiuba.algo3.model.unidades.Algoformer;
 
 import java.util.HashMap;
+import java.util.Map;
 
 
 public class Jugador {
 
     private String nombre;
-    private HashMap<String, Algoformer> algoformers;
+    private Map<String, Algoformer> algoformers;
 
 
     public Jugador(String nombre) {

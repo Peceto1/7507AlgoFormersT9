@@ -1,10 +1,11 @@
 package fiuba.algo3.model.arena;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Arena {
 
-    private HashMap<Punto, Casillero> arena;
+    private Map<Punto, Casillero> arena;
     private final int ANCHO = 51;
     private final int ALTO = 51;
     private final int NIVELES = 2;
