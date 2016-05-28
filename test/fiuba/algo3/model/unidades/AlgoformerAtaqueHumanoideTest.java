@@ -1,47 +1,70 @@
 package fiuba.algo3.model.unidades;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class AlgoformerAtaqueHumanoideTest {
+	
+	@Before
+	public void before(){
+		AlgoformerPool pool = AlgoformerPool.getInstance();
+		pool.inicializar();
+	}
 
     @Test
     public void DecepticonAtacarseASiMismoNoSeInflijeDanio() {
-        Algoformer megatron = new Megatron("Megatron", 200, MegatronHumanoide.getInstance());
+    	AlgoformerPool pool = AlgoformerPool.getInstance();
+        Algoformer megatron = pool.obtenerMegatron();
+        megatron.transformarse();
         megatron.atacar(megatron);
-        Assert.assertEquals(megatron.getVida(), 200);
+        Assert.assertEquals(megatron.getVida(), 550);
     }
 
     @Test
     public void AutobotAtacarseASiMismoNoSeInflijeDanio() {
-        Algoformer bumblebee = new Bumblebee("Bumblebee", 500, BumblebeeHumanoide.getInstance());
+    	AlgoformerPool pool = AlgoformerPool.getInstance();
+        Algoformer bumblebee = pool.obtenerBumblebee();
+        bumblebee.transformarse();
         bumblebee.atacar(bumblebee);
-        Assert.assertEquals(bumblebee.getVida(), 500);
+        Assert.assertEquals(bumblebee.getVida(), 350);
     }
 
     @Test
     public void AutobotAtacaADecepticonEnEstadoHumanoideDecepticonPierdeVidaAdecuada() {
-        Algoformer optimusprime = new OptimusPrime("OptimusPrime", 500, OptimusPrimeHumanoide.getInstance());
-        Algoformer bonecrusher = new BoneCrusher("BoneCrusher", 200, BoneCrusherHumanoide.getInstance());
-
+    	AlgoformerPool pool = AlgoformerPool.getInstance();
+        Algoformer optimusprime = pool.obtenerOptimus();
+        Algoformer bonecrusher = pool.obtenerBonecrusher();
+        
+        bonecrusher.transformarse();
+        optimusprime.transformarse();
+        
         optimusprime.atacar(bonecrusher);
         Assert.assertEquals(bonecrusher.getVida(), 150);
     }
 
     @Test
     public void DecepticonAtacaAAutobotEnEstadoHumanoideAutobotPierdeVidaAdecuada() {
-        Algoformer bumblebee = new Bumblebee("Bumblebee", 350, BumblebeeHumanoide.getInstance());
-        Algoformer bonecrusher = new BoneCrusher("BoneCrusher", 200, BoneCrusherHumanoide.getInstance());
-
+    	AlgoformerPool pool = AlgoformerPool.getInstance();
+        Algoformer bumblebee = pool.obtenerBumblebee();
+        Algoformer bonecrusher = pool.obtenerBonecrusher();
+        
+        bonecrusher.transformarse();
+        bumblebee.transformarse();
+        
         bonecrusher.atacar(bumblebee);
         Assert.assertEquals(bumblebee.getVida(), 320);
     }
 
     @Test
     public void AutobotAtacaAotroAutobotVidaDelReceptorDelAtaqueNoCambia() {
-        Algoformer ratchet = new Ratchet("Ratchet", 150, RatchetHumanoide.getInstance());
-        Algoformer bumblebee = new Bumblebee("Bumblebee", 350, BumblebeeHumanoide.getInstance());
-
+    	AlgoformerPool pool = AlgoformerPool.getInstance();
+        Algoformer bumblebee = pool.obtenerBumblebee();
+        Algoformer ratchet = pool.obtenerRatchet();
+        
+        ratchet.transformarse();
+        bumblebee.transformarse();
+        
         ratchet.atacar(bumblebee);
         Assert.assertEquals(bumblebee.getVida(), 350);
     }
@@ -57,9 +80,13 @@ public class AlgoformerAtaqueHumanoideTest {
 
     @Test
     public void DecepticonAtacaAAutobotHastaMatarloLuegoAutobotNoEstaVivo() {
-        Algoformer optimusprime = new OptimusPrime("Optimus Prime", 500, OptimusPrimeHumanoide.getInstance());
-        Algoformer megatron = new Megatron("Megatron", 550, MegatronHumanoide.getInstance());
-
+    	AlgoformerPool pool = AlgoformerPool.getInstance();
+        Algoformer optimusprime = pool.obtenerOptimus();
+        Algoformer megatron = pool.obtenerMegatron();
+        
+        optimusprime.transformarse();
+        megatron.transformarse();
+        
         for (int i=0;i<49;i++){
             megatron.atacar(optimusprime);
         }
@@ -71,9 +98,13 @@ public class AlgoformerAtaqueHumanoideTest {
 
     @Test
     public void AutobotAtacaADecepticonHastaMatarloLuegoDecepticonNoEstaVivo() {
-        Algoformer optimusprime = new OptimusPrime("Optimus Prime", 500, OptimusPrimeHumanoide.getInstance());
-        Algoformer megatron = new Megatron("Megatron", 550, MegatronHumanoide.getInstance());
-
+    	AlgoformerPool pool = AlgoformerPool.getInstance();
+        Algoformer optimusprime = pool.obtenerOptimus();
+        Algoformer megatron = pool.obtenerMegatron();
+        
+        optimusprime.transformarse();
+        megatron.transformarse();
+        
         for (int i=0; i<10; i++) {
             optimusprime.atacar(megatron);
         }

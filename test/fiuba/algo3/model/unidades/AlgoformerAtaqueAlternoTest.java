@@ -3,27 +3,38 @@ package fiuba.algo3.model.unidades;
 
 import org.junit.Test;
 import org.junit.Assert;
+import org.junit.Before;
 
 public class AlgoformerAtaqueAlternoTest {
-
+	
+	@Before
+	public void before(){
+		AlgoformerPool pool = AlgoformerPool.getInstance();
+		pool.inicializar();
+	}
+		
+	
     @Test
     public void DecepticonAtacarseASiMismoNoSeInflijeDanio() {
-        Algoformer bonecrusher = new BoneCrusher("BoneCrusher", 200, BoneCrusherAlterno.getInstance());
+    	AlgoformerPool pool = AlgoformerPool.getInstance();
+        Algoformer bonecrusher = pool.obtenerBonecrusher();
         bonecrusher.atacar(bonecrusher);
         Assert.assertEquals(bonecrusher.getVida(), 200);
     }
 
     @Test
     public void AutobotAtacarseASiMismoNoSeInflijeDanio() {
-        Algoformer optimusprime = new OptimusPrime("OptimusPrime", 500,OptimusPrimeAlterno.getInstance());
+    	AlgoformerPool pool = AlgoformerPool.getInstance();
+        Algoformer optimusprime = pool.obtenerOptimus();
         optimusprime.atacar(optimusprime);
         Assert.assertEquals(optimusprime.getVida(), 500);
     }
 
     @Test
     public void AutobotAtacaADecepticonEnEstadoAlternoDecepticonPierdeVidaAdecuada() {
-        Algoformer optimusprime = new OptimusPrime("OptimusPrime", 500,OptimusPrimeAlterno.getInstance());
-        Algoformer bonecrusher = new BoneCrusher("BoneCrusher", 200, BoneCrusherAlterno.getInstance());
+    	AlgoformerPool pool = AlgoformerPool.getInstance();
+        Algoformer optimusprime = pool.obtenerOptimus();
+        Algoformer bonecrusher = pool.obtenerBonecrusher();
 
         optimusprime.atacar(bonecrusher);
         Assert.assertEquals(bonecrusher.getVida(), 185);
@@ -31,8 +42,9 @@ public class AlgoformerAtaqueAlternoTest {
 
     @Test
     public void DecepticonAtacaAAutobotEnEstadoAlternoAutobotPierdeVidaAdecuada() {
-        Algoformer optimusprime = new OptimusPrime("OptimusPrime", 500,OptimusPrimeAlterno.getInstance());
-        Algoformer bonecrusher = new BoneCrusher("BoneCrusher", 200, BoneCrusherAlterno.getInstance());
+    	AlgoformerPool pool = AlgoformerPool.getInstance();
+        Algoformer optimusprime = pool.obtenerOptimus();
+        Algoformer bonecrusher = pool.obtenerBonecrusher();
 
         bonecrusher.atacar(optimusprime);
         Assert.assertEquals(optimusprime.getVida(), 470);
@@ -40,8 +52,9 @@ public class AlgoformerAtaqueAlternoTest {
 
     @Test
     public void AutobotAtacaAotroAutobotVidaDelReceptorDelAtaqueNoCambia() {
-        Algoformer optimusprime = new OptimusPrime("OptimusPrime", 500,OptimusPrimeAlterno.getInstance());
-        Algoformer bumblebee = new Bumblebee("Bumblebee", 350,BumblebeeAlterno.getInstance());
+    	AlgoformerPool pool = AlgoformerPool.getInstance();
+        Algoformer optimusprime = pool.obtenerOptimus();
+        Algoformer bumblebee = pool.obtenerBumblebee();
 
         optimusprime.atacar(bumblebee);
         Assert.assertEquals(bumblebee.getVida(), 350);
@@ -49,8 +62,9 @@ public class AlgoformerAtaqueAlternoTest {
 
     @Test
     public void DecepticonAtacaAOtroDecepticonVidaDelReceptorDelAtaqueNoCambia() {
-        Algoformer frenzy = new Frenzy("Frenzy", 150, FrenzyAlterno.getInstance());
-        Algoformer megatron = new Megatron("Megatron", 550, MegatronAlterno.getInstance());
+    	AlgoformerPool pool = AlgoformerPool.getInstance();
+        Algoformer megatron = pool.obtenerMegatron();
+        Algoformer frenzy = pool.obtenerFrenzy();
 
         frenzy.atacar(megatron);
         Assert.assertEquals(megatron.getVida(), 550);
@@ -58,8 +72,9 @@ public class AlgoformerAtaqueAlternoTest {
     
     @Test
     public void DecepticonAtacaAAutobotHastaMatarloLuegoAutobotNoEstaVivo() {
-    	Algoformer bumblebee = new Bumblebee("Bumblebee", 350,BumblebeeAlterno.getInstance());
-        Algoformer bonecrusher = new BoneCrusher("BoneCrusher", 200, BoneCrusherAlterno.getInstance());
+    	AlgoformerPool pool = AlgoformerPool.getInstance();
+        Algoformer bumblebee = pool.obtenerBumblebee();
+        Algoformer bonecrusher = pool.obtenerBonecrusher();
         
         for (int i=0;i<11;i++){
         	bonecrusher.atacar(bumblebee);
@@ -72,8 +87,9 @@ public class AlgoformerAtaqueAlternoTest {
 
     @Test
     public void AutobotAtacaADecepticonHastaMatarloLuegoDecepticonNoEstaVivo() {
-        Algoformer ratchet = new Ratchet("Ratchet", 150, RatchetAlterno.getInstance());
-        Algoformer frenzy = new Frenzy("Frenzy", 400, FrenzyAlterno.getInstance());
+    	AlgoformerPool pool = AlgoformerPool.getInstance();
+        Algoformer ratchet = pool.obtenerRatchet();
+        Algoformer frenzy = pool.obtenerFrenzy();
 
         for (int i=0; i<11; i++) {
             ratchet.atacar(frenzy);
