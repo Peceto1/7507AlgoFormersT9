@@ -71,8 +71,9 @@ public class AlgoformerAtaqueHumanoideTest {
 
     @Test
     public void DecepticonAtacaAOtroDecepticonVidaDelReceptorDelAtaqueNoCambia() {
-        Algoformer frenzy = new Frenzy("Frenzy", 150, FrenzyHumanoide.getInstance());
-        Algoformer megatron = new Megatron("Megatron", 550, MegatronHumanoide.getInstance());
+        AlgoformerPool pool = AlgoformerPool.getInstance();
+        Algoformer frenzy = pool.obtenerFrenzy();
+        Algoformer megatron = pool.obtenerMegatron();
 
         frenzy.atacar(megatron);
         Assert.assertEquals(megatron.getVida(), 550);
