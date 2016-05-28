@@ -1,6 +1,5 @@
 package fiuba.algo3.model.arena;
 
-import fiuba.algo3.model.arena.Punto;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -27,13 +26,22 @@ public class PuntoTest {
 
     @Test
     public void insertarPuntosEnUnHasheableSeHasheanIgualLosPuntosIguales() {
-
         Set<Punto> setDePuntos = new HashSet<>();
         Punto p1 = new Punto(1, 2, 0);
         Punto p2 = new Punto(1, 2, 0);
         setDePuntos.add(p1);
 
         Assert.assertTrue(setDePuntos.contains(p2));
+    }
+
+    @Test
+    public void insertarUnPuntoEnUnHasheableUnPuntoDiferenteNoSeHasheaIgual() {
+        Set<Punto> setDePuntos = new HashSet<>();
+        Punto p1 = new Punto(2, 2, 1);
+        Punto p2 = new Punto(2, 2, 2);
+        setDePuntos.add(p1);
+
+        Assert.assertFalse(setDePuntos.contains(p2));
     }
 
 }
