@@ -1,42 +1,17 @@
 package fiuba.algo3.model.unidades;
 
-abstract class EstadoAlterno implements Estado {
+abstract class EstadoAlterno extends Estado {
 
-	protected int ataque;
-    protected int rango;
-    protected int velocidad;
-	
-    @Override
-    public void mover() {
-
-    }
-
-
-    @Override
-    public void atacar(Algoformer otro, Autobot atacante) {
-        otro.recibirAtaque(atacante,ataque);
-    }
-
-
-    @Override
-    public void atacar(Algoformer otro, Decepticon atacante) {
-        otro.recibirAtaque(atacante,ataque);
-    }
-
-
-    @Override
-    public void transformar(Algoformer algoformer) {
-    	
-    }
 
     @Override
     public void capturarChispa() {
-
+        // No puede capturarla.
     }
+
 
     @Override
     public void combinarse(Algoformer otro1, Algoformer otro2) {
-
+        // No puede dar la orden de combinarse si está en Alterno.
     }
 
 	

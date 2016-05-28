@@ -1,42 +1,16 @@
 package fiuba.algo3.model.unidades;
 
-abstract class EstadoHumanoide implements Estado{
-	
-	protected int ataque;
-    protected int rango;
-    protected int velocidad;
-	
-    @Override
-    public void mover() {
+abstract class EstadoHumanoide extends Estado{
 
-    }
-
-
-    @Override
-    public void atacar(Algoformer otro, Autobot atacante) {
-        otro.recibirAtaque(atacante,ataque);
-    }
-
-
-    @Override
-    public void atacar(Algoformer otro, Decepticon atacante) {
-        otro.recibirAtaque(atacante,ataque);
-    }
-
-
-    @Override
-    public void transformar(Algoformer algoformer) {
-    	
-    }
 
     @Override
     public void capturarChispa() {
-
+        // Puede capturar la chispa.
     }
 
     @Override
     public void combinarse(Algoformer otro1, Algoformer otro2) {
-
+        // Puede dar la orden para combinarse con los demás.
     }
 
 	
