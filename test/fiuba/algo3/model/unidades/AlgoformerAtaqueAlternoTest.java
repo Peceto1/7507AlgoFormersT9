@@ -46,6 +46,15 @@ public class AlgoformerAtaqueAlternoTest {
         optimusprime.atacar(bumblebee);
         Assert.assertEquals(bumblebee.getVida(), 350);
     }
+
+    @Test
+    public void DecepticonAtacaAOtroDecepticonVidaDelReceptorDelAtaqueNoCambia() {
+        Algoformer frenzy = new Frenzy("Frenzy", 150, FrenzyAlterno.getInstance());
+        Algoformer megatron = new Megatron("Megatron", 550, MegatronAlterno.getInstance());
+
+        frenzy.atacar(megatron);
+        Assert.assertEquals(megatron.getVida(), 550);
+    }
     
     @Test
     public void DecepticonAtacaAAutobotHastaMatarloLuegoAutobotNoEstaVivo() {
@@ -59,7 +68,20 @@ public class AlgoformerAtaqueAlternoTest {
         // bumblebee sigue vivo (le quedan 20 de vida)
         bonecrusher.atacar(bumblebee);
         Assert.assertFalse(bumblebee.estaVivo());
-        
+    }
+
+    @Test
+    public void AutobotAtacaADecepticonHastaMatarloLuegoDecepticonNoEstaVivo() {
+        Algoformer ratchet = new Ratchet("Ratchet", 150, RatchetAlterno.getInstance());
+        Algoformer frenzy = new Frenzy("Frenzy", 400, FrenzyAlterno.getInstance());
+
+        for (int i=0; i<11; i++) {
+            ratchet.atacar(frenzy);
+        }
+
+        // frenzy sigue vivo (le quedan 15 de vida)
+        ratchet.atacar(frenzy);
+        Assert.assertFalse(frenzy.estaVivo());
     }
     
 
