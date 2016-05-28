@@ -22,14 +22,13 @@ public abstract class Autobot extends Algoformer {
 
     @Override
     void recibirAtaque(Autobot otro,int danio) {
-        System.out.println("No pasa nada, friendly-fire Autobot-Autobot");
+
     }
 
 
     @Override
     void recibirAtaque(Decepticon otro,int danio) {
-    	vida = vida-danio;
-        System.out.println("Decepticon ataca a Autobot");
+    	this.vida = this.vida - danio;
     }
 
 }
