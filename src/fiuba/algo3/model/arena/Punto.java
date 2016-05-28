@@ -14,6 +14,11 @@ public class Punto {
     }
 
 
+    public int distanciaAl(Punto other) {
+        return Math.max(Math.abs(this.x - other.x), Math.abs(this.y - other.y));    // Distancia de Chebyshov
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

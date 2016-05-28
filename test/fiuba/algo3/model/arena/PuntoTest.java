@@ -44,4 +44,58 @@ public class PuntoTest {
         Assert.assertFalse(setDePuntos.contains(p2));
     }
 
+    @Test
+    public void distanciaEntreUnPuntoYSiMismoEsCero() {
+        Punto p1 = new Punto(1, 1, 0);
+        Assert.assertEquals(p1.distanciaAl(p1), 0);
+    }
+
+    @Test
+    public void distanciaEntreElCeroYSiMismoEsCero() {
+        Punto cero = new Punto(0, 0, 0);
+        Assert.assertEquals(cero.distanciaAl(cero), 0);
+    }
+
+    @Test
+    public void distanciaEntreDosPuntosA2DeDistanciaHorizontalmenteEs2() {
+        Punto p1 = new Punto(1, 4, 0);
+        Punto p2 = new Punto(3, 4, 0);
+        Assert.assertEquals(p1.distanciaAl(p2), 2);
+    }
+
+    @Test
+    public void distanciaEntreDosPuntosA2DeDistanciaVerticalmenteEs3() {
+        Punto p1 = new Punto(1, 5, 0);
+        Punto p2 = new Punto(1, 2, 0);
+        Assert.assertEquals(p1.distanciaAl(p2), 3);
+    }
+
+    @Test
+    public void distanciaEntreDosPuntosA5DeDistanciaEnDiagonalPerfectaEs5() {
+        Punto p1 = new Punto(5, 5, 0);
+        Punto p2 = new Punto(10, 10, 0);
+        Assert.assertEquals(p1.distanciaAl(p2), 5);
+    }
+
+    @Test
+    public void distanciaEntreDosPuntosA4DeDistanciaEnDiagonalNoPerfectaEs4() {
+        Punto p1 = new Punto(5, 5, 0);
+        Punto p2 = new Punto(9, 8, 0);
+        Assert.assertEquals(p1.distanciaAl(p2), 4);
+    }
+
+    @Test
+    public void distanciaEntreDosPuntosUnoEnAireYOtroEnTierraEsCero() {
+        Punto p1 = new Punto(5, 5, 0);
+        Punto p2 = new Punto(5, 5, 1);
+        Assert.assertEquals(p1.distanciaAl(p2), 0);
+    }
+
+    @Test
+    public void distanciaEntreDosPuntosA5DeDistanciaUnoEnAireYOtroEnTierraEs5() {
+        Punto p1 = new Punto(5, 5, 0);
+        Punto p2 = new Punto(10, 10, 1);
+        Assert.assertEquals(p1.distanciaAl(p2), 5);
+    }
+
 }
