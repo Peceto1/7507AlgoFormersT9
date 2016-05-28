@@ -13,6 +13,10 @@ public abstract class Algoformer {
 		this.estado = estado;
 	}
 	
+	String getNombre(){
+		return this.nombre;
+	}
+	
 	int getVida(){
 		return this.vida;
 	}

@@ -1,6 +1,6 @@
 package fiuba.algo3.model.unidades;
 
-public abstract class Decepticon extends Algoformer {
+public class Decepticon extends Algoformer {
 
 
     Decepticon(String nombre, int vida, Estado estado) {

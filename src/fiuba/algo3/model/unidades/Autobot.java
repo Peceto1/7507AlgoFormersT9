@@ -1,6 +1,6 @@
 package fiuba.algo3.model.unidades;
 
-public abstract class Autobot extends Algoformer {
+public class Autobot extends Algoformer {
 
 
     Autobot(String nombre, int vida, Estado estado) {
