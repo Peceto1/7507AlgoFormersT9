@@ -1,10 +1,12 @@
 package fiuba.algo3.model.unidades;
 
+import fiuba.algo3.model.arena.Chispa;
+
 abstract class EstadoAlterno extends Estado {
 
 
     @Override
-    public void capturarChispa() {
+    public void capturarChispa(Chispa chispa, Algoformer captor) {
         // No puede capturarla.
     }
 

@@ -1,5 +1,7 @@
 package fiuba.algo3.model.unidades;
 
+import fiuba.algo3.model.arena.Chispa;
+
 abstract class Estado {
 
 	protected int ataque;
@@ -23,7 +25,7 @@ abstract class Estado {
 
 
 	abstract void transformar(Algoformer algoformer);
-	abstract void capturarChispa();
+	abstract void capturarChispa(Chispa chispa, Algoformer captor);
 	abstract void combinarse(Algoformer otro1, Algoformer otro2);
 
 }

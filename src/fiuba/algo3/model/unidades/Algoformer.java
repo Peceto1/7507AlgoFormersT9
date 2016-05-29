@@ -1,10 +1,13 @@
 package fiuba.algo3.model.unidades;
 
+import fiuba.algo3.model.arena.Chispa;
+
 public abstract class Algoformer {
 
 	protected String nombre;
 	protected int vida;
 	protected Estado estado;
+	protected Chispa chispa = null;
 
 
 	Algoformer(String nombre, int vida, Estado estado) {
@@ -16,14 +19,32 @@ public abstract class Algoformer {
 	String getNombre(){
 		return this.nombre;
 	}
-	
+
+
 	int getVida(){
 		return this.vida;
 	}
-	
-	boolean estaVivo(){
-		return (this.vida>0);
+
+
+	void setChispa(Chispa chispa) {
+		this.chispa = chispa;
 	}
+
+
+	boolean estaVivo(){
+		return (this.vida > 0);
+	}
+
+
+	public Boolean tieneChispa() {
+		return this.chispa != null;
+	}
+
+
+	public void capturarChispa(Chispa chispa) {
+		this.estado.capturarChispa(chispa, this);
+	}
+
 	
 	Estado getEstado() {
 		return this.estado;
@@ -49,4 +70,5 @@ public abstract class Algoformer {
 	abstract void recibirAtaque(Algoformer atacante,int danio);	// <--- revisar si es necesario
 	abstract void recibirAtaque(Autobot atacante,int danio);
 	abstract void recibirAtaque(Decepticon atacante,int danio);
+
 }

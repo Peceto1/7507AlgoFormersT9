@@ -1,11 +1,13 @@
 package fiuba.algo3.model.unidades;
 
+import fiuba.algo3.model.arena.Chispa;
+
 abstract class EstadoHumanoide extends Estado{
 
 
     @Override
-    public void capturarChispa() {
-        // Puede capturar la chispa.
+    public void capturarChispa(Chispa chispa, Algoformer captor) {
+        captor.setChispa(chispa);
     }
 
     @Override
