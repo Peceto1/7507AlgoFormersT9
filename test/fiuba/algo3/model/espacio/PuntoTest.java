@@ -1,5 +1,6 @@
-package fiuba.algo3.model.arena;
+package fiuba.algo3.model.espacio;
 
+import fiuba.algo3.model.espacio.Punto;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -96,6 +97,49 @@ public class PuntoTest {
         Punto p1 = new Punto(5, 5, 0);
         Punto p2 = new Punto(10, 10, 1);
         Assert.assertEquals(p1.distanciaAl(p2), 5);
+    }
+
+    @Test
+    public void obtenerPuntoEnDireccionVerticalHaciaArribaMeDevuelveUnPuntoArribaDelOriginal() {
+        Punto inicio = new Punto(1, 1, 0);
+        Punto fin = new Punto(1, 2, 0);
+        Direccion arriba = new Direccion(0, 1);
+        Punto p2 = inicio.obtenerPuntoEn(arriba);
+
+        Assert.assertEquals(p2, fin);
+    }
+
+    @Test
+    public void obtenerPuntoEnDireccionHorizontalHaciaDerechaMeDevuelveUnPuntoALaDerechaDelOriginal() {
+        Punto inicio = new Punto(1, 1, 1);
+        Punto fin = new Punto(2, 1, 1);
+        Punto p2 = inicio.obtenerPuntoEn(new Direccion(1, 0));
+
+        Assert.assertEquals(p2, fin);
+    }
+
+    @Test
+    public void obtenerPuntoEnDireccionDiagonalIzquierdaAbajoMeDevuelveUnPuntoAbajoALaIzquierdaDelOriginal() {
+        Punto inicio = new Punto(5, 5, 0);
+        Punto fin = new Punto(4, 4, 0);
+        Punto p2 = inicio.obtenerPuntoEn(new Direccion(-1, -1));
+
+        Assert.assertEquals(p2, fin);
+    }
+
+    @Test (expected = DireccionInvalidaException.class)
+    public void crearUnaDireccionConAlgunNumeroMayorAUnoLanzaExcepcion() {
+        Direccion invalida = new Direccion(2, 1);
+    }
+
+    @Test (expected = DireccionInvalidaException.class)
+    public void crearUnaDireccionConAlgunNumeroMenorAUnoLanzaExcepcion() {
+        Direccion invalida = new Direccion(-5, 1);
+    }
+
+    @Test (expected = DireccionInvalidaException.class)
+    public void crearUnaDireccionNulaLanzaExcepcion() {
+        Direccion invalida = new Direccion(0, 0);
     }
 
 }

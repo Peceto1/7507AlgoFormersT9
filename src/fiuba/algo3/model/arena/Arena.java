@@ -1,5 +1,7 @@
 package fiuba.algo3.model.arena;
 
+import fiuba.algo3.model.espacio.Punto;
+
 import java.util.HashMap;
 import java.util.Map;
 

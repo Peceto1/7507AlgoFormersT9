@@ -1,4 +1,4 @@
-package fiuba.algo3.model.arena;
+package fiuba.algo3.model.espacio;
 
 public class Punto {
 
@@ -16,6 +16,11 @@ public class Punto {
 
     public int distanciaAl(Punto other) {
         return Math.max(Math.abs(this.x - other.x), Math.abs(this.y - other.y));    // Distancia de Chebyshov
+    }
+
+
+    public Punto obtenerPuntoEn(Direccion direccion) {
+        return new Punto(this.x + direccion.x, this.y + direccion.y, this.nivel);
     }
 
 

@@ -1,7 +1,7 @@
 package fiuba.algo3.model.unidades;
 
 import fiuba.algo3.model.arena.Chispa;
-import fiuba.algo3.model.arena.Direccion;
+import fiuba.algo3.model.espacio.Direccion;
 
 public abstract class Algoformer {
 
