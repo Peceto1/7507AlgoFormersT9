@@ -1,6 +1,5 @@
 package fiuba.algo3.model.espacio;
 
-import fiuba.algo3.model.espacio.Punto;
 import org.junit.Assert;
 import org.junit.Test;
 
