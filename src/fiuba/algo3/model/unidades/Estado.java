@@ -1,6 +1,7 @@
 package fiuba.algo3.model.unidades;
 
 import fiuba.algo3.model.arena.Chispa;
+import fiuba.algo3.model.arena.Direccion;
 
 abstract class Estado {
 
@@ -9,7 +10,7 @@ abstract class Estado {
 	protected int velocidad;
 
 
-	void mover() {
+	void mover(Direccion direccion) {
 		// Falta implementar.
 	}
 

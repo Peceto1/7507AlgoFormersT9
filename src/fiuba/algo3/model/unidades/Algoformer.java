@@ -1,6 +1,7 @@
 package fiuba.algo3.model.unidades;
 
 import fiuba.algo3.model.arena.Chispa;
+import fiuba.algo3.model.arena.Direccion;
 
 public abstract class Algoformer {
 
@@ -56,8 +57,8 @@ public abstract class Algoformer {
 	}
 
 
-	public void mover() {
-		estado.mover();
+	public void mover(Direccion direccion) {
+		estado.mover(direccion);
 	}
 
 
