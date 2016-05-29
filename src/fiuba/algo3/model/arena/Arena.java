@@ -7,13 +7,14 @@ import java.util.Map;
 
 public class Arena {
 
+	private static Arena instancia = new Arena();
     private Map<Punto, Casillero> arena;
     private final int ANCHO = 51;
     private final int ALTO = 51;
     private final int NIVELES = 2;
 
 
-    public Arena() {
+    private Arena() {
         this.arena = new HashMap<>();
         inicializarArena();
     }
@@ -27,11 +28,24 @@ public class Arena {
 
                     Punto punto = new Punto(i, j, k);
                     Casillero casillero = new Casillero();  // Hay que ver de pasarle el terreno adecuado (Aire o Tierra)
+                    arena.put(punto, casillero);
                 }
             }
         }
     }
 
+    public static Arena getInstance(){
+    	return instancia;
+    }
 
+    public Boolean estaEnArena(Punto punto_nuevo){
+    	return arena.containsKey(punto_nuevo);
+    }
+        
+    public Boolean estaOcupado(Punto punto_nuevo){
+    	Casillero casillero_a_revisar = arena.get(punto_nuevo);
+    	return casillero_a_revisar.estaOcupado();  	
+    }
+    
 
 }

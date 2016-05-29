@@ -19,7 +19,7 @@ public class Juego {
         this.jugadores.add(new Jugador(player1));
         this.jugadores.add(new Jugador(player2));
         Collections.shuffle(this.jugadores);
-        this.arena = new Arena();
+        this.arena = Arena.getInstance();
         this.turno = 0;
     }
 
