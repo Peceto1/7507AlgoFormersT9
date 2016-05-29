@@ -1,8 +1,9 @@
 package fiuba.algo3.model.unidades;
 
 import fiuba.algo3.model.arena.Arena;
-import fiuba.algo3.model.arena.Direccion;
-import fiuba.algo3.model.arena.Punto;
+import fiuba.algo3.model.espacio.Direccion;
+import fiuba.algo3.model.espacio.Punto;
+
 
 public class Movimiento {
 

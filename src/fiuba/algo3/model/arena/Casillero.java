@@ -10,6 +10,8 @@ public class Casillero {
         // Pasarle un tipo de Terreno por parametro por ejemplo Aire o Tierra
     }
 
-    public Boolean estaOcupado(){}
+    public Boolean estaOcupado(){
+        return true;
+    }
     
 }
