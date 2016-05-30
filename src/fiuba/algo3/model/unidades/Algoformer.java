@@ -11,21 +11,23 @@ public abstract class Algoformer {
 	protected int vida;
 	protected Estado estado;
 	protected Chispa chispa = null;
-	protected Punto posicion;
+	protected Punto ubicacion;
 	protected Movimiento movimiento;
+
 
 	Algoformer(String nombre, int vida, Estado estado) {
 		this.nombre = nombre;
 		this.vida = vida;
 		this.estado = estado;
 	}
+
 	
-	String getNombre(){
+	String getNombre() {
 		return this.nombre;
 	}
 
 
-	int getVida(){
+	int getVida() {
 		return this.vida;
 	}
 
@@ -35,7 +37,17 @@ public abstract class Algoformer {
 	}
 
 
-	boolean estaVivo(){
+	Punto getUbicacion() {
+		return this.ubicacion;
+	}
+
+
+	public void setUbicacion(Punto ubicacion) {
+		this.ubicacion = ubicacion;
+	}
+
+
+	public boolean estaVivo() {
 		return (this.vida > 0);
 	}
 
@@ -60,8 +72,13 @@ public abstract class Algoformer {
 	}
 
 
-	public void mover(Direccion direccion) {
-		estado.mover(direccion);
+	public void moverseHacia(Direccion direccion) {
+		estado.moverse(this, direccion);
+	}
+
+
+	public void reiniciarMovimiento() {
+
 	}
 
 
@@ -71,8 +88,8 @@ public abstract class Algoformer {
 
 
 	public abstract void atacar(Algoformer atacado);
-	abstract void recibirAtaque(Algoformer atacante,int danio);
-	abstract void recibirAtaque(Autobot atacante,int danio);
-	abstract void recibirAtaque(Decepticon atacante,int danio);
+	abstract void recibirAtaque(Algoformer atacante, int danio);
+	abstract void recibirAtaque(Autobot atacante, int danio);
+	abstract void recibirAtaque(Decepticon atacante, int danio);
 
 }

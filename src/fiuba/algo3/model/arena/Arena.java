@@ -1,6 +1,7 @@
 package fiuba.algo3.model.arena;
 
 import fiuba.algo3.model.espacio.Punto;
+import fiuba.algo3.model.unidades.Algoformer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,11 +17,11 @@ public class Arena {
 
     private Arena() {
         this.arena = new HashMap<>();
-        inicializarArena();
+        inicializar();
     }
 
 
-    private void inicializarArena() {
+    public void inicializar() {
 
         for (int i=1; i<=ANCHO; i++) {
             for (int j=1; j<=ALTO; j++) {
@@ -34,18 +35,29 @@ public class Arena {
         }
     }
 
+
     public static Arena getInstance(){
     	return instancia;
     }
 
-    public Boolean estaEnArena(Punto punto_nuevo){
-    	return arena.containsKey(punto_nuevo);
-    }
-        
-    public Boolean estaOcupado(Punto punto_nuevo){
-    	Casillero casillero_a_revisar = arena.get(punto_nuevo);
-    	return casillero_a_revisar.estaOcupado();  	
-    }
-    
 
+    public Boolean estaEnArena(Punto punto){
+    	return arena.containsKey(punto);
+    }
+
+
+    public Boolean estaOcupado(Punto punto){
+    	Casillero aRevisar = arena.get(punto);
+    	return aRevisar.estaOcupado();
+    }
+
+
+    public void ubicarAlgoformer(Algoformer algoformer, Punto punto) {
+
+        if (estaOcupado(punto))
+            return;
+
+        arena.get(punto).colocar(algoformer);
+        algoformer.setUbicacion(punto);
+    }
 }

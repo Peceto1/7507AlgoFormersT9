@@ -33,7 +33,7 @@ public class AlgoformerPool {
 	}
 
 
-	static AlgoformerPool getInstance(){
+	public static AlgoformerPool getInstance(){
 		return instancia;
 	}
 

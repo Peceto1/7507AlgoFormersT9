@@ -1,17 +1,23 @@
 package fiuba.algo3.model.arena;
 
-public class Casillero {
+import fiuba.algo3.model.unidades.Algoformer;
 
-    // private HabitableEnArena contenido; ---> Algoformer
-    // private Terreno terreno; ---> Objeto Aire/Tierra
-    // private Trampa trampa; ---> Espinas, Nebulosa, etc
+class Casillero {
 
-    public Casillero() {
-        // Pasarle un tipo de Terreno por parametro por ejemplo Aire o Tierra
+    private Algoformer contenido;
+
+
+    Casillero() {
+        this.contenido = null;
     }
 
-    public Boolean estaOcupado(){
-        return true;
+
+    Boolean estaOcupado(){
+        return this.contenido != null;
     }
-    
+
+
+    void colocar(Algoformer algoformer) {
+        this.contenido = algoformer;
+    }
 }

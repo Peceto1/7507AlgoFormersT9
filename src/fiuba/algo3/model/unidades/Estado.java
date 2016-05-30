@@ -10,11 +10,6 @@ abstract class Estado {
 	protected int velocidad;
 
 
-	void mover(Direccion direccion) {
-		// Falta implementar.
-	}
-
-
 	void atacar(Algoformer atacado, Decepticon atacante) {
 		atacado.recibirAtaque(atacante, ataque);
 	}
@@ -22,6 +17,11 @@ abstract class Estado {
 
 	void atacar(Algoformer atacado, Autobot atacante) {
 		atacado.recibirAtaque(atacante, ataque);
+	}
+
+
+	void moverse(Algoformer algoformer, Direccion direccion) {
+
 	}
 
 
