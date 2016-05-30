@@ -36,7 +36,7 @@ public class MovimientoTest {
 
     @Test (expected = MovimientoNoValidoException.class)
     public void ubicarAlgoformerEnElBordeDelTableroYPedirleQueSeMuevaHaciaArribaLanzaExcepcion() {
-        Punto partida = new Punto(1, 51, 0);
+        Punto partida = new Punto(1, 51, 1);
         Direccion arriba = new Direccion(0, 1);
 
         Algoformer megatron = pool.obtenerMegatron();
@@ -118,14 +118,93 @@ public class MovimientoTest {
 
         bumbleblee.moverseHacia(diagonalArriba);
     }
+    
+    @Test
+    public void moverAlgoformerVoladorSobreTerrestreNoChocan() {
+        Punto partida = new Punto(1, 1, 1);
+        Direccion diagonalDerechaArriba = new Direccion(1, 1);
+        Punto ocupado = new Punto(2, 2, 0);
+        Algoformer megatron = pool.obtenerMegatron();
+        Algoformer frenzy = pool.obtenerFrenzy();
+        arena.ubicarAlgoformer(megatron, partida);
+        arena.ubicarAlgoformer(frenzy, ocupado);
+        megatron.reiniciarMovimiento();
+        frenzy.reiniciarMovimiento();
+
+        megatron.moverseHacia(diagonalDerechaArriba);
+    }
 
     @Test
     public void moverAlgoformerHastaAgotarSusMovimientosLuegoResetearMovimientoPuedeSeguirMoviendose() {
+    	
         Punto partida = new Punto(25, 25, 0);
-        Direccion diagonalAbajo = new Direccion(1, -1);
+        Punto llegada = new Punto(31,19,0);
+        Direccion diagonalDerechaAbajo = new Direccion(1, -1);
         Algoformer bumblebee = pool.obtenerBumblebee();
+        arena.ubicarAlgoformer(bumblebee, partida);
+        bumblebee.reiniciarMovimiento();
+        
+        int movimientos = 5;
+        
+        for (int i = 0; i< movimientos ; i++){
+        	bumblebee.moverseHacia(diagonalDerechaAbajo);
+        }
+        bumblebee.reiniciarMovimiento();
+    	bumblebee.moverseHacia(diagonalDerechaAbajo);
+        Assert.assertEquals(bumblebee.getUbicacion(),llegada);
 
     }
-
-
+    
+    @Test
+    public void AlgoformerHumanoideSeMueveCorrectamente(){
+    	Punto partida = new Punto(15,4,0);
+    	Punto llegada = new Punto(15,3,0);
+    	Direccion abajo = new Direccion(0,-1);
+    	Algoformer optimus = pool.obtenerOptimus();
+    	arena.ubicarAlgoformer(optimus, partida);
+    	
+    	optimus.transformarse();
+    	optimus.reiniciarMovimiento();
+    	optimus.moverseHacia(abajo);
+    	
+    	Assert.assertEquals(llegada, optimus.getUbicacion());
+    	  	   	
+    }
+    
+    @Test (expected = MovimientoNoValidoException.class)
+    public void AlgoformerHumanoideNoPuedeSuperarSuLimiteDeMovimientos(){
+    	Punto partida = new Punto(15,4,0);
+    	Punto llegada = new Punto(15,3,0);
+    	Direccion abajo = new Direccion(0,-1);
+    	Algoformer megatron = pool.obtenerMegatron();
+    	megatron.transformarse();
+    	arena.ubicarAlgoformer(megatron, partida);
+    	
+    	megatron.reiniciarMovimiento();
+    	megatron.moverseHacia(abajo);
+    	megatron.moverseHacia(abajo);
+    	
+    	Assert.assertEquals(llegada, megatron.getUbicacion());	  	   	
+    }
+    
+    @Test (expected = MovimientoNoValidoException.class)
+    public void AlgoformerHumanoideChocaConAlternoEnTierra(){
+    	Punto partida = new Punto(40,10,0);
+    	Punto llegada = new Punto(39,11,0);
+    	Direccion diagonalIzquierdaArriba = new Direccion(-1,1);
+    	
+    	Algoformer bumblebee = pool.obtenerBumblebee();
+    	Algoformer bonecrusher = pool.obtenerBonecrusher();
+    	bumblebee.transformarse();
+    	
+    	arena.ubicarAlgoformer(bonecrusher, llegada);
+    	arena.ubicarAlgoformer(bumblebee, partida);
+    	bumblebee.reiniciarMovimiento();
+    	bumblebee.moverseHacia(diagonalIzquierdaArriba);
+    	
+    }
 }
+
+
+    
+
