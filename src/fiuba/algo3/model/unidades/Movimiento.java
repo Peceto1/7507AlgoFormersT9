@@ -13,25 +13,30 @@ public class Movimiento {
 
 
 	Movimiento(Punto inicio, int cantMovimientos) {
-		arena = Arena.getInstance();
-		ubicacion = inicio;
+		this.arena = Arena.getInstance();
+		this.ubicacion = inicio;
+		this.restantes = cantMovimientos;
 	}
 
 
-	void moverseHacia(Direccion direccion) {
+	Punto moverseHacia(Direccion direccion) {
 
 		Punto nuevo = ubicacion.obtenerPuntoEn(direccion);
 
 		if (!puede_moverse(nuevo))
-			//TERMINAR TURNO
+			throw new MovimientoNoValidoException();
 
+		Algoformer aUbicar = arena.removerAlgoformerEn(ubicacion);
+		arena.ubicarAlgoformer(aUbicar, nuevo);
 		ubicacion = nuevo;
 		restantes--;
+
+		return ubicacion;
 	}
 
 
 	private Boolean puede_moverse(Punto punto){
-		return ((!arena.estaEnArena(punto) || arena.estaOcupado(punto)) && restantes != 0);
+		return (arena.estaEnArena(punto) && !arena.estaOcupado(punto) && restantes != 0);
 	}
 		
 }

@@ -2,12 +2,14 @@ package fiuba.algo3.model.unidades;
 
 import fiuba.algo3.model.arena.Chispa;
 import fiuba.algo3.model.espacio.Direccion;
+import fiuba.algo3.model.espacio.Punto;
 
 abstract class Estado {
 
 	protected int ataque;
 	protected int rango;
 	protected int velocidad;
+	protected Movimiento movimiento;
 
 
 	void atacar(Algoformer atacado, Decepticon atacante) {
@@ -20,8 +22,13 @@ abstract class Estado {
 	}
 
 
-	void moverse(Algoformer algoformer, Direccion direccion) {
+	Punto moverse(Direccion direccion) {
+		return movimiento.moverseHacia(direccion);
+	}
 
+
+	void reiniciarMovimiento(Punto ubicacion) {
+		movimiento = new Movimiento(ubicacion, velocidad);
 	}
 
 

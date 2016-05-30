@@ -20,4 +20,12 @@ class Casillero {
     void colocar(Algoformer algoformer) {
         this.contenido = algoformer;
     }
+
+
+    Algoformer removerAlgoformer() {
+        Algoformer tmp = this.contenido;
+        this.contenido = null;
+        return tmp;
+    }
+
 }

@@ -60,4 +60,9 @@ public class Arena {
         arena.get(punto).colocar(algoformer);
         algoformer.setUbicacion(punto);
     }
+
+
+    public Algoformer removerAlgoformerEn(Punto punto) {
+        return arena.get(punto).removerAlgoformer();
+    }
 }

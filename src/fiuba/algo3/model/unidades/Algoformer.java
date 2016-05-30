@@ -73,12 +73,12 @@ public abstract class Algoformer {
 
 
 	public void moverseHacia(Direccion direccion) {
-		estado.moverse(this, direccion);
+		ubicacion = estado.moverse(direccion);
 	}
 
 
 	public void reiniciarMovimiento() {
-
+		this.estado.reiniciarMovimiento(this.ubicacion);
 	}
 
 
