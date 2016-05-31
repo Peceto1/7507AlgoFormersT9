@@ -1,4 +1,4 @@
 package fiuba.algo3.model.unidades;
 
-class MovimientoNoValidoException extends RuntimeException {
+public class MovimientoNoValidoException extends RuntimeException {
 }
