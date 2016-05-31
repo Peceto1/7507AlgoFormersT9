@@ -18,6 +18,17 @@ public class ArenaTest {
         arena.inicializar();
     }
 
+    @Test
+    public void preguntarSiUnCasilleroContieneLaChispaSiNoLaContieneDaFalse(){
+    	Punto punto =new Punto(1,1,0);
+    	Assert.assertFalse(arena.contieneChispa(punto));
+    }
+    
+    @Test
+    public void preguntarSiUnCasilleroContieneLaChispaSiLaContieneDaTrue(){
+    	Punto punto =new Punto(26,26,0);
+    	Assert.assertTrue(arena.contieneChispa(punto));
+    }
 
     @Test
     public void obtenerArenaDosVecesSonLaMismaInstancia() {
