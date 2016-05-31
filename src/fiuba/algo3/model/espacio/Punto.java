@@ -24,6 +24,16 @@ public class Punto {
     }
 
 
+    public Punto ascender() {
+        return new Punto(x, y, nivel + 1);
+    }
+
+
+    public Punto descender() {
+        return new Punto(x, y, nivel - 1);
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -45,4 +55,5 @@ public class Punto {
         result = 31 * result + nivel;
         return result;
     }
+
 }
