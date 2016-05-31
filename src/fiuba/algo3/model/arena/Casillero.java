@@ -5,6 +5,7 @@ import fiuba.algo3.model.unidades.Algoformer;
 class Casillero {
 
     private Algoformer contenido;
+    private Chispa chispa;
 
 
     Casillero() {
@@ -20,7 +21,14 @@ class Casillero {
     void colocar(Algoformer algoformer) {
         this.contenido = algoformer;
     }
+    
+    void colocar(Chispa chispa){
+    	this.chispa = chispa;
+    }
 
+    boolean contieneChispa(){
+    	return this.chispa != null;
+    }
 
     Algoformer removerAlgoformer() {
         Algoformer tmp = this.contenido;

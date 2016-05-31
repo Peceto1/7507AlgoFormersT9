@@ -14,7 +14,7 @@ abstract class EstadoHumanoide extends Estado{
     public void combinarse(Algoformer otro1, Algoformer otro2) {
         // Puede dar la orden para combinarse con los demás.
     }
-
+    
 	
 }
 
