@@ -12,7 +12,6 @@ public abstract class Algoformer {
 	protected Estado estado;
 	protected Chispa chispa = null;
 	protected Punto ubicacion;
-	protected Movimiento movimiento;
 
 
 	Algoformer(String nombre, int vida, Estado estado) {
