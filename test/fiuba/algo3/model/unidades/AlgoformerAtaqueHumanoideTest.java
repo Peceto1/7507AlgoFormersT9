@@ -1,21 +1,29 @@
 package fiuba.algo3.model.unidades;
 
+import fiuba.algo3.model.arena.Arena;
+import fiuba.algo3.model.espacio.Punto;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 public class AlgoformerAtaqueHumanoideTest {
+
+    private AlgoformerPool pool = AlgoformerPool.getInstance();
+    private Arena arena = Arena.getInstance();
+
 	
 	@Before
 	public void before(){
-		AlgoformerPool pool = AlgoformerPool.getInstance();
+		arena.inicializar();
 		pool.inicializar();
 	}
 
     @Test
     public void DecepticonAtacarseASiMismoNoSeInflijeDanio() {
-    	AlgoformerPool pool = AlgoformerPool.getInstance();
         Algoformer megatron = pool.obtenerMegatron();
+        Punto aire = new Punto(2, 2, 1);
+        arena.ubicarAlgoformer(megatron, aire);
+        megatron.reiniciarMovimiento();
         megatron.transformarse();
         megatron.atacar(megatron);
         Assert.assertEquals(megatron.getVida(), 550);
@@ -58,10 +66,14 @@ public class AlgoformerAtaqueHumanoideTest {
 
     @Test
     public void AutobotAtacaAotroAutobotVidaDelReceptorDelAtaqueNoCambia() {
-    	AlgoformerPool pool = AlgoformerPool.getInstance();
         Algoformer bumblebee = pool.obtenerBumblebee();
         Algoformer ratchet = pool.obtenerRatchet();
-        
+        Punto aire = new Punto(24, 24, 1);
+        Punto tierra = new Punto(25, 25, 0);
+        arena.ubicarAlgoformer(ratchet, aire);
+        arena.ubicarAlgoformer(bumblebee, tierra);
+        ratchet.reiniciarMovimiento();
+        bumblebee.reiniciarMovimiento();
         ratchet.transformarse();
         bumblebee.transformarse();
         
@@ -81,10 +93,14 @@ public class AlgoformerAtaqueHumanoideTest {
 
     @Test
     public void DecepticonAtacaAAutobotHastaMatarloLuegoAutobotNoEstaVivo() {
-    	AlgoformerPool pool = AlgoformerPool.getInstance();
         Algoformer optimusprime = pool.obtenerOptimus();
         Algoformer megatron = pool.obtenerMegatron();
-        
+        Punto aire = new Punto(25, 25, 1);
+        Punto tierra = new Punto(24, 24, 0);
+        arena.ubicarAlgoformer(optimusprime, tierra);
+        arena.ubicarAlgoformer(megatron, aire);
+        optimusprime.reiniciarMovimiento();
+        megatron.reiniciarMovimiento();
         optimusprime.transformarse();
         megatron.transformarse();
         
@@ -102,7 +118,14 @@ public class AlgoformerAtaqueHumanoideTest {
     	AlgoformerPool pool = AlgoformerPool.getInstance();
         Algoformer optimusprime = pool.obtenerOptimus();
         Algoformer megatron = pool.obtenerMegatron();
-        
+
+        Punto aire = new Punto(25, 25, 1);
+        Punto tierra = new Punto(24, 24, 0);
+
+        arena.ubicarAlgoformer(optimusprime, tierra);
+        arena.ubicarAlgoformer(megatron, aire);
+        optimusprime.reiniciarMovimiento();
+        megatron.reiniciarMovimiento();
         optimusprime.transformarse();
         megatron.transformarse();
         

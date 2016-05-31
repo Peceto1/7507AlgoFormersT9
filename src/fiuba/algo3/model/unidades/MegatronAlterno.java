@@ -15,6 +15,7 @@ class MegatronAlterno extends EstadoAlterno{
 	
 	@Override
     public void transformar(Algoformer a_transformar){
+		movimiento.descender();
     	a_transformar.setEstado(MegatronHumanoide.getInstance());
     }
 }

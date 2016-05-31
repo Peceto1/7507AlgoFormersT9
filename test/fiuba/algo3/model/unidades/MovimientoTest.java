@@ -173,18 +173,16 @@ public class MovimientoTest {
     
     @Test (expected = MovimientoNoValidoException.class)
     public void AlgoformerHumanoideNoPuedeSuperarSuLimiteDeMovimientos(){
-    	Punto partida = new Punto(15,4,0);
-    	Punto llegada = new Punto(15,3,0);
+    	Punto partida = new Punto(15, 4, 1);
+    	Punto llegada = new Punto(15, 3, 0);
     	Direccion abajo = new Direccion(0,-1);
     	Algoformer megatron = pool.obtenerMegatron();
-    	megatron.transformarse();
     	arena.ubicarAlgoformer(megatron, partida);
-    	
-    	megatron.reiniciarMovimiento();
+        megatron.reiniciarMovimiento();
+        megatron.transformarse();
+        megatron.reiniciarMovimiento();
+    	megatron.moverseHacia(abajo);   // Solamente se puede mover 1 espacio en Humanoide
     	megatron.moverseHacia(abajo);
-    	megatron.moverseHacia(abajo);
-    	
-    	Assert.assertEquals(llegada, megatron.getUbicacion());	  	   	
     }
     
     @Test (expected = MovimientoNoValidoException.class)
@@ -201,7 +199,6 @@ public class MovimientoTest {
     	arena.ubicarAlgoformer(bumblebee, partida);
     	bumblebee.reiniciarMovimiento();
     	bumblebee.moverseHacia(diagonalIzquierdaArriba);
-    	
     }
 }
 

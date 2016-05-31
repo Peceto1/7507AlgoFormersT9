@@ -16,6 +16,7 @@ class RatchetHumanoide extends EstadoHumanoide {
 	
 	@Override
     public void transformar(Algoformer a_transformar){
+		movimiento.ascender();
     	a_transformar.setEstado(RatchetAlterno.getInstance());
     }
 }

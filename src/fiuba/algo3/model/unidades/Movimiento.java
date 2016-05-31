@@ -35,8 +35,32 @@ public class Movimiento {
 	}
 
 
-	private Boolean puede_moverse(Punto punto){
-		return (arena.estaEnArena(punto) && !arena.estaOcupado(punto) && restantes != 0);
+	void descender() {
+		Punto nuevo = ubicacion.descender();
+
+		if (!puede_moverse(nuevo))
+			throw new MovimientoNoValidoException();
+
+		Algoformer aUbicar = arena.removerAlgoformerEn(ubicacion);
+		arena.ubicarAlgoformer(aUbicar, nuevo);
+		ubicacion = nuevo;
+		restantes = 0;
 	}
-		
+
+
+	private Boolean puede_moverse(Punto punto){
+		return (arena.estaEnArena(punto) && !arena.estaOcupado(punto) && restantes > 0);
+	}
+
+	public void ascender() {
+		Punto nuevo = ubicacion.ascender();
+
+		if (!puede_moverse(nuevo))
+			throw new MovimientoNoValidoException();
+
+		Algoformer aUbicar = arena.removerAlgoformerEn(ubicacion);
+		arena.ubicarAlgoformer(aUbicar, nuevo);
+		ubicacion = nuevo;
+		restantes = 0;
+	}
 }
