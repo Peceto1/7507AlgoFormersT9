@@ -5,9 +5,9 @@ class RatchetHumanoide extends EstadoHumanoide {
 	private static RatchetHumanoide instancia = new RatchetHumanoide();
 	
 	private RatchetHumanoide(){
-		this.ataque = 40;
-		this.rango = 1;
-		this.velocidad = 2;
+		this.ataque = 5;
+		this.rango = 5;
+		this.velocidad = 1;
 	}
 	
 	static RatchetHumanoide getInstance(){
