@@ -21,14 +21,16 @@ public class AlgoformerAtaqueMixtoTest {
     public void AutobotAlternoAtacaAAutobotHumanoideNoLeSacaVida(){
         Algoformer ratchet = pool.obtenerRatchet();
         Algoformer bumblebee = pool.obtenerBumblebee();
-        Punto aire = new Punto(25,25,1);
-        Punto tierra = new Punto(24,24,0);
+        Punto p1 = new Punto(25,25,0);
+        Punto p2 = new Punto(24,24,0);
         
-        arena.ubicarAlgoformer(ratchet,aire);
-        arena.ubicarAlgoformer(bumblebee, tierra);
+        arena.ubicarAlgoformer(ratchet,p1);
         ratchet.reiniciarMovimiento();
+        ratchet.transformarse();
+        ratchet.reiniciarMovimiento();
+
+        arena.ubicarAlgoformer(bumblebee, p2);
         bumblebee.reiniciarMovimiento();
-        bumblebee.transformarse();
 
         ratchet.atacar(bumblebee);
         Assert.assertEquals(bumblebee.getVida(), 350);
@@ -38,14 +40,14 @@ public class AlgoformerAtaqueMixtoTest {
     public void AutobotHumanoideAtacaAAutobotAlternoNoLeSacaVida(){
         Algoformer ratchet = pool.obtenerRatchet();
         Algoformer bumblebee = pool.obtenerBumblebee();
-        Punto aire = new Punto(25,25,1);
-        Punto tierra = new Punto(24,24,0);
+        Punto p1 = new Punto(25,25,0);
+        Punto p2 = new Punto(24,24,0);
         
-        arena.ubicarAlgoformer(ratchet,aire);
-        arena.ubicarAlgoformer(bumblebee, tierra);
+        arena.ubicarAlgoformer(ratchet, p1);
         ratchet.reiniciarMovimiento();
+        arena.ubicarAlgoformer(bumblebee, p2);
         bumblebee.reiniciarMovimiento();
-        ratchet.transformarse();
+        bumblebee.transformarse();
 
         ratchet.atacar(bumblebee);
         Assert.assertEquals(bumblebee.getVida(), 350);
@@ -55,14 +57,15 @@ public class AlgoformerAtaqueMixtoTest {
     public void DecepticonAlternoAtacaADecepticonHumanoideNoLeSacaVida(){
         Algoformer frenzy = pool.obtenerFrenzy();
         Algoformer bonecrusher = pool.obtenerBonecrusher();
-        Punto tierra1 = new Punto(25,25,0);
-        Punto tierra2 = new Punto(24,24,0);
+        Punto p1 = new Punto(25,25,0);
+        Punto p2 = new Punto(24,24,0);
         
-        arena.ubicarAlgoformer(frenzy,tierra1);
-        arena.ubicarAlgoformer(bonecrusher, tierra2);
+        arena.ubicarAlgoformer(frenzy, p1);
         frenzy.reiniciarMovimiento();
-        bonecrusher.reiniciarMovimiento();
-        bonecrusher.transformarse();
+        frenzy.transformarse();
+        frenzy.reiniciarMovimiento();
+        arena.ubicarAlgoformer(bonecrusher, p2);
+        frenzy.reiniciarMovimiento();
 
         frenzy.atacar(bonecrusher);
         Assert.assertEquals(bonecrusher.getVida(), 200);
@@ -72,14 +75,15 @@ public class AlgoformerAtaqueMixtoTest {
     public void DecepticonHumanoideAtacaADecepticonAlternoNoLeSacaVida(){
         Algoformer megatron = pool.obtenerMegatron();
         Algoformer bonecrusher = pool.obtenerBonecrusher();
-        Punto aire = new Punto(25,25,1);
-        Punto tierra = new Punto(24,24,0);
+        Punto p1 = new Punto(25, 25, 0);
+        Punto p2 = new Punto(24, 24, 0);
         
-        arena.ubicarAlgoformer(megatron,aire);
-        arena.ubicarAlgoformer(bonecrusher, tierra);
+        arena.ubicarAlgoformer(megatron, p1);
         megatron.reiniciarMovimiento();
+        arena.ubicarAlgoformer(bonecrusher, p2);
         bonecrusher.reiniciarMovimiento();
-        megatron.transformarse();
+        bonecrusher.transformarse();
+        bonecrusher.reiniciarMovimiento();
 
         megatron.atacar(bonecrusher);
         Assert.assertEquals(bonecrusher.getVida(), 200);
@@ -89,14 +93,15 @@ public class AlgoformerAtaqueMixtoTest {
     public void DecepticonAlternoAtacaAAutobotHumanoideYLeSacaVida(){
         Algoformer megatron = pool.obtenerMegatron();
         Algoformer optimusPrime = pool.obtenerOptimus();
-        Punto aire = new Punto(25,25,1);
-        Punto tierra = new Punto(24,24,0);
+        Punto p1 = new Punto(25, 25, 0);
+        Punto p2 = new Punto(24, 24, 0);
         
-        arena.ubicarAlgoformer(megatron,aire);
-        arena.ubicarAlgoformer(optimusPrime, tierra);
+        arena.ubicarAlgoformer(megatron, p1);
         megatron.reiniciarMovimiento();
+        megatron.transformarse();
+        megatron.reiniciarMovimiento();
+        arena.ubicarAlgoformer(optimusPrime, p2);
         optimusPrime.reiniciarMovimiento();
-        optimusPrime.transformarse();
 
         megatron.atacar(optimusPrime);
         Assert.assertEquals(optimusPrime.getVida(), 445);
@@ -106,14 +111,15 @@ public class AlgoformerAtaqueMixtoTest {
     public void DecepticonHumanoideAtacaAAutobotAlternoYLeSacaVida(){
         Algoformer megatron = pool.obtenerMegatron();
         Algoformer optimusPrime = pool.obtenerOptimus();
-        Punto aire = new Punto(25,25,1);
-        Punto tierra = new Punto(24,24,0);
+        Punto p1 = new Punto(25,25,0);
+        Punto p2 = new Punto(24,24,0);
         
-        arena.ubicarAlgoformer(megatron,aire);
-        arena.ubicarAlgoformer(optimusPrime, tierra);
+        arena.ubicarAlgoformer(megatron,p1);
         megatron.reiniciarMovimiento();
+        arena.ubicarAlgoformer(optimusPrime, p2);
         optimusPrime.reiniciarMovimiento();
-        megatron.transformarse();
+        optimusPrime.transformarse();
+        optimusPrime.reiniciarMovimiento();
 
         megatron.atacar(optimusPrime);
         Assert.assertEquals(optimusPrime.getVida(), 490);
@@ -123,14 +129,15 @@ public class AlgoformerAtaqueMixtoTest {
     public void AutobotAlternoAtacaADecepticonHumanoideYLeSacaVida(){
         Algoformer megatron = pool.obtenerMegatron();
         Algoformer ratchet = pool.obtenerRatchet();
-        Punto aire1 = new Punto(25,25,1);
-        Punto aire2 = new Punto(24,24,1);
+        Punto p1 = new Punto(25,25,0);
+        Punto p2 = new Punto(24,24,0);
         
-        arena.ubicarAlgoformer(megatron,aire1);
-        arena.ubicarAlgoformer(ratchet, aire2);
+        arena.ubicarAlgoformer(megatron, p1);
         megatron.reiniciarMovimiento();
+        arena.ubicarAlgoformer(ratchet, p2);
         ratchet.reiniciarMovimiento();
-        megatron.transformarse();
+        ratchet.transformarse();
+        ratchet.reiniciarMovimiento();
 
         ratchet.atacar(megatron);
         Assert.assertEquals(megatron.getVida(), 515);
@@ -140,14 +147,15 @@ public class AlgoformerAtaqueMixtoTest {
     public void AutobotHumanoideAtacaADecepticonAlternoYLeSacaVida(){
         Algoformer megatron = pool.obtenerMegatron();
         Algoformer ratchet = pool.obtenerRatchet();
-        Punto aire1 = new Punto(25,25,1);
-        Punto aire2 = new Punto(24,24,1);
+        Punto p1 = new Punto(25,25,0);
+        Punto p2 = new Punto(24,24,0);
         
-        arena.ubicarAlgoformer(megatron,aire1);
-        arena.ubicarAlgoformer(ratchet, aire2);
+        arena.ubicarAlgoformer(megatron, p1);
         megatron.reiniciarMovimiento();
+        megatron.transformarse();
+        megatron.reiniciarMovimiento();
+        arena.ubicarAlgoformer(ratchet, p2);
         ratchet.reiniciarMovimiento();
-        ratchet.transformarse();
 
         ratchet.atacar(megatron);
         Assert.assertEquals(megatron.getVida(), 545);

@@ -26,7 +26,6 @@ public class AlgoformerChispaTest {
     public void AlgoformerEnEstadoHumanoideAlCapturarChispaTieneLaChispa() {
         Algoformer frenzy = pool.obtenerFrenzy();
         Chispa chispa = new Chispa();
-        frenzy.transformarse();
         frenzy.capturarChispa(chispa);
 
         Assert.assertTrue(frenzy.tieneChispa());
@@ -36,6 +35,7 @@ public class AlgoformerChispaTest {
     public void AlgoformerEnEstadoAlternoNoPuedeCapturarLaChispa() {
         Algoformer bumblebee = pool.obtenerBumblebee();
         Chispa chispa = new Chispa();
+        bumblebee.transformarse();
         bumblebee.capturarChispa(chispa);
 
         Assert.assertFalse(bumblebee.tieneChispa());
