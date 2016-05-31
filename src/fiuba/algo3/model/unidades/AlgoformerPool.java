@@ -23,12 +23,12 @@ public class AlgoformerPool {
 
 	public void inicializar(){
 
-		mapa.put(OPTIMUS, new Autobot(OPTIMUS, 500, OptimusPrimeAlterno.getInstance()));
-		mapa.put(BUMBLEBEE,new Autobot(BUMBLEBEE, 350, BumblebeeAlterno.getInstance()));
-		mapa.put(RATCHET, new Autobot(RATCHET, 150, RatchetAlterno.getInstance()));
-		mapa.put(MEGATRON,new Decepticon(MEGATRON, 550, MegatronAlterno.getInstance()));
-		mapa.put(FRENZY,new Decepticon(FRENZY, 400, FrenzyAlterno.getInstance()));
-		mapa.put(BONECRUSHER, new Decepticon(BONECRUSHER, 200, BoneCrusherAlterno.getInstance()));
+		mapa.put(OPTIMUS, new Autobot(OPTIMUS, 500, OptimusPrimeHumanoide.getInstance()));
+		mapa.put(BUMBLEBEE,new Autobot(BUMBLEBEE, 350, BumblebeeHumanoide.getInstance()));
+		mapa.put(RATCHET, new Autobot(RATCHET, 150, RatchetHumanoide.getInstance()));
+		mapa.put(MEGATRON,new Decepticon(MEGATRON, 550, MegatronHumanoide.getInstance()));
+		mapa.put(FRENZY,new Decepticon(FRENZY, 400, FrenzyHumanoide.getInstance()));
+		mapa.put(BONECRUSHER, new Decepticon(BONECRUSHER, 200, BoneCrusherHumanoide.getInstance()));
 		
 	}
 
