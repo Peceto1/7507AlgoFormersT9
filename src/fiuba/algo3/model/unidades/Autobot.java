@@ -10,7 +10,9 @@ public class Autobot extends Algoformer {
 
     @Override
     public void atacar(Algoformer atacado) {
-        this.estado.atacar(atacado, this);
+    	if (!estado.puedeAtacar(atacado, ubicacion))
+    		throw new FueraDeRangoException();
+    	this.estado.atacar(atacado, this);	
     }
 
 
@@ -30,5 +32,6 @@ public class Autobot extends Algoformer {
     void recibirAtaque(Decepticon otro,int danio) {
     	this.vida = this.vida - danio;
     }
+
 
 }

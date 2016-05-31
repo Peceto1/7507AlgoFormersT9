@@ -33,7 +33,13 @@ public class AlgoformerAtaqueHumanoideTest {
     public void AutobotAtacarseASiMismoNoSeInflijeDanio() {
     	AlgoformerPool pool = AlgoformerPool.getInstance();
         Algoformer bumblebee = pool.obtenerBumblebee();
+        
+        Punto lugarBumble = new Punto(12,3,0);
+        arena.ubicarAlgoformer(bumblebee, lugarBumble);
+            
+        bumblebee.reiniciarMovimiento();
         bumblebee.transformarse();
+        
         bumblebee.atacar(bumblebee);
         Assert.assertEquals(bumblebee.getVida(), 350);
     }
@@ -44,6 +50,13 @@ public class AlgoformerAtaqueHumanoideTest {
         Algoformer optimusprime = pool.obtenerOptimus();
         Algoformer bonecrusher = pool.obtenerBonecrusher();
         
+        Punto optimusPos = new Punto(10,10,0);
+        Punto bonePos = new Punto(11,11,0);
+        arena.ubicarAlgoformer(bonecrusher, bonePos);
+        arena.ubicarAlgoformer(optimusprime, optimusPos);
+        
+        optimusprime.reiniciarMovimiento();
+        bonecrusher.reiniciarMovimiento();
         bonecrusher.transformarse();
         optimusprime.transformarse();
         
@@ -56,6 +69,14 @@ public class AlgoformerAtaqueHumanoideTest {
     	AlgoformerPool pool = AlgoformerPool.getInstance();
         Algoformer bumblebee = pool.obtenerBumblebee();
         Algoformer bonecrusher = pool.obtenerBonecrusher();
+        
+        Punto bumblePos = new Punto(40,40,0);
+        Punto bonePos = new Punto(41,40,0);
+        
+        arena.ubicarAlgoformer(bonecrusher, bonePos);
+        arena.ubicarAlgoformer(bumblebee, bumblePos);
+        bonecrusher.reiniciarMovimiento();
+        bumblebee.reiniciarMovimiento();
         
         bonecrusher.transformarse();
         bumblebee.transformarse();
@@ -86,6 +107,16 @@ public class AlgoformerAtaqueHumanoideTest {
         AlgoformerPool pool = AlgoformerPool.getInstance();
         Algoformer frenzy = pool.obtenerFrenzy();
         Algoformer megatron = pool.obtenerMegatron();
+        
+        Punto frenzyPos = new Punto(20,20,0);
+        Punto megatronPos = new Punto(17,17,1);
+        arena.ubicarAlgoformer(frenzy, frenzyPos);
+        arena.ubicarAlgoformer(megatron, megatronPos);
+        
+        frenzy.reiniciarMovimiento();
+        megatron.reiniciarMovimiento();
+        megatron.transformarse();
+        frenzy.transformarse();
 
         frenzy.atacar(megatron);
         Assert.assertEquals(megatron.getVida(), 550);

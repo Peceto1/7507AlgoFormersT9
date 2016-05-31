@@ -10,6 +10,8 @@ public class Decepticon extends Algoformer {
 
     @Override
     public void atacar(Algoformer atacado) {
+    	if (!estado.puedeAtacar(atacado, ubicacion))
+    		throw new FueraDeRangoException();
         this.estado.atacar(atacado, this);
     }
 

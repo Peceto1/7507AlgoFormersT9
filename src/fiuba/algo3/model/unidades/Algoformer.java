@@ -86,7 +86,6 @@ public abstract class Algoformer {
 		this.estado.transformar(this);
 	}
 
-
 	public abstract void atacar(Algoformer atacado);
 	abstract void recibirAtaque(Algoformer atacante, int danio);
 	abstract void recibirAtaque(Autobot atacante, int danio);

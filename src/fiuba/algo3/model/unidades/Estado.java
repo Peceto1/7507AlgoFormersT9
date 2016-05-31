@@ -31,6 +31,12 @@ abstract class Estado {
 		movimiento = new Movimiento(ubicacion, velocidad);
 	}
 
+    
+    Boolean puedeAtacar(Algoformer atacado, Punto origenDeAtaque){
+    	Punto ubicacionDeAtacado = atacado.getUbicacion();
+    	int distanciaEntreAlgoformers = origenDeAtaque.distanciaAl(ubicacionDeAtacado);
+    	return distanciaEntreAlgoformers <= rango;
+    }
 
 	abstract void transformar(Algoformer algoformer);
 	abstract void capturarChispa(Chispa chispa, Algoformer captor);

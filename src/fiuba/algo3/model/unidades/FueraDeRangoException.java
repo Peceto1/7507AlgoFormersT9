@@ -1,0 +1,5 @@
+package fiuba.algo3.model.unidades;
+
+public class FueraDeRangoException extends RuntimeException{
+
+}
