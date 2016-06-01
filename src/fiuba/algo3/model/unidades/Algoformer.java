@@ -26,7 +26,7 @@ public abstract class Algoformer {
 	}
 
 
-	int getVida() {
+	public int getVida() {
 		return this.vida;
 	}
 
