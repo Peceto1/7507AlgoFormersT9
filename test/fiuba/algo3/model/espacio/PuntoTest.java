@@ -128,17 +128,17 @@ public class PuntoTest {
 
     @Test (expected = DireccionInvalidaException.class)
     public void crearUnaDireccionConAlgunNumeroMayorAUnoLanzaExcepcion() {
-        Direccion invalida = new Direccion(2, 1);
+        new Direccion(2, 1);
     }
 
     @Test (expected = DireccionInvalidaException.class)
     public void crearUnaDireccionConAlgunNumeroMenorAUnoLanzaExcepcion() {
-        Direccion invalida = new Direccion(-5, 1);
+        new Direccion(-5, 1);
     }
 
     @Test (expected = DireccionInvalidaException.class)
     public void crearUnaDireccionNulaLanzaExcepcion() {
-        Direccion invalida = new Direccion(0, 0);
+        new Direccion(0, 0);
     }
 
 }

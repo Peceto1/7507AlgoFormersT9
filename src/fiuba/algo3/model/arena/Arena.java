@@ -1,5 +1,6 @@
 package fiuba.algo3.model.arena;
 
+import fiuba.algo3.model.arena.Chispa;
 import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.unidades.Algoformer;
 
@@ -42,6 +43,13 @@ public class Arena {
     	Casillero buscado = arena.get(punto);
     	return buscado.contieneChispa();
     }
+    
+	public Chispa obtenerChispa(Punto punto) {
+		Casillero buscado = arena.get(punto);
+		Chispa chispa_capturada = buscado.obtenerChispa();
+		buscado.removerChispa();
+		return chispa_capturada;
+	}
 
 
     public static Arena getInstance(){

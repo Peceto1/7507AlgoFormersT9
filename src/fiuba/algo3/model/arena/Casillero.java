@@ -37,4 +37,15 @@ class Casillero {
         return tmp;
     }
 
+
+	public Chispa obtenerChispa() {
+		return chispa;
+	}
+
+
+	public void removerChispa() {
+		this.chispa = null;
+		
+	}
+
 }

@@ -1,6 +1,7 @@
 package fiuba.algo3.model.espacio;
 
 import fiuba.algo3.model.arena.Arena;
+import fiuba.algo3.model.arena.Chispa;
 
 public class Punto {
 
@@ -62,6 +63,11 @@ public class Punto {
 	public boolean contieneChispa() {
 		return Arena.getInstance().contieneChispa(this);
 		
+	}
+
+
+	public Chispa obtenerChispa() {
+		return Arena.getInstance().obtenerChispa(this);
 	}
 
 }
