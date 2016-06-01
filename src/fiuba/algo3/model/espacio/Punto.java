@@ -37,6 +37,16 @@ public class Punto {
     }
 
 
+    public boolean contieneChispa() {
+        return Arena.getInstance().contieneChispa(this);
+    }
+
+
+    public Chispa obtenerChispa() {
+        return Arena.getInstance().obtenerChispa(this);
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -58,16 +68,5 @@ public class Punto {
         result = 31 * result + nivel;
         return result;
     }
-
-
-	public boolean contieneChispa() {
-		return Arena.getInstance().contieneChispa(this);
-		
-	}
-
-
-	public Chispa obtenerChispa() {
-		return Arena.getInstance().obtenerChispa(this);
-	}
 
 }

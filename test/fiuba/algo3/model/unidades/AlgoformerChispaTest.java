@@ -43,6 +43,7 @@ public class AlgoformerChispaTest {
         Algoformer bumblebee = pool.obtenerBumblebee();
         Punto punto = new Punto(26,26,0);
         arena.ubicarAlgoformer(bumblebee, punto);
+        bumblebee.reiniciarMovimiento();
         bumblebee.transformarse();
         bumblebee.capturarChispa();
 
@@ -53,6 +54,7 @@ public class AlgoformerChispaTest {
     	Punto punto = new Punto(15,4,0);
         Algoformer bumblebee = pool.obtenerBumblebee();
         arena.ubicarAlgoformer(bumblebee, punto);
+        bumblebee.reiniciarMovimiento();
         bumblebee.capturarChispa();
     }
 

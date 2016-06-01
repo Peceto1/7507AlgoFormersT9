@@ -46,9 +46,7 @@ public class Arena {
     
 	public Chispa obtenerChispa(Punto punto) {
 		Casillero buscado = arena.get(punto);
-		Chispa chispa_capturada = buscado.obtenerChispa();
-		buscado.removerChispa();
-		return chispa_capturada;
+		return buscado.removerChispa();
 	}
 
 

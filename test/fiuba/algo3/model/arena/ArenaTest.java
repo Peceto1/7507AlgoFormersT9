@@ -20,13 +20,13 @@ public class ArenaTest {
 
     @Test
     public void preguntarSiUnCasilleroContieneLaChispaSiNoLaContieneDaFalse(){
-    	Punto punto =new Punto(1,1,0);
+    	Punto punto = new Punto(1,1,0);
     	Assert.assertFalse(arena.contieneChispa(punto));
     }
     
     @Test
     public void preguntarSiUnCasilleroContieneLaChispaSiLaContieneDaTrue(){
-    	Punto punto =new Punto(26,26,0);
+    	Punto punto = new Punto(26,26,0);
     	Assert.assertTrue(arena.contieneChispa(punto));
     }
 
@@ -48,6 +48,13 @@ public class ArenaTest {
         Algoformer optimus = pool.obtenerOptimus();
         arena.ubicarAlgoformer(optimus, punto);
         Assert.assertTrue(arena.estaOcupado(punto));
+    }
+
+    @Test
+    public void removerChispaDeArenaDevuelveChispaYNoSeEncuentraMasEnLaArena() {
+        Punto puntoDeChispa = new Punto(26, 26, 0);
+        arena.obtenerChispa(puntoDeChispa);
+        Assert.assertFalse(arena.contieneChispa(puntoDeChispa));
     }
 
 
