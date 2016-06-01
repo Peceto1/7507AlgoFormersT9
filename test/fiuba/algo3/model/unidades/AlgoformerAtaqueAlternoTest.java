@@ -239,5 +239,31 @@ public class AlgoformerAtaqueAlternoTest {
     	Assert.assertEquals(ratchet.getVida(), 95);
     	
     }
+    
+	@Test (expected = AlgoformerMuertoException.class)
+	public void AlgoformerMuertoNoPuedeTransformarse(){
+		Algoformer optimusprime = pool.obtenerOptimus();
+		Algoformer megatron = pool.obtenerMegatron();
+		
+        Punto p1 = new Punto(25, 25, 0);
+        Punto p2 = new Punto(24, 24, 0);
+
+        arena.ubicarAlgoformer(optimusprime, p2);
+        optimusprime.reiniciarMovimiento();
+        arena.ubicarAlgoformer(megatron, p1);
+        megatron.reiniciarMovimiento();
+        megatron.transformarse();
+        megatron.reiniciarMovimiento();
+        
+        for (int i=0;i<9;i++){
+            megatron.atacar(optimusprime);
+        }
+
+        // optimusprime sigue vivo (le quedan 5 de vida)
+        megatron.atacar(optimusprime);
+        // optimusprime esta muerto
+        
+        optimusprime.atacar(megatron);
+    }
 
 }

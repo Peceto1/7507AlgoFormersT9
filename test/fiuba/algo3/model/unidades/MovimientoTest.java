@@ -3,6 +3,7 @@ package fiuba.algo3.model.unidades;
 import fiuba.algo3.model.arena.Arena;
 import fiuba.algo3.model.espacio.Direccion;
 import fiuba.algo3.model.espacio.Punto;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -209,6 +210,31 @@ public class MovimientoTest {
         bonecrusher.reiniciarMovimiento();
 
     	bumblebee.moverseHacia(diagonalIzquierdaArriba);
+    }
+    
+	@Test (expected = AlgoformerMuertoException.class)
+	public void AlgoformerMuertoNoPuedeTransformarse(){
+		Algoformer optimusprime = pool.obtenerOptimus();
+		Algoformer megatron = pool.obtenerMegatron();
+		
+        Punto p1 = new Punto(25, 25, 0);
+        Punto p2 = new Punto(24, 24, 0);
+        Direccion Arriba = new Direccion(0,1);
+
+        arena.ubicarAlgoformer(optimusprime, p2);
+        optimusprime.reiniciarMovimiento();
+        arena.ubicarAlgoformer(megatron, p1);
+        megatron.reiniciarMovimiento();
+        
+        for (int i=0;i<10;i++){
+            optimusprime.atacar(megatron);
+        }
+
+        // megatron sigue vivo (le quedan 50 de vida)
+        optimusprime.atacar(megatron);
+        // megatron esta muerto con exactamente 0 de vida
+        
+        megatron.moverseHacia(Arriba);
     }
 }
 

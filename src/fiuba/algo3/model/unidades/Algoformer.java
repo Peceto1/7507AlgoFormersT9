@@ -1,5 +1,6 @@
 package fiuba.algo3.model.unidades;
 
+import fiuba.algo3.model.arena.Chispa;
 import fiuba.algo3.model.espacio.Direccion;
 import fiuba.algo3.model.espacio.Punto;
 
@@ -9,7 +10,7 @@ public abstract class Algoformer {
 	protected String nombre;
 	protected int vida;
 	protected Estado estado;
-	protected boolean chispa;
+	protected Chispa chispa;
 	protected Punto ubicacion;
 
 
@@ -31,11 +32,10 @@ public abstract class Algoformer {
 
 
 	void setChispa() {
-		boolean	chispa_capturada = ubicacion.contieneChispa();
-		if (!chispa_capturada){
+		if (!ubicacion.contieneChispa()){
 			throw new ImposibleCapturarChispaException();
 		}
-		chispa = chispa_capturada;
+		chispa = ubicacion.obtenerChispa();
 	}
 
 
@@ -54,8 +54,8 @@ public abstract class Algoformer {
 	}
 
 
-	public Boolean tieneChispa() {
-		return this.chispa;
+	public boolean tieneChispa() {
+		return (this.chispa != null);
 	}
 
 
@@ -75,6 +75,9 @@ public abstract class Algoformer {
 
 
 	public void moverseHacia(Direccion direccion) {
+		if (!estaVivo()){
+			throw new AlgoformerMuertoException();
+		}
 		ubicacion = estado.moverse(direccion);
 	}
 
@@ -85,6 +88,9 @@ public abstract class Algoformer {
 
 
 	public void transformarse() {
+		if (!estaVivo()){
+			throw new AlgoformerMuertoException();
+		}
 		this.estado.transformar(this);
 	}
 
