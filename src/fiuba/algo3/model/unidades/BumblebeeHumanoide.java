@@ -1,6 +1,5 @@
 package fiuba.algo3.model.unidades;
 
-import fiuba.algo3.model.arena.Chispa;
 
 class BumblebeeHumanoide extends EstadoHumanoide {
 
