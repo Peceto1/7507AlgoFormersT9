@@ -1,6 +1,5 @@
 package fiuba.algo3.model.unidades;
 
-import fiuba.algo3.model.arena.Chispa;
 import fiuba.algo3.model.espacio.Direccion;
 import fiuba.algo3.model.espacio.Punto;
 
@@ -39,7 +38,7 @@ abstract class Estado {
     }
 
 	abstract void transformar(Algoformer algoformer);
-	abstract void capturarChispa(Chispa chispa, Algoformer captor);
+	abstract void capturarChispa(Algoformer captor);
 	abstract void combinarse(Algoformer otro1, Algoformer otro2);
 
 }

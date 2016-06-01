@@ -1,5 +1,7 @@
 package fiuba.algo3.model.espacio;
 
+import fiuba.algo3.model.arena.Arena;
+
 public class Punto {
 
     private int x;
@@ -55,5 +57,11 @@ public class Punto {
         result = 31 * result + nivel;
         return result;
     }
+
+
+	public boolean contieneChispa() {
+		return Arena.getInstance().contieneChispa(this);
+		
+	}
 
 }

@@ -126,7 +126,8 @@ public class Entrega01Test {
 
     @Test
     public void test04_a_IntegracionJuegoJugadoresArenaAlgoformersChispa() {
-
+    	Punto centro = new Punto(26,26,0);
+    	Assert.assertTrue(arena.contieneChispa(centro));
         // Preguntar como tiene que ser este test.
 
     }
