@@ -75,9 +75,6 @@ public abstract class Algoformer {
 
 
 	public void moverseHacia(Direccion direccion) {
-		if (!estaVivo()){
-			throw new AlgoformerMuertoException();
-		}
 		ubicacion = estado.moverse(direccion);
 	}
 
@@ -88,9 +85,6 @@ public abstract class Algoformer {
 
 
 	public void transformarse() {
-		if (!estaVivo()){
-			throw new AlgoformerMuertoException();
-		}
 		this.estado.transformar(this);
 	}
 

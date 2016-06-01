@@ -147,7 +147,7 @@ public class AlgoformerAtaqueHumanoideTest {
         Assert.assertFalse(megatron.estaVivo());
     }
     
-	@Test (expected = AlgoformerMuertoException.class)
+	@Test
 	public void AlgoformerMuertoNoPuedeTransformarse(){
 		Algoformer optimusprime = pool.obtenerOptimus();
 		Algoformer megatron = pool.obtenerMegatron();
@@ -166,9 +166,7 @@ public class AlgoformerAtaqueHumanoideTest {
 
         // optimusprime sigue vivo (le quedan 10 de vida)
         megatron.atacar(optimusprime);
-        // optimusprime esta muerto
-        
-        optimusprime.atacar(megatron);
+        Assert.assertFalse(optimusprime.estaVivo());
     }
 
 }

@@ -212,7 +212,7 @@ public class MovimientoTest {
     	bumblebee.moverseHacia(diagonalIzquierdaArriba);
     }
     
-	@Test (expected = AlgoformerMuertoException.class)
+	@Test
 	public void AlgoformerMuertoNoPuedeTransformarse(){
 		Algoformer optimusprime = pool.obtenerOptimus();
 		Algoformer megatron = pool.obtenerMegatron();

@@ -147,7 +147,7 @@ public class AlgoformerTransformarseTest {
         Assert.assertEquals(megatron.getUbicacion(), partida);
     }
 
-	@Test (expected = AlgoformerMuertoException.class)
+	/*@Test
 	public void AlgoformerMuertoNoPuedeTransformarse(){
 		Algoformer optimusprime = pool.obtenerOptimus();
 		Algoformer megatron = pool.obtenerMegatron();
@@ -169,6 +169,6 @@ public class AlgoformerTransformarseTest {
         // optimusprime esta muerto
         
         optimusprime.transformarse();
-    }
+    }*/
 
 }
