@@ -19,12 +19,6 @@ public class Decepticon extends Algoformer {
 
 
     @Override
-    void recibirAtaque(Algoformer atacante,int danio) {
-        this.recibirAtaque(atacante,danio);
-    }
-
-
-    @Override
     void recibirAtaque(Decepticon otro,int danio) {
 
     }

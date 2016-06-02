@@ -1,6 +1,7 @@
 package fiuba.algo3.model.unidades;
 
-class RatchetAlterno extends EstadoAlterno{
+class RatchetAlterno extends EstadoAlterno {
+
 	private static RatchetAlterno instancia = new RatchetAlterno();
 	
 	private RatchetAlterno(){

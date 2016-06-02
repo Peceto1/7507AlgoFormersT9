@@ -1,6 +1,7 @@
 package fiuba.algo3.model.unidades;
 
-class MegatronHumanoide extends EstadoHumanoide{
+class MegatronHumanoide extends EstadoHumanoide {
+
 	private static MegatronHumanoide instancia = new MegatronHumanoide();
 	
 	private MegatronHumanoide(){

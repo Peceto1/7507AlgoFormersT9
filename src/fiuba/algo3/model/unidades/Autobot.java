@@ -19,12 +19,6 @@ public class Autobot extends Algoformer {
 
 
     @Override
-    void recibirAtaque(Algoformer atacante,int danio) {
-        this.recibirAtaque(atacante,danio);
-    }
-
-
-    @Override
     void recibirAtaque(Autobot otro,int danio) {
 
     }

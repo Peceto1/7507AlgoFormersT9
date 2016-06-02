@@ -7,11 +7,11 @@ import fiuba.algo3.model.espacio.Punto;
 
 public abstract class Algoformer {
 
-	protected String nombre;
-	protected int vida;
-	protected Estado estado;
-	protected Chispa chispa;
-	protected Punto ubicacion;
+	String nombre;
+	int vida;
+	Estado estado;
+	Chispa chispa;
+	Punto ubicacion;
 
 
 	Algoformer(String nombre, int vida, Estado estado) {
@@ -89,7 +89,6 @@ public abstract class Algoformer {
 	}
 
 	public abstract void atacar(Algoformer atacado);
-	abstract void recibirAtaque(Algoformer atacante, int danio);
 	abstract void recibirAtaque(Autobot atacante, int danio);
 	abstract void recibirAtaque(Decepticon atacante, int danio);
 

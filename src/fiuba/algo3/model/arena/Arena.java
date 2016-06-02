@@ -1,6 +1,5 @@
 package fiuba.algo3.model.arena;
 
-import fiuba.algo3.model.arena.Chispa;
 import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.unidades.Algoformer;
 
@@ -33,7 +32,8 @@ public class Arena {
                 }
             }
         }
-       Punto medio = new Punto(26,26,0);
+
+      Punto medio = new Punto(26,26,0);
       Casillero casilla_media = arena.get(medio);
       casilla_media.colocar(new Chispa());
     }

@@ -1,6 +1,7 @@
 package fiuba.algo3.model.unidades;
 
-class FrenzyHumanoide extends EstadoHumanoide{
+class FrenzyHumanoide extends EstadoHumanoide {
+
 	private static FrenzyHumanoide instancia = new FrenzyHumanoide();
 	
 	private FrenzyHumanoide(){

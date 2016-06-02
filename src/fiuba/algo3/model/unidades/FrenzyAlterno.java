@@ -1,6 +1,7 @@
 package fiuba.algo3.model.unidades;
 
-class FrenzyAlterno extends EstadoAlterno{
+class FrenzyAlterno extends EstadoAlterno {
+
 	private static FrenzyAlterno instancia = new FrenzyAlterno();
 	
 	private FrenzyAlterno(){
