@@ -20,14 +20,6 @@ public class Entrega01Test {
     }
 
 
-    /* ESTOS TESTS SON TESTS DE INTEGRACION QUE PIDE EL ENUNCIADO
-       CADA TEST TIENE UN NUMERO Y UNA LETRA ANTES DE SU TITULO
-       NUMERO: Representa cual es el test del enunciado.
-       LETRA: Representa un inciso, es decir, un caso de prueba en particular.
-                Si les parece necesario agregar más incisos pueden hacerlo.
-     */
-
-
     @Test
     public void test01_a_SeUbicaAlgoformerHumanoideEnUnCasilleroAlMoverseSeMueveAcorde() {
         Punto partida = new Punto(10, 10, 0);
@@ -138,7 +130,7 @@ public class Entrega01Test {
         Assert.assertTrue(arena.estaOcupado(new Punto(51, 26, 0))); // MEGATRON
         Assert.assertTrue(arena.estaOcupado(new Punto(51, 25, 0)));
 
-        Jugador actual = juego.getJugadorEnTurno();
+        Jugador actual = juego.getJugadorEnTurno();     // Tomo al jugador con el primer turno
 
         if (!actual.getNombre().equals(jugador1)) {
             juego.finalizarTurno();

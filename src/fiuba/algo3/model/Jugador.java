@@ -47,7 +47,7 @@ public class Jugador {
 
         for (Algoformer actual : algoformers) {
 
-            if(actual.tieneChispa())
+            if (actual.tieneChispa())
                 return true;
         }
         return false;
