@@ -125,6 +125,26 @@ public class MovimientoTest {
     }
     
     @Test
+    public void moverAlgoformerHumanoideYQueSeTopeConOtroHumanoideNoVaciaCasillero() {
+        Punto partida = new Punto(1, 1, 0);
+        Direccion diagonalArriba = new Direccion(1, 1);
+        Punto ocupado = new Punto(2, 2, 0);
+        Algoformer bumbleblee = pool.obtenerBumblebee();
+        Algoformer frenzy = pool.obtenerFrenzy();
+
+        arena.ubicarAlgoformer(bumbleblee, partida);
+        bumbleblee.reiniciarMovimiento();
+        arena.ubicarAlgoformer(frenzy, ocupado);
+        frenzy.reiniciarMovimiento();
+
+        try{
+        	bumbleblee.moverseHacia(diagonalArriba);
+        }catch(MovimientoNoValidoException e){
+        	Assert.assertTrue(arena.estaOcupado(partida));
+        }
+    }
+    
+    @Test
     public void moverAlgoformerVoladorSobreTerrestreNoChocan() {
         Punto partida = new Punto(1, 1, 0);
         Direccion diagonalDerechaArriba = new Direccion(1, 1);
