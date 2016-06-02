@@ -1,11 +1,18 @@
 package fiuba.algo3.model.unidades;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class AlgoformerPoolTest {
 
     private AlgoformerPool pool = AlgoformerPool.getInstance();
+
+
+    @Before
+    public void before() {
+        pool.inicializar();
+    }
 
 
     @Test
@@ -62,6 +69,19 @@ public class AlgoformerPoolTest {
         Algoformer megatron = pool.obtenerMegatron();
 
         Assert.assertFalse(optimus == megatron);
+    }
+
+    @Test
+    public void obtenerOptimusPrimeIndividualEsElMismoQueElDelEquipoAutobots() {
+        Algoformer optimus = pool.obtenerOptimus();
+        Algoformer optimus2 = null;
+
+        for (Algoformer autobot : pool.obtenerEquipo("AUTOBOTS")) {
+            if (autobot.getNombre().equals("Optimus Prime"))
+                optimus2 = autobot;
+        }
+
+        Assert.assertTrue(optimus == optimus2);
     }
 
 

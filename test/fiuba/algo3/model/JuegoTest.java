@@ -8,7 +8,7 @@ public class JuegoTest {
     private String nombreJugador1 = "Jorge";
     private String nombreJugador2 = "Ana";
 
-
+/*
     @Test
     public void crearJuegoNuevoYPreguntarPorJugadorEnTurnoActualDebeAlgunoDeLos2Jugadores() {
 
@@ -53,6 +53,6 @@ public class JuegoTest {
         Jugador jugadorEnTurno4 = juego.getJugadorEnTurno();
 
         Assert.assertEquals(jugadorEnTurno2, jugadorEnTurno4);
-    }
+    }*/
 
 }

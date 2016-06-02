@@ -1,20 +1,21 @@
 package fiuba.algo3.model;
 
+import fiuba.algo3.model.arena.Arena;
 import fiuba.algo3.model.unidades.Algoformer;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Jugador {
 
     private String nombre;
-    private Map<String, Algoformer> algoformers;
+    private List<Algoformer> algoformers;
 
 
-    public Jugador(String nombre) {
+    Jugador(String nombre, List<Algoformer> equipo) {
         this.nombre = nombre;
-        this.algoformers = new HashMap<>();
+        this.algoformers = new ArrayList<>(equipo);
     }
 
 
@@ -23,7 +24,37 @@ public class Jugador {
     }
 
 
-    public void agregarAlgoformer(String nombre, Algoformer algoformer){
-    	algoformers.put(nombre, algoformer);
+    void iniciarTurno() {
+
+        for (Algoformer actual : algoformers)
+            actual.reiniciarMovimiento();
+    }
+
+
+    void removerMuertos(Arena arena) {
+
+        for (Algoformer actual : algoformers) {
+
+            if (!actual.estaVivo()) {
+                arena.removerAlgoformerEn(actual.getUbicacion());
+                algoformers.remove(actual);
+            }
+        }
+    }
+
+
+    Boolean tieneChispa() {
+
+        for (Algoformer actual : algoformers) {
+
+            if(actual.tieneChispa())
+                return true;
+        }
+        return false;
+    }
+
+
+    Boolean tieneVivos() {
+        return algoformers.size() > 0;
     }
 }

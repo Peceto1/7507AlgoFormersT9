@@ -39,7 +39,7 @@ public abstract class Algoformer {
 	}
 
 
-	Punto getUbicacion() {
+	public Punto getUbicacion() {
 		return this.ubicacion;
 	}
 

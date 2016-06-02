@@ -18,7 +18,6 @@ public class Arena {
 
     private Arena() {
         this.arena = new HashMap<>();
-        inicializar();
     }
 
 

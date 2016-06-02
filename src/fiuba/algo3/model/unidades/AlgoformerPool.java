@@ -1,12 +1,17 @@
 package fiuba.algo3.model.unidades;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class AlgoformerPool {
 
-	private static Map<String, Algoformer> mapa = new HashMap<>();
+	private static Map<String, Autobot> autobots = new HashMap<>();
+	private static Map<String, Decepticon> decepticons = new HashMap<>();
+	private static Map<String, List<Algoformer>> equipos = new HashMap<>();
 	private static AlgoformerPool instancia = new AlgoformerPool();
+
 	
 	private String OPTIMUS = "Optimus Prime";
 	private String BUMBLEBEE = "Bumblebee";
@@ -14,22 +19,18 @@ public class AlgoformerPool {
 	private String MEGATRON = "Megatron";
 	private String FRENZY = "Frenzy";
 	private String BONECRUSHER = "Bonecrusher";
-	
-	
-	private AlgoformerPool(){
-		this.inicializar();
-	}
 
 
 	public void inicializar(){
 
-		mapa.put(OPTIMUS, new Autobot(OPTIMUS, 500, OptimusPrimeHumanoide.getInstance()));
-		mapa.put(BUMBLEBEE,new Autobot(BUMBLEBEE, 350, BumblebeeHumanoide.getInstance()));
-		mapa.put(RATCHET, new Autobot(RATCHET, 150, RatchetHumanoide.getInstance()));
-		mapa.put(MEGATRON,new Decepticon(MEGATRON, 550, MegatronHumanoide.getInstance()));
-		mapa.put(FRENZY,new Decepticon(FRENZY, 400, FrenzyHumanoide.getInstance()));
-		mapa.put(BONECRUSHER, new Decepticon(BONECRUSHER, 200, BoneCrusherHumanoide.getInstance()));
-		
+		autobots.put(OPTIMUS, new Autobot(OPTIMUS, 500, OptimusPrimeHumanoide.getInstance()));
+		autobots.put(BUMBLEBEE, new Autobot(BUMBLEBEE, 350, BumblebeeHumanoide.getInstance()));
+		autobots.put(RATCHET, new Autobot(RATCHET, 150, RatchetHumanoide.getInstance()));
+		decepticons.put(MEGATRON, new Decepticon(MEGATRON, 550, MegatronHumanoide.getInstance()));
+		decepticons.put(FRENZY, new Decepticon(FRENZY, 400, FrenzyHumanoide.getInstance()));
+		decepticons.put(BONECRUSHER, new Decepticon(BONECRUSHER, 200, BoneCrusherHumanoide.getInstance()));
+		equipos.put("AUTOBOTS", new ArrayList<>(autobots.values()));
+		equipos.put("DECEPTICONS", new ArrayList<>(decepticons.values()));
 	}
 
 
@@ -39,32 +40,36 @@ public class AlgoformerPool {
 
 	
 	public Algoformer obtenerOptimus(){
-		return mapa.get(OPTIMUS);	
+		return autobots.get(OPTIMUS);
 	}
 
 
 	public Algoformer obtenerBumblebee(){
-		return mapa.get(BUMBLEBEE);	
+		return autobots.get(BUMBLEBEE);
 	}
 
 
 	public Algoformer obtenerRatchet(){
-		return mapa.get(RATCHET);
+		return autobots.get(RATCHET);
 	}
 
 		
 	public Algoformer obtenerMegatron(){
-		return mapa.get(MEGATRON);	
+		return decepticons.get(MEGATRON);
 	}
 
 
 	public Algoformer obtenerFrenzy(){
-		return mapa.get(FRENZY);	
+		return decepticons.get(FRENZY);
 	}
 
 
 	public Algoformer obtenerBonecrusher(){
-		return mapa.get(BONECRUSHER);	
+		return decepticons.get(BONECRUSHER);
 	}
-	
+
+
+	public List<Algoformer> obtenerEquipo(String equipo) {
+		return equipos.get(equipo);
+	}
 }
