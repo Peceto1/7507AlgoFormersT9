@@ -32,11 +32,14 @@ public class Arena {
                 }
             }
         }
-
-      Punto medio = new Punto(26,26,0);
-      Casillero casilla_media = arena.get(medio);
-      casilla_media.colocar(new Chispa());
     }
+
+
+    public void colocarChispa(Punto punto) {
+        Casillero casilla_media = arena.get(punto);
+        casilla_media.colocar(new Chispa());
+    }
+
     
     public boolean contieneChispa(Punto punto){
     	Casillero buscado = arena.get(punto);

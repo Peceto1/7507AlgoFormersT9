@@ -3,10 +3,7 @@ package fiuba.algo3.model;
 import fiuba.algo3.model.arena.Arena;
 import fiuba.algo3.model.espacio.Direccion;
 import fiuba.algo3.model.espacio.Punto;
-import fiuba.algo3.model.unidades.Algoformer;
-import fiuba.algo3.model.unidades.AlgoformerPool;
-import fiuba.algo3.model.unidades.FueraDeRangoException;
-import fiuba.algo3.model.unidades.MovimientoNoValidoException;
+import fiuba.algo3.model.unidades.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -127,19 +124,76 @@ public class Entrega01Test {
     @Test
     public void test04_a_IntegracionJuegoJugadoresArenaAlgoformersChispa() {
 
+        String jugador1 = "Fran";
+        String jugador2 = "Santi";
+
         Juego juego = new Juego();
-        juego.crearJugador("Santi", "AUTOBOTS");
-        juego.crearJugador("Fran", "DECEPTICONS");
+        juego.crearJugador(jugador1, "DECEPTICONS");
+        juego.crearJugador(jugador2, "AUTOBOTS");
+        juego.comenzarPartida();
         Assert.assertTrue(arena.estaOcupado(new Punto(1, 27, 0)));
         Assert.assertTrue(arena.estaOcupado(new Punto(1, 26, 0)));
         Assert.assertTrue(arena.estaOcupado(new Punto(1, 25, 0)));
         Assert.assertTrue(arena.estaOcupado(new Punto(51, 27, 0)));
-        Assert.assertTrue(arena.estaOcupado(new Punto(51, 26, 0)));
+        Assert.assertTrue(arena.estaOcupado(new Punto(51, 26, 0))); // MEGATRON
         Assert.assertTrue(arena.estaOcupado(new Punto(51, 25, 0)));
 
-        // ¿Y Ahora que?
+        Jugador actual = juego.getJugadorEnTurno();
 
+        if (!actual.getNombre().equals(jugador1)) {
+            juego.finalizarTurno();
+            actual = juego.getJugadorEnTurno();
+        }
 
+        // EN actual TENGO AL JUGADOR CON LOS DECEPTICONS
+        Algoformer megatron = pool.obtenerMegatron();
+        Direccion izquierda = new Direccion(-1, 0);
+        int cantMovimientos = 8;    // Cantidad de movimientos de Megatron en Alterno
+
+        megatron.transformarse();    // SE TRANSFORMA EN ALTERNO
+        Assert.assertTrue(arena.estaOcupado(new Punto(51, 26, 1)));     // Se encuentra en el aire
+        juego.finalizarTurno();     // termina turno Megatron
+        juego.finalizarTurno();     // Saltea el turno del oponente
+
+        for (int j=0; j<3; j++) {
+
+            for (int i = 0; i < cantMovimientos; i++)
+                megatron.moverseHacia(izquierda);
+
+            juego.finalizarTurno();     // Termina Turno Megatron
+            juego.finalizarTurno();     // Saltea el del Oponente
+        }
+
+        Assert.assertTrue(arena.estaOcupado(new Punto(27, 26, 1)));     // MEGATRON ESTA EN (27, 26, 1)
+        juego.finalizarTurno(); // Termina turno Megatron
+        juego.finalizarTurno(); // Termina turno Oponente
+
+        megatron.moverseHacia(izquierda);   // MEGATRON SE ENCUENTRA ARRIBA DE LA CHISPA (EN EL AIRE)
+
+        Assert.assertTrue(arena.estaOcupado(new Punto(26, 26, 1)));
+        Assert.assertTrue(arena.contieneChispa(new Punto(26, 26, 0)));
+
+        juego.finalizarTurno();     // Termina turno Megatron
+        juego.finalizarTurno();     // Termina turno oponente
+
+        try {
+            megatron.capturarChispa();      // No se puede capturar chispa en estado ALTERNO
+        } catch (ImposibleCapturarChispaException e) {
+            Assert.assertFalse(megatron.tieneChispa());
+        }
+
+        megatron.transformarse();   // MEGATRON BAJA A TIERRA, AHORA PUEDE CAPTURAR CHISPA
+        juego.finalizarTurno();     // Termina turno Megatron
+        juego.finalizarTurno();     // Termina turno oponente
+
+        megatron.capturarChispa();          // Megatron captura la chispa
+        Assert.assertTrue(megatron.tieneChispa());      // Megatron tiene la chispa
+        Assert.assertFalse(arena.contieneChispa(new Punto(26, 26, 0)));     // No esta mas en el tablero
+
+        juego.finalizarTurno();
+        Assert.assertTrue(juego.hayGanador());  // Hay un Ganador
+        Assert.assertEquals(juego.obtenerGanador(), actual);
+        // Ese ganador es el jugador de Decepticons
     }
 
     @Test

@@ -7,12 +7,17 @@ public class JuegoTest {
 
     private String nombreJugador1 = "Jorge";
     private String nombreJugador2 = "Ana";
+    private String teamAutobots = "AUTOBOTS";
+    private String teamDecepticons = "DECEPTICONS";
 
-/*
+
     @Test
     public void crearJuegoNuevoYPreguntarPorJugadorEnTurnoActualDebeAlgunoDeLos2Jugadores() {
 
-        Juego juego = new Juego(nombreJugador1, nombreJugador2);
+        Juego juego = new Juego();
+        juego.crearJugador(nombreJugador1, teamAutobots);
+        juego.crearJugador(nombreJugador2, teamDecepticons);
+        juego.comenzarPartida();
         Jugador jugadorEnTurno = juego.getJugadorEnTurno();
         String nombreJugadorEnturno = jugadorEnTurno.getNombre();
 
@@ -22,9 +27,12 @@ public class JuegoTest {
     @Test
     public void crearJuegoNuevoAvanzar1TurnoYPreguntarPorJugadorEnTurnoActualDebeSerElOtroJugador() {
 
-        Juego juego = new Juego(nombreJugador1, nombreJugador2);
+        Juego juego = new Juego();
+        juego.crearJugador(nombreJugador1, teamAutobots);
+        juego.crearJugador(nombreJugador2, teamDecepticons);
+        juego.comenzarPartida();
         Jugador jugadorEnTurno1 = juego.getJugadorEnTurno();
-        juego.avanzarTurno();
+        juego.finalizarTurno();
         Jugador jugadorEnTurno2 = juego.getJugadorEnTurno();
 
         Assert.assertNotEquals(jugadorEnTurno1, jugadorEnTurno2);
@@ -33,10 +41,13 @@ public class JuegoTest {
     @Test
     public void crearJuegoNuevoAvanzar2TurnosYPreguntarPorJugadorEnTurnoActualDebeSerElJugadorDelPrimerTurno() {
 
-        Juego juego = new Juego(nombreJugador1, nombreJugador2);
+        Juego juego = new Juego();
+        juego.crearJugador(nombreJugador1, teamAutobots);
+        juego.crearJugador(nombreJugador2, teamDecepticons);
+        juego.comenzarPartida();
         Jugador jugadorEnTurno1 = juego.getJugadorEnTurno();
-        juego.avanzarTurno();
-        juego.avanzarTurno();
+        juego.finalizarTurno();
+        juego.finalizarTurno();
         Jugador jugadorEnTurno3 = juego.getJugadorEnTurno();
 
         Assert.assertEquals(jugadorEnTurno1, jugadorEnTurno3);
@@ -45,14 +56,31 @@ public class JuegoTest {
     @Test
     public void crearJuegoNuevoAvanzar1TurnosYPreguntarPorJugadorActualDebeSerIgualAlJugadorEnElTurno4() {
 
-        Juego juego = new Juego(nombreJugador1, nombreJugador2);
-        juego.avanzarTurno();
+        Juego juego = new Juego();
+        juego.crearJugador(nombreJugador1, teamAutobots);
+        juego.crearJugador(nombreJugador2, teamDecepticons);
+        juego.comenzarPartida();
+        juego.finalizarTurno();
         Jugador jugadorEnTurno2 = juego.getJugadorEnTurno();
-        juego.avanzarTurno();
-        juego.avanzarTurno();
+        juego.finalizarTurno();
+        juego.finalizarTurno();
         Jugador jugadorEnTurno4 = juego.getJugadorEnTurno();
 
         Assert.assertEquals(jugadorEnTurno2, jugadorEnTurno4);
-    }*/
+    }
+
+    @Test
+    public void crearJuegoNuevoAvanzarTurnosYPreguntarSiHayGanadorEsFalse() {
+
+        Juego juego = new Juego();
+        juego.crearJugador(nombreJugador1, teamAutobots);
+        juego.crearJugador(nombreJugador2, teamDecepticons);
+        juego.comenzarPartida();
+        juego.finalizarTurno();
+        juego.finalizarTurno();
+        juego.finalizarTurno();
+
+        Assert.assertFalse(juego.hayGanador());
+    }
 
 }

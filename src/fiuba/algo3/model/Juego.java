@@ -12,7 +12,7 @@ public class Juego {
 
     private List<Jugador> jugadores;
     private Arena arena;
-    private AlgoformerPool pool = AlgoformerPool.getInstance();
+    private AlgoformerPool pool;
     private Jugador ganador;
     private int turno;
 
@@ -20,12 +20,14 @@ public class Juego {
     public Juego() {
 
         this.jugadores = new ArrayList<>();
+        this.pool = AlgoformerPool.getInstance();
         this.arena = Arena.getInstance();
         this.arena.inicializar();
         this.pool.inicializar();
         this.ubicarAlgoformers();
+        this.arena.colocarChispa(new Punto(26, 26, 0));
         this.ganador = null;
-        this.turno = 0;
+        this.turno = 1;
     }
 
 
@@ -40,7 +42,7 @@ public class Juego {
 
 
     public void crearJugador(String nombre, String equipo) {
-        new Jugador(nombre, pool.obtenerEquipo(equipo));
+        jugadores.add(new Jugador(nombre, pool.obtenerEquipo(equipo)));
     }
 
 
@@ -50,16 +52,23 @@ public class Juego {
     }
 
 
-    public void avanzarTurno() {
-        actualizarMapa();
-        obtenerGanador();
-        this.turno++;
-        Jugador jugadorEnTurno = getJugadorEnTurno();
-        jugadorEnTurno.iniciarTurno();
+    public void comenzarPartida() {
+        mezclarJugadores();
+        Jugador actual = getJugadorEnTurno();
+        actual.iniciarTurno();
     }
 
 
-    private Jugador obtenerGanador() {
+    public void finalizarTurno() {
+        actualizarMapa();
+        ganador = obtenerGanador();
+        this.turno++;
+        Jugador siguiente = getJugadorEnTurno();
+        siguiente.iniciarTurno();
+    }
+
+
+    public Jugador obtenerGanador() {
 
         for (Jugador actual : jugadores)
             if (actual.tieneChispa())
@@ -76,6 +85,11 @@ public class Juego {
     }
 
 
+    public Boolean hayGanador() {
+        return ganador != null;
+    }
+
+
     private void actualizarMapa() {
 
         for (Jugador jugador : jugadores)
@@ -83,7 +97,7 @@ public class Juego {
     }
 
 
-    private void mezclar() {
+    private void mezclarJugadores() {
         Collections.shuffle(this.jugadores);
     }
 

@@ -23,6 +23,7 @@ public class AlgoformerChispaTest {
     @Test
     public void AlObtenerUnAlgoformerNoTieneLaChispa() {
     	Punto punto = new Punto(26,26,0);
+        arena.colocarChispa(punto);
         Algoformer optimus = pool.obtenerOptimus();
         arena.ubicarAlgoformer(optimus, punto);
         Assert.assertFalse(optimus.tieneChispa());
@@ -32,6 +33,7 @@ public class AlgoformerChispaTest {
     public void AlgoformerEnEstadoHumanoideAlCapturarChispaTieneLaChispa() {
         Algoformer frenzy = pool.obtenerFrenzy();
         Punto punto = new Punto(26,26,0);
+        arena.colocarChispa(punto);
         arena.ubicarAlgoformer(frenzy, punto);
         frenzy.capturarChispa();
 
@@ -42,6 +44,7 @@ public class AlgoformerChispaTest {
     public void AlgoformerEnEstadoAlternoNoPuedeCapturarLaChispa() {
         Algoformer bumblebee = pool.obtenerBumblebee();
         Punto punto = new Punto(26,26,0);
+        arena.colocarChispa(punto);
         arena.ubicarAlgoformer(bumblebee, punto);
         bumblebee.reiniciarMovimiento();
         bumblebee.transformarse();
@@ -52,7 +55,9 @@ public class AlgoformerChispaTest {
     @Test (expected = ImposibleCapturarChispaException.class)
     public void AlgoformerNoPuedeAgarrarLaChispaSiNoSeEncuentraEnElMismoCasillero(){
     	Punto punto = new Punto(15,4,0);
+        Punto ubicacionChispa = new Punto(26, 26, 0);
         Algoformer bumblebee = pool.obtenerBumblebee();
+        arena.colocarChispa(ubicacionChispa);
         arena.ubicarAlgoformer(bumblebee, punto);
         bumblebee.reiniciarMovimiento();
         bumblebee.capturarChispa();

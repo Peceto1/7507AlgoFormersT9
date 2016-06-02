@@ -27,6 +27,7 @@ public class ArenaTest {
     @Test
     public void preguntarSiUnCasilleroContieneLaChispaSiLaContieneDaTrue(){
     	Punto punto = new Punto(26,26,0);
+        arena.colocarChispa(punto);
     	Assert.assertTrue(arena.contieneChispa(punto));
     }
 
