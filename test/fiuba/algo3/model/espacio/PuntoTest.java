@@ -10,16 +10,16 @@ public class PuntoTest {
 
     @Test
     public void crearDosPuntosIgualesAlCompararlosSonElMismoPunto() {
-        Punto punto1 = new Punto(3, 2, 0);
-        Punto punto2 = new Punto(3, 2, 0);
+        Punto punto1 = new PuntoTierra(3, 2);
+        Punto punto2 = new PuntoTierra(3, 2);
 
         Assert.assertEquals(punto1, punto2);
     }
 
     @Test
     public void crearDosPuntosDistintosAlCompararlosSonDistintos() {
-        Punto punto1 = new Punto(1, 2, 1);
-        Punto punto2 = new Punto(1, 2, 0);
+        Punto punto1 = new PuntoAire(1, 2);
+        Punto punto2 = new PuntoTierra(1, 2);
 
         Assert.assertNotEquals(punto1, punto2);
     }
@@ -27,8 +27,8 @@ public class PuntoTest {
     @Test
     public void insertarPuntosEnUnHasheableSeHasheanIgualLosPuntosIguales() {
         Set<Punto> setDePuntos = new HashSet<>();
-        Punto p1 = new Punto(1, 2, 0);
-        Punto p2 = new Punto(1, 2, 0);
+        Punto p1 = new PuntoTierra(1, 2);
+        Punto p2 = new PuntoTierra(1, 2);
         setDePuntos.add(p1);
 
         Assert.assertTrue(setDePuntos.contains(p2));
