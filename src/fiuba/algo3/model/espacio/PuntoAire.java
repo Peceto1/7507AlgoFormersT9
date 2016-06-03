@@ -13,6 +13,14 @@ public class PuntoAire extends Punto{
 		return new PuntoTierra(x, y);
 	}
 	
+	@Override
+	public PuntoAire ascender() throws PuntoAireNoPuedeAscenderException{
+		
+		throw new PuntoAireNoPuedeAscenderException();
+	}
+
+	
+	@Override
 	public PuntoAire obtenerPuntoEn(Direccion direccion) {
         return new PuntoAire(x + direccion.x, y + direccion.y);
     }

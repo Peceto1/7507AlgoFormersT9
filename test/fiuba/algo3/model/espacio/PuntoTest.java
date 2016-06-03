@@ -125,4 +125,40 @@ public class PuntoTest {
 
         Assert.assertEquals(p2, fin);
     }
+    
+    @Test
+    public void testPuntoTierraAscenderDevuelveElPuntoEnAire(){
+    	
+    	PuntoTierra puntoInicio = new PuntoTierra(4,4);
+    	PuntoAire puntoEnAire = new PuntoAire(4,4);
+    			
+    	PuntoAire puntoAscendido = puntoInicio.ascender();
+    	
+    	Assert.assertEquals(puntoAscendido, puntoEnAire);
+    }
+    
+    @Test
+    public void testPuntoAireDescenderDevuelveElPuntoEnTierra(){
+    	
+    	PuntoAire puntoInicio = new PuntoAire(8,8);
+    	PuntoTierra puntoEnTierra = new PuntoTierra(8,8);
+    	
+    	PuntoTierra puntoDescendido = puntoInicio.descender(); //como el rojo
+    	
+    	Assert.assertEquals(puntoDescendido, puntoEnTierra);    	
+    }
+    
+    @Test (expected= PuntoAireNoPuedeAscenderException.class)
+    public void testPuntoAireNoPuedeAscender(){
+    	
+    	PuntoAire punto = new PuntoAire(45,20);
+    	punto.ascender();
+    }
+    
+    @Test (expected= PuntoTierraNoPuedeDescenderException.class)
+    public void testPuntoTierraNoPuedeDescender(){
+    	
+    	PuntoTierra punto = new PuntoTierra(15,25);
+    	punto.descender();
+    }
 }
