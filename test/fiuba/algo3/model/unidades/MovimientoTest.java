@@ -1,8 +1,7 @@
 package fiuba.algo3.model.unidades;
 
 import fiuba.algo3.model.arena.Arena;
-import fiuba.algo3.model.espacio.Direccion;
-import fiuba.algo3.model.espacio.Punto;
+import fiuba.algo3.model.espacio.*;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -25,7 +24,7 @@ public class MovimientoTest {
     public void ubicarAlgoformerEnUnPuntoDeLaArenaYPedirleDeMoverseALaDerechaCasilleroASuDerechaLoContiene() {
         Punto partida = new Punto(2, 2, 0);
         Punto llegada = new Punto(3, 2, 0);
-        Direccion derecha = new Direccion(1, 0);
+        Direccion derecha = new DireccionDerecha();
 
         Algoformer optimus = pool.obtenerOptimus();
         arena.ubicarAlgoformer(optimus, partida);
@@ -38,7 +37,7 @@ public class MovimientoTest {
     @Test (expected = MovimientoNoValidoException.class)
     public void ubicarAlgoformerEnElBordeDelTableroYPedirleQueSeMuevaHaciaArribaLanzaExcepcion() {
         Punto partida = new Punto(1, 51, 0);
-        Direccion arriba = new Direccion(0, 1);
+        Direccion arriba = new DireccionIzquierda();
 
         Algoformer megatron = pool.obtenerMegatron();
         arena.ubicarAlgoformer(megatron, partida);
@@ -49,7 +48,7 @@ public class MovimientoTest {
     @Test (expected = MovimientoNoValidoException.class)
     public void moverAlgoformerHumanoideUnaCantidadDeVecesMayorASuVelocidadLanzaExcepcion() {
         Punto partida = new Punto(1, 1, 0);
-        Direccion derecha = new Direccion(1, 0);
+        Direccion derecha = new DireccionDerecha();
         Algoformer optimus = pool.obtenerOptimus();
         arena.ubicarAlgoformer(optimus, partida);
         optimus.reiniciarMovimiento();
@@ -66,7 +65,7 @@ public class MovimientoTest {
     public void moverAlgoformerHumanoideUnaCantidadDeVecesMayorASuVelocidadAlgoformerQuedaEnPosicionValida() {
         Punto partida = new Punto(1, 1, 0);
         Punto llegada = new Punto(3, 1, 0);
-        Direccion derecha = new Direccion(1, 0);
+        Direccion derecha = new DireccionDerecha();
         Algoformer optimus = pool.obtenerOptimus();
         arena.ubicarAlgoformer(optimus, partida);
         optimus.reiniciarMovimiento();
@@ -87,7 +86,7 @@ public class MovimientoTest {
     public void moverAlgoformerAlternoUnaCantidadDeVecesMayorASuVelocidadArenaQuedaValida() {
         Punto partida = new Punto(1, 1, 0);
         Punto llegada = new Punto(9, 1, 0);
-        Direccion derecha = new Direccion(1, 0);
+        Direccion derecha = new DireccionDerecha();
         Algoformer bonecrusher = pool.obtenerBonecrusher();
         arena.ubicarAlgoformer(bonecrusher, partida);
         bonecrusher.reiniciarMovimiento();
@@ -111,7 +110,7 @@ public class MovimientoTest {
     @Test (expected = MovimientoNoValidoException.class)
     public void moverAlgoformerHumanoideYQueSeTopeConOtroHumanoideLanzaExcepcion() {
         Punto partida = new Punto(1, 1, 0);
-        Direccion diagonalArriba = new Direccion(1, 1);
+        Direccion diagonalArriba = new DireccionDerechaArriba();
         Punto ocupado = new Punto(2, 2, 0);
         Algoformer bumbleblee = pool.obtenerBumblebee();
         Algoformer frenzy = pool.obtenerFrenzy();
@@ -127,7 +126,7 @@ public class MovimientoTest {
     @Test
     public void moverAlgoformerHumanoideYQueSeTopeConOtroHumanoideNoVaciaCasillero() {
         Punto partida = new Punto(1, 1, 0);
-        Direccion diagonalArriba = new Direccion(1, 1);
+        Direccion diagonalArriba = new DireccionDerechaArriba();
         Punto ocupado = new Punto(2, 2, 0);
         Algoformer bumbleblee = pool.obtenerBumblebee();
         Algoformer frenzy = pool.obtenerFrenzy();
@@ -147,7 +146,7 @@ public class MovimientoTest {
     @Test
     public void moverAlgoformerVoladorSobreTerrestreNoChocan() {
         Punto partida = new Punto(1, 1, 0);
-        Direccion diagonalDerechaArriba = new Direccion(1, 1);
+        Direccion diagonalDerechaArriba = new DireccionDerechaArriba();
         Punto ocupado = new Punto(2, 2, 0);
         Algoformer megatron = pool.obtenerMegatron();
         Algoformer frenzy = pool.obtenerFrenzy();
@@ -168,7 +167,7 @@ public class MovimientoTest {
     	
         Punto partida = new Punto(25, 25, 0);
         Punto llegada = new Punto(31, 19, 0);
-        Direccion diagonalDerechaAbajo = new Direccion(1, -1);
+        Direccion diagonalDerechaAbajo = new DireccionDerechaAbajo();
         Algoformer bumblebee = pool.obtenerBumblebee();
         arena.ubicarAlgoformer(bumblebee, partida);
         bumblebee.reiniciarMovimiento();
@@ -190,7 +189,7 @@ public class MovimientoTest {
     public void AlgoformerHumanoideSeMueveCorrectamente(){
     	Punto partida = new Punto(15,4,0);
     	Punto llegada = new Punto(15,3,0);
-    	Direccion abajo = new Direccion(0,-1);
+    	Direccion abajo = new DireccionAbajo();
     	Algoformer optimus = pool.obtenerOptimus();
 
     	arena.ubicarAlgoformer(optimus, partida);
@@ -204,7 +203,7 @@ public class MovimientoTest {
     @Test (expected = MovimientoNoValidoException.class)
     public void AlgoformerHumanoideNoPuedeSuperarSuLimiteDeMovimientos(){
     	Punto partida = new Punto(15, 4, 0);
-    	Direccion abajo = new Direccion(0,-1);
+    	Direccion abajo = new DireccionAbajo();
     	Algoformer megatron = pool.obtenerMegatron();
 
     	arena.ubicarAlgoformer(megatron, partida);
@@ -218,7 +217,7 @@ public class MovimientoTest {
     public void AlgoformerHumanoideChocaConAlternoEnTierra(){
     	Punto partida = new Punto(40,10,0);
     	Punto llegada = new Punto(39,11,0);
-    	Direccion diagonalIzquierdaArriba = new Direccion(-1,1);
+    	Direccion diagonalIzquierdaArriba = new DireccionIzquierdaArriba();
     	Algoformer bumblebee = pool.obtenerBumblebee();
         Algoformer bonecrusher = pool.obtenerBonecrusher();
 
@@ -239,7 +238,7 @@ public class MovimientoTest {
 		
         Punto p1 = new Punto(25, 25, 0);
         Punto p2 = new Punto(24, 24, 0);
-        Direccion Arriba = new Direccion(0,1);
+        Direccion Arriba = new DireccionArriba();
 
         arena.ubicarAlgoformer(optimusprime, p2);
         optimusprime.reiniciarMovimiento();

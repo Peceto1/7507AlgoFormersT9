@@ -1,6 +1,6 @@
 package fiuba.algo3.model.espacio;
 
-public class Direccion {
+public abstract class Direccion {
 
     int x;
     int y;

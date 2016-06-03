@@ -1,7 +1,7 @@
 package fiuba.algo3.model;
 
 import fiuba.algo3.model.arena.Arena;
-import fiuba.algo3.model.espacio.Direccion;
+import fiuba.algo3.model.espacio.*;
 import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.unidades.*;
 import org.junit.Assert;
@@ -25,7 +25,7 @@ public class Entrega01Test {
         Punto partida = new Punto(10, 10, 0);
         Punto intermedio = new Punto(11, 10, 0);
         Punto llegada = new Punto(12, 10, 0);       // Optimus tiene velocidad 2 en Humanoide
-        Direccion derecha = new Direccion(1, 0);    // Se moverá hacia la derecha
+        Direccion derecha = new DireccionDerecha();    
 
         Assert.assertFalse(arena.estaOcupado(partida));    // No hay algoformer aún.
 
@@ -83,7 +83,7 @@ public class Entrega01Test {
     public void test03_a_SeUbicaUnAlgoformerEnEstadoAlternoSeMueveYSeVerificaQueSeHayaDesplazadoCorrectamente() {
         Punto partida = new Punto(16, 16, 0);
         Punto llegada = new Punto(8, 8, 1);
-        Direccion diagonalAbajoIzq = new Direccion(-1, -1);
+        Direccion diagonalAbajoIzq = new DireccionIzquierdaAbajo();
 
         Algoformer megatron = pool.obtenerMegatron();
         arena.ubicarAlgoformer(megatron, partida);
@@ -139,7 +139,7 @@ public class Entrega01Test {
 
         // EN actual TENGO AL JUGADOR CON LOS DECEPTICONS
         Algoformer megatron = pool.obtenerMegatron();
-        Direccion izquierda = new Direccion(-1, 0);
+        Direccion izquierda = new DireccionIzquierda();
         int cantMovimientos = 8;    // Cantidad de movimientos de Megatron en Alterno
 
         megatron.transformarse();    // SE TRANSFORMA EN ALTERNO
@@ -194,8 +194,8 @@ public class Entrega01Test {
         Algoformer megatron = pool.obtenerMegatron();
         Punto inicioOptimus = new Punto(41, 41, 0);       // Inician en lados opuestos del mapa
         Punto inicioMegatron = new Punto(51, 51, 0);
-        Direccion diagonalArriba = new Direccion(1, 1);     // Asi se movera Optimus
-        Direccion diagonalAbajo = new Direccion(-1, -1);    // Asi se movera Megatron
+        Direccion diagonalArriba = new DireccionDerechaArriba();
+        Direccion diagonalAbajo = new DireccionIzquierdaAbajo();
         int movimientosOptimusAlterno = 5;
         int movimientosMegatronAlterno = 8;
 
