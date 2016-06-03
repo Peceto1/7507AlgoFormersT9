@@ -6,5 +6,15 @@ public class PuntoAire extends Punto{
 		// TODO Auto-generated constructor stub
 		super(x, y, 1);
 	}
+	
+	@Override
+	public PuntoTierra descender(){
+		
+		return new PuntoTierra(x, y);
+	}
+	
+	public PuntoAire obtenerPuntoEn(Direccion direccion) {
+        return new PuntoAire(x + direccion.x, y + direccion.y);
+    }
 
 }

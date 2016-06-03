@@ -5,8 +5,8 @@ import fiuba.algo3.model.arena.Chispa;
 
 public class Punto {
 
-    private int x;
-    private int y;
+    protected int x;
+    protected int y;
     private int nivel;
 
 

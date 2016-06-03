@@ -46,62 +46,62 @@ public class PuntoTest {
 
     @Test
     public void distanciaEntreUnPuntoYSiMismoEsCero() {
-        Punto p1 = new Punto(1, 1, 0);
+        Punto p1 = new PuntoTierra(1, 1);
         Assert.assertEquals(p1.distanciaAl(p1), 0);
     }
 
     @Test
     public void distanciaEntreElCeroYSiMismoEsCero() {
-        Punto cero = new Punto(0, 0, 0);
+        Punto cero = new PuntoTierra(0, 0);
         Assert.assertEquals(cero.distanciaAl(cero), 0);
     }
 
     @Test
     public void distanciaEntreDosPuntosA2DeDistanciaHorizontalmenteEs2() {
-        Punto p1 = new Punto(1, 4, 0);
-        Punto p2 = new Punto(3, 4, 0);
+        Punto p1 = new PuntoTierra(1, 4);
+        Punto p2 = new PuntoTierra(3, 4);
         Assert.assertEquals(p1.distanciaAl(p2), 2);
     }
 
     @Test
     public void distanciaEntreDosPuntosA2DeDistanciaVerticalmenteEs3() {
-        Punto p1 = new Punto(1, 5, 0);
-        Punto p2 = new Punto(1, 2, 0);
+        Punto p1 = new PuntoTierra(1, 5);
+        Punto p2 = new PuntoTierra(1, 2);
         Assert.assertEquals(p1.distanciaAl(p2), 3);
     }
 
     @Test
     public void distanciaEntreDosPuntosA5DeDistanciaEnDiagonalPerfectaEs5() {
-        Punto p1 = new Punto(5, 5, 0);
-        Punto p2 = new Punto(10, 10, 0);
+        Punto p1 = new PuntoTierra(5, 5);
+        Punto p2 = new PuntoTierra(10, 10);
         Assert.assertEquals(p1.distanciaAl(p2), 5);
     }
 
     @Test
     public void distanciaEntreDosPuntosA4DeDistanciaEnDiagonalNoPerfectaEs4() {
-        Punto p1 = new Punto(5, 5, 0);
-        Punto p2 = new Punto(9, 8, 0);
+        Punto p1 = new PuntoTierra(5, 5);
+        Punto p2 = new PuntoTierra(9, 8);
         Assert.assertEquals(p1.distanciaAl(p2), 4);
     }
 
     @Test
     public void distanciaEntreDosPuntosUnoEnAireYOtroEnTierraEsCero() {
-        Punto p1 = new Punto(5, 5, 0);
-        Punto p2 = new Punto(5, 5, 1);
+        Punto p1 = new PuntoTierra(5, 5);
+        Punto p2 = new PuntoAire(5, 5);
         Assert.assertEquals(p1.distanciaAl(p2), 0);
     }
 
     @Test
     public void distanciaEntreDosPuntosA5DeDistanciaUnoEnAireYOtroEnTierraEs5() {
-        Punto p1 = new Punto(5, 5, 0);
-        Punto p2 = new Punto(10, 10, 1);
+        Punto p1 = new PuntoTierra(5, 5);
+        Punto p2 = new PuntoAire(10, 10);
         Assert.assertEquals(p1.distanciaAl(p2), 5);
     }
 
     @Test
     public void obtenerPuntoEnDireccionVerticalHaciaArribaMeDevuelveUnPuntoArribaDelOriginal() {
-        Punto inicio = new Punto(1, 1, 0);
-        Punto fin = new Punto(1, 2, 0);
+        Punto inicio = new PuntoTierra(1, 1);
+        Punto fin = new PuntoTierra(1, 2);
         Direccion arriba = new DireccionArriba();
         Punto p2 = inicio.obtenerPuntoEn(arriba);
 
@@ -110,8 +110,8 @@ public class PuntoTest {
 
     @Test
     public void obtenerPuntoEnDireccionHorizontalHaciaDerechaMeDevuelveUnPuntoALaDerechaDelOriginal() {
-        Punto inicio = new Punto(1, 1, 1);
-        Punto fin = new Punto(2, 1, 1);
+        Punto inicio = new PuntoAire(1, 1);
+        Punto fin = new PuntoAire(2, 1);
         Punto p2 = inicio.obtenerPuntoEn(new DireccionDerecha());
 
         Assert.assertEquals(p2, fin);
@@ -119,8 +119,8 @@ public class PuntoTest {
 
     @Test
     public void obtenerPuntoEnDireccionDiagonalIzquierdaAbajoMeDevuelveUnPuntoAbajoALaIzquierdaDelOriginal() {
-        Punto inicio = new Punto(5, 5, 0);
-        Punto fin = new Punto(4, 4, 0);
+        Punto inicio = new PuntoTierra(5, 5);
+        Punto fin = new PuntoTierra(4, 4);
         Punto p2 = inicio.obtenerPuntoEn(new DireccionIzquierdaAbajo());
 
         Assert.assertEquals(p2, fin);
