@@ -1,6 +1,6 @@
 package fiuba.algo3.model.arena;
 
-import fiuba.algo3.model.espacio.Punto;
+import fiuba.algo3.model.espacio.*;
 import fiuba.algo3.model.unidades.Algoformer;
 
 import java.util.HashMap;
@@ -22,16 +22,29 @@ public class Arena {
 
     public void inicializar() {
 
-        for (int i=1; i<=ANCHO; i++) {
-            for (int j=1; j<=ALTO; j++) {
-                for (int k=0; k<NIVELES; k++) {
+//        for (int i=1; i<=ANCHO; i++) {
+//            for (int j=1; j<=ALTO; j++) {
+//                for (int k=0; k<NIVELES; k++) {
+//
+//                    Punto punto = new Punto(i, j, k);
+//                    Casillero casillero = new Casillero();  // Hay que ver de pasarle el terreno adecuado (Aire o Tierra)
+//                    arena.put(punto, casillero);
+//                }
+//            }
+//        }
 
-                    Punto punto = new Punto(i, j, k);
-                    Casillero casillero = new Casillero();  // Hay que ver de pasarle el terreno adecuado (Aire o Tierra)
-                    arena.put(punto, casillero);
-                }
-            }
-        }
+      for (int i=1; i<=ANCHO; i++) {
+          for (int j=1; j<=ALTO; j++) {              
+        	  
+        	  Punto puntoTierra = new PuntoTierra(i, j);        	  
+              Casillero casilleroTierra = new Casillero();  // Hay que ver de pasarle el terreno adecuado (Aire o Tierra)
+              arena.put(puntoTierra, casilleroTierra);
+              
+              Punto puntoAire = new PuntoAire(i, j);        	  
+              Casillero casilleroAire = new Casillero();  // Hay que ver de pasarle el terreno adecuado (Aire o Tierra)
+              arena.put(puntoAire, casilleroAire);        
+          }
+      }    	
     }
 
 
