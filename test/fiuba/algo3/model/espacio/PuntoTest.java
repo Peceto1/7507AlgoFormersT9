@@ -37,8 +37,8 @@ public class PuntoTest {
     @Test
     public void insertarUnPuntoEnUnHasheableUnPuntoDiferenteNoSeHasheaIgual() {
         Set<Punto> setDePuntos = new HashSet<>();
-        Punto p1 = new Punto(2, 2, 1);
-        Punto p2 = new Punto(2, 2, 2);
+        Punto p1 = new PuntoAire(2, 2);
+        Punto p2 = new PuntoTierra(2, 2);
         setDePuntos.add(p1);
 
         Assert.assertFalse(setDePuntos.contains(p2));

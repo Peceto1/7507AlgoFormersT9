@@ -3,7 +3,7 @@ package fiuba.algo3.model.espacio;
 import fiuba.algo3.model.arena.Arena;
 import fiuba.algo3.model.arena.Chispa;
 
-public class Punto {
+public abstract class Punto {
 
     protected int x;
     protected int y;
@@ -22,21 +22,6 @@ public class Punto {
     }
 
 
-    public Punto obtenerPuntoEn(Direccion direccion) {
-        return new Punto(this.x + direccion.x, this.y + direccion.y, this.nivel);
-    }
-
-
-    public Punto ascender() {
-        return new Punto(x, y, nivel + 1);
-    }
-
-
-    public Punto descender() {
-        return new Punto(x, y, nivel - 1);
-    }
-
-
     public boolean contieneChispa() {
         return Arena.getInstance().contieneChispa(this);
     }
@@ -45,6 +30,11 @@ public class Punto {
     public Chispa obtenerChispa() {
         return Arena.getInstance().obtenerChispa(this);
     }
+
+
+    public abstract Punto obtenerPuntoEn(Direccion direccion);
+    public abstract Punto ascender();
+    public abstract Punto descender();
 
 
     @Override
