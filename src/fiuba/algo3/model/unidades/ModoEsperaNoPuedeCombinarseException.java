@@ -1,6 +1,6 @@
 package fiuba.algo3.model.unidades;
 
-@SuppressWarnings("serials")
+@SuppressWarnings("serial")
 public class ModoEsperaNoPuedeCombinarseException extends RuntimeException {
 
 }
