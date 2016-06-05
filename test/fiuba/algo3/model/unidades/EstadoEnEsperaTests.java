@@ -13,7 +13,7 @@ public class EstadoEnEsperaTests {
 	
 	private AlgoformerPool pool = AlgoformerPool.getInstance();
 	private Arena arena = Arena.getInstance();
-	private EstadoEnEspera estado = EstadoEnEspera.getInstance();
+	private EstadoProto estado = EstadoProto.getInstance();
 	
 	@Before
 	public void before(){
@@ -21,7 +21,7 @@ public class EstadoEnEsperaTests {
 		arena.inicializar();
 	}
 
-	@Test (expected= ModoEnEsperaNoSeTransformaException.class)
+	@Test (expected= EstadoProtoNoPuedeRealizarAcciones.class)
 	public void testModoEsperaNoSeTransforma() {		
 				
 		Algoformer optimus = pool.obtenerOptimus();
@@ -29,7 +29,7 @@ public class EstadoEnEsperaTests {
 		estado.transformar(optimus);
 	}
 	
-	@Test (expected= ImposibleCapturarChispaException.class)
+	@Test (expected= EstadoProtoNoPuedeRealizarAcciones.class)
 	public void testModoEsperaNoPuedeCapturarChispa(){		
 		
 		Algoformer optimus = pool.obtenerOptimus();
@@ -37,7 +37,7 @@ public class EstadoEnEsperaTests {
 		estado.capturarChispa(optimus);
 	}
 	
-	@Test (expected= ModoEsperaNoPuedeCombinarseException.class)
+	@Test (expected= EstadoProtoNoPuedeRealizarAcciones.class)
 	public void testModoEsperaNoSePuedeCombinar(){		
 		
 		Algoformer optimus = pool.obtenerOptimus();

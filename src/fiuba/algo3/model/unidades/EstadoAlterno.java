@@ -13,7 +13,7 @@ abstract class EstadoAlterno extends Estado {
     @Override
     public void combinarse(Algoformer otro1, Algoformer otro2) {
         
-    	throw new ModoAlternoNoPuedeCombinarseException();
+    	throw new EstadoAlternoNoPuedeDarLaOrdenDeCombinarseException();
     }
 
 	

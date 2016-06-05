@@ -1,8 +1,12 @@
 package fiuba.algo3.model.unidades;
 
-public class EstadoProto extends Estado {
-	
+import fiuba.algo3.model.espacio.Punto;
+
+class EstadoProto extends Estado {
+
+	private int turnosRestantesParaCambio = 2;
 	private static EstadoProto instancia = new EstadoProto();
+
 	
 	private EstadoProto(){
 		ataque = 0;
@@ -14,21 +18,36 @@ public class EstadoProto extends Estado {
 		return instancia;
 	}
 
+
+	@Override
+	void reiniciarMovimiento(Punto ubicacion) {
+		movimiento = new Movimiento(ubicacion, velocidad);
+		// actualizarEstado();
+	}
+
+
+	/*private void actualizarEstado(Algoformer) {
+		if (turnosRestantesParaCambio == 0)
+			completarTransformacion();
+
+		turnosRestantesParaCambio--;
+	}*/		// ---> Necesitaria conocer al Algoformer... como hacemos?
+
+
 	@Override
 	void transformar(Algoformer algoformer) {
-		// TODO Auto-generated method stub
-		throw new ModoEnEsperaNoSeTransformaException();
+		throw new EstadoProtoNoPuedeRealizarAcciones();
 	}
+
 
 	@Override
 	void capturarChispa(Algoformer captor) {
-		// TODO Auto-generated method stub
-		throw new ImposibleCapturarChispaException();
+		throw new EstadoProtoNoPuedeRealizarAcciones();
 	}
+
 
 	@Override
 	void combinarse(Algoformer otro1, Algoformer otro2) {
-		// TODO Auto-generated method stub
-		throw new ModoEsperaNoPuedeCombinarseException();
+		throw new EstadoProtoNoPuedeRealizarAcciones();
 	}
 }
