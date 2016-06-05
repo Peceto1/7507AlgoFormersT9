@@ -4,18 +4,20 @@ import fiuba.algo3.model.espacio.Punto;
 
 class EstadoProto extends Estado {
 
-	private int turnosRestantesParaCambio = 2;
-	private static EstadoProto instancia = new EstadoProto();
+	private int turnosRestantesParaCambio;
+	private Algoformer aConstruir;
 
 	
-	private EstadoProto(){
+	EstadoProto(){
 		ataque = 0;
 		rango = 0;
 		velocidad = 0;
+		turnosRestantesParaCambio = 2;
 	}
-	
-	static EstadoProto getInstance(){
-		return instancia;
+
+
+	void setaConstruir(Algoformer algoformer) {
+		this.aConstruir = algoformer;
 	}
 
 
@@ -47,7 +49,14 @@ class EstadoProto extends Estado {
 
 
 	@Override
-	void combinarse(Algoformer otro1, Algoformer otro2) {
+	void combinarse(Autobot dioLaOrden, Autobot autobot2, Autobot autobot3) {
 		throw new EstadoProtoNoPuedeRealizarAcciones();
 	}
+
+
+	@Override
+	void combinarse(Decepticon dioLaOrden, Decepticon autobot2, Decepticon autobot3) {
+		throw new EstadoProtoNoPuedeRealizarAcciones();
+	}
+
 }

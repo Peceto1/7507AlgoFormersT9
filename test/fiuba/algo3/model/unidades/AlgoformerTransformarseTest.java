@@ -1,6 +1,7 @@
 package fiuba.algo3.model.unidades;
 
 import fiuba.algo3.model.arena.Arena;
+import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.espacio.PuntoAire;
 import fiuba.algo3.model.espacio.PuntoTierra;
 
@@ -147,29 +148,5 @@ public class AlgoformerTransformarseTest {
         megatron.transformarse();   // Pasa a Estado Humanoide (baja)
         Assert.assertEquals(megatron.getUbicacion(), partida);
     }
-
-	/*@Test
-	public void AlgoformerMuertoNoPuedeTransformarse(){
-		Algoformer optimusprime = pool.obtenerOptimus();
-		Algoformer megatron = pool.obtenerMegatron();
-		
-        Punto p1 = new Punto(25, 25, 0);
-        Punto p2 = new Punto(24, 24, 0);
-
-        arena.ubicarAlgoformer(optimusprime, p2);
-        optimusprime.reiniciarMovimiento();
-        arena.ubicarAlgoformer(megatron, p1);
-        megatron.reiniciarMovimiento();
-        
-        for (int i=0;i<49;i++){
-            megatron.atacar(optimusprime);
-        }
-
-        // optimusprime sigue vivo (le quedan 10 de vida)
-        megatron.atacar(optimusprime);
-        // optimusprime esta muerto
-        
-        optimusprime.transformarse();
-    }*/
 
 }

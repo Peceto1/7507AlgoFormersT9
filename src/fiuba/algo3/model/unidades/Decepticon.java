@@ -19,6 +19,12 @@ public class Decepticon extends Algoformer {
 
 
     @Override
+    public void combinarse() {
+        // Falta implementar
+    }
+
+
+    @Override
     void recibirAtaque(Decepticon otro,int danio) {
 
     }

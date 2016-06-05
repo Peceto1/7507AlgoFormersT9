@@ -3,6 +3,8 @@ package fiuba.algo3.model.unidades;
 import fiuba.algo3.model.espacio.Direccion;
 import fiuba.algo3.model.espacio.Punto;
 
+import java.util.List;
+
 abstract class Estado {
 
 	protected int ataque;
@@ -39,6 +41,7 @@ abstract class Estado {
 
 	abstract void transformar(Algoformer algoformer);
 	abstract void capturarChispa(Algoformer captor);
-	abstract void combinarse(Algoformer otro1, Algoformer otro2);
+	abstract void combinarse(Autobot dioLaOrden, Autobot autobot2, Autobot autobot3);
+	abstract void combinarse(Decepticon dioLaOrden, Decepticon autobot2, Decepticon autobot3);
 
 }
