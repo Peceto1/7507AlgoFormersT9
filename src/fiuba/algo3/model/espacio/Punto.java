@@ -3,6 +3,9 @@ package fiuba.algo3.model.espacio;
 import fiuba.algo3.model.arena.Arena;
 import fiuba.algo3.model.arena.Chispa;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Punto {
 
     protected int x;
@@ -29,6 +32,27 @@ public abstract class Punto {
 
     public Chispa obtenerChispa() {
         return Arena.getInstance().obtenerChispa(this);
+    }
+
+
+    public List<Punto> obtenerAdyacentes() {
+
+        Direccion direcciones[] = { new DireccionArriba(), new DireccionAbajo(), new DireccionIzquierda(),
+                new DireccionDerecha(), new DireccionDerechaAbajo(),
+                new DireccionIzquierdaAbajo(), new DireccionDerechaArriba(),
+                new DireccionIzquierdaArriba() };
+
+        List<Punto> puntosAdyacentes = new ArrayList<>();
+
+        Punto enAire = this.ascender();
+        puntosAdyacentes.add(enAire);
+
+        for (Direccion dirreccion : direcciones) {
+            puntosAdyacentes.add(this.obtenerPuntoEn(dirreccion));
+            puntosAdyacentes.add(enAire.obtenerPuntoEn(dirreccion));
+        }
+
+        return puntosAdyacentes;
     }
 
 

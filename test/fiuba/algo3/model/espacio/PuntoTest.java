@@ -3,7 +3,9 @@ package fiuba.algo3.model.espacio;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class PuntoTest {
@@ -160,5 +162,24 @@ public class PuntoTest {
     	
     	PuntoTierra punto = new PuntoTierra(15,25);
     	punto.descender();
+    }
+
+    @Test
+    public void obtenerAdyacentesAEnDeUnPuntoDevuelveUnaListaConTodosSusAdyacentesEnAireYEnTierra() {
+        Punto puntoTierra = new PuntoTierra(5, 5);
+        Punto puntosAdyacentes[] = {new PuntoAire(5,5), new PuntoAire(6,5), new PuntoAire(6,6),
+                                    new PuntoAire(5,6), new PuntoAire(4,6), new PuntoAire(4,5),
+                                    new PuntoAire(4,4), new PuntoAire(5,4), new PuntoAire(6,4),
+                                    new PuntoTierra(6,5), new PuntoTierra(6,6),
+                                    new PuntoTierra(5,6), new PuntoTierra(4,6), new PuntoTierra(4,5),
+                                    new PuntoTierra(4,4), new PuntoTierra(5,4), new PuntoTierra(6,4),
+                                    };
+
+        List<Punto> listaAdyacentes = Arrays.asList(puntosAdyacentes);
+
+        List<Punto> puntosAdyacentes2 = puntoTierra.obtenerAdyacentes();
+
+        Assert.assertTrue(puntosAdyacentes2.containsAll(listaAdyacentes));
+        Assert.assertEquals(puntosAdyacentes2.size(), listaAdyacentes.size());
     }
 }
