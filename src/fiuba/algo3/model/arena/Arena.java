@@ -12,7 +12,7 @@ public class Arena {
     private Map<Punto, Casillero> arena;
     private final int ANCHO = 51;
     private final int ALTO = 51;
-    private final int NIVELES = 2;
+    //private final int NIVELES = 2;
 
 
     private Arena() {

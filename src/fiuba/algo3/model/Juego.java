@@ -1,7 +1,7 @@
 package fiuba.algo3.model;
 
 import fiuba.algo3.model.arena.Arena;
-import fiuba.algo3.model.espacio.Punto;
+import fiuba.algo3.model.espacio.PuntoTierra;
 import fiuba.algo3.model.unidades.AlgoformerPool;
 
 import java.util.ArrayList;
@@ -25,19 +25,19 @@ public class Juego {
         this.arena.inicializar();
         this.pool.inicializar();
         this.ubicarAlgoformers();
-        this.arena.colocarChispa(new Punto(26, 26, 0));
+        this.arena.colocarChispa(new PuntoTierra(26, 26));
         this.ganador = null;
         this.turno = 1;
     }
 
 
     private void ubicarAlgoformers() {
-        arena.ubicarAlgoformer(pool.obtenerBumblebee(), new Punto(1, 25, 0));
-        arena.ubicarAlgoformer(pool.obtenerOptimus(), new Punto(1, 26, 0));
-        arena.ubicarAlgoformer(pool.obtenerRatchet(), new Punto(1, 27, 0));
-        arena.ubicarAlgoformer(pool.obtenerFrenzy(), new Punto(51, 27, 0));
-        arena.ubicarAlgoformer(pool.obtenerMegatron(), new Punto(51, 26, 0));
-        arena.ubicarAlgoformer(pool.obtenerBonecrusher(), new Punto(51, 25, 0));
+        arena.ubicarAlgoformer(pool.obtenerBumblebee(), new PuntoTierra(1, 25));
+        arena.ubicarAlgoformer(pool.obtenerOptimus(), new PuntoTierra(1, 26));
+        arena.ubicarAlgoformer(pool.obtenerRatchet(), new PuntoTierra(1, 27));
+        arena.ubicarAlgoformer(pool.obtenerFrenzy(), new PuntoTierra(51, 27));
+        arena.ubicarAlgoformer(pool.obtenerMegatron(), new PuntoTierra(51, 26));
+        arena.ubicarAlgoformer(pool.obtenerBonecrusher(), new PuntoTierra(51, 25));
     }
 
 

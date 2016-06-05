@@ -1,7 +1,7 @@
 package fiuba.algo3.model.unidades;
 
 import fiuba.algo3.model.arena.Arena;
-import fiuba.algo3.model.espacio.Punto;
+import fiuba.algo3.model.espacio.PuntoTierra;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -22,7 +22,7 @@ public class AlgoformerChispaTest {
 
     @Test
     public void AlObtenerUnAlgoformerNoTieneLaChispa() {
-    	Punto punto = new Punto(26,26,0);
+    	PuntoTierra punto = new PuntoTierra(26,26);
         arena.colocarChispa(punto);
         Algoformer optimus = pool.obtenerOptimus();
         arena.ubicarAlgoformer(optimus, punto);
@@ -32,7 +32,7 @@ public class AlgoformerChispaTest {
     @Test
     public void AlgoformerEnEstadoHumanoideAlCapturarChispaTieneLaChispa() {
         Algoformer frenzy = pool.obtenerFrenzy();
-        Punto punto = new Punto(26,26,0);
+        PuntoTierra punto = new PuntoTierra(26,26);
         arena.colocarChispa(punto);
         arena.ubicarAlgoformer(frenzy, punto);
         frenzy.capturarChispa();
@@ -43,7 +43,7 @@ public class AlgoformerChispaTest {
     @Test(expected = ImposibleCapturarChispaException.class)
     public void AlgoformerEnEstadoAlternoNoPuedeCapturarLaChispa() {
         Algoformer bumblebee = pool.obtenerBumblebee();
-        Punto punto = new Punto(26,26,0);
+        PuntoTierra punto = new PuntoTierra(26,26);
         arena.colocarChispa(punto);
         arena.ubicarAlgoformer(bumblebee, punto);
         bumblebee.reiniciarMovimiento();
@@ -54,8 +54,8 @@ public class AlgoformerChispaTest {
     
     @Test (expected = ImposibleCapturarChispaException.class)
     public void AlgoformerNoPuedeAgarrarLaChispaSiNoSeEncuentraEnElMismoCasillero(){
-    	Punto punto = new Punto(15,4,0);
-        Punto ubicacionChispa = new Punto(26, 26, 0);
+    	PuntoTierra punto = new PuntoTierra(15,4);
+        PuntoTierra ubicacionChispa = new PuntoTierra(26, 26);
         Algoformer bumblebee = pool.obtenerBumblebee();
         arena.colocarChispa(ubicacionChispa);
         arena.ubicarAlgoformer(bumblebee, punto);

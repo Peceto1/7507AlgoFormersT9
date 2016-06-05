@@ -1,7 +1,8 @@
 package fiuba.algo3.model.unidades;
 
 import fiuba.algo3.model.arena.Arena;
-import fiuba.algo3.model.espacio.Punto;
+import fiuba.algo3.model.espacio.PuntoAire;
+import fiuba.algo3.model.espacio.PuntoTierra;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -51,7 +52,7 @@ public class AlgoformerTransformarseTest {
     @Test
     public void RatchetEnEstadoHumanoideSeTransformaAlEstadoAlternoCorrectamente(){
         Algoformer ratchet = pool.obtenerRatchet();
-        Punto punto = new Punto(10, 10, 0);
+        PuntoTierra punto = new PuntoTierra(10, 10);
         arena.ubicarAlgoformer(ratchet, punto);
         ratchet.reiniciarMovimiento();
         ratchet.transformarse();
@@ -61,7 +62,7 @@ public class AlgoformerTransformarseTest {
     @Test
     public void RatchetEnEstadoAlternoSeTransformaAlEstadoHumanoideCorrectamente(){
         Algoformer ratchet = pool.obtenerRatchet();
-        Punto punto = new Punto(10, 10, 0);
+        PuntoTierra punto = new PuntoTierra(10, 10);
         arena.ubicarAlgoformer(ratchet, punto);
         ratchet.reiniciarMovimiento();
         ratchet.transformarse();
@@ -73,7 +74,7 @@ public class AlgoformerTransformarseTest {
     @Test
     public void MegatronEnEstadoHumanoideSeTransformaAlEstadoAlternoCorrectamente(){
         Algoformer megatron = pool.obtenerMegatron();
-        Punto punto = new Punto(10, 10, 0);
+        PuntoTierra punto = new PuntoTierra(10, 10);
         arena.ubicarAlgoformer(megatron, punto);
         megatron.reiniciarMovimiento();
         megatron.transformarse();
@@ -83,7 +84,7 @@ public class AlgoformerTransformarseTest {
     @Test
     public void MegatronEnEstadoAlternoSeTransformaAlEstadoHumanoideCorrectamente(){
         Algoformer megatron = pool.obtenerMegatron();
-        Punto punto = new Punto(10, 11, 0);
+        PuntoTierra punto = new PuntoTierra(10, 11);
         arena.ubicarAlgoformer(megatron, punto);
         megatron.reiniciarMovimiento();
         megatron.transformarse();
@@ -125,8 +126,8 @@ public class AlgoformerTransformarseTest {
     @Test
     public void AlgoformerAereoEnEstadoHumanoideAlTransformarseSubeAAireCorrectamente() {
         Algoformer megatron = pool.obtenerMegatron();
-        Punto partida = new Punto(10, 10, 0);
-        Punto llegada = new Punto(10, 10, 1);
+        PuntoTierra partida = new PuntoTierra(10, 10);
+        PuntoAire llegada = new PuntoAire(10, 10);
 
         arena.ubicarAlgoformer(megatron, partida);
         megatron.reiniciarMovimiento();
@@ -137,7 +138,7 @@ public class AlgoformerTransformarseTest {
     @Test
     public void AlgoformerAereoEnEstadoAlternoAlTransformarseBajaATierraCorrectamente() {
         Algoformer megatron = pool.obtenerMegatron();
-        Punto partida = new Punto(10, 10, 0);
+        PuntoTierra partida = new PuntoTierra(10, 10);
 
         arena.ubicarAlgoformer(megatron, partida);
         megatron.reiniciarMovimiento();

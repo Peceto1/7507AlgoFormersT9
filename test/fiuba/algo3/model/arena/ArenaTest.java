@@ -1,8 +1,9 @@
 package fiuba.algo3.model.arena;
 
-import fiuba.algo3.model.espacio.Punto;
+import fiuba.algo3.model.espacio.PuntoTierra;
 import fiuba.algo3.model.unidades.Algoformer;
 import fiuba.algo3.model.unidades.AlgoformerPool;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,13 +21,13 @@ public class ArenaTest {
 
     @Test
     public void preguntarSiUnCasilleroContieneLaChispaSiNoLaContieneDaFalse(){
-    	Punto punto = new Punto(1,1,0);
+    	PuntoTierra punto = new PuntoTierra(1,1);
     	Assert.assertFalse(arena.contieneChispa(punto));
     }
     
     @Test
     public void preguntarSiUnCasilleroContieneLaChispaSiLaContieneDaTrue(){
-    	Punto punto = new Punto(26,26,0);
+    	PuntoTierra punto = new PuntoTierra(26,26);
         arena.colocarChispa(punto);
     	Assert.assertTrue(arena.contieneChispa(punto));
     }
@@ -39,13 +40,13 @@ public class ArenaTest {
 
     @Test
     public void preguntarSiUnCasilleroEstaOcupadoDondeNoHayAlgoformerDaFalse() {
-        Punto punto = new Punto(1, 1, 0);
+        PuntoTierra punto = new PuntoTierra(1, 1);
         Assert.assertFalse(arena.estaOcupado(punto));
     }
 
     @Test
     public void preguntarSiUnCasilleroEstaOcupadoDondeHayAlgoformerDaTrue() {
-        Punto punto = new Punto(1, 3, 0);
+        PuntoTierra punto = new PuntoTierra(1, 3);
         Algoformer optimus = pool.obtenerOptimus();
         arena.ubicarAlgoformer(optimus, punto);
         Assert.assertTrue(arena.estaOcupado(punto));
@@ -53,7 +54,7 @@ public class ArenaTest {
 
     @Test
     public void removerChispaDeArenaDevuelveChispaYNoSeEncuentraMasEnLaArena() {
-        Punto puntoDeChispa = new Punto(26, 26, 0);
+        PuntoTierra puntoDeChispa = new PuntoTierra(26, 26);
         arena.obtenerChispa(puntoDeChispa);
         Assert.assertFalse(arena.contieneChispa(puntoDeChispa));
     }

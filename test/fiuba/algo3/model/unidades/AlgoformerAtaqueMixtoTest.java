@@ -5,7 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fiuba.algo3.model.arena.Arena;
-import fiuba.algo3.model.espacio.Punto;
+import fiuba.algo3.model.espacio.PuntoTierra;
 
 public class AlgoformerAtaqueMixtoTest {
 	private AlgoformerPool pool = AlgoformerPool.getInstance();
@@ -21,8 +21,8 @@ public class AlgoformerAtaqueMixtoTest {
     public void AutobotAlternoAtacaAAutobotHumanoideNoLeSacaVida(){
         Algoformer ratchet = pool.obtenerRatchet();
         Algoformer bumblebee = pool.obtenerBumblebee();
-        Punto p1 = new Punto(25,25,0);
-        Punto p2 = new Punto(24,24,0);
+        PuntoTierra p1 = new PuntoTierra(25,25);
+        PuntoTierra p2 = new PuntoTierra(24,24);
         
         arena.ubicarAlgoformer(ratchet,p1);
         ratchet.reiniciarMovimiento();
@@ -40,8 +40,8 @@ public class AlgoformerAtaqueMixtoTest {
     public void AutobotHumanoideAtacaAAutobotAlternoNoLeSacaVida(){
         Algoformer ratchet = pool.obtenerRatchet();
         Algoformer bumblebee = pool.obtenerBumblebee();
-        Punto p1 = new Punto(25,25,0);
-        Punto p2 = new Punto(24,24,0);
+        PuntoTierra p1 = new PuntoTierra(25,25);
+        PuntoTierra p2 = new PuntoTierra(24,24);
         
         arena.ubicarAlgoformer(ratchet, p1);
         ratchet.reiniciarMovimiento();
@@ -57,8 +57,8 @@ public class AlgoformerAtaqueMixtoTest {
     public void DecepticonAlternoAtacaADecepticonHumanoideNoLeSacaVida(){
         Algoformer frenzy = pool.obtenerFrenzy();
         Algoformer bonecrusher = pool.obtenerBonecrusher();
-        Punto p1 = new Punto(25,25,0);
-        Punto p2 = new Punto(24,24,0);
+        PuntoTierra p1 = new PuntoTierra(25,25);
+        PuntoTierra p2 = new PuntoTierra(24,24);
         
         arena.ubicarAlgoformer(frenzy, p1);
         frenzy.reiniciarMovimiento();
@@ -75,8 +75,8 @@ public class AlgoformerAtaqueMixtoTest {
     public void DecepticonHumanoideAtacaADecepticonAlternoNoLeSacaVida(){
         Algoformer megatron = pool.obtenerMegatron();
         Algoformer bonecrusher = pool.obtenerBonecrusher();
-        Punto p1 = new Punto(25, 25, 0);
-        Punto p2 = new Punto(24, 24, 0);
+        PuntoTierra p1 = new PuntoTierra(25, 25);
+        PuntoTierra p2 = new PuntoTierra(24, 24);
         
         arena.ubicarAlgoformer(megatron, p1);
         megatron.reiniciarMovimiento();
@@ -93,8 +93,8 @@ public class AlgoformerAtaqueMixtoTest {
     public void DecepticonAlternoAtacaAAutobotHumanoideYLeSacaVida(){
         Algoformer megatron = pool.obtenerMegatron();
         Algoformer optimusPrime = pool.obtenerOptimus();
-        Punto p1 = new Punto(25, 25, 0);
-        Punto p2 = new Punto(24, 24, 0);
+        PuntoTierra p1 = new PuntoTierra(25, 25);
+        PuntoTierra p2 = new PuntoTierra(24, 24);
         
         arena.ubicarAlgoformer(megatron, p1);
         megatron.reiniciarMovimiento();
@@ -111,8 +111,8 @@ public class AlgoformerAtaqueMixtoTest {
     public void DecepticonHumanoideAtacaAAutobotAlternoYLeSacaVida(){
         Algoformer megatron = pool.obtenerMegatron();
         Algoformer optimusPrime = pool.obtenerOptimus();
-        Punto p1 = new Punto(25,25,0);
-        Punto p2 = new Punto(24,24,0);
+        PuntoTierra p1 = new PuntoTierra(25, 25);
+        PuntoTierra p2 = new PuntoTierra(24, 24);
         
         arena.ubicarAlgoformer(megatron,p1);
         megatron.reiniciarMovimiento();
@@ -129,8 +129,8 @@ public class AlgoformerAtaqueMixtoTest {
     public void AutobotAlternoAtacaADecepticonHumanoideYLeSacaVida(){
         Algoformer megatron = pool.obtenerMegatron();
         Algoformer ratchet = pool.obtenerRatchet();
-        Punto p1 = new Punto(25,25,0);
-        Punto p2 = new Punto(24,24,0);
+        PuntoTierra p1 = new PuntoTierra(25, 25);
+        PuntoTierra p2 = new PuntoTierra(24, 24);
         
         arena.ubicarAlgoformer(megatron, p1);
         megatron.reiniciarMovimiento();
@@ -147,8 +147,8 @@ public class AlgoformerAtaqueMixtoTest {
     public void AutobotHumanoideAtacaADecepticonAlternoYLeSacaVida(){
         Algoformer megatron = pool.obtenerMegatron();
         Algoformer ratchet = pool.obtenerRatchet();
-        Punto p1 = new Punto(25,25,0);
-        Punto p2 = new Punto(24,24,0);
+        PuntoTierra p1 = new PuntoTierra(25, 25);
+        PuntoTierra p2 = new PuntoTierra(24, 24);
         
         arena.ubicarAlgoformer(megatron, p1);
         megatron.reiniciarMovimiento();
