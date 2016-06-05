@@ -1,16 +1,16 @@
 package fiuba.algo3.model.unidades;
 
-public class EstadoEnEspera extends Estado {
+public class EstadoProto extends Estado {
 	
-	private static EstadoEnEspera instancia = new EstadoEnEspera();
+	private static EstadoProto instancia = new EstadoProto();
 	
-	private EstadoEnEspera(){
+	private EstadoProto(){
 		ataque = 0;
 		rango = 0;
 		velocidad = 0;
 	}
 	
-	static EstadoEnEspera getInstance(){
+	static EstadoProto getInstance(){
 		return instancia;
 	}
 
