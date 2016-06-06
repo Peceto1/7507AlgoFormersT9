@@ -10,70 +10,70 @@ public class CasilleroTest {
 
 	@Test
 	public void testCasilleroCreadoNoEstaOcupado() {
-		Casillero casi = new Casillero();
+		Casillero casilleroDePrueba = new Casillero();
 		
-		Assert.assertFalse(casi.estaOcupado());
+		Assert.assertFalse(casilleroDePrueba.estaOcupado());
 	}
 	
 	@Test
 	public void testCasilleroCreadoNoContieneChispa(){
-		Casillero casi = new Casillero();
+		Casillero casilleroDePrueba = new Casillero();
 		
-		Assert.assertFalse(casi.contieneChispa());
+		Assert.assertFalse(casilleroDePrueba.contieneChispa());
 	}
 	
 	@Test
 	public void testColocarAlgoformerCasilleroEstaOcupado(){
-		Casillero casi = new Casillero();
+		Casillero casilleroDePrueba = new Casillero();
 		
-		AlgoformerPool pool = AlgoformerPool.getInstance();
+		AlgoformerPool instanciadorDeAlgoformer = AlgoformerPool.getInstance();
 		
-		casi.colocar(pool.obtenerOptimus());
+		casilleroDePrueba.colocar(instanciadorDeAlgoformer.obtenerOptimus());
 		
-		Assert.assertTrue(casi.estaOcupado());		
+		Assert.assertTrue(casilleroDePrueba.estaOcupado());		
 	}
 	
 	@Test
 	public void testColocarChispaCasilleroContieneChispa(){
-		Casillero casi = new Casillero();
+		Casillero casilleroDePrueba = new Casillero();
 		
 		Chispa chispa = new Chispa();
 		
-		casi.colocar(chispa);
+		casilleroDePrueba.colocar(chispa);
 		
-		Assert.assertTrue(casi.contieneChispa());		
+		Assert.assertTrue(casilleroDePrueba.contieneChispa());		
 	}
 	
 	@Test
 	public void testRemoverAlgoformerCasilleroVacioEsNull(){
-		Casillero casi = new Casillero();
+		Casillero casilleroDePrueba = new Casillero();
 		
-		Assert.assertTrue(casi.removerAlgoformer() == null);		
+		Assert.assertTrue(casilleroDePrueba.removerAlgoformer() == null);		
 	}
 	
 	@Test
 	public void testRemoverAlgoformerDevuelveAlgoformerContenido(){
-		Casillero casi = new Casillero();
+		Casillero casilleroDePrueba = new Casillero();
 		
-		AlgoformerPool pool = AlgoformerPool.getInstance();
-		Algoformer algof = pool.obtenerOptimus();
+		AlgoformerPool instanciadorDeAlgoformers = AlgoformerPool.getInstance();
+		Algoformer optimusPrime = instanciadorDeAlgoformers.obtenerOptimus();
 		
-		casi.colocar(algof);
+		casilleroDePrueba.colocar(optimusPrime);
 		
-		Assert.assertTrue(casi.removerAlgoformer() == algof);		
+		Assert.assertTrue(casilleroDePrueba.removerAlgoformer() == optimusPrime);		
 	}
 	
 	@Test
 	public void testRemoverAlgoformerCasilleroEstaVacio(){		
-		Casillero casi = new Casillero();
+		Casillero casilleroDePrueba = new Casillero();
 		
-		AlgoformerPool pool = AlgoformerPool.getInstance();
-		Algoformer algof = pool.obtenerOptimus();
+		AlgoformerPool instanciadorDeAlgoformers = AlgoformerPool.getInstance();
+		Algoformer optimusPrime = instanciadorDeAlgoformers.obtenerOptimus();
 		
-		casi.colocar(algof);
-		casi.removerAlgoformer();
+		casilleroDePrueba.colocar(optimusPrime);
+		casilleroDePrueba.removerAlgoformer();
 		
-		Assert.assertFalse(casi.estaOcupado());		
+		Assert.assertFalse(casilleroDePrueba.estaOcupado());		
 	}
 	
 	

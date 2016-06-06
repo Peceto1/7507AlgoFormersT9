@@ -9,21 +9,21 @@ import org.junit.Test;
 
 public class AlgoformerAtaqueHumanoideTest {
 
-    private AlgoformerPool pool = AlgoformerPool.getInstance();
-    private Arena arena = Arena.getInstance();
+    private AlgoformerPool instanciadorDeAlgoformers = AlgoformerPool.getInstance();
+    private Arena arenaDeJuego = Arena.getInstance();
 
 	
 	@Before
 	public void before(){
-		arena.inicializar();
-		pool.inicializar();
+		arenaDeJuego.inicializar();
+		instanciadorDeAlgoformers.inicializar();
 	}
 
     @Test
     public void DecepticonAtacarseASiMismoNoSeInflijeDanio() {
-        Algoformer megatron = pool.obtenerMegatron();
-        PuntoTierra punto = new PuntoTierra(2, 2);
-        arena.ubicarAlgoformer(megatron, punto);
+        Algoformer megatron = instanciadorDeAlgoformers.obtenerMegatron();
+        PuntoTierra ubicacionMegatron = new PuntoTierra(2, 2);
+        arenaDeJuego.ubicarAlgoformer(megatron, ubicacionMegatron);
         megatron.reiniciarMovimiento();
         megatron.atacar(megatron);
         Assert.assertEquals(megatron.getVida(), 550);
@@ -31,10 +31,10 @@ public class AlgoformerAtaqueHumanoideTest {
 
     @Test
     public void AutobotAtacarseASiMismoNoSeInflijeDanio() {
-        Algoformer bumblebee = pool.obtenerBumblebee();
+        Algoformer bumblebee = instanciadorDeAlgoformers.obtenerBumblebee();
         
-        PuntoTierra lugarBumble = new PuntoTierra(12,3);
-        arena.ubicarAlgoformer(bumblebee, lugarBumble);
+        PuntoTierra ubicacionBumblebee = new PuntoTierra(12,3);
+        arenaDeJuego.ubicarAlgoformer(bumblebee, ubicacionBumblebee);
         bumblebee.reiniciarMovimiento();
         
         bumblebee.atacar(bumblebee);
@@ -43,14 +43,14 @@ public class AlgoformerAtaqueHumanoideTest {
 
     @Test
     public void AutobotAtacaADecepticonEnEstadoHumanoideDecepticonPierdeVidaAdecuada() {
-        Algoformer optimusprime = pool.obtenerOptimus();
-        Algoformer bonecrusher = pool.obtenerBonecrusher();
+        Algoformer optimusprime = instanciadorDeAlgoformers.obtenerOptimus();
+        Algoformer bonecrusher = instanciadorDeAlgoformers.obtenerBonecrusher();
         
-        PuntoTierra optimusPos = new PuntoTierra(10,10);
-        PuntoTierra bonePos = new PuntoTierra(11,11);
-        arena.ubicarAlgoformer(bonecrusher, bonePos);
+        PuntoTierra ubicacionOptimus = new PuntoTierra(10,10);
+        PuntoTierra ubicacionBoneCrusher = new PuntoTierra(11,11);
+        arenaDeJuego.ubicarAlgoformer(bonecrusher, ubicacionBoneCrusher);
         bonecrusher.reiniciarMovimiento();
-        arena.ubicarAlgoformer(optimusprime, optimusPos);
+        arenaDeJuego.ubicarAlgoformer(optimusprime, ubicacionOptimus);
         optimusprime.reiniciarMovimiento();
         
         optimusprime.atacar(bonecrusher);
@@ -59,14 +59,14 @@ public class AlgoformerAtaqueHumanoideTest {
 
     @Test
     public void DecepticonAtacaAAutobotEnEstadoHumanoideAutobotPierdeVidaAdecuada() {
-        Algoformer bumblebee = pool.obtenerBumblebee();
-        Algoformer bonecrusher = pool.obtenerBonecrusher();
-        PuntoTierra bumblePos = new PuntoTierra(40,40);
-        PuntoTierra bonePos = new PuntoTierra(41,40);
+        Algoformer bumblebee = instanciadorDeAlgoformers.obtenerBumblebee();
+        Algoformer bonecrusher = instanciadorDeAlgoformers.obtenerBonecrusher();
+        PuntoTierra ubicacionBumblebee = new PuntoTierra(40,40);
+        PuntoTierra ubicacionBoneCrusher = new PuntoTierra(41,40);
         
-        arena.ubicarAlgoformer(bonecrusher, bonePos);
+        arenaDeJuego.ubicarAlgoformer(bonecrusher, ubicacionBoneCrusher);
         bonecrusher.reiniciarMovimiento();
-        arena.ubicarAlgoformer(bumblebee, bumblePos);
+        arenaDeJuego.ubicarAlgoformer(bumblebee, ubicacionBumblebee);
         bumblebee.reiniciarMovimiento();
         
         bonecrusher.atacar(bumblebee);
@@ -75,13 +75,13 @@ public class AlgoformerAtaqueHumanoideTest {
 
     @Test
     public void AutobotAtacaAotroAutobotVidaDelReceptorDelAtaqueNoCambia() {
-        Algoformer bumblebee = pool.obtenerBumblebee();
-        Algoformer ratchet = pool.obtenerRatchet();
-        PuntoTierra p1 = new PuntoTierra(24, 24);
-        PuntoTierra p2 = new PuntoTierra(25, 25);
-        arena.ubicarAlgoformer(ratchet, p1);
+        Algoformer bumblebee = instanciadorDeAlgoformers.obtenerBumblebee();
+        Algoformer ratchet = instanciadorDeAlgoformers.obtenerRatchet();
+        PuntoTierra ubicacionRatchet = new PuntoTierra(24, 24);
+        PuntoTierra ubicacionBumblebee = new PuntoTierra(25, 25);
+        arenaDeJuego.ubicarAlgoformer(ratchet, ubicacionRatchet);
         ratchet.reiniciarMovimiento();
-        arena.ubicarAlgoformer(bumblebee, p2);
+        arenaDeJuego.ubicarAlgoformer(bumblebee, ubicacionBumblebee);
         bumblebee.reiniciarMovimiento();
         
         ratchet.atacar(bumblebee);
@@ -90,14 +90,14 @@ public class AlgoformerAtaqueHumanoideTest {
 
     @Test
     public void DecepticonAtacaAOtroDecepticonVidaDelReceptorDelAtaqueNoCambia() {
-        Algoformer frenzy = pool.obtenerFrenzy();
-        Algoformer megatron = pool.obtenerMegatron();
-        PuntoTierra frenzyPos = new PuntoTierra(20,20);
-        PuntoTierra megatronPos = new PuntoTierra(17,17);
+        Algoformer frenzy = instanciadorDeAlgoformers.obtenerFrenzy();
+        Algoformer megatron = instanciadorDeAlgoformers.obtenerMegatron();
+        PuntoTierra ubicacionFrenzy = new PuntoTierra(20,20);
+        PuntoTierra ubicacionMegatron = new PuntoTierra(17,17);
 
-        arena.ubicarAlgoformer(frenzy, frenzyPos);
+        arenaDeJuego.ubicarAlgoformer(frenzy, ubicacionFrenzy);
         frenzy.reiniciarMovimiento();
-        arena.ubicarAlgoformer(megatron, megatronPos);
+        arenaDeJuego.ubicarAlgoformer(megatron, ubicacionMegatron);
         megatron.reiniciarMovimiento();
 
         frenzy.atacar(megatron);
@@ -106,14 +106,14 @@ public class AlgoformerAtaqueHumanoideTest {
 
     @Test
     public void DecepticonAtacaAAutobotHastaMatarloLuegoAutobotNoEstaVivo() {
-        Algoformer optimusprime = pool.obtenerOptimus();
-        Algoformer megatron = pool.obtenerMegatron();
-        PuntoTierra p1 = new PuntoTierra(25, 25);
-        PuntoTierra p2 = new PuntoTierra(24, 24);
+        Algoformer optimusprime = instanciadorDeAlgoformers.obtenerOptimus();
+        Algoformer megatron = instanciadorDeAlgoformers.obtenerMegatron();
+        PuntoTierra ubicacionMegatron = new PuntoTierra(25, 25);
+        PuntoTierra ubicacionOptimus = new PuntoTierra(24, 24);
 
-        arena.ubicarAlgoformer(optimusprime, p2);
+        arenaDeJuego.ubicarAlgoformer(optimusprime, ubicacionOptimus);
         optimusprime.reiniciarMovimiento();
-        arena.ubicarAlgoformer(megatron, p1);
+        arenaDeJuego.ubicarAlgoformer(megatron, ubicacionMegatron);
         megatron.reiniciarMovimiento();
         
         for (int i=0;i<49;i++){
@@ -127,15 +127,15 @@ public class AlgoformerAtaqueHumanoideTest {
 
     @Test
     public void AutobotAtacaADecepticonHastaMatarloLuegoDecepticonNoEstaVivo() {
-        Algoformer optimusprime = pool.obtenerOptimus();
-        Algoformer megatron = pool.obtenerMegatron();
+        Algoformer optimusprime = instanciadorDeAlgoformers.obtenerOptimus();
+        Algoformer megatron = instanciadorDeAlgoformers.obtenerMegatron();
 
-        PuntoTierra p1 = new PuntoTierra(25, 25);
-        PuntoTierra p2 = new PuntoTierra(24, 24);
+        PuntoTierra ubicacionMegatron = new PuntoTierra(25, 25);
+        PuntoTierra ubicacionOptimus = new PuntoTierra(24, 24);
 
-        arena.ubicarAlgoformer(optimusprime, p2);
+        arenaDeJuego.ubicarAlgoformer(optimusprime, ubicacionOptimus);
         optimusprime.reiniciarMovimiento();
-        arena.ubicarAlgoformer(megatron, p1);
+        arenaDeJuego.ubicarAlgoformer(megatron, ubicacionMegatron);
         megatron.reiniciarMovimiento();
 
         for (int i=0; i<10; i++) {
@@ -149,15 +149,15 @@ public class AlgoformerAtaqueHumanoideTest {
     
 	@Test
 	public void AlgoformerMuertoNoPuedeTransformarse(){
-		Algoformer optimusprime = pool.obtenerOptimus();
-		Algoformer megatron = pool.obtenerMegatron();
+		Algoformer optimusprime = instanciadorDeAlgoformers.obtenerOptimus();
+		Algoformer megatron = instanciadorDeAlgoformers.obtenerMegatron();
 		
-        PuntoTierra p1 = new PuntoTierra(25, 25);
-        PuntoTierra p2 = new PuntoTierra(24, 24);
+        PuntoTierra ubicacionMegatron = new PuntoTierra(25, 25);
+        PuntoTierra ubicacionOptimus = new PuntoTierra(24, 24);
 
-        arena.ubicarAlgoformer(optimusprime, p2);
+        arenaDeJuego.ubicarAlgoformer(optimusprime, ubicacionOptimus);
         optimusprime.reiniciarMovimiento();
-        arena.ubicarAlgoformer(megatron, p1);
+        arenaDeJuego.ubicarAlgoformer(megatron, ubicacionMegatron);
         megatron.reiniciarMovimiento();
         
         for (int i=0;i<49;i++){

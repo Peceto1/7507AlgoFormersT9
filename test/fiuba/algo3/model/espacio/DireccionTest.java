@@ -6,75 +6,75 @@ import org.junit.Test;
 public class DireccionTest {
 
 	@Test
-	public void testDireccionDerecha() {
+	public void DireccionDerechaTieneLasCoordenadasCorrectas() {
 
-		Direccion dire = new DireccionDerecha();
+		Direccion direccionDerecha = new DireccionDerecha();
 
-		assertTrue(dire.x == 1);
-		assertTrue(dire.y == 0);
+		assertTrue(direccionDerecha.x == 1);
+		assertTrue(direccionDerecha.y == 0);
 	}
 
 	@Test
-	public void testDireccionArriba() {
+	public void DireccionArribaTieneLasCoordenadasCorrectas() {
 
-		Direccion dire = new DireccionArriba();
+		Direccion direccionArriba = new DireccionArriba();
 
-		assertTrue(dire.x == 0);
-		assertTrue(dire.y == 1);
+		assertTrue(direccionArriba.x == 0);
+		assertTrue(direccionArriba.y == 1);
 	}
 
 	@Test
-	public void testDireccionIzquierda() {
+	public void DireccionIzquierdaTieneLasCoordenadasCorrectas() {
 
-		Direccion dire = new DireccionIzquierda();
+		Direccion direccionIzquierda = new DireccionIzquierda();
 
-		assertTrue(dire.x == -1);
-		assertTrue(dire.y == 0);
+		assertTrue(direccionIzquierda.x == -1);
+		assertTrue(direccionIzquierda.y == 0);
 	}
 
 	@Test
-	public void testDireccionAbajo() {
+	public void DireccionAbajoTieneLasCoordenadasCorrectas() {
 
-		Direccion dire = new DireccionAbajo();
+		Direccion direccionAbajo = new DireccionAbajo();
 
-		assertTrue(dire.x == 0);
-		assertTrue(dire.y == -1);
+		assertTrue(direccionAbajo.x == 0);
+		assertTrue(direccionAbajo.y == -1);
 	}
 
 	@Test
-	public void testDireccionDerechaArriba() {
+	public void DireccionDerechaArribaTieneLasCoordenadasCorrectas() {
 
-		Direccion dire = new DireccionDerechaArriba();
+		Direccion direccionDiagonalDerechaArriba = new DireccionDerechaArriba();
 
-		assertTrue(dire.x == 1);
-		assertTrue(dire.y == 1);
+		assertTrue(direccionDiagonalDerechaArriba.x == 1);
+		assertTrue(direccionDiagonalDerechaArriba.y == 1);
 	}
 
 	@Test
-	public void testDireccionIzquierdaArriba() {
+	public void DireccionIzquierdaArribaTieneLasCoordenadasCorrectas() {
 
-		Direccion dire = new DireccionIzquierdaArriba();
+		Direccion direccionDiagonalIzquierdaAbajo = new DireccionIzquierdaArriba();
 
-		assertTrue(dire.x == -1);
-		assertTrue(dire.y == 1);
+		assertTrue(direccionDiagonalIzquierdaAbajo.x == -1);
+		assertTrue(direccionDiagonalIzquierdaAbajo.y == 1);
 	}
 
 	@Test
-	public void testDireccionDerechaAbajo() {
+	public void DireccionDerechaAbajoTieneLasCoordenadasCorrectas() {
 
-		Direccion dire = new DireccionDerechaAbajo();
+		Direccion direccionDiagonalDerechaAbajo = new DireccionDerechaAbajo();
 
-		assertTrue(dire.x == 1);
-		assertTrue(dire.y == -1);
+		assertTrue(direccionDiagonalDerechaAbajo.x == 1);
+		assertTrue(direccionDiagonalDerechaAbajo.y == -1);
 	}
 
 	@Test
-	public void testDireccionIzquierdaAbajo() {
+	public void DireccionIzquierdaAbajoTieneLasCoordenadasCorrectas() {
 
-		Direccion dire = new DireccionIzquierdaAbajo();
+		Direccion direccionDiagonalIzquierdaAbajo = new DireccionIzquierdaAbajo();
 
-		assertTrue(dire.x == -1);
-		assertTrue(dire.y == -1);
+		assertTrue(direccionDiagonalIzquierdaAbajo.x == -1);
+		assertTrue(direccionDiagonalIzquierdaAbajo.y == -1);
 	}
 
 }

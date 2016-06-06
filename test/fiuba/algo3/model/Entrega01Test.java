@@ -10,247 +10,251 @@ import org.junit.Test;
 
 public class Entrega01Test {
 
-    private AlgoformerPool pool = AlgoformerPool.getInstance();
-    private Arena arena = Arena.getInstance();
+    private AlgoformerPool instanciadorDeAlgoformers = AlgoformerPool.getInstance();
+    private Arena arenaDeJuego = Arena.getInstance();
 
     @Before
     public void before() {
-        pool.inicializar();
-        arena.inicializar();
+        instanciadorDeAlgoformers.inicializar();
+        arenaDeJuego.inicializar();
     }
 
 
     @Test
     public void test01_a_SeUbicaAlgoformerHumanoideEnUnCasilleroAlMoverseSeMueveAcorde() {
-        PuntoTierra partida = new PuntoTierra(10, 10);
-        PuntoTierra intermedio = new PuntoTierra(11, 10);
-        PuntoTierra llegada = new PuntoTierra(12, 10);       // Optimus tiene velocidad 2 en Humanoide
-        Direccion derecha = new DireccionDerecha();    
+        PuntoTierra puntoDePartida = new PuntoTierra(10, 10);
+        PuntoTierra puntoIntermedioDeCamino = new PuntoTierra(11, 10);
+        PuntoTierra puntoDeLlegada = new PuntoTierra(12, 10);
+        Direccion direccionDerecha = new DireccionDerecha();
 
-        Assert.assertFalse(arena.estaOcupado(partida));    // No hay algoformer aún.
+        Assert.assertFalse(arenaDeJuego.estaOcupado(puntoDePartida));
 
-        Algoformer optimus = pool.obtenerOptimus();     // Algoformer por defecto en Estado Humanoide
-        arena.ubicarAlgoformer(optimus, partida);       // Lo ubico en el punto de partida
+        Algoformer optimus = instanciadorDeAlgoformers.obtenerOptimus();
+        arenaDeJuego.ubicarAlgoformer(optimus, puntoDePartida);
 
-        Assert.assertTrue(arena.estaOcupado(partida));      // Se ubicó correctamente
+        Assert.assertTrue(arenaDeJuego.estaOcupado(puntoDePartida));
 
         optimus.reiniciarMovimiento();  // Inicializo su turno para moverse
-        optimus.moverseHacia(derecha);  // Se mueve un casillero a la derecha
+        optimus.moverseHacia(direccionDerecha);
 
-        Assert.assertTrue(arena.estaOcupado(intermedio));     // Ahora optimus se encuentra uno a la derecha
-        Assert.assertFalse(arena.estaOcupado(partida));     // Ya no se encuentra más en el punto de partida
+        Assert.assertTrue(arenaDeJuego.estaOcupado(puntoIntermedioDeCamino));
+        Assert.assertFalse(arenaDeJuego.estaOcupado(puntoDePartida));
 
-        optimus.moverseHacia(derecha);  // Se mueve nuevamente a la derecha.
+        optimus.moverseHacia(direccionDerecha);
 
-        Assert.assertTrue(arena.estaOcupado(llegada));      // Llegó al punto de destino
-        Assert.assertFalse(arena.estaOcupado(intermedio));
+        Assert.assertTrue(arenaDeJuego.estaOcupado(puntoDeLlegada));
+        Assert.assertFalse(arenaDeJuego.estaOcupado(puntoIntermedioDeCamino));
 
         try {
-            optimus.moverseHacia(derecha);      // Trato de moverlo aunque se le acabaron sus movimientos
+            optimus.moverseHacia(direccionDerecha);
         }
         catch (MovimientoNoValidoException e) {
-            Assert.assertFalse(arena.estaOcupado(partida));     // No se encuentra en el punto de partida
-            Assert.assertFalse(arena.estaOcupado(intermedio));  // No se encuentra en el punto de paso
-            Assert.assertTrue(arena.estaOcupado(llegada));      // Se encuentra en el punto de llegada
+            Assert.assertFalse(arenaDeJuego.estaOcupado(puntoDePartida));
+            Assert.assertFalse(arenaDeJuego.estaOcupado(puntoIntermedioDeCamino));
+            Assert.assertTrue(arenaDeJuego.estaOcupado(puntoDeLlegada));
         }
     }
 
 
     @Test
     public void test02_a_SeUbicaUnAlgoformerHumanoideSeLoTransformaYSeVerificaQueSePuedaTransformarEnAmbasDirecciones() {
-        PuntoTierra partida = new PuntoTierra(1, 1);
-        PuntoAire partidaEnAire = new PuntoAire(1, 1);
+        PuntoTierra puntoDePartidaTerrestre = new PuntoTierra(1, 1);
+        PuntoAire puntoDePartidaEnAire = new PuntoAire(1, 1);
 
-        Algoformer megatron = pool.obtenerMegatron();
-        arena.ubicarAlgoformer(megatron, partida);
-        megatron.reiniciarMovimiento();     // Inicializo su movimiento
+        Algoformer megatron = instanciadorDeAlgoformers.obtenerMegatron();
+        arenaDeJuego.ubicarAlgoformer(megatron, puntoDePartidaTerrestre);
+        megatron.reiniciarMovimiento();
+        Assert.assertTrue(arenaDeJuego.estaOcupado(puntoDePartidaTerrestre));
+        Assert.assertFalse(arenaDeJuego.estaOcupado(puntoDePartidaEnAire));
 
-        Assert.assertTrue(arena.estaOcupado(partida));          // Se encuentra donde lo ubique
-        Assert.assertFalse(arena.estaOcupado(partidaEnAire));   // No se encuentra en el aire
+        megatron.transformarse();
+        megatron.reiniciarMovimiento();
 
-        megatron.transformarse();   // Lo transformo a su estado Alterno (volador)
-        megatron.reiniciarMovimiento(); // Inicializo su movimiento
+        Assert.assertFalse(arenaDeJuego.estaOcupado(puntoDePartidaTerrestre));
+        Assert.assertTrue(arenaDeJuego.estaOcupado(puntoDePartidaEnAire));
 
-        Assert.assertFalse(arena.estaOcupado(partida));         // No se encuentra más en la tierra
-        Assert.assertTrue(arena.estaOcupado(partidaEnAire));    // Se encuentra en el aire
-
-        megatron.transformarse();   // Lo transformo nuevamente a Humanoide y debe descender
-        Assert.assertTrue(arena.estaOcupado(partida));
-        Assert.assertFalse(arena.estaOcupado(partidaEnAire));
+        megatron.transformarse();
+        Assert.assertTrue(arenaDeJuego.estaOcupado(puntoDePartidaTerrestre));
+        Assert.assertFalse(arenaDeJuego.estaOcupado(puntoDePartidaEnAire));
     }
 
     @Test
     public void test03_a_SeUbicaUnAlgoformerEnEstadoAlternoSeMueveYSeVerificaQueSeHayaDesplazadoCorrectamente() {
-        PuntoTierra partida = new PuntoTierra(16, 16);
-        PuntoAire llegada = new PuntoAire(8, 8);
-        Direccion diagonalAbajoIzq = new DireccionIzquierdaAbajo();
+        PuntoTierra puntoDePartida = new PuntoTierra(16, 16);
+        PuntoAire puntoAereoSobrePartida = new PuntoAire(16,16);
+        PuntoAire puntoDeLlegada = new PuntoAire(8, 8);
+        Direccion direccionDiagonalAbajoIzquierda = new DireccionIzquierdaAbajo();
 
-        Algoformer megatron = pool.obtenerMegatron();
-        arena.ubicarAlgoformer(megatron, partida);
+        Algoformer megatron = instanciadorDeAlgoformers.obtenerMegatron();
+        arenaDeJuego.ubicarAlgoformer(megatron, puntoDePartida);
         megatron.reiniciarMovimiento();
-        megatron.transformarse();       // Sube al aire, megatron Alterno tiene velocidad 8
+        megatron.transformarse();
         megatron.reiniciarMovimiento();
 
-        // Megatron Alterno tiene velocidad 8
-        int cantMovimientos = 8;
+        int cantidadDeMovimientosTotalesDeMegatron = 8;
 
-        Assert.assertTrue(arena.estaOcupado(new PuntoAire(16, 16)));
+        Assert.assertTrue(arenaDeJuego.estaOcupado(puntoAereoSobrePartida));
 
-        for (int i=0; i<cantMovimientos; i++)
-            megatron.moverseHacia(diagonalAbajoIzq);
+        for (int i=0; i<cantidadDeMovimientosTotalesDeMegatron; i++)
+            megatron.moverseHacia(direccionDiagonalAbajoIzquierda);
 
-        Assert.assertTrue(arena.estaOcupado(llegada));
-        Assert.assertFalse(arena.estaOcupado(partida));
-        Assert.assertFalse(arena.estaOcupado(new PuntoTierra(16, 16)));
-        Assert.assertFalse(arena.estaOcupado(new PuntoTierra(24, 24)));
+        Assert.assertTrue(arenaDeJuego.estaOcupado(puntoDeLlegada));
+        Assert.assertFalse(arenaDeJuego.estaOcupado(puntoDePartida));
+        Assert.assertFalse(arenaDeJuego.estaOcupado(new PuntoTierra(24, 24)));
 
-        // Trato de moverlo nuevamente y lanza excepcion
         try {
-            megatron.moverseHacia(diagonalAbajoIzq);
+            megatron.moverseHacia(direccionDiagonalAbajoIzquierda);
         } catch (MovimientoNoValidoException e) {
-            Assert.assertTrue(arena.estaOcupado(llegada));      // Permanece en donde habia quedado
-            Assert.assertFalse(arena.estaOcupado(new PuntoAire(7, 7)));  // No se movio de donde estaba
+            Assert.assertTrue(arenaDeJuego.estaOcupado(puntoDeLlegada));
+            Assert.assertFalse(arenaDeJuego.estaOcupado(new PuntoAire(7, 7)));
         }
     }
 
     @Test
     public void test04_a_IntegracionJuegoJugadoresArenaAlgoformersChispa() {
-
-        String jugador1 = "Fran";
-        String jugador2 = "Santi";
+    	//Las siguientes posicions iniciales son las posiciones predeterminadas
+    	//En las que el Juego coloca a los Algoformers
+    	Punto posicionInicialRatchet = new PuntoTierra(1,27);
+    	Punto posicionInicialOptimus = new PuntoTierra(1,26);
+    	Punto posicionInicialBumblebee = new PuntoTierra(1,25);
+    	Punto posicionInicialFrenzy = new PuntoTierra(51,27);
+    	Punto posicionInicialMegatron = new PuntoTierra(51,26);
+    	Punto posicionInicialBoneCrusher = new PuntoTierra(51,25);
+    	
+        String nombreJugador1 = "Fran";
+        String nombreJugador2 = "Santi";
+        
+        Punto posicionDeLaChispa = new PuntoTierra(26, 26);
+        Punto posicionSobreLaChispa = new PuntoAire(26,26);
 
         Juego juego = new Juego();
-        juego.crearJugador(jugador1, "DECEPTICONS");
-        juego.crearJugador(jugador2, "AUTOBOTS");
+        juego.crearJugador(nombreJugador1, "DECEPTICONS");
+        juego.crearJugador(nombreJugador2, "AUTOBOTS");
         juego.comenzarPartida();
-        Assert.assertTrue(arena.estaOcupado(new PuntoTierra(1, 27)));
-        Assert.assertTrue(arena.estaOcupado(new PuntoTierra(1, 26)));
-        Assert.assertTrue(arena.estaOcupado(new PuntoTierra(1, 25)));
-        Assert.assertTrue(arena.estaOcupado(new PuntoTierra(51, 27)));
-        Assert.assertTrue(arena.estaOcupado(new PuntoTierra(51, 26))); // MEGATRON
-        Assert.assertTrue(arena.estaOcupado(new PuntoTierra(51, 25)));
+        Assert.assertTrue(arenaDeJuego.estaOcupado(posicionInicialRatchet));
+        Assert.assertTrue(arenaDeJuego.estaOcupado(posicionInicialOptimus));
+        Assert.assertTrue(arenaDeJuego.estaOcupado(posicionInicialBumblebee));
+        Assert.assertTrue(arenaDeJuego.estaOcupado(posicionInicialFrenzy));
+        Assert.assertTrue(arenaDeJuego.estaOcupado(posicionInicialMegatron));
+        Assert.assertTrue(arenaDeJuego.estaOcupado(posicionInicialBoneCrusher));
 
-        Jugador actual = juego.getJugadorEnTurno();     // Tomo al jugador con el primer turno
+        Jugador actual = juego.getJugadorEnTurno();
 
-        if (!actual.getNombre().equals(jugador1)) {
+        if (!actual.getNombre().equals(nombreJugador1)) {
             juego.finalizarTurno();
             actual = juego.getJugadorEnTurno();
         }
 
-        // EN actual TENGO AL JUGADOR CON LOS DECEPTICONS
-        Algoformer megatron = pool.obtenerMegatron();
+        Algoformer megatron = instanciadorDeAlgoformers.obtenerMegatron();
         Direccion izquierda = new DireccionIzquierda();
-        int cantMovimientos = 8;    // Cantidad de movimientos de Megatron en Alterno
+        int cantidadDeMovimientosTotalesDeMegatron = 8;
 
-        megatron.transformarse();    // SE TRANSFORMA EN ALTERNO
-        Assert.assertTrue(arena.estaOcupado(new PuntoAire(51, 26)));     // Se encuentra en el aire
-        juego.finalizarTurno();     // termina turno Megatron
-        juego.finalizarTurno();     // Saltea el turno del oponente
+        megatron.transformarse();
+        Assert.assertTrue(arenaDeJuego.estaOcupado(new PuntoAire(51, 26)));
+        juego.finalizarTurno();
+        juego.finalizarTurno(); //Salteamos el turno del Jugador 2
 
         for (int j=0; j<3; j++) {
 
-            for (int i = 0; i < cantMovimientos; i++)
+            for (int i = 0; i < cantidadDeMovimientosTotalesDeMegatron; i++)
                 megatron.moverseHacia(izquierda);
 
-            juego.finalizarTurno();     // Termina Turno Megatron
-            juego.finalizarTurno();     // Saltea el del Oponente
+            juego.finalizarTurno();
+            juego.finalizarTurno();
         }
 
-        Assert.assertTrue(arena.estaOcupado(new PuntoAire(27, 26)));     // MEGATRON ESTA EN (27, 26, 1)
-        juego.finalizarTurno(); // Termina turno Megatron
-        juego.finalizarTurno(); // Termina turno Oponente
+        Assert.assertTrue(arenaDeJuego.estaOcupado(new PuntoAire(27, 26)));
+        juego.finalizarTurno();
+        juego.finalizarTurno();
 
-        megatron.moverseHacia(izquierda);   // MEGATRON SE ENCUENTRA ARRIBA DE LA CHISPA (EN EL AIRE)
+        megatron.moverseHacia(izquierda);
 
-        Assert.assertTrue(arena.estaOcupado(new PuntoAire(26, 26)));
-        Assert.assertTrue(arena.contieneChispa(new PuntoTierra(26, 26)));
+        Assert.assertTrue(arenaDeJuego.estaOcupado(posicionSobreLaChispa));
+        Assert.assertTrue(arenaDeJuego.contieneChispa(posicionDeLaChispa));
 
-        juego.finalizarTurno();     // Termina turno Megatron
-        juego.finalizarTurno();     // Termina turno oponente
+        juego.finalizarTurno();
+        juego.finalizarTurno();
 
         try {
-            megatron.capturarChispa();      // No se puede capturar chispa en estado ALTERNO
+            megatron.capturarChispa();
         } catch (ImposibleCapturarChispaException e) {
             Assert.assertFalse(megatron.tieneChispa());
         }
 
-        megatron.transformarse();   // MEGATRON BAJA A TIERRA, AHORA PUEDE CAPTURAR CHISPA
-        juego.finalizarTurno();     // Termina turno Megatron
-        juego.finalizarTurno();     // Termina turno oponente
+        megatron.transformarse();
+        juego.finalizarTurno();
+        juego.finalizarTurno();
 
-        megatron.capturarChispa();          // Megatron captura la chispa
-        Assert.assertTrue(megatron.tieneChispa());      // Megatron tiene la chispa
-        Assert.assertFalse(arena.contieneChispa(new PuntoTierra(26, 26)));     // No esta mas en el tablero
+        megatron.capturarChispa();
+        Assert.assertTrue(megatron.tieneChispa());
+        Assert.assertFalse(arenaDeJuego.contieneChispa(posicionDeLaChispa));
 
         juego.finalizarTurno();
-        Assert.assertTrue(juego.hayGanador());  // Hay un Ganador
+        Assert.assertTrue(juego.hayGanador());
         Assert.assertEquals(juego.obtenerGanador(), actual);
-        // Ese ganador es el jugador de Decepticons
     }
 
     @Test
     public void test05_a_AutobotHumanoideVsDecepticonHumanoide() {
-        Algoformer optimus = pool.obtenerOptimus();
-        Algoformer megatron = pool.obtenerMegatron();
-        Punto inicioOptimus = new PuntoTierra(41, 41);       // Inician en lados opuestos del mapa
-        Punto inicioMegatron = new PuntoTierra(51, 51);
-        Direccion diagonalArriba = new DireccionDerechaArriba();
-        Direccion diagonalAbajo = new DireccionIzquierdaAbajo();
-        int movimientosOptimusAlterno = 5;
-        int movimientosMegatronAlterno = 8;
+        Algoformer optimus = instanciadorDeAlgoformers.obtenerOptimus();
+        Algoformer megatron = instanciadorDeAlgoformers.obtenerMegatron();
+        Punto puntoInicioOptimus = new PuntoTierra(41, 41);
+        Punto puntoInicioMegatron = new PuntoTierra(51, 51);
+        Direccion direccionDiagonalDerechaArriba = new DireccionDerechaArriba();
+        Direccion direccionDiagonalIzquierdaAbajo = new DireccionIzquierdaAbajo();
+        int cantidadTotalDeMovimientosOptimusAlterno = 5;
+        int cantidadTotalMovimientosMegatronAlterno = 8;
 
-        arena.ubicarAlgoformer(optimus, inicioOptimus);
+        arenaDeJuego.ubicarAlgoformer(optimus, puntoInicioOptimus);
         optimus.reiniciarMovimiento();
-        optimus.transformarse();    // Ambos se transforman para alcanzarse mas rápidamente
+        optimus.transformarse();
         optimus.reiniciarMovimiento();
 
-        arena.ubicarAlgoformer(megatron, inicioMegatron);
+        arenaDeJuego.ubicarAlgoformer(megatron, puntoInicioMegatron);
         megatron.reiniciarMovimiento();
         megatron.transformarse();
         megatron.reiniciarMovimiento();
 
-        // Optimus se mueve lo más que puede hacia Megatron
-        for (int i = 0; i < movimientosOptimusAlterno; i++)
-            optimus.moverseHacia(diagonalArriba);       // Queda en (46, 46, 0)
 
-        Assert.assertTrue(arena.estaOcupado(new PuntoTierra(46, 46)));
+        for (int i = 0; i < cantidadTotalDeMovimientosOptimusAlterno; i++)
+            optimus.moverseHacia(direccionDiagonalDerechaArriba);
+        
+        Punto posicionActualDeOptimus = new PuntoTierra(46,46);
+        Assert.assertTrue(arenaDeJuego.estaOcupado(posicionActualDeOptimus));
 
-        optimus.reiniciarMovimiento(); // Reinicio su movimiento para su proximo turno
+        optimus.reiniciarMovimiento();
 
-        // Megatron se mueve lo más que puede hacia Optimus
-        for (int i = 0; i < movimientosMegatronAlterno; i++)
-            megatron.moverseHacia(diagonalAbajo);       // Queda en (43, 43, 1)
+        for (int i = 0; i < cantidadTotalMovimientosMegatronAlterno; i++)
+            megatron.moverseHacia(direccionDiagonalIzquierdaAbajo);
 
-        megatron.reiniciarMovimiento(); // Reinicio su movimiento para su proximo turno
+        megatron.reiniciarMovimiento();
 
-        Assert.assertTrue(arena.estaOcupado(new PuntoAire(43, 43)));
+        Punto posicionActualDeMegatron = new PuntoAire(43,43);
+        Assert.assertTrue(arenaDeJuego.estaOcupado(posicionActualDeMegatron));
 
-        // OPTIMUS YA ESTA EN RANGO, ATACA A MEGATRON (AMBOS EN ESTADO ALTERNO)
         optimus.atacar(megatron);
-        optimus.reiniciarMovimiento();  // Termina su turno
+        optimus.reiniciarMovimiento();
 
-        Assert.assertEquals(megatron.getVida(), 550 - 15); // Megatron es dañado en 15
+        Assert.assertEquals(megatron.getVida(), 550 - 15);
 
-        // MEGATRON NO PUEDE ESPERAR Y ATACA SIN ESTAR EN RANGO DESDE EL AIRE
         try {
             megatron.atacar(optimus);
-            megatron.reiniciarMovimiento(); // Termina su turno
+            megatron.reiniciarMovimiento();
         } catch (FueraDeRangoException e) {
-            Assert.assertEquals(optimus.getVida(), 500); // LA VIDA DE OPTIMUS NO CAMBIO
+            Assert.assertEquals(optimus.getVida(), 500);
         }
 
-        // OPTIMUS ATACA DE NUEVO
         optimus.atacar(megatron);
-        optimus.reiniciarMovimiento();  // Termina su turno
+        optimus.reiniciarMovimiento();
 
         Assert.assertEquals(megatron.getVida(), 550 - 15 * 2);
 
-        megatron.moverseHacia(diagonalArriba);   // Megatron se acerca y ahora esta en rango de ataque.
+        megatron.moverseHacia(direccionDiagonalDerechaArriba);
         megatron.reiniciarMovimiento();
-        // Salteo turno de optimus
-        megatron.atacar(optimus);   // Megatron ataca a optimus
 
-        Assert.assertEquals(optimus.getVida(), 500 - 55);   // Megatron le hizo daño a optimus
+        megatron.atacar(optimus);
+
+        Assert.assertEquals(optimus.getVida(), 500 - 55);
     }
 }
 

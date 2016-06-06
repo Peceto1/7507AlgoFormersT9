@@ -11,26 +11,26 @@ import org.junit.Test;
 
 public class AlgoformerTransformarseTest {
 
-    private AlgoformerPool pool = AlgoformerPool.getInstance();
-    private Arena arena = Arena.getInstance();
+    private AlgoformerPool instanciadorDeAlgoformers = AlgoformerPool.getInstance();
+    private Arena arenaDeJuego = Arena.getInstance();
 
     @Before
 	public void before(){
-		pool.inicializar();
-        arena.inicializar();
+		instanciadorDeAlgoformers.inicializar();
+        arenaDeJuego.inicializar();
 	}
 
 
     @Test
     public void OptimusPrimeEnEstadoHumanoideSeTransformaAlEstadoAlternoCorrectamente(){
-        Algoformer optimusPrime = pool.obtenerOptimus();
+        Algoformer optimusPrime = instanciadorDeAlgoformers.obtenerOptimus();
         optimusPrime.transformarse();
         Assert.assertEquals(optimusPrime.getEstado(), OptimusPrimeAlterno.getInstance());
     }
 
     @Test
     public void OptimusPrimeEnEstadoAlternoSeTransformaAlEstadoHumanoideCorrectamente(){
-        Algoformer optimusPrime = pool.obtenerOptimus();
+        Algoformer optimusPrime = instanciadorDeAlgoformers.obtenerOptimus();
         optimusPrime.transformarse();
         optimusPrime.transformarse();
         Assert.assertEquals(optimusPrime.getEstado(), OptimusPrimeHumanoide.getInstance());
@@ -38,23 +38,23 @@ public class AlgoformerTransformarseTest {
 
     @Test
     public void BumblebeeEnEstadoHumanoideSeTransformaAlEstadoAlternoCorrectamente(){
-        Algoformer bumblebee = pool.obtenerBumblebee();
+        Algoformer bumblebee = instanciadorDeAlgoformers.obtenerBumblebee();
         bumblebee.transformarse();
         Assert.assertEquals(bumblebee.getEstado(), BumblebeeAlterno.getInstance());
     }
 
     @Test
     public void BumblebeeEnEstadoAlternoSeTransformaAlEstadoHumanoideCorrectamente(){
-        Algoformer bumblebee = pool.obtenerBumblebee();
+        Algoformer bumblebee = instanciadorDeAlgoformers.obtenerBumblebee();
         bumblebee.transformarse();
         Assert.assertEquals(bumblebee.getEstado(), BumblebeeAlterno.getInstance());
     }
 
     @Test
     public void RatchetEnEstadoHumanoideSeTransformaAlEstadoAlternoCorrectamente(){
-        Algoformer ratchet = pool.obtenerRatchet();
-        PuntoTierra punto = new PuntoTierra(10, 10);
-        arena.ubicarAlgoformer(ratchet, punto);
+        Algoformer ratchet = instanciadorDeAlgoformers.obtenerRatchet();
+        PuntoTierra posicionInicialRatchet = new PuntoTierra(10, 10);
+        arenaDeJuego.ubicarAlgoformer(ratchet, posicionInicialRatchet);
         ratchet.reiniciarMovimiento();
         ratchet.transformarse();
         Assert.assertEquals(ratchet.getEstado(), RatchetAlterno.getInstance());
@@ -62,9 +62,9 @@ public class AlgoformerTransformarseTest {
 
     @Test
     public void RatchetEnEstadoAlternoSeTransformaAlEstadoHumanoideCorrectamente(){
-        Algoformer ratchet = pool.obtenerRatchet();
-        PuntoTierra punto = new PuntoTierra(10, 10);
-        arena.ubicarAlgoformer(ratchet, punto);
+        Algoformer ratchet = instanciadorDeAlgoformers.obtenerRatchet();
+        Punto posicionInicialRatchet = new PuntoTierra(10, 10);
+        arenaDeJuego.ubicarAlgoformer(ratchet, posicionInicialRatchet);
         ratchet.reiniciarMovimiento();
         ratchet.transformarse();
         ratchet.reiniciarMovimiento();
@@ -74,9 +74,9 @@ public class AlgoformerTransformarseTest {
 
     @Test
     public void MegatronEnEstadoHumanoideSeTransformaAlEstadoAlternoCorrectamente(){
-        Algoformer megatron = pool.obtenerMegatron();
-        PuntoTierra punto = new PuntoTierra(10, 10);
-        arena.ubicarAlgoformer(megatron, punto);
+        Algoformer megatron = instanciadorDeAlgoformers.obtenerMegatron();
+        Punto posicionInicialMegatron = new PuntoTierra(10, 10);
+        arenaDeJuego.ubicarAlgoformer(megatron, posicionInicialMegatron);
         megatron.reiniciarMovimiento();
         megatron.transformarse();
         Assert.assertEquals(megatron.getEstado(), MegatronAlterno.getInstance());
@@ -84,9 +84,9 @@ public class AlgoformerTransformarseTest {
 
     @Test
     public void MegatronEnEstadoAlternoSeTransformaAlEstadoHumanoideCorrectamente(){
-        Algoformer megatron = pool.obtenerMegatron();
-        PuntoTierra punto = new PuntoTierra(10, 11);
-        arena.ubicarAlgoformer(megatron, punto);
+        Algoformer megatron = instanciadorDeAlgoformers.obtenerMegatron();
+        Punto posicionInicialMegatron = new PuntoTierra(10, 11);
+        arenaDeJuego.ubicarAlgoformer(megatron, posicionInicialMegatron);
         megatron.reiniciarMovimiento();
         megatron.transformarse();
         megatron.reiniciarMovimiento();
@@ -96,14 +96,14 @@ public class AlgoformerTransformarseTest {
 
     @Test
     public void BoneCrusherEnEstadoHumanoideSeTransformaAlEstadoAlternoCorrectamente(){
-        Algoformer bonecrusher = pool.obtenerBonecrusher();
+        Algoformer bonecrusher = instanciadorDeAlgoformers.obtenerBonecrusher();
         bonecrusher.transformarse();
         Assert.assertEquals(bonecrusher.getEstado(), BoneCrusherAlterno.getInstance());
     }
 
     @Test
     public void BoneCrusherEnEstadoAlternoSeTransformaAlEstadoHumanoideCorrectamente(){
-        Algoformer bonecrusher = pool.obtenerBonecrusher();
+        Algoformer bonecrusher = instanciadorDeAlgoformers.obtenerBonecrusher();
         bonecrusher.transformarse();
         bonecrusher.transformarse();
         Assert.assertEquals(bonecrusher.getEstado(), BoneCrusherHumanoide.getInstance());
@@ -111,14 +111,14 @@ public class AlgoformerTransformarseTest {
 
     @Test
     public void FrenzyEnEstadoHumanoideSeTransformaAlEstadoAlternoCorrectamente(){
-        Algoformer frenzy = pool.obtenerFrenzy();
+        Algoformer frenzy = instanciadorDeAlgoformers.obtenerFrenzy();
         frenzy.transformarse();
         Assert.assertEquals(frenzy.getEstado(), FrenzyAlterno.getInstance());
     }
 
     @Test
     public void FrenzyEnEstadoAlternoSeTransformaAlEstadoHumanoideCorrectamente(){
-        Algoformer frenzy = pool.obtenerFrenzy();
+        Algoformer frenzy = instanciadorDeAlgoformers.obtenerFrenzy();
         frenzy.transformarse();
         frenzy.transformarse();
         Assert.assertEquals(frenzy.getEstado(), FrenzyHumanoide.getInstance());
@@ -126,27 +126,27 @@ public class AlgoformerTransformarseTest {
 
     @Test
     public void AlgoformerAereoEnEstadoHumanoideAlTransformarseSubeAAireCorrectamente() {
-        Algoformer megatron = pool.obtenerMegatron();
-        PuntoTierra partida = new PuntoTierra(10, 10);
-        PuntoAire llegada = new PuntoAire(10, 10);
+        Algoformer megatron = instanciadorDeAlgoformers.obtenerMegatron();
+        Punto puntoDePartida = new PuntoTierra(10, 10);
+        Punto puntoDeLlegada = new PuntoAire(10, 10);
 
-        arena.ubicarAlgoformer(megatron, partida);
+        arenaDeJuego.ubicarAlgoformer(megatron, puntoDePartida);
         megatron.reiniciarMovimiento();
         megatron.transformarse();
-        Assert.assertEquals(megatron.getUbicacion(), llegada);
+        Assert.assertEquals(megatron.getUbicacion(), puntoDeLlegada);
     }
 
     @Test
     public void AlgoformerAereoEnEstadoAlternoAlTransformarseBajaATierraCorrectamente() {
-        Algoformer megatron = pool.obtenerMegatron();
-        PuntoTierra partida = new PuntoTierra(10, 10);
+        Algoformer megatron = instanciadorDeAlgoformers.obtenerMegatron();
+        Punto puntoDePartida = new PuntoTierra(10, 10);
 
-        arena.ubicarAlgoformer(megatron, partida);
+        arenaDeJuego.ubicarAlgoformer(megatron, puntoDePartida);
         megatron.reiniciarMovimiento();
-        megatron.transformarse();   // Pasa a Estado Alterno (sube)
+        megatron.transformarse();
         megatron.reiniciarMovimiento();
-        megatron.transformarse();   // Pasa a Estado Humanoide (baja)
-        Assert.assertEquals(megatron.getUbicacion(), partida);
+        megatron.transformarse();
+        Assert.assertEquals(megatron.getUbicacion(), puntoDePartida);
     }
 
 }
