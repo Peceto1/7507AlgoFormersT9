@@ -25,11 +25,11 @@ public class Arena {
             for (int j = 1; j <= ALTO; j++) {
 
                 Punto puntoTierra = new PuntoTierra(i, j);
-                Casillero casilleroTierra = new Casillero(new Rocoso());  // Hay que ver de pasarle el terreno adecuado (Aire o Tierra)
+                Casillero casilleroTierra = new Casillero(new Rocoso());
                 arena.put(puntoTierra, casilleroTierra);
 
                 Punto puntoAire = new PuntoAire(i, j);
-                Casillero casilleroAire = new Casillero(new Nube());  // Hay que ver de pasarle el terreno adecuado (Aire o Tierra)
+                Casillero casilleroAire = new Casillero(new Nube());
                 arena.put(puntoAire, casilleroAire);
             }
         }
