@@ -1,8 +1,12 @@
 package fiuba.algo3.model.unidades;
 
+import fiuba.algo3.model.arena.Arena;
 import fiuba.algo3.model.arena.Chispa;
 import fiuba.algo3.model.espacio.Direccion;
 import fiuba.algo3.model.espacio.Punto;
+import fiuba.algo3.model.espacio.PuntoAireNoPuedeAscenderException;
+
+import java.util.List;
 
 
 public abstract class Algoformer {
@@ -89,9 +93,37 @@ public abstract class Algoformer {
 	}
 
 
-	public abstract void combinarse();
+	public void combinarse() {
+		Arena arena = Arena.getInstance();
+		List<Punto> puntosAdyacentesAlAlgoformer;
+
+		try {
+			puntosAdyacentesAlAlgoformer = ubicacion.obtenerAdyacentes();
+		} catch (PuntoAireNoPuedeAscenderException e) {
+			throw new EstadoAlternoNoPuedeDarLaOrdenDeCombinarseException();
+		}
+
+		List<Algoformer> algoformersAdyacentes = arena.obtenerAlgoformersEn(puntosAdyacentesAlAlgoformer);
+
+		for (Algoformer algoformerAdyacente : algoformersAdyacentes) {
+			this.esLealA(algoformerAdyacente);
+		}
+
+		if (algoformersAdyacentes.size() < 2)
+			throw new NoHaySuficientesAlgoformersAdyacentesException();
+
+		Algoformer algoformer1 = algoformersAdyacentes.get(0);
+		Algoformer algoformer2 = algoformersAdyacentes.get(1);
+
+		//this.estado.combinarse(this, algoformer1, algoformer2);
+	}
+
+
 	public abstract void atacar(Algoformer atacado);
 	abstract void recibirAtaque(Autobot atacante, int danio);
 	abstract void recibirAtaque(Decepticon atacante, int danio);
+	abstract Boolean esLealA(Algoformer algoformer);
+	abstract Boolean esLealA(Autobot algoformer);
+	abstract Boolean esLealA(Decepticon algoformer);
 
 }

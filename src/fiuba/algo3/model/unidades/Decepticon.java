@@ -35,4 +35,22 @@ public class Decepticon extends Algoformer {
     	this.vida = this.vida - danio;
     }
 
+
+    @Override
+    Boolean esLealA(Algoformer algoformer) {
+        return algoformer.esLealA(this);
+    }
+
+
+    @Override
+    Boolean esLealA(Autobot algoformer) {
+        return false;
+    }
+
+
+    @Override
+    Boolean esLealA(Decepticon algoformer) {
+        return true;
+    }
+
 }
