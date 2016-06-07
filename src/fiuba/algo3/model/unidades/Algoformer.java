@@ -9,6 +9,7 @@ public abstract class Algoformer {
 
 	String nombre;
 	int vida;
+	int vidaMax;
 	Estado estado;
 	Chispa chispa;
 	Punto ubicacion;
@@ -17,6 +18,7 @@ public abstract class Algoformer {
 	Algoformer(String nombre, int vida, Estado estado) {
 		this.nombre = nombre;
 		this.vida = vida;
+		this.vidaMax = vida;
 		this.estado = estado;
 	}
 
@@ -28,6 +30,10 @@ public abstract class Algoformer {
 
 	public int getVida() {
 		return this.vida;
+	}
+	
+	public int getVidaMax(){
+		return this.vidaMax;
 	}
 
 
@@ -86,6 +92,10 @@ public abstract class Algoformer {
 
 	public void transformarse() {
 		this.estado.transformar(this);
+	}
+	
+	public void recibirDanio(int danio){
+		this.vida = vida - danio;
 	}
 
 
