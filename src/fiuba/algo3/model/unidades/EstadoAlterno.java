@@ -1,10 +1,6 @@
 package fiuba.algo3.model.unidades;
 
 
-import fiuba.algo3.model.espacio.Punto;
-
-import java.util.List;
-
 abstract class EstadoAlterno extends Estado {
 
 
@@ -25,6 +21,12 @@ abstract class EstadoAlterno extends Estado {
     public void combinarse(Decepticon decepticon1, Decepticon decepticon2, Decepticon decepticon3) {
 
         throw new EstadoAlternoNoPuedeDarLaOrdenDeCombinarseException();
+    }
+
+
+    @Override
+    void actualizarEstado(Algoformer algoformer) {
+
     }
 
 }

@@ -43,5 +43,6 @@ abstract class Estado {
 	abstract void capturarChispa(Algoformer captor);
 	abstract void combinarse(Autobot dioLaOrden, Autobot autobot2, Autobot autobot3);
 	abstract void combinarse(Decepticon dioLaOrden, Decepticon autobot2, Decepticon autobot3);
+	abstract void actualizarEstado(Algoformer algoformer);
 
 }

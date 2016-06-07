@@ -33,11 +33,8 @@ abstract class EstadoHumanoide extends Estado{
             arena.removerAlgoformerEn(autobot.getUbicacion());
         }
 
-        EstadoProto estado = new EstadoProto();
-
-        Superion superion = new Superion(vidaSuperion, miembros, estado);
-        estado.setaConstruir(superion);
-
+        // Acordarse de refactoricar ^
+        Superion superion = new Superion(vidaSuperion, miembros, new EstadoProto());
         arena.ubicarAlgoformer(superion, ubicacionSuperion);
     }
 
@@ -45,6 +42,12 @@ abstract class EstadoHumanoide extends Estado{
     @Override
     public void combinarse(Decepticon dioLaOrden, Decepticon autobot2, Decepticon autobot3) {
 
+
+    }
+
+
+    @Override
+    void actualizarEstado(Algoformer algoformer) {
 
     }
     

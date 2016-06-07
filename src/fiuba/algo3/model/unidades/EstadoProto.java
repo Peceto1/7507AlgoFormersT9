@@ -5,7 +5,6 @@ import fiuba.algo3.model.espacio.Punto;
 class EstadoProto extends Estado {
 
 	private int turnosRestantesParaCambio;
-	private Algoformer aConstruir;
 
 	
 	EstadoProto(){
@@ -16,24 +15,24 @@ class EstadoProto extends Estado {
 	}
 
 
-	void setaConstruir(Algoformer algoformer) {
-		this.aConstruir = algoformer;
+	@Override
+	void reiniciarMovimiento(Punto ubicacion) {
+		movimiento = new Movimiento(ubicacion, velocidad);
 	}
 
 
 	@Override
-	void reiniciarMovimiento(Punto ubicacion) {
-		movimiento = new Movimiento(ubicacion, velocidad);
-		// actualizarEstado();
+	void actualizarEstado(Algoformer algoformer) {
+		if (turnosRestantesParaCambio == 0)
+			completarTransformacion(algoformer);
+
+		turnosRestantesParaCambio--;
 	}
 
 
-	/*private void actualizarEstado(Algoformer) {
-		if (turnosRestantesParaCambio == 0)
-			completarTransformacion();
-
-		turnosRestantesParaCambio--;
-	}*/		// ---> Necesitaria conocer al Algoformer... como hacemos?
+	private void completarTransformacion(Algoformer algoformer) {
+		algoformer.setEstado(EstadoSuperion.getInstance());
+	}
 
 
 	@Override
