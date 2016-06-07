@@ -2,8 +2,11 @@ package fiuba.algo3.model.arena;
 
 import fiuba.algo3.model.espacio.*;
 import fiuba.algo3.model.unidades.Algoformer;
+import fiuba.algo3.model.unidades.Autobot;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Arena {
@@ -81,5 +84,25 @@ public class Arena {
 
     public Algoformer removerAlgoformerEn(Punto punto) {
         return arena.get(punto).removerAlgoformer();
+    }
+
+
+    public Algoformer obtenerAlgoformerEn(Punto actual) {
+        return arena.get(actual).obtenerAlgoformer();
+    }
+
+
+    public List<Algoformer> obtenerAlgoformersEn(List<Punto> puntos) {
+
+        List<Algoformer> algoformers = new ArrayList<>();
+
+        for (Punto actual : puntos) {
+            Algoformer algoformer = obtenerAlgoformerEn(actual);
+
+            if (algoformer != null)
+                algoformers.add(algoformer);
+        }
+
+        return algoformers;
     }
 }

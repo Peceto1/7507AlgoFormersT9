@@ -44,4 +44,8 @@ class Casillero {
 		return tmp;
 	}
 
+
+    Algoformer obtenerAlgoformer() {
+        return this.contenido;
+    }
 }
