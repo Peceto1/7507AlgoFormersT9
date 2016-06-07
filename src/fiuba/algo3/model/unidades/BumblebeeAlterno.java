@@ -20,4 +20,5 @@ class BumblebeeAlterno extends EstadoAlterno {
     public void transformar(Algoformer a_transformar){
     	a_transformar.setEstado(BumblebeeHumanoide.getInstance());
     }
+
 }

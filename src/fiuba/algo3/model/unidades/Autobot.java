@@ -20,12 +20,6 @@ public class Autobot extends Algoformer {
 
 
     @Override
-    public void combinarse() {
-
-    }
-
-
-    @Override
     void recibirAtaque(Autobot otro,int danio) {
 
     }

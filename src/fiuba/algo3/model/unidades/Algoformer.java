@@ -7,6 +7,7 @@ import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.espacio.PuntoAireNoPuedeAscenderException;
 
 import java.util.List;
+import java.util.ListIterator;
 
 
 public abstract class Algoformer {
@@ -115,8 +116,13 @@ public abstract class Algoformer {
 
 		List<Algoformer> algoformersAdyacentes = arena.obtenerAlgoformersEn(puntosAdyacentesAlAlgoformer);
 
-		for (Algoformer algoformerAdyacente : algoformersAdyacentes) {
-			this.esLealA(algoformerAdyacente);
+		// Filtro por equipo
+		ListIterator<Algoformer> iter = algoformersAdyacentes.listIterator();
+		while (iter.hasNext()) {
+			Algoformer algoformerAdyacente = iter.next();
+
+			if (!this.esLealA(algoformerAdyacente))
+				iter.remove();
 		}
 
 		if (algoformersAdyacentes.size() < 2)
