@@ -2,7 +2,6 @@ package fiuba.algo3.model.arena;
 
 import fiuba.algo3.model.espacio.*;
 import fiuba.algo3.model.unidades.Algoformer;
-import fiuba.algo3.model.unidades.Autobot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -49,6 +48,7 @@ public class Arena {
     	Casillero buscado = arena.get(punto);
     	return buscado.contieneChispa();
     }
+
     
 	public Chispa obtenerChispa(Punto punto) {
 		Casillero buscado = arena.get(punto);
@@ -80,6 +80,7 @@ public class Arena {
         arena.get(punto).colocar(algoformer);
         algoformer.setUbicacion(punto);
     }
+
     
     public void setTerrenoEnPunto(Punto punto, Terreno terreno){
     	arena.get(punto).setTerreno(terreno);

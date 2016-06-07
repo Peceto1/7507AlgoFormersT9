@@ -19,27 +19,33 @@ class Casillero {
     Boolean estaOcupado(){
         return this.contenido != null;
     }
+
     
     void aplicarTerrenoSobre(Algoformer algoformer){
     	this.terreno.aplicarseSobre(algoformer);
     }
 
+
     void setTerreno(Terreno nuevo){
     	this.terreno = nuevo;
     }
+
 
     void colocar(Algoformer algoformer) {
         this.contenido = algoformer;
         aplicarTerrenoSobre(algoformer);
     }
+
     
     void colocar(Chispa chispa){
     	this.chispa = chispa;
     }
 
+
     boolean contieneChispa(){
     	return this.chispa != null;
     }
+
 
     Algoformer removerAlgoformer() {
         Algoformer tmp = this.contenido;
