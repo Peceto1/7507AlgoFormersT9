@@ -10,21 +10,21 @@ public class CasilleroTest {
 
 	@Test
 	public void testCasilleroCreadoNoEstaOcupado() {
-		Casillero casilleroDePrueba = new Casillero();
+		Casillero casilleroDePrueba = new Casillero(new Rocoso());
 		
 		Assert.assertFalse(casilleroDePrueba.estaOcupado());
 	}
 	
 	@Test
 	public void testCasilleroCreadoNoContieneChispa(){
-		Casillero casilleroDePrueba = new Casillero();
+		Casillero casilleroDePrueba = new Casillero(new Rocoso());
 		
 		Assert.assertFalse(casilleroDePrueba.contieneChispa());
 	}
 	
 	@Test
 	public void testColocarAlgoformerCasilleroEstaOcupado(){
-		Casillero casilleroDePrueba = new Casillero();
+		Casillero casilleroDePrueba = new Casillero(new Nube());
 		
 		AlgoformerPool instanciadorDeAlgoformer = AlgoformerPool.getInstance();
 		
@@ -35,7 +35,7 @@ public class CasilleroTest {
 	
 	@Test
 	public void testColocarChispaCasilleroContieneChispa(){
-		Casillero casilleroDePrueba = new Casillero();
+		Casillero casilleroDePrueba = new Casillero(new Rocoso());
 		
 		Chispa chispa = new Chispa();
 		
@@ -46,14 +46,14 @@ public class CasilleroTest {
 	
 	@Test
 	public void testRemoverAlgoformerCasilleroVacioEsNull(){
-		Casillero casilleroDePrueba = new Casillero();
+		Casillero casilleroDePrueba = new Casillero(new Nube());
 		
 		Assert.assertTrue(casilleroDePrueba.removerAlgoformer() == null);		
 	}
 	
 	@Test
 	public void testRemoverAlgoformerDevuelveAlgoformerContenido(){
-		Casillero casilleroDePrueba = new Casillero();
+		Casillero casilleroDePrueba = new Casillero(new Rocoso());
 		
 		AlgoformerPool instanciadorDeAlgoformers = AlgoformerPool.getInstance();
 		Algoformer optimusPrime = instanciadorDeAlgoformers.obtenerOptimus();
@@ -65,7 +65,7 @@ public class CasilleroTest {
 	
 	@Test
 	public void testRemoverAlgoformerCasilleroEstaVacio(){		
-		Casillero casilleroDePrueba = new Casillero();
+		Casillero casilleroDePrueba = new Casillero(new Rocoso());
 		
 		AlgoformerPool instanciadorDeAlgoformers = AlgoformerPool.getInstance();
 		Algoformer optimusPrime = instanciadorDeAlgoformers.obtenerOptimus();
