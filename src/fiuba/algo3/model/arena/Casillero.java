@@ -7,20 +7,30 @@ class Casillero {
 
     private Algoformer contenido;
     private Chispa chispa;
+    private Terreno terreno;
 
 
-    Casillero() {
+    Casillero(Terreno terreno) {
         this.contenido = null;
+        this.terreno = terreno;
     }
 
 
     Boolean estaOcupado(){
         return this.contenido != null;
     }
+    
+    void aplicarTerrenoSobre(Algoformer algoformer){
+    	this.terreno.aplicarseSobre(algoformer);
+    }
 
+    void setTerreno(Terreno nuevo){
+    	this.terreno = nuevo;
+    }
 
     void colocar(Algoformer algoformer) {
         this.contenido = algoformer;
+        aplicarTerrenoSobre(algoformer);
     }
     
     void colocar(Chispa chispa){

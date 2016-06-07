@@ -32,7 +32,7 @@ public class Decepticon extends Algoformer {
 
     @Override
     void recibirAtaque(Autobot otro, int danio) {
-    	this.vida = this.vida - danio;
+    	recibirDanio(danio);
     }
 
 
