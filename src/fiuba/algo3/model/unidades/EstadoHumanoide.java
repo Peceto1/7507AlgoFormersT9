@@ -63,10 +63,17 @@ abstract class EstadoHumanoide extends Estado{
 
 
     @Override
-    void actualizarEstado(Algoformer algoformer) {
+    void actualizarEstado(Autobot autobot) {
 
     }
-    
+
+
+    @Override
+    void actualizarEstado(Decepticon decepticon){
+
+    }
+
+
     @Override
     void empantanar(){
     	throw new EstadoHumanoideNoPuedeEntrarEnPantanoException();

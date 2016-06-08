@@ -39,7 +39,7 @@ public class CombinacionTest {
 		Algoformer superion = arena.obtenerAlgoformerEn(puntoInicioCentro);
 		int vidaEsperada = optimusPrime.getVida() + ratchet.getVida() + bumblebee.getVida();
 		
-		Assert.assertEquals(vidaEsperada,superion.getVida());
+		Assert.assertEquals(vidaEsperada, superion.getVida());
 
 	}
 	
@@ -88,7 +88,7 @@ public class CombinacionTest {
 		Assert.assertFalse(arena.estaOcupado(puntoDiagonalDeInicio));
 	}
 	
-	@Test(expected = NoHaySuficientesAlgoformersAdyacentesException.class)
+	@Test (expected = NoHaySuficientesAlgoformersAdyacentesException.class)
 	public void NoSePuedenCombinarSiAlgoformersNoEstanCerca(){
 		Punto puntoInicio = new PuntoTierra(43,30);
 		Punto puntoAlejado1 = new PuntoTierra(15,4);
@@ -106,7 +106,7 @@ public class CombinacionTest {
 		ratchet.combinarse();
 	}
 	
-	@Test(expected = MovimientoNoValidoException.class)
+	@Test (expected = EstadoProtoNoPuedeRealizarAcciones.class)
 	public void SuperionNoPuedeMoverseInmediatamenteAlTransformarse(){
 		Punto puntoInicioCentro = new PuntoTierra(25,25);
 		Punto puntoDerechoDeInicio = new PuntoTierra(26,25);
@@ -191,7 +191,60 @@ public class CombinacionTest {
 		
 		bumblebee.combinarse();
 	}
-	
+
+	@Test (expected = EstadoProtoNoPuedeRealizarAcciones.class)
+	public void MenasorNoPuedeAtacarMientrasEstaTransformandose() {
+		Punto puntoDeMenasor = new PuntoTierra(10, 10);
+		Punto puntoALaDerecha = new PuntoTierra(11, 10);
+		Punto puntoALaIzquierda = new PuntoTierra(9, 10);
+		Punto ubicacionOptimus = new PuntoTierra(11, 11);
+
+		Algoformer megatron = instanciadorDeAlgoformers.obtenerMegatron();
+		Algoformer frenzy = instanciadorDeAlgoformers.obtenerFrenzy();
+		Algoformer bonecrusher = instanciadorDeAlgoformers.obtenerBonecrusher();
+		Algoformer optimus = instanciadorDeAlgoformers.obtenerOptimus();
+
+
+		arena.ubicarAlgoformer(megatron, puntoDeMenasor);
+		arena.ubicarAlgoformer(frenzy, puntoALaDerecha);
+		arena.ubicarAlgoformer(bonecrusher, puntoALaIzquierda);
+		arena.ubicarAlgoformer(optimus, ubicacionOptimus);
+
+		megatron.combinarse();
+
+		Algoformer menasor = arena.obtenerAlgoformerEn(puntoDeMenasor);
+		menasor.atacar(optimus);
+	}
+
+	@Test
+	public void MenasorPuedeAtacarLuegoDe2Turnos() {
+		Punto puntoDeMenasor = new PuntoTierra(10, 10);
+		Punto puntoALaDerecha = new PuntoTierra(11, 10);
+		Punto puntoALaIzquierda = new PuntoTierra(9, 10);
+		Punto ubicacionOptimus = new PuntoTierra(11, 11);
+
+		Algoformer megatron = instanciadorDeAlgoformers.obtenerMegatron();
+		Algoformer frenzy = instanciadorDeAlgoformers.obtenerFrenzy();
+		Algoformer bonecrusher = instanciadorDeAlgoformers.obtenerBonecrusher();
+		Algoformer optimus = instanciadorDeAlgoformers.obtenerOptimus();
+
+
+		arena.ubicarAlgoformer(megatron, puntoDeMenasor);
+		arena.ubicarAlgoformer(frenzy, puntoALaDerecha);
+		arena.ubicarAlgoformer(bonecrusher, puntoALaIzquierda);
+		arena.ubicarAlgoformer(optimus, ubicacionOptimus);
+
+		megatron.combinarse();
+
+		Algoformer menasor = arena.obtenerAlgoformerEn(puntoDeMenasor);
+		menasor.reiniciarMovimiento();
+		menasor.reiniciarMovimiento();
+		menasor.reiniciarMovimiento();
+		menasor.atacar(optimus);
+
+		Assert.assertEquals(500 - 115, optimus.getVida());
+	}
+
 	@Test
 	public void MenasorPuedeMoverseLuegoDe2Turnos(){
 		Punto puntoInicioCentro = new PuntoTierra(25,25);
@@ -217,4 +270,5 @@ public class CombinacionTest {
 		menasor.moverseHacia(new DireccionDerecha());
 		Assert.assertEquals(puntoDerechoDeInicio, menasor.getUbicacion());
 	}
+
 }

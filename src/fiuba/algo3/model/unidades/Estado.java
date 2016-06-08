@@ -44,19 +44,20 @@ abstract class Estado {
     	return distanciaEntreAlgoformers <= rango;
     }
 
+
+	public void perderTurno() {
+		movimiento.perderTurno();
+	}
+
+
 	abstract void transformar(Algoformer algoformer);
 	abstract void capturarChispa(Algoformer captor);
 	abstract void combinarse(Autobot dioLaOrden, Autobot autobot2, Autobot autobot3);
 	abstract void combinarse(Decepticon dioLaOrden, Decepticon decepticon2, Decepticon decepticon3);
-	abstract void actualizarEstado(Algoformer algoformer);
+	abstract void actualizarEstado(Autobot algoformer);
+	abstract void actualizarEstado(Decepticon algoformer);
 
 
 	abstract void empantanar();
-
-
-	public void perderTurno() {
-		movimiento.perderTurno();
-		
-	}
 
 }
