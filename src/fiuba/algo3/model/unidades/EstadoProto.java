@@ -32,6 +32,7 @@ class EstadoProto extends Estado {
 
 	private void completarTransformacion(Algoformer algoformer) {
 		algoformer.setEstado(EstadoSuperion.getInstance());
+		algoformer.reiniciarMovimiento();
 	}
 
 
