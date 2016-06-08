@@ -1,5 +1,6 @@
 package fiuba.algo3.model.unidades;
 
+import fiuba.algo3.model.espacio.Direccion;
 import fiuba.algo3.model.espacio.Punto;
 
 class EstadoProto extends Estado {
@@ -22,16 +23,31 @@ class EstadoProto extends Estado {
 
 
 	@Override
-	void actualizarEstado(Algoformer algoformer) {
+	void actualizarEstado(Autobot autobot) {
 		if (turnosRestantesParaCambio == 0)
-			completarTransformacion(algoformer);
+			completarTransformacion(autobot);
 
 		turnosRestantesParaCambio--;
 	}
 
 
-	private void completarTransformacion(Algoformer algoformer) {
+	@Override
+	void actualizarEstado(Decepticon decepticon) {
+		if (turnosRestantesParaCambio == 0)
+			completarTransformacion(decepticon);
+
+		turnosRestantesParaCambio--;
+	}
+
+
+	private void completarTransformacion(Autobot algoformer) {
 		algoformer.setEstado(EstadoSuperion.getInstance());
+		algoformer.reiniciarMovimiento();
+	}
+
+
+	private void completarTransformacion(Decepticon algoformer) {
+		algoformer.setEstado(EstadoMenasor.getInstance());
 		algoformer.reiniciarMovimiento();
 	}
 
@@ -50,6 +66,18 @@ class EstadoProto extends Estado {
 
 	@Override
 	void empantanar() {
+	}
+
+
+	@Override
+	Punto moverse(Direccion direccion) {
+		throw new EstadoProtoNoPuedeRealizarAcciones();
+	}
+
+
+	@Override
+	Boolean puedeAtacar(Algoformer atacado, Punto origenDeAtaque) {
+		throw new EstadoProtoNoPuedeRealizarAcciones();
 	}
 
 
