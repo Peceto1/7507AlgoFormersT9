@@ -2,7 +2,7 @@ package fiuba.algo3.model.unidades;
 
 import java.util.List;
 
-public class Autobot extends Algoformer {
+class Autobot extends Algoformer {
 
 
     Autobot(String nombre, int vida, Estado estado) {
