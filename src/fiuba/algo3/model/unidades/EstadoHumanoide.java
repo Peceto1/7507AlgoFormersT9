@@ -17,7 +17,7 @@ abstract class EstadoHumanoide extends Estado{
 
 
     @Override
-    public void combinarse(Autobot dioLaOrden, Autobot autobot2, Autobot autobot3) {
+    public Superion combinarse(Autobot dioLaOrden, Autobot autobot2, Autobot autobot3) {
 
         List<Autobot> miembros = new ArrayList<>();
         miembros.add(dioLaOrden);
@@ -36,11 +36,12 @@ abstract class EstadoHumanoide extends Estado{
         // Acordarse de refactorizar ^
         Superion superion = new Superion(vidaSuperion, miembros, new EstadoProto());
         arena.ubicarAlgoformer(superion, ubicacionSuperion);
+        return superion;
     }
 
 
     @Override
-    public void combinarse(Decepticon dioLaOrden, Decepticon autobot2, Decepticon autobot3) {
+    public Menasor combinarse(Decepticon dioLaOrden, Decepticon autobot2, Decepticon autobot3) {
         List<Decepticon> miembros = new ArrayList<>();
         miembros.add(dioLaOrden);
         miembros.add(autobot2);
@@ -58,7 +59,7 @@ abstract class EstadoHumanoide extends Estado{
         // Acordarse de refactorizar ^
         Menasor menasor = new Menasor(vidaMenasor, miembros, new EstadoProto());
         arena.ubicarAlgoformer(menasor, ubicacionMenasor);
-
+        return menasor;
     }
 
 

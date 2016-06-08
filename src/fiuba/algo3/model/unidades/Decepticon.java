@@ -51,7 +51,7 @@ class Decepticon extends Algoformer {
 
     @Override
     public void combinarse(){
-    	List<Algoformer> listaDeAlgoformers = nombre();
+    	List<Algoformer> listaDeAlgoformers = obtenerAlgoformersAdyacentesDelMismoEquipo();
     	Algoformer algoformer1 = listaDeAlgoformers.get(0);
     	Algoformer algoformer2 = listaDeAlgoformers.get(1);
     			

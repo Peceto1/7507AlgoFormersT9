@@ -124,7 +124,7 @@ public abstract class Algoformer {
 		estado.empantanar();	
 	}
 	
-	List<Algoformer> nombre(){
+	List<Algoformer> obtenerAlgoformersAdyacentesDelMismoEquipo(){
 		Arena arena = Arena.getInstance();
 		List<Punto> puntosAdyacentesAlAlgoformer;
 
