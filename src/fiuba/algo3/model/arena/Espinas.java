@@ -2,7 +2,7 @@ package fiuba.algo3.model.arena;
 
 import fiuba.algo3.model.unidades.Algoformer;
 
-public class Espinas implements Terreno {
+class Espinas implements Terreno {
 
 	@Override
 	public void aplicarseSobre(Algoformer algoformer) {//5% = *5/100 = 1/20

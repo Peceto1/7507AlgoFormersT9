@@ -47,6 +47,11 @@ class EstadoProto extends Estado {
 	}
 
 
+	@Override
+	void empantanar() {
+	}
+
+
 	/*@Override
 	void combinarse(Autobot dioLaOrden, Autobot autobot2, Autobot autobot3) {
 		throw new EstadoProtoNoPuedeRealizarAcciones();

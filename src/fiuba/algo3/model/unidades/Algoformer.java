@@ -142,4 +142,9 @@ public abstract class Algoformer {
 	abstract Boolean esLealA(Autobot algoformer);
 	abstract Boolean esLealA(Decepticon algoformer);
 
+
+	public void empantanar() {
+		estado.empantanar();	
+	}
+
 }

@@ -51,6 +51,11 @@ abstract class EstadoHumanoide extends Estado{
 
     }
     
+    @Override
+    void empantanar(){
+    	throw new EstadoHumanoideNoPuedeEntrarEnPantanoException();
+    }
+    
 	
 }
 
