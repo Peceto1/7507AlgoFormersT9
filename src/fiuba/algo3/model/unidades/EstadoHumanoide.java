@@ -41,7 +41,23 @@ abstract class EstadoHumanoide extends Estado{
 
     @Override
     public void combinarse(Decepticon dioLaOrden, Decepticon autobot2, Decepticon autobot3) {
+        List<Decepticon> miembros = new ArrayList<>();
+        miembros.add(dioLaOrden);
+        miembros.add(autobot2);
+        miembros.add(autobot3);
 
+        Punto ubicacionMenasor = dioLaOrden.getUbicacion();
+        int vidaMenasor = 0;
+        Arena arena = Arena.getInstance();
+
+        for (Decepticon decepticon : miembros) {
+            vidaMenasor += decepticon.getVida();
+            arena.removerAlgoformerEn(decepticon.getUbicacion());
+        }
+
+        // Acordarse de refactorizar ^
+        Menasor menasor = new Menasor(vidaMenasor, miembros, new EstadoProto());
+        arena.ubicarAlgoformer(menasor, ubicacionMenasor);
 
     }
 

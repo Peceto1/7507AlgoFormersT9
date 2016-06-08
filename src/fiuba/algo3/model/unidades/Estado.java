@@ -31,8 +31,8 @@ abstract class Estado {
 	void reiniciarMovimiento(Punto ubicacion) {
 		
 		if (movimiento != null){
-		movimiento = new Movimiento(ubicacion,Math.min(velocidad, (velocidad+movimiento.getMovimientosRestantes())));
-		return;
+			movimiento = new Movimiento(ubicacion,Math.min(velocidad, (velocidad+movimiento.getMovimientosRestantes())));
+			return;
 		}
 		movimiento = new Movimiento(ubicacion,velocidad);
 	}

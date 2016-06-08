@@ -1,8 +1,9 @@
 package fiuba.algo3.model.unidades;
 
-public class EstadoSuperion extends EstadoHumanoide {
+class EstadoSuperion extends EstadoHumanoide {
 
     private static EstadoSuperion instancia = new EstadoSuperion();
+
 
     private EstadoSuperion() {
         this.ataque = 100;
