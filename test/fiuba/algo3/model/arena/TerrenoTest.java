@@ -91,9 +91,52 @@ public class TerrenoTest {
 		optimus.reiniciarMovimiento();
 		optimus.transformarse();
 		int velocidadOptimus = 5;
-		optimus.reiniciarMovimiento(); //Optimus tiene 5 de velocidad
+		optimus.reiniciarMovimiento();
 		for (int i=0; i<velocidadOptimus; i++){
 			optimus.moverseHacia(direccionDerecha);
+		}
+	}
+		
+	@Test(expected = MovimientoNoValidoException.class)
+	public void AlgoformerEnEstadoAlternoQueTerminaSuTurnoEnPantanoPierdeUnMovimientoEnSuProximioTurno(){
+		Algoformer frenzy = instanciadorDeAlgoformers.obtenerFrenzy();
+		Punto ubicacionPantanosa = new PuntoTierra(15,5);
+		Punto ubicacionInicialFrenzy = new PuntoTierra(9,5);
+		Direccion direccionerecha = new DireccionDerecha();
+		
+		arenaDeJuego.setTerrenoEnPunto(ubicacionPantanosa, new Pantano());
+		arenaDeJuego.ubicarAlgoformer(frenzy, ubicacionInicialFrenzy);
+		frenzy.reiniciarMovimiento();
+		frenzy.transformarse();
+		frenzy.reiniciarMovimiento();
+		
+		int velocidadFrenzyAlterno = 6;
+		for (int i=0; i<velocidadFrenzyAlterno;i++){
+			frenzy.moverseHacia(direccionerecha);
+		}
+		
+		frenzy.reiniciarMovimiento();
+		for (int i=0; i<velocidadFrenzyAlterno;i++){
+			frenzy.moverseHacia(direccionerecha);
+		}
+	}
+	
+	@Test //Demostracion de que le faltan movimientos en el segundo for en el Test Anterior
+	public void AlgoformerEnEstadoAlternoPuedeTerminarSuTurnoEnPantanoUsandoTodosSusMovimientos(){
+		Algoformer frenzy = instanciadorDeAlgoformers.obtenerFrenzy();
+		Punto ubicacionPantanosa = new PuntoTierra(15,5);
+		Punto ubicacionInicialFrenzy = new PuntoTierra(9,5);
+		Direccion direccionerecha = new DireccionDerecha();
+		
+		arenaDeJuego.setTerrenoEnPunto(ubicacionPantanosa, new Pantano());
+		arenaDeJuego.ubicarAlgoformer(frenzy, ubicacionInicialFrenzy);
+		frenzy.reiniciarMovimiento();
+		frenzy.transformarse();
+		frenzy.reiniciarMovimiento();
+		
+		int velocidadFrenzyAlterno = 6;
+		for (int i=0; i<velocidadFrenzyAlterno;i++){
+			frenzy.moverseHacia(direccionerecha);
 		}
 	}
 }
