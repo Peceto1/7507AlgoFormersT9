@@ -11,6 +11,7 @@ import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.espacio.PuntoTierra;
 import fiuba.algo3.model.unidades.Algoformer;
 import fiuba.algo3.model.unidades.AlgoformerPool;
+import fiuba.algo3.model.unidades.MovimientoNoValidoException;
 
 public class TerrenoTest {
 	
@@ -64,5 +65,78 @@ public class TerrenoTest {
 		bumblebee.moverseHacia(direccionDerecha);
 		bumblebee.moverseHacia(direccionIzquierda);
 		Assert.assertEquals(bumblebee.getVida(), VidaMaxBumblebee-VidaMaxBumblebee/20-VidaMaxBumblebee/20);		
+	}
+	
+	@Test(expected = MovimientoNoValidoException.class)
+	public void AlgoformerNoEntraEnTerrenoPantanosoEnModoHumanoide(){
+		Algoformer bumblebee = instanciadorDeAlgoformers.obtenerBumblebee();
+		Punto ubicacionPantanosa = new PuntoTierra(2,3);
+		Punto ubicacionInicialDeBumblebee = new PuntoTierra(3,3);
+		Direccion direccionIzquierda = new DireccionIzquierda();
+		
+		arenaDeJuego.setTerrenoEnPunto(ubicacionPantanosa, new Pantano());
+		arenaDeJuego.ubicarAlgoformer(bumblebee, ubicacionInicialDeBumblebee);
+		bumblebee.reiniciarMovimiento();
+		bumblebee.moverseHacia(direccionIzquierda);		
+	}
+	
+	@Test(expected = MovimientoNoValidoException.class)
+	public void AlgoformerEnEstadoAlternoPierdeUnMovimientoExtraCuandoEntraAlPantano(){
+		Algoformer optimus = instanciadorDeAlgoformers.obtenerOptimus();
+		Punto ubicacionPantanosa = new PuntoTierra(3,3);
+		Punto ubicacionInicialDeOptimus = new PuntoTierra(2,3);
+		Direccion direccionDerecha = new DireccionDerecha();
+		arenaDeJuego.setTerrenoEnPunto(ubicacionPantanosa, new Pantano());
+		arenaDeJuego.ubicarAlgoformer(optimus, ubicacionInicialDeOptimus);
+		optimus.reiniciarMovimiento();
+		optimus.transformarse();
+		int velocidadOptimus = 5;
+		optimus.reiniciarMovimiento();
+		for (int i=0; i<velocidadOptimus; i++){
+			optimus.moverseHacia(direccionDerecha);
+		}
+	}
+		
+	@Test(expected = MovimientoNoValidoException.class)
+	public void AlgoformerEnEstadoAlternoQueTerminaSuTurnoEnPantanoPierdeUnMovimientoEnSuProximioTurno(){
+		Algoformer frenzy = instanciadorDeAlgoformers.obtenerFrenzy();
+		Punto ubicacionPantanosa = new PuntoTierra(15,5);
+		Punto ubicacionInicialFrenzy = new PuntoTierra(9,5);
+		Direccion direccionerecha = new DireccionDerecha();
+		
+		arenaDeJuego.setTerrenoEnPunto(ubicacionPantanosa, new Pantano());
+		arenaDeJuego.ubicarAlgoformer(frenzy, ubicacionInicialFrenzy);
+		frenzy.reiniciarMovimiento();
+		frenzy.transformarse();
+		frenzy.reiniciarMovimiento();
+		
+		int velocidadFrenzyAlterno = 6;
+		for (int i=0; i<velocidadFrenzyAlterno;i++){
+			frenzy.moverseHacia(direccionerecha);
+		}
+		
+		frenzy.reiniciarMovimiento();
+		for (int i=0; i<velocidadFrenzyAlterno;i++){
+			frenzy.moverseHacia(direccionerecha);
+		}
+	}
+	
+	@Test //Demostracion de que le faltan movimientos en el segundo for en el Test Anterior
+	public void AlgoformerEnEstadoAlternoPuedeTerminarSuTurnoEnPantanoUsandoTodosSusMovimientos(){
+		Algoformer frenzy = instanciadorDeAlgoformers.obtenerFrenzy();
+		Punto ubicacionPantanosa = new PuntoTierra(15,5);
+		Punto ubicacionInicialFrenzy = new PuntoTierra(9,5);
+		Direccion direccionerecha = new DireccionDerecha();
+		
+		arenaDeJuego.setTerrenoEnPunto(ubicacionPantanosa, new Pantano());
+		arenaDeJuego.ubicarAlgoformer(frenzy, ubicacionInicialFrenzy);
+		frenzy.reiniciarMovimiento();
+		frenzy.transformarse();
+		frenzy.reiniciarMovimiento();
+		
+		int velocidadFrenzyAlterno = 6;
+		for (int i=0; i<velocidadFrenzyAlterno;i++){
+			frenzy.moverseHacia(direccionerecha);
+		}
 	}
 }

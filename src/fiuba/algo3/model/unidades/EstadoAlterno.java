@@ -31,5 +31,10 @@ abstract class EstadoAlterno extends Estado {
     void actualizarEstado(Algoformer algoformer) {
 
     }
+    
+    @Override
+    public void empantanar(){
+    	movimiento.restarMovimiento();
+    }
 
 }

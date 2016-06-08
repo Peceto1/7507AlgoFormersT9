@@ -29,7 +29,12 @@ abstract class Estado {
 
 
 	void reiniciarMovimiento(Punto ubicacion) {
-		movimiento = new Movimiento(ubicacion, velocidad);
+		
+		if (movimiento != null){
+		movimiento = new Movimiento(ubicacion,Math.min(velocidad, (velocidad+movimiento.getMovimientosRestantes())));
+		return;
+		}
+		movimiento = new Movimiento(ubicacion,velocidad);
 	}
 
     
@@ -45,5 +50,8 @@ abstract class Estado {
 	//abstract void combinarse(Autobot dioLaOrden, Autobot autobot2, Autobot autobot3);
 	//abstract void combinarse(Decepticon dioLaOrden, Decepticon decepticon2, Decepticon decepticon3);
 	abstract void actualizarEstado(Algoformer algoformer);
+
+
+	abstract void empantanar();
 
 }
