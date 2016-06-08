@@ -149,7 +149,7 @@ public abstract class Algoformer {
 
 
 	public void perderTurno() {
-		estado.perderTurno();		
+		estado.perderTurno();
 	}
 
 

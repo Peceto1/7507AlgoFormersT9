@@ -246,6 +246,34 @@ public class CombinacionTest {
 	}
 
 	@Test
+	public void SuperionPuedeAtacarLuegoDe2Turnos() {
+		Punto puntoDeSuperion = new PuntoTierra(10, 10);
+		Punto puntoALaDerecha = new PuntoTierra(11, 10);
+		Punto puntoALaIzquierda = new PuntoTierra(9, 10);
+		Punto ubicacionMegatron = new PuntoTierra(11, 11);
+
+		Algoformer optimus = instanciadorDeAlgoformers.obtenerOptimus();
+		Algoformer ratchet = instanciadorDeAlgoformers.obtenerRatchet();
+		Algoformer bumblebee = instanciadorDeAlgoformers.obtenerBumblebee();
+		Algoformer megatron = instanciadorDeAlgoformers.obtenerMegatron();
+
+		arena.ubicarAlgoformer(optimus, puntoDeSuperion);
+		arena.ubicarAlgoformer(ratchet, puntoALaDerecha);
+		arena.ubicarAlgoformer(bumblebee, puntoALaIzquierda);
+		arena.ubicarAlgoformer(megatron, ubicacionMegatron);
+
+		optimus.combinarse();
+
+		Algoformer superion = arena.obtenerAlgoformerEn(puntoDeSuperion);
+		superion.reiniciarMovimiento();
+		superion.reiniciarMovimiento();
+		superion.reiniciarMovimiento();
+		superion.atacar(megatron);
+
+		Assert.assertEquals(550 - 100, megatron.getVida());
+	}
+
+	@Test
 	public void MenasorPuedeMoverseLuegoDe2Turnos(){
 		Punto puntoInicioCentro = new PuntoTierra(25,25);
 		Punto puntoDerechoDeInicio = new PuntoTierra(26,25);
@@ -269,6 +297,78 @@ public class CombinacionTest {
 		
 		menasor.moverseHacia(new DireccionDerecha());
 		Assert.assertEquals(puntoDerechoDeInicio, menasor.getUbicacion());
+	}
+
+
+
+
+	// ################# TEST DE INTEGRACION #################
+
+	@Test
+	public void combinarAlgoformersDeUnEquipoRodeadosPorEquipoEnemigoPuedeCombinarseSinProblemas() {
+		Punto puntoSuperion = new PuntoTierra(26, 26);
+		Punto puntoAutobot1 = new PuntoTierra(27, 27);
+		Punto puntoAutobot2 = new PuntoTierra(25, 25);
+		Punto puntoMenasor = new PuntoTierra(26, 27);
+		Punto puntoDecepticon2 = new PuntoTierra(27, 26);
+		Punto puntoDecepticon3 = new PuntoTierra(25, 26);
+
+		Algoformer optimus = instanciadorDeAlgoformers.obtenerOptimus();
+		Algoformer ratchet = instanciadorDeAlgoformers.obtenerRatchet();
+		Algoformer bumblebee = instanciadorDeAlgoformers.obtenerBumblebee();
+		Algoformer megatron = instanciadorDeAlgoformers.obtenerMegatron();
+		Algoformer bonecrusher = instanciadorDeAlgoformers.obtenerBonecrusher();
+		Algoformer frenzy = instanciadorDeAlgoformers.obtenerFrenzy();
+
+		arena.ubicarAlgoformer(optimus, puntoSuperion);
+		arena.ubicarAlgoformer(ratchet, puntoAutobot1);
+		arena.ubicarAlgoformer(bumblebee, puntoAutobot2);
+		arena.ubicarAlgoformer(megatron, puntoMenasor);
+		arena.ubicarAlgoformer(bonecrusher, puntoDecepticon2);
+		arena.ubicarAlgoformer(frenzy, puntoDecepticon3);
+
+		Algoformer superion = optimus.combinarse();
+
+		Assert.assertTrue(superion.esLealA(optimus));
+		Assert.assertEquals(superion, arena.obtenerAlgoformerEn(puntoSuperion));
+		Assert.assertTrue(arena.estaOcupado(puntoMenasor));
+		Assert.assertTrue(arena.estaOcupado(puntoDecepticon2));
+		Assert.assertTrue(arena.estaOcupado(puntoDecepticon3));
+		Assert.assertFalse(arena.estaOcupado(puntoAutobot1));
+		Assert.assertFalse(arena.estaOcupado(puntoAutobot2));
+
+		Algoformer menasor = megatron.combinarse();
+
+		Assert.assertTrue(menasor.esLealA(megatron));
+		Assert.assertEquals(menasor, arena.obtenerAlgoformerEn(puntoMenasor));
+		Assert.assertFalse(arena.estaOcupado(puntoDecepticon2));
+		Assert.assertFalse(arena.estaOcupado(puntoDecepticon3));
+
+		try {
+			superion.moverseHacia(new DireccionDerecha());
+		} catch (EstadoProtoNoPuedeRealizarAcciones e) {
+			Assert.assertEquals(puntoSuperion, superion.getUbicacion());
+		}
+
+		superion.reiniciarMovimiento();
+		superion.reiniciarMovimiento();
+		superion.reiniciarMovimiento();		// termina transformacion
+
+		try {
+			menasor.moverseHacia(new DireccionDerecha());
+		} catch (EstadoProtoNoPuedeRealizarAcciones e) {
+			Assert.assertEquals(puntoMenasor, menasor.getUbicacion());
+		}
+
+		menasor.reiniciarMovimiento();
+		menasor.reiniciarMovimiento();
+		menasor.reiniciarMovimiento();		// termina transformacion
+
+		menasor.atacar(superion);
+		superion.atacar(menasor);
+
+		Assert.assertEquals(1000 - 115, superion.getVida());
+		Assert.assertEquals(1150 - 100, menasor.getVida());
 	}
 
 }
