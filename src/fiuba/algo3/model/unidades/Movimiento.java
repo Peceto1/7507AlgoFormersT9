@@ -17,18 +17,26 @@ class Movimiento {
 		this.ubicacion = inicio;
 		this.restantes = cantMovimientos;
 	}
+	
+	int getMovimientosRestantes(){
+		return restantes;
+	}
 
 
 	Punto moverseHacia(Direccion direccion) {
-
+		
 		Punto nuevo = ubicacion.obtenerPuntoEn(direccion);
 
 		if (!puede_moverse(nuevo))
 			throw new MovimientoNoValidoException();
-
+		
+		try{
 		actualizarUbicacion(nuevo);
-		restantes--;
-
+		restarMovimiento();
+		}
+		catch(EstadoHumanoideNoPuedeEntrarEnPantanoException e){
+			throw new MovimientoNoValidoException();
+		}
 		return ubicacion;
 	}
 
@@ -62,5 +70,9 @@ class Movimiento {
 
 	private Boolean puede_moverse(Punto punto){
 		return (arena.estaEnArena(punto) && !arena.estaOcupado(punto) && restantes > 0);
+	}
+
+	public void restarMovimiento() {
+		restantes--;	
 	}
 }
