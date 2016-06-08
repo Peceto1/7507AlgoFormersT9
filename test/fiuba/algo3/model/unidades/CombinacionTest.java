@@ -9,7 +9,7 @@ import fiuba.algo3.model.espacio.DireccionDerecha;
 import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.espacio.PuntoTierra;
 
-public class SuperionTest {
+public class CombinacionTest {
 	
 	private Arena arena = Arena.getInstance();
 	private AlgoformerPool instanciadorDeAlgoformers = AlgoformerPool.getInstance();
