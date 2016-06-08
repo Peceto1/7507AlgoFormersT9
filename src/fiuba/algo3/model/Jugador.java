@@ -26,8 +26,10 @@ public class Jugador {
 
     void iniciarTurno() {
 
-        for (Algoformer actual : algoformers)
+        for (Algoformer actual : algoformers){
             actual.reiniciarMovimiento();
+            actual.aplicarEfectos();
+        }
     }
 
 

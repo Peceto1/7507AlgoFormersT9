@@ -53,4 +53,10 @@ abstract class Estado {
 
 	abstract void empantanar();
 
+
+	public void perderTurno() {
+		movimiento.perderTurno();
+		
+	}
+
 }

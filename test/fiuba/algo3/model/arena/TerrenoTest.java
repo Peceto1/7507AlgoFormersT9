@@ -8,6 +8,7 @@ import fiuba.algo3.model.espacio.Direccion;
 import fiuba.algo3.model.espacio.DireccionDerecha;
 import fiuba.algo3.model.espacio.DireccionIzquierda;
 import fiuba.algo3.model.espacio.Punto;
+import fiuba.algo3.model.espacio.PuntoAire;
 import fiuba.algo3.model.espacio.PuntoTierra;
 import fiuba.algo3.model.unidades.Algoformer;
 import fiuba.algo3.model.unidades.AlgoformerPool;
@@ -138,5 +139,99 @@ public class TerrenoTest {
 		for (int i=0; i<velocidadFrenzyAlterno;i++){
 			frenzy.moverseHacia(direccionerecha);
 		}
+	}
+	
+	@Test(expected = MovimientoNoValidoException.class)
+	public void AlgoformerQuePasaPorLaNebulosaDeAndromenaPierdeElPrimerTurno(){
+		Algoformer megatron = instanciadorDeAlgoformers.obtenerMegatron();
+		Punto ubicacionNebulosa = new PuntoAire(4,5);
+		Punto ubicacionInicialMegatron = new PuntoTierra(5,5);
+		Direccion direccionIzquierda = new DireccionIzquierda();
+		
+		arenaDeJuego.setTerrenoEnPunto(ubicacionNebulosa,new NebulosaDeAndromeda());
+		arenaDeJuego.ubicarAlgoformer(megatron, ubicacionInicialMegatron);
+		
+		megatron.reiniciarMovimiento();
+		megatron.transformarse();
+		megatron.reiniciarMovimiento();
+		
+		megatron.moverseHacia(direccionIzquierda); //Paso por la nebulosa
+		
+		megatron.moverseHacia(direccionIzquierda);
+	}
+	
+	@Test(expected = MovimientoNoValidoException.class)
+	public void AlgoformerQuePasaPorLaNebulosaDeAndromenaPierdeElSegundoTurno(){
+		Algoformer megatron = instanciadorDeAlgoformers.obtenerMegatron();
+		Punto ubicacionNebulosa = new PuntoAire(4,5);
+		Punto ubicacionInicialMegatron = new PuntoTierra(5,5);
+		Direccion direccionIzquierda = new DireccionIzquierda();
+		
+		arenaDeJuego.setTerrenoEnPunto(ubicacionNebulosa,new NebulosaDeAndromeda());
+		arenaDeJuego.ubicarAlgoformer(megatron, ubicacionInicialMegatron);
+		
+		megatron.reiniciarMovimiento();
+		megatron.transformarse();
+		megatron.reiniciarMovimiento();
+		
+		megatron.moverseHacia(direccionIzquierda); //Paso por la nebulosa
+		
+		megatron.reiniciarMovimiento();//Estos dos comandos simbolizan el inicio de un nuevo turno
+		megatron.aplicarEfectos();
+		
+		megatron.moverseHacia(direccionIzquierda);
+	}
+	
+	@Test(expected = MovimientoNoValidoException.class)
+	public void AlgoformerQuePasaPorLaNebulosaDeAndromenaPierdeElTercerTurno(){
+		Algoformer megatron = instanciadorDeAlgoformers.obtenerMegatron();
+		Punto ubicacionNebulosa = new PuntoAire(4,5);
+		Punto ubicacionInicialMegatron = new PuntoTierra(5,5);
+		Direccion direccionIzquierda = new DireccionIzquierda();
+		
+		arenaDeJuego.setTerrenoEnPunto(ubicacionNebulosa,new NebulosaDeAndromeda());
+		arenaDeJuego.ubicarAlgoformer(megatron, ubicacionInicialMegatron);
+		
+		megatron.reiniciarMovimiento();
+		megatron.transformarse();
+		megatron.reiniciarMovimiento();
+		
+		megatron.moverseHacia(direccionIzquierda); //Paso por la nebulosa
+		
+		megatron.reiniciarMovimiento();//Estos dos comandos simbolizan el inicio de un nuevo turno
+		megatron.aplicarEfectos();
+		
+		megatron.reiniciarMovimiento();
+		megatron.aplicarEfectos();
+		
+		megatron.moverseHacia(direccionIzquierda);
+	}
+	
+	@Test
+	public void AlgoformerQuePasaPorLaNebulosaDeAndromenaNoPierdeElCuartoTurno(){
+		Algoformer megatron = instanciadorDeAlgoformers.obtenerMegatron();
+		Punto ubicacionNebulosa = new PuntoAire(4,5);
+		Punto ubicacionInicialMegatron = new PuntoTierra(5,5);
+		Direccion direccionIzquierda = new DireccionIzquierda();
+		
+		arenaDeJuego.setTerrenoEnPunto(ubicacionNebulosa,new NebulosaDeAndromeda());
+		arenaDeJuego.ubicarAlgoformer(megatron, ubicacionInicialMegatron);
+		
+		megatron.reiniciarMovimiento();
+		megatron.transformarse();
+		megatron.reiniciarMovimiento();
+		
+		megatron.moverseHacia(direccionIzquierda); //Paso por la nebulosa
+		
+		megatron.reiniciarMovimiento();//Estos dos comandos simbolizan el inicio de un nuevo turno
+		megatron.aplicarEfectos();
+		
+		megatron.reiniciarMovimiento();
+		megatron.aplicarEfectos();
+		
+		megatron.reiniciarMovimiento();
+		megatron.aplicarEfectos();
+		
+		megatron.moverseHacia(direccionIzquierda);
 	}
 }

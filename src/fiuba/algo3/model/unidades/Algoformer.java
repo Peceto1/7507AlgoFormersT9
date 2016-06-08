@@ -2,10 +2,13 @@ package fiuba.algo3.model.unidades;
 
 import fiuba.algo3.model.arena.Arena;
 import fiuba.algo3.model.arena.Chispa;
+import fiuba.algo3.model.arena.Efecto;
 import fiuba.algo3.model.espacio.Direccion;
 import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.espacio.PuntoAireNoPuedeAscenderException;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -18,6 +21,7 @@ public abstract class Algoformer {
 	Estado estado;
 	Chispa chispa;
 	Punto ubicacion;
+	List<Efecto> efectos;
 
 
 	Algoformer(String nombre, int vida, Estado estado) {
@@ -25,6 +29,7 @@ public abstract class Algoformer {
 		this.vida = vida;
 		this.vidaMax = vida;
 		this.estado = estado;
+		this.efectos = new ArrayList<>();
 	}
 
 	
@@ -144,6 +149,28 @@ public abstract class Algoformer {
 			throw new NoHaySuficientesAlgoformersAdyacentesException();
 
 		return algoformersAdyacentes;
+	}
+
+
+	public void agregarEfecto(Efecto efecto) {
+		efectos.add(efecto);
+	}
+
+
+	public void perderTurno() {
+		estado.perderTurno();		
+	}
+
+
+	public void aplicarEfectos() {
+		Iterator<Efecto> iter = efectos.listIterator();
+		while(iter.hasNext()){
+			Efecto actual = iter.next();
+			actual.aplicarSobre(this);
+			actual.avanzarContadorDeTurnos();
+			if (actual.LlegoElContadorDeTurnosRestantesACero())
+				iter.remove();
+		}
 	}
 
 }

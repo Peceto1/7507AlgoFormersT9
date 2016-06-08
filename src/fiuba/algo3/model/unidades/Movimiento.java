@@ -75,4 +75,8 @@ class Movimiento {
 	public void restarMovimiento() {
 		restantes--;	
 	}
+
+	public void perderTurno() {
+		restantes = 0;
+	}
 }
