@@ -173,4 +173,9 @@ public abstract class Algoformer {
 		}
 	}
 
+
+	public void reducirAtaquePorcentaje(int porcentaje) {		
+		estado.reducirAtaquePorcentaje(porcentaje);		
+	}
+
 }

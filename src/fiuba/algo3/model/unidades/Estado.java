@@ -8,6 +8,7 @@ import java.util.List;
 abstract class Estado {
 
 	protected int ataque;
+	protected int ataqueInicial;
 	protected int rango;
 	protected int velocidad;
 	protected Movimiento movimiento;
@@ -57,6 +58,12 @@ abstract class Estado {
 	public void perderTurno() {
 		movimiento.perderTurno();
 		
+	}
+
+
+	void reducirAtaquePorcentaje(int porcentaje) {
+		
+		this.ataque = this.ataque - (ataqueInicial*(porcentaje/100));
 	}
 
 }
