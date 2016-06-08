@@ -82,13 +82,13 @@ class EstadoProto extends Estado {
 
 
 	@Override
-	void combinarse(Autobot dioLaOrden, Autobot autobot2, Autobot autobot3) {
+	Superion combinarse(Autobot dioLaOrden, Autobot autobot2, Autobot autobot3) {
 		throw new EstadoProtoNoPuedeRealizarAcciones();
 	}
 
 
 	@Override
-	void combinarse(Decepticon dioLaOrden, Decepticon autobot2, Decepticon autobot3) {
+	Menasor combinarse(Decepticon dioLaOrden, Decepticon autobot2, Decepticon autobot3) {
 		throw new EstadoProtoNoPuedeRealizarAcciones();
 	}
 

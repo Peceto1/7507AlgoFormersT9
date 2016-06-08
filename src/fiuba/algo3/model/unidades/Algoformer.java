@@ -103,26 +103,17 @@ public abstract class Algoformer {
 	public void transformarse() {
 		this.estado.transformar(this);
 	}
-	
+
+
 	public void recibirDanio(int danio){
 		this.vida = vida - danio;
 	}
 
 
-	public abstract void combinarse();
-
-
-	public abstract void atacar(Algoformer atacado);
-	abstract void recibirAtaque(Autobot atacante, int danio);
-	abstract void recibirAtaque(Decepticon atacante, int danio);
-	abstract Boolean esLealA(Algoformer algoformer);
-	abstract Boolean esLealA(Autobot algoformer);
-	abstract Boolean esLealA(Decepticon algoformer);
-
-
 	public void empantanar() {
 		estado.empantanar();	
 	}
+
 	
 	List<Algoformer> obtenerAlgoformersAdyacentesDelMismoEquipo(){
 		Arena arena = Arena.getInstance();
@@ -177,5 +168,14 @@ public abstract class Algoformer {
 	public void reducirAtaquePorcentaje(int porcentaje) {		
 		estado.reducirAtaquePorcentaje(porcentaje);		
 	}
+
+
+	public abstract Algoformer combinarse();
+	public abstract void atacar(Algoformer atacado);
+	abstract void recibirAtaque(Autobot atacante, int danio);
+	abstract void recibirAtaque(Decepticon atacante, int danio);
+	abstract Boolean esLealA(Algoformer algoformer);
+	abstract Boolean esLealA(Autobot algoformer);
+	abstract Boolean esLealA(Decepticon algoformer);
 
 }

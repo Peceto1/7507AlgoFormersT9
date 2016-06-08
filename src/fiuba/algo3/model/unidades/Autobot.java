@@ -50,13 +50,12 @@ class Autobot extends Algoformer {
     }
     
     @Override
-    public void combinarse(){
+    public Algoformer combinarse(){
     	List<Algoformer> listaDeAlgoformers = obtenerAlgoformersAdyacentesDelMismoEquipo();
     	Algoformer algoformer1 = listaDeAlgoformers.get(0);
     	Algoformer algoformer2 = listaDeAlgoformers.get(1);
     			
-    	estado.combinarse(this, (Autobot)algoformer1, (Autobot) algoformer2);
-    	
+    	return estado.combinarse(this, (Autobot)algoformer1, (Autobot) algoformer2);
     }
     
 }
