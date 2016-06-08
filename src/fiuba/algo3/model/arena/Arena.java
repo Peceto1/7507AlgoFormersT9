@@ -38,6 +38,21 @@ public class Arena {
     }
 
 
+    public int getAncho() {
+        return this.ANCHO;
+    }
+
+
+    public int getAlto() {
+        return this.ALTO;
+    }
+
+
+    public static Arena getInstance(){
+        return instancia;
+    }
+
+
     public void colocarChispa(Punto punto) {
         Casillero casilla_media = arena.get(punto);
         casilla_media.colocar(new Chispa());
@@ -54,11 +69,6 @@ public class Arena {
 		Casillero buscado = arena.get(punto);
 		return buscado.removerChispa();
 	}
-
-
-    public static Arena getInstance(){
-    	return instancia;
-    }
 
 
     public Boolean estaEnArena(Punto punto){
@@ -110,4 +120,5 @@ public class Arena {
 
         return algoformers;
     }
+
 }
