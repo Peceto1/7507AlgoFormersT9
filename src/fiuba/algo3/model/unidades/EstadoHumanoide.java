@@ -16,7 +16,7 @@ abstract class EstadoHumanoide extends Estado{
     }
 
 
-    /*@Override
+    @Override
     public void combinarse(Autobot dioLaOrden, Autobot autobot2, Autobot autobot3) {
 
         List<Autobot> miembros = new ArrayList<>();
@@ -43,7 +43,7 @@ abstract class EstadoHumanoide extends Estado{
     public void combinarse(Decepticon dioLaOrden, Decepticon autobot2, Decepticon autobot3) {
 
 
-    }*/
+    }
 
 
     @Override

@@ -1,5 +1,6 @@
 package fiuba.algo3.model.unidades;
 
+import java.util.List;
 
 public class Autobot extends Algoformer {
 
@@ -46,6 +47,16 @@ public class Autobot extends Algoformer {
     @Override
     Boolean esLealA(Decepticon algoformer) {
         return false;
+    }
+    
+    @Override
+    public void combinarse(){
+    	List<Algoformer> listaDeAlgoformers = nombre();
+    	Algoformer algoformer1 = listaDeAlgoformers.get(0);
+    	Algoformer algoformer2 = listaDeAlgoformers.get(1);
+    			
+    	estado.combinarse(this, (Autobot)algoformer1, (Autobot) algoformer2);
+    	
     }
     
 }

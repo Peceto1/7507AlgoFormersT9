@@ -1,5 +1,7 @@
 package fiuba.algo3.model.unidades;
 
+import java.util.List;
+
 public class Decepticon extends Algoformer {
 
 
@@ -15,12 +17,6 @@ public class Decepticon extends Algoformer {
     		throw new FueraDeRangoException();
 
         this.estado.atacar(atacado, this);
-    }
-
-
-    @Override
-    public void combinarse() {
-        // Falta implementar
     }
 
 
@@ -53,4 +49,14 @@ public class Decepticon extends Algoformer {
         return true;
     }
 
+    @Override
+    public void combinarse(){
+    	List<Algoformer> listaDeAlgoformers = nombre();
+    	Algoformer algoformer1 = listaDeAlgoformers.get(0);
+    	Algoformer algoformer2 = listaDeAlgoformers.get(1);
+    			
+    	estado.combinarse(this, (Decepticon)algoformer1, (Decepticon) algoformer2);
+    	
+    }
+    
 }
