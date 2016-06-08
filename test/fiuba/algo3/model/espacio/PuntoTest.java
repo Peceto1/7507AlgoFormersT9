@@ -52,11 +52,6 @@ public class PuntoTest {
         Assert.assertEquals(puntoDePrueba.distanciaAl(puntoDePrueba), 0);
     }
 
-    @Test
-    public void distanciaEntreElCeroYSiMismoEsCero() {
-        Punto puntoDeCoordenadasCero = new PuntoTierra(0, 0);
-        Assert.assertEquals(puntoDeCoordenadasCero.distanciaAl(puntoDeCoordenadasCero), 0);
-    }
 
     @Test
     public void distanciaEntreDosPuntosA2DeDistanciaHorizontalmenteEs2() {
@@ -165,7 +160,7 @@ public class PuntoTest {
     }
 
     @Test
-    public void obtenerAdyacentesAEnDeUnPuntoDevuelveUnaListaConTodosSusAdyacentesEnAireYEnTierra() {
+    public void obtenerAdyacentesAUnPuntoEnTierraDevuelveUnaListaConTodosSus17AdyacentesEnAireYEnTierra() {
         Punto puntoTierra = new PuntoTierra(5, 5);
         Punto puntosAdyacentes[] = {new PuntoAire(5,5), new PuntoAire(6,5), new PuntoAire(6,6),
                                     new PuntoAire(5,6), new PuntoAire(4,6), new PuntoAire(4,5),
@@ -180,6 +175,97 @@ public class PuntoTest {
         List<Punto> puntosAdyacentes2 = puntoTierra.obtenerAdyacentes();
 
         Assert.assertTrue(puntosAdyacentes2.containsAll(listaAdyacentes));
-        Assert.assertEquals(puntosAdyacentes2.size(), listaAdyacentes.size());
+        Assert.assertEquals(listaAdyacentes.size(), puntosAdyacentes2.size());
+    }
+
+    @Test
+    public void obtenerAdyacentesAUnPuntoEnTierraEnUnaEsquinaDelMapaDevuelveUnaListaCon7Adyacentes() {
+
+        Punto puntoTierra = new PuntoTierra(1, 1);
+        Punto puntosAdyacentes[] = {new PuntoAire(1, 1), new PuntoAire(1, 2), new PuntoAire(2, 2),
+                                    new PuntoAire(2, 1),
+                                    new PuntoTierra(1, 2), new PuntoTierra(2, 2),
+                                    new PuntoTierra(1, 2)
+                                    };
+
+        List<Punto> listaAdyacentes = Arrays.asList(puntosAdyacentes);
+
+        List<Punto> puntosAdyacentes2 = puntoTierra.obtenerAdyacentes();
+
+        Assert.assertTrue(puntosAdyacentes2.containsAll(listaAdyacentes));
+        Assert.assertEquals(listaAdyacentes.size(), puntosAdyacentes2.size());
+    }
+
+    @Test
+    public void obtenerAdyacentesAUnPuntoEnTierraEnUnBordeDelMapaDevuelveUnaListaCon11Adyacentes() {
+
+        Punto puntoTierra = new PuntoTierra(6, 1);
+        Punto puntosAdyacentes[] = {new PuntoAire(6, 1), new PuntoAire(7, 1), new PuntoAire(7, 2),
+                                    new PuntoAire(6, 2), new PuntoAire(5, 2), new PuntoAire(5, 1),
+                                    new PuntoTierra(7, 1), new PuntoTierra(7, 2), new PuntoTierra(6, 2),
+                                    new PuntoTierra(5, 2), new PuntoTierra(5, 1)
+                                    };
+
+        List<Punto> listaAdyacentes = Arrays.asList(puntosAdyacentes);
+
+        List<Punto> puntosAdyacentes2 = puntoTierra.obtenerAdyacentes();
+
+        Assert.assertTrue(puntosAdyacentes2.containsAll(listaAdyacentes));
+        Assert.assertEquals(listaAdyacentes.size(), puntosAdyacentes2.size());
+    }
+
+    @Test
+    public void obtenerAdyacentesAUnPuntoEnAireDevuelveUnaListaConTodosSus17AdyacentesEnTierraYEnAire() {
+
+        Punto puntoAire = new PuntoAire(5, 5);
+        Punto puntosAdyacentes[] = {new PuntoTierra(5,5), new PuntoAire(6,5), new PuntoAire(6,6),
+                                    new PuntoAire(5,6), new PuntoAire(4,6), new PuntoAire(4,5),
+                                    new PuntoAire(4,4), new PuntoAire(5,4), new PuntoAire(6,4),
+                                    new PuntoTierra(6,5), new PuntoTierra(6,6),
+                                    new PuntoTierra(5,6), new PuntoTierra(4,6), new PuntoTierra(4,5),
+                                    new PuntoTierra(4,4), new PuntoTierra(5,4), new PuntoTierra(6,4),
+                                    };
+
+        List<Punto> listaAdyacentes = Arrays.asList(puntosAdyacentes);
+
+        List<Punto> puntosAdyacentes2 = puntoAire.obtenerAdyacentes();
+
+        Assert.assertTrue(puntosAdyacentes2.containsAll(listaAdyacentes));
+        Assert.assertEquals(listaAdyacentes.size(), puntosAdyacentes2.size());
+    }
+
+    @Test
+    public void obtenerAdyacentesAUnPuntoEnAireEnUnaEsquinaDelMapaDevuelveUnaListaCon7Adyacentes() {
+
+        Punto puntoAire = new PuntoAire(1, 1);
+        Punto puntosAdyacentes[] = {new PuntoTierra(1, 1), new PuntoAire(1, 2), new PuntoAire(2, 2),
+                                    new PuntoAire(2, 1), new PuntoTierra(1, 2), new PuntoTierra(2, 2),
+                                    new PuntoTierra(1, 2)
+                                    };
+
+        List<Punto> listaAdyacentes = Arrays.asList(puntosAdyacentes);
+
+        List<Punto> puntosAdyacentes2 = puntoAire.obtenerAdyacentes();
+
+        Assert.assertTrue(puntosAdyacentes2.containsAll(listaAdyacentes));
+        Assert.assertEquals(listaAdyacentes.size(), puntosAdyacentes2.size());
+    }
+
+    @Test
+    public void obtenerAdyacentesAUnPuntoEnAireEnUnBordeDelMapaDevuelveUnaListaCon11Adyacentes() {
+
+        Punto puntoAire = new PuntoAire(6, 1);
+        Punto puntosAdyacentes[] = {new PuntoTierra(6, 1), new PuntoAire(7, 1), new PuntoAire(7, 2),
+                                    new PuntoAire(6, 2), new PuntoAire(5, 2), new PuntoAire(5, 1),
+                                    new PuntoTierra(7, 1), new PuntoTierra(7, 2), new PuntoTierra(6, 2),
+                                    new PuntoTierra(5, 2), new PuntoTierra(5, 1)
+                                    };
+
+        List<Punto> listaAdyacentes = Arrays.asList(puntosAdyacentes);
+
+        List<Punto> puntosAdyacentes2 = puntoAire.obtenerAdyacentes();
+
+        Assert.assertTrue(puntosAdyacentes2.containsAll(listaAdyacentes));
+        Assert.assertEquals(listaAdyacentes.size(), puntosAdyacentes2.size());
     }
 }

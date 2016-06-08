@@ -14,6 +14,7 @@ public abstract class Punto {
 
 
     public Punto(int x, int y, int nivel) {
+
         this.x = x;
         this.y = y;
         this.nivel = nivel;
@@ -37,19 +38,36 @@ public abstract class Punto {
 
     public List<Punto> obtenerAdyacentes() {
 
-        Direccion direcciones[] = { new DireccionArriba(), new DireccionAbajo(), new DireccionIzquierda(),
-                new DireccionDerecha(), new DireccionDerechaAbajo(),
-                new DireccionIzquierdaAbajo(), new DireccionDerechaArriba(),
-                new DireccionIzquierdaArriba() };
+        Arena arena = Arena.getInstance();
+
+        Direccion direcciones[] = { new DireccionArriba(), new DireccionAbajo(),
+                                    new DireccionIzquierda(), new DireccionDerecha(),
+                                    new DireccionDerechaAbajo(), new DireccionIzquierdaAbajo(),
+                                    new DireccionDerechaArriba(), new DireccionIzquierdaArriba()
+                                    };
 
         List<Punto> puntosAdyacentes = new ArrayList<>();
 
-        Punto enAire = this.ascender();
-        puntosAdyacentes.add(enAire);
+        Punto puntoAlternativo;
 
-        for (Direccion dirreccion : direcciones) {
-            puntosAdyacentes.add(this.obtenerPuntoEn(dirreccion));
-            puntosAdyacentes.add(enAire.obtenerPuntoEn(dirreccion));
+        try {
+            puntoAlternativo = this.ascender();
+        } catch (PuntoAireNoPuedeAscenderException e) {
+            puntoAlternativo = this.descender();
+        }
+
+        puntosAdyacentes.add(puntoAlternativo);
+
+        for (Direccion direccion : direcciones) {
+
+            Punto PuntoEnUnNivel = this.obtenerPuntoEn(direccion);
+            Punto PuntoEnOtroNivel = puntoAlternativo.obtenerPuntoEn(direccion);
+
+            if (arena.estaEnArena(PuntoEnUnNivel))
+                puntosAdyacentes.add(PuntoEnUnNivel);
+
+            if (arena.estaEnArena(PuntoEnOtroNivel))
+                puntosAdyacentes.add(PuntoEnOtroNivel);
         }
 
         return puntosAdyacentes;
