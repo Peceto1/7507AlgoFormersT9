@@ -1,12 +1,16 @@
 package fiuba.algo3.model.unidades;
 
 
+import fiuba.algo3.model.arena.Arena;
+import fiuba.algo3.model.espacio.Punto;
+
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 class Menasor extends Decepticon {
 
-    private List<Decepticon> miembros;
+    private List<Algoformer> miembros;
 
 
     Menasor(int vida, List<Decepticon> miembros, Estado estadoProto) {
@@ -29,8 +33,55 @@ class Menasor extends Decepticon {
 
 
     @Override
-    public void separarse() {
-        System.out.println("Separar Menasor Debe Implementarse");
+    public List<Algoformer> separarse() {
+
+        List<Punto> puntosAdyacentesLibres = obtenerPuntosAdyacentesLibres(ubicacion.obtenerAdyacentesEnTierra());
+
+        if (puntosAdyacentesLibres.size() < 2)
+            throw new NoPuedeSepararseException();
+
+        Arena arena = Arena.getInstance();
+        arena.removerAlgoformerEn(this.ubicacion);
+
+        distribuirDanioEntreMiembros();
+        removerMuertos();
+
+        for (Algoformer miembro : this.miembros)
+            pasarAHumanoide(miembro);
+
+        Algoformer primero = this.miembros.remove(0);
+        arena.ubicarAlgoformer(primero, this.ubicacion);
+
+        int i = 0;
+        for (Algoformer miembro : this.miembros) {
+            arena.ubicarAlgoformer(miembro, puntosAdyacentesLibres.get(i));
+            i++;
+        }
+
+        this.miembros.add(primero);
+        return new ArrayList<>(this.miembros);
+    }
+
+
+    private void distribuirDanioEntreMiembros() {
+
+        int dmgTotal = this.vidaMax - this.vida;
+        int dmgParcial = dmgTotal/this.miembros.size();
+
+        for (Algoformer miembro : this.miembros)
+            miembro.recibirDanio(dmgParcial);
+    }
+
+
+    private void removerMuertos() {
+        Iterator<Algoformer> iter = this.miembros.iterator();
+
+        while (iter.hasNext()) {
+            Algoformer actual = iter.next();
+
+            if (!actual.estaVivo())
+                iter.remove();
+        }
     }
 
 

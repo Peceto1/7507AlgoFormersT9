@@ -9,6 +9,8 @@ import fiuba.algo3.model.espacio.DireccionDerecha;
 import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.espacio.PuntoTierra;
 
+import java.util.List;
+
 public class CombinacionTest {
 	
 	private Arena arena = Arena.getInstance();
@@ -274,7 +276,7 @@ public class CombinacionTest {
 	}
 
 	@Test
-	public void MenasorPuedeMoverseLuegoDe2Turnos(){
+	public void MenasorPuedeMoverseLuegoDe2Turnos() {
 		Punto puntoInicioCentro = new PuntoTierra(25,25);
 		Punto puntoDerechoDeInicio = new PuntoTierra(26,25);
 		Punto puntoIzquierdoDeInicio = new PuntoTierra(24,25);
@@ -298,8 +300,6 @@ public class CombinacionTest {
 		menasor.moverseHacia(new DireccionDerecha());
 		Assert.assertEquals(puntoDerechoDeInicio, menasor.getUbicacion());
 	}
-
-
 
 
 	// ################# TEST DE INTEGRACION #################
@@ -388,8 +388,5 @@ public class CombinacionTest {
 		}
 		Assert.assertTrue(entra);
 	}
-
-
-
 
 }

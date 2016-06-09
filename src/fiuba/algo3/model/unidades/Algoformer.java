@@ -139,6 +139,22 @@ public abstract class Algoformer {
 	}
 
 
+	List<Punto> obtenerPuntosAdyacentesLibres(List<Punto> adyacentes) {
+
+		Arena arena = Arena.getInstance();
+
+		Iterator<Punto> iter = adyacentes.iterator();
+		while (iter.hasNext()) {
+			Punto actual = iter.next();
+
+			if (arena.estaOcupado(actual))
+				iter.remove();
+		}
+
+		return adyacentes;
+	}
+
+
 	public void agregarEfecto(Efecto efecto) {
 		efectos.add(efecto);
 	}
@@ -146,10 +162,12 @@ public abstract class Algoformer {
 
 	public void aplicarEfectos() {
 		Iterator<Efecto> iter = efectos.listIterator();
-		while(iter.hasNext()){
+
+		while (iter.hasNext()){
 			Efecto actual = iter.next();
 			actual.aplicarSobre(this);
 			actual.actualizar();
+
 			if (actual.LlegoElContadorDeTurnosRestantesACero())
 				iter.remove();
 		}
@@ -171,8 +189,20 @@ public abstract class Algoformer {
 	}
 
 
+	public List<Algoformer> separarse() {
+		throw new NoPuedeSepararseException();
+	}
+
+
+	void pasarAHumanoide(Algoformer algoformer) {
+		algoformer.estado.pasarAHumanoide(algoformer);
+	}
+
+
+
+
+
 	public abstract Algoformer combinarse();
-	public abstract void separarse();
 	public abstract void atacar(Algoformer atacado);
 	abstract void recibirAtaque(Autobot atacante, int danio);
 	abstract void recibirAtaque(Decepticon atacante, int danio);

@@ -63,4 +63,5 @@ abstract class Estado {
 	abstract void actualizarEstado(Decepticon algoformer);
 	abstract void perderUnMovimiento();
 	abstract void aplicarEfecto(EfectoTormentaPsionica efecto);
+	abstract  void pasarAHumanoide(Algoformer algoformer);
 }

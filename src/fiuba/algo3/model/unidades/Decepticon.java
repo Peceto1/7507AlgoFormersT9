@@ -57,11 +57,5 @@ class Decepticon extends Algoformer {
     			
     	return estado.combinarse(this, (Decepticon)algoformer1, (Decepticon) algoformer2);
     }
-
-
-    @Override
-    public void separarse() {
-
-    }
     
 }

@@ -44,4 +44,10 @@ abstract class EstadoAlterno extends Estado {
     	ataque = (ataqueMax - (ataqueMax*4)/10);
     }
 
+
+    @Override
+    void pasarAHumanoide(Algoformer algoformer) {
+        algoformer.transformarse();
+    }
+
 }

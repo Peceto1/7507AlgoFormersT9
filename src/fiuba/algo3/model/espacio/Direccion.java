@@ -15,4 +15,14 @@ public abstract class Direccion {
         this.y = y;
     }
 
+
+    public static Direccion[] crearDireccionesEnTodoSentido() {
+        Direccion direcciones[] = { new DireccionArriba(), new DireccionAbajo(),
+                                    new DireccionIzquierda(), new DireccionDerecha(),
+                                    new DireccionDerechaAbajo(), new DireccionIzquierdaAbajo(),
+                                    new DireccionDerechaArriba(), new DireccionIzquierdaArriba()
+                                    };
+        return direcciones;
+    }
+
 }

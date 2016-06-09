@@ -92,6 +92,12 @@ class EstadoProto extends Estado {
 	Menasor combinarse(Decepticon dioLaOrden, Decepticon autobot2, Decepticon autobot3) {
 		throw new EstadoProtoNoPuedeRealizarAcciones();
 	}
+
+
+	@Override
+	void pasarAHumanoide(Algoformer algoformer) {
+		throw new EstadoProtoNoPuedeRealizarAcciones();
+	}
 	
 	@Override
 	public void aplicarEfecto(EfectoTormentaPsionica efecto){}

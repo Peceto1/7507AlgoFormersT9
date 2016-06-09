@@ -6,7 +6,7 @@ import java.util.List;
 
 class Superion extends Autobot {
 
-    private List<Autobot> miembros;
+    private List<Algoformer> miembros;
 
 
     Superion(int vida, List<Autobot> miembros, Estado estadoProto) {
@@ -29,8 +29,8 @@ class Superion extends Autobot {
 
 
     @Override
-    public void separarse() {
-        System.out.println("Separar Superion Debe Implementarse");
+    public List<Algoformer> separarse() {
+        return null;
     }
 
 }

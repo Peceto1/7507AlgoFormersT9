@@ -40,11 +40,7 @@ public abstract class Punto {
 
         Arena arena = Arena.getInstance();
 
-        Direccion direcciones[] = { new DireccionArriba(), new DireccionAbajo(),
-                                    new DireccionIzquierda(), new DireccionDerecha(),
-                                    new DireccionDerechaAbajo(), new DireccionIzquierdaAbajo(),
-                                    new DireccionDerechaArriba(), new DireccionIzquierdaArriba()
-                                    };
+        Direccion direcciones[] = Direccion.crearDireccionesEnTodoSentido();
 
         List<Punto> puntosAdyacentes = new ArrayList<>();
 
@@ -68,6 +64,24 @@ public abstract class Punto {
 
             if (arena.estaEnArena(PuntoEnOtroNivel))
                 puntosAdyacentes.add(PuntoEnOtroNivel);
+        }
+
+        return puntosAdyacentes;
+    }
+
+
+    public List<Punto> obtenerAdyacentesEnTierra() {
+
+        Arena arena = Arena.getInstance();
+        Direccion direcciones[] = Direccion.crearDireccionesEnTodoSentido();
+
+        List<Punto> puntosAdyacentes = new ArrayList<>();
+
+        for (Direccion direccion : direcciones) {
+            Punto nuevo = this.obtenerPuntoEn(direccion);
+
+            if (arena.estaEnArena(nuevo))
+                puntosAdyacentes.add(nuevo);
         }
 
         return puntosAdyacentes;

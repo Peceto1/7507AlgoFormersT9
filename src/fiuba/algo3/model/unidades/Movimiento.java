@@ -30,9 +30,9 @@ class Movimiento {
 		if (!puede_moverse(nuevo))
 			throw new MovimientoNoValidoException();
 		
-		try{
-		actualizarUbicacion(nuevo);
-		restarMovimiento();
+		try {
+			actualizarUbicacion(nuevo);
+			restarMovimiento();
 		}
 		catch(EstadoHumanoideNoPuedeEntrarEnPantanoException e){
 			throw new MovimientoNoValidoException();
@@ -72,11 +72,11 @@ class Movimiento {
 		return (arena.estaEnArena(punto) && !arena.estaOcupado(punto) && restantes > 0);
 	}
 
-	public void restarMovimiento() {
+	void restarMovimiento() {
 		restantes--;	
 	}
 
-	public void perderTurno() {
+	void perderTurno() {
 		restantes = 0;
 	}
 }

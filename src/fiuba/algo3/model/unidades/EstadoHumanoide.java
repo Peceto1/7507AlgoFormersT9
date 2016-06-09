@@ -63,6 +63,12 @@ abstract class EstadoHumanoide extends Estado{
 
 
     @Override
+    void pasarAHumanoide(Algoformer algoformer) {
+
+    }
+
+
+    @Override
     void actualizarEstado(Autobot autobot) {
 
     }
