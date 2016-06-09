@@ -1,5 +1,7 @@
-package fiuba.algo3.model;
+package fiuba.algo3.model.juego;
 
+import fiuba.algo3.model.juego.Juego;
+import fiuba.algo3.model.juego.Jugador;
 import org.junit.Assert;
 import org.junit.Test;
 
