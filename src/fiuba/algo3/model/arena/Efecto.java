@@ -8,9 +8,7 @@ public abstract class Efecto {
 
 		public abstract void aplicarSobre(Algoformer algoformer);
 
-		public void avanzarContadorDeTurnos(){
-			turnosRestantes--;
-		}
+		public abstract void actualizar();
 		
 		public boolean LlegoElContadorDeTurnosRestantesACero(){
 			return (turnosRestantes == 0);

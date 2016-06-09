@@ -6,6 +6,6 @@ class Pantano implements Terreno {
 
 	@Override
 	public void aplicarseSobre(Algoformer algoformer) {
-		algoformer.empantanar();
+		algoformer.perderUnMovimiento();
 	}
 }

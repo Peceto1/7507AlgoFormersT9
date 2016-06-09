@@ -13,7 +13,7 @@ public class NebulosaDeAndromeda implements Terreno {
 	@Override
 	public void aplicarseSobre(Algoformer algoformer) {
 		algoformer.agregarEfecto(efecto);
-		algoformer.perderTurno();
+		efecto.aplicarSobre(algoformer);
 	}
 
 }

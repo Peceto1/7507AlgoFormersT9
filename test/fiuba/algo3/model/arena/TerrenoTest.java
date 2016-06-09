@@ -234,4 +234,112 @@ public class TerrenoTest {
 		
 		megatron.moverseHacia(direccionIzquierda);
 	}
+	
+	@Test
+	public void AlgoformerQuePasaPorTormentaPsionicaTieneSuAtaqueReducido(){
+		Algoformer ratchet = instanciadorDeAlgoformers.obtenerRatchet();
+		Algoformer bonecrusher = instanciadorDeAlgoformers.obtenerBonecrusher();
+		Punto ubicacionTormenta = new PuntoAire(2,2);
+		Punto ubicacionBonecrusher = new PuntoTierra(3,2);
+		
+		int danioInicialRatchetAlterno = 35;
+		
+		arenaDeJuego.setTerrenoEnPunto(ubicacionTormenta, new TormentaPsionica());
+		arenaDeJuego.ubicarAlgoformer(bonecrusher, ubicacionBonecrusher);
+		arenaDeJuego.ubicarAlgoformer(ratchet, new PuntoTierra(2,2));
+		ratchet.reiniciarMovimiento();
+		ratchet.transformarse();
+		
+		ratchet.reiniciarMovimiento();
+		ratchet.aplicarEfectos();
+		
+		ratchet.atacar(bonecrusher);
+		Assert.assertEquals(bonecrusher.getVida(), (bonecrusher.getVidaMax()-((danioInicialRatchetAlterno - (danioInicialRatchetAlterno *4)/10))) );
+	}
+	
+	@Test
+	public void algoformerQuePasaPorTormentaPsionicaQuedaConElAtaqueReducidoPorElRestoDeLaPartida(){
+		Algoformer ratchet = instanciadorDeAlgoformers.obtenerRatchet();
+		Algoformer bonecrusher = instanciadorDeAlgoformers.obtenerBonecrusher();
+		Punto ubicacionTormenta = new PuntoAire(2,2);
+		Punto ubicacionBonecrusher = new PuntoTierra(3,2);
+		
+		int danioInicialRatchetAlterno = 35;
+		
+		arenaDeJuego.setTerrenoEnPunto(ubicacionTormenta, new TormentaPsionica());
+		arenaDeJuego.ubicarAlgoformer(bonecrusher, ubicacionBonecrusher);
+		arenaDeJuego.ubicarAlgoformer(ratchet, new PuntoTierra(2,2));
+		ratchet.reiniciarMovimiento();
+		ratchet.transformarse();
+		
+		for(int i=0; i<50; i++){ //50: cantidad de turnos que voy a pasar
+			ratchet.reiniciarMovimiento();
+			ratchet.aplicarEfectos();
+		}
+		
+		ratchet.atacar(bonecrusher);
+		Assert.assertEquals(bonecrusher.getVida(), (bonecrusher.getVidaMax()-((danioInicialRatchetAlterno - (danioInicialRatchetAlterno *4)/10))) );		
+	}
+	
+	@Test
+	public void AlgoformerQueVuelveAPasarPorTormentaPsionicaNoVuelveASufrirSusEfectos(){
+		Algoformer megatron = instanciadorDeAlgoformers.obtenerMegatron();
+		Algoformer optimus = instanciadorDeAlgoformers.obtenerOptimus();
+		Punto ubicacionTormenta1 = new PuntoAire(2,2);
+		Punto ubicacionTormenta2 = new PuntoAire (1,2);
+		Direccion direccionIzquierda = new DireccionIzquierda();
+		Punto ubicacionOptimus = new PuntoTierra(3,2);
+		
+		int danioInicialMegatronAlterno = 55;
+		
+		arenaDeJuego.setTerrenoEnPunto(ubicacionTormenta1, new TormentaPsionica());
+		arenaDeJuego.setTerrenoEnPunto(ubicacionTormenta2, new TormentaPsionica());
+		arenaDeJuego.ubicarAlgoformer(optimus, ubicacionOptimus);
+		arenaDeJuego.ubicarAlgoformer(megatron, new PuntoTierra(2,2));
+		megatron.reiniciarMovimiento();
+		megatron.transformarse();
+		
+		megatron.reiniciarMovimiento();
+		megatron.aplicarEfectos();
+		
+		megatron.moverseHacia(direccionIzquierda);
+		
+		megatron.reiniciarMovimiento();
+		megatron.aplicarEfectos();
+
+		
+		megatron.atacar(optimus);
+		Assert.assertEquals(optimus.getVida(), (optimus.getVidaMax()-((danioInicialMegatronAlterno - (danioInicialMegatronAlterno *4)/10))) );	
+	}
+	
+	@Test
+	public void TormentaPsionicaSoloAfectaElAtaqueDeAlgoformerEnEstadoAlterno(){
+		Algoformer megatron = instanciadorDeAlgoformers.obtenerMegatron();
+		Algoformer optimus = instanciadorDeAlgoformers.obtenerOptimus();
+		Punto ubicacionTormenta1 = new PuntoAire(2,2);
+		Punto ubicacionOptimus = new PuntoTierra(3,2);
+		
+		int danioInicialMegatronHumanoide = 10;
+		
+		arenaDeJuego.setTerrenoEnPunto(ubicacionTormenta1, new TormentaPsionica());
+		arenaDeJuego.ubicarAlgoformer(optimus, ubicacionOptimus);
+		arenaDeJuego.ubicarAlgoformer(megatron, new PuntoTierra(2,2));
+		megatron.reiniciarMovimiento();
+		megatron.transformarse();
+		
+		megatron.reiniciarMovimiento();
+		megatron.aplicarEfectos();
+		
+		megatron.transformarse();
+		
+		megatron.reiniciarMovimiento();
+		megatron.aplicarEfectos();
+		
+		
+
+		
+		megatron.atacar(optimus);
+		Assert.assertEquals(optimus.getVida(), (optimus.getVidaMax()- danioInicialMegatronHumanoide) );
+	}
+	
 }

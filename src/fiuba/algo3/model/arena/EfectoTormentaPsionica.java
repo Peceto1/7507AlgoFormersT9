@@ -3,11 +3,17 @@ package fiuba.algo3.model.arena;
 import fiuba.algo3.model.unidades.Algoformer;
 
 public class EfectoTormentaPsionica extends Efecto {
+	
+	public EfectoTormentaPsionica(){
+		turnosRestantes = 1;
+	}
 
 	@Override
 	public void aplicarSobre(Algoformer algoformer) {
-		// TODO Auto-generated method stub
-
+	algoformer.aplicarEfecto(this);
 	}
+
+	@Override
+	public void actualizar() {}
 
 }
