@@ -1,5 +1,7 @@
 package fiuba.algo3.model.unidades;
 
+import fiuba.algo3.model.arena.EfectoTormentaPsionica;
+
 
 abstract class EstadoAlterno extends Estado {
 
@@ -33,8 +35,13 @@ abstract class EstadoAlterno extends Estado {
 
 
     @Override
-    public void empantanar(){
+    public void perderUnMovimiento(){
     	movimiento.restarMovimiento();
+    }
+    
+    @Override
+    public void aplicarEfecto(EfectoTormentaPsionica efecto){
+    	ataque = (ataqueMax - (ataqueMax*4)/10);
     }
 
 }

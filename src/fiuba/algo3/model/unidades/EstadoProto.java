@@ -1,5 +1,6 @@
 package fiuba.algo3.model.unidades;
 
+import fiuba.algo3.model.arena.EfectoTormentaPsionica;
 import fiuba.algo3.model.espacio.Direccion;
 import fiuba.algo3.model.espacio.Punto;
 
@@ -65,7 +66,7 @@ class EstadoProto extends Estado {
 
 
 	@Override
-	void empantanar() {
+	void perderUnMovimiento() {
 	}
 
 
@@ -91,5 +92,8 @@ class EstadoProto extends Estado {
 	Menasor combinarse(Decepticon dioLaOrden, Decepticon autobot2, Decepticon autobot3) {
 		throw new EstadoProtoNoPuedeRealizarAcciones();
 	}
+	
+	@Override
+	public void aplicarEfecto(EfectoTormentaPsionica efecto){}
 
 }

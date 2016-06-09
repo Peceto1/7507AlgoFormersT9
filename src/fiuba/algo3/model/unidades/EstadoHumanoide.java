@@ -2,6 +2,7 @@ package fiuba.algo3.model.unidades;
 
 
 import fiuba.algo3.model.arena.Arena;
+import fiuba.algo3.model.arena.EfectoTormentaPsionica;
 import fiuba.algo3.model.espacio.Punto;
 
 import java.util.ArrayList;
@@ -76,10 +77,11 @@ abstract class EstadoHumanoide extends Estado{
 
 
     @Override
-    void empantanar(){
+    void perderUnMovimiento(){
     	throw new EstadoHumanoideNoPuedeEntrarEnPantanoException();
     }
     
-	
+    @Override
+	public void aplicarEfecto(EfectoTormentaPsionica efecto){}
 }
 
