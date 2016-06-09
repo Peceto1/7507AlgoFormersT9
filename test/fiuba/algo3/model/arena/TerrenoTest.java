@@ -360,4 +360,42 @@ public class TerrenoTest {
 		Assert.assertEquals(optimus.getVida(), (optimus.getVidaMax()- danioInicialMegatronHumanoide) );
 	}
 	
+	@Test
+	public void UnidadAereaNoEsAfectadaPorEspinas(){
+		Algoformer megatron = instanciadorDeAlgoformers.obtenerMegatron();
+		Punto puntoInicialDeMegatron = new PuntoTierra(20,20);
+		Punto zonaEspinosa = new PuntoTierra(21,20);
+		Direccion derecha = new DireccionDerecha();
+		
+		arenaDeJuego.setTerrenoEnPunto(zonaEspinosa, new Espinas());
+		arenaDeJuego.ubicarAlgoformer(megatron, puntoInicialDeMegatron);
+		
+		megatron.reiniciarMovimiento();
+		megatron.transformarse();
+		megatron.reiniciarMovimiento();
+		megatron.moverseHacia(derecha);
+		megatron.moverseHacia(derecha);
+		
+		Assert.assertEquals(550, megatron.getVida());	
+	}
+	
+	@Test
+	public void UnidadAereaNoEsAfectadaPorPantano(){
+		Algoformer frenzy = instanciadorDeAlgoformers.obtenerFrenzy();
+		Punto puntoInicialDeMegatron = new PuntoTierra(17,2);
+		Punto zonaEspinosa = new PuntoTierra(18,2);
+		Direccion derecha = new DireccionDerecha();
+		
+		arenaDeJuego.setTerrenoEnPunto(zonaEspinosa, new Pantano());
+		arenaDeJuego.ubicarAlgoformer(frenzy, puntoInicialDeMegatron);
+		
+		frenzy.reiniciarMovimiento();
+		frenzy.transformarse();
+		frenzy.reiniciarMovimiento();
+		frenzy.moverseHacia(derecha);
+		frenzy.moverseHacia(derecha);
+		
+		Assert.assertEquals(400, frenzy.getVida());	
+	}
+	
 }
