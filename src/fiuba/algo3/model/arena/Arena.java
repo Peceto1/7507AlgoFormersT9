@@ -12,6 +12,8 @@ public class Arena {
 
 	private static Arena instancia = new Arena();
     private Map<Punto, Casillero> arena;
+    private List<Punto> puntosDeInicioDecepticon;
+    private List<Punto> puntosDeInicioAutobots;
     private final int ANCHO = 51;
     private final int ALTO = 51;
 
@@ -35,6 +37,17 @@ public class Arena {
                 arena.put(puntoAire, casilleroAire);
             }
         }
+        
+        puntosDeInicioDecepticon = new ArrayList<Punto>();
+        puntosDeInicioAutobots = new ArrayList<Punto>();
+        
+        puntosDeInicioAutobots.add(new PuntoTierra(1, 25));
+        puntosDeInicioAutobots.add(new PuntoTierra(1, 26));
+        puntosDeInicioAutobots.add(new PuntoTierra(1, 27));
+        
+        puntosDeInicioDecepticon.add(new PuntoTierra(51, 27));
+        puntosDeInicioDecepticon.add(new PuntoTierra(51, 26));
+        puntosDeInicioDecepticon.add( new PuntoTierra(51, 25));
     }
 
 
@@ -119,6 +132,25 @@ public class Arena {
         }
 
         return algoformers;
+    }
+    
+    //===================== METODOS NUEVOS==================
+    
+    public Punto lugarInicialLibre(){
+    	for (Punto punto: puntosDeInicioAutobots){
+    		if (!estaOcupado(punto))
+    			return punto;
+    	}
+    	for (Punto punto: puntosDeInicioDecepticon){
+    		if (!estaOcupado(punto))
+    			return punto;
+    	}
+    	return null;
+    }
+    
+    public void ubicarTemporalmente(Algoformer algoformerAUbicar, Punto lugar){
+    	this.ubicarAlgoformer(algoformerAUbicar, lugar);
+    	algoformerAUbicar.reiniciarMovimiento();
     }
 
 }

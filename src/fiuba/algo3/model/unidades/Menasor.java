@@ -3,6 +3,7 @@ package fiuba.algo3.model.unidades;
 
 import fiuba.algo3.model.arena.Arena;
 import fiuba.algo3.model.espacio.Punto;
+import fiuba.algo3.model.espacio.PuntoTierraNoPuedeDescenderException;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -48,9 +49,20 @@ class Menasor extends Decepticon {
         distribuirDanioEntreMiembros();
         removerMuertos();
 
-        for (Algoformer miembro : this.miembros)
-            pasarAHumanoide(miembro);
-
+        for (Algoformer miembro : this.miembros){
+        	arena.ubicarTemporalmente(miembro, arena.lugarInicialLibre());
+            try{
+                pasarAHumanoide(miembro);
+            }catch(PuntoTierraNoPuedeDescenderException e){
+            	Punto puntoTierra = miembro.getUbicacion();
+            	Punto puntoAire = puntoTierra.ascender();
+            	arena.ubicarAlgoformer(miembro, puntoAire);
+            	arena.removerAlgoformerEn(puntoTierra);
+            	miembro.reiniciarMovimiento();
+            	miembro.transformarse();
+            }
+            arena.removerAlgoformerEn(miembro.getUbicacion());
+        }
 
         Algoformer primero = this.miembros.remove(0);
         arena.ubicarAlgoformer(primero, this.ubicacion);

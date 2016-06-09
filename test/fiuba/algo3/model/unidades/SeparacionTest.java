@@ -162,7 +162,7 @@ public class SeparacionTest {
 
 
     // REVISAR ESTA PRUEBA, MEGATRON TIENE PROBLEMAS CUANDO TRATA DE DESCENDER
-    /*@Test
+    @Test
     public void MenasorAlHaberseFormadoConDosCompanierosEnAlternoAlSepararseEstanEnHumanoide() {
         Punto puntoInicioCentro = new PuntoTierra(25, 25);
         Punto puntoDerechoDeInicio = new PuntoTierra(26, 25);
@@ -190,6 +190,13 @@ public class SeparacionTest {
         menasor.reiniciarMovimiento();
 
         List<Algoformer> miembros = menasor.separarse();
-    }*/
+        
+        List<Algoformer> algoformers = arena.obtenerAlgoformersEn(puntoInicioCentro.obtenerAdyacentes());
+        algoformers.add(arena.obtenerAlgoformerEn(puntoInicioCentro));
+
+        Assert.assertTrue(algoformers.containsAll(miembros));
+        Assert.assertEquals(algoformers.size(), miembros.size());
+        
+    }
 
 }
