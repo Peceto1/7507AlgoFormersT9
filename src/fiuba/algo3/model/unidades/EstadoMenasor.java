@@ -7,6 +7,7 @@ class EstadoMenasor extends EstadoHumanoide {
 
     private EstadoMenasor() {
         this.ataque = 115;
+        this.ataqueMax = ataque;
         this.rango = 2;
         this.velocidad = 2;
     }

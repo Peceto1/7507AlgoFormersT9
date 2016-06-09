@@ -6,6 +6,7 @@ class FrenzyHumanoide extends EstadoHumanoide {
 	
 	private FrenzyHumanoide(){
 		this.ataque = 10;
+		this.ataqueMax = ataque;
 		this.rango = 3;
 		this.velocidad = 1;
 	}

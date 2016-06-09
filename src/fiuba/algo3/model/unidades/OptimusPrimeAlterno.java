@@ -6,6 +6,7 @@ class OptimusPrimeAlterno extends EstadoAlterno {
 
     private OptimusPrimeAlterno() {
         this.ataque = 15;
+        this.ataqueMax = ataque;
         this.rango = 4;
         this.velocidad = 5;
     }

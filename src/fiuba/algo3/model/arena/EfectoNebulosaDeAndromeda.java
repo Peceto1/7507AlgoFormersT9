@@ -13,4 +13,9 @@ public class EfectoNebulosaDeAndromeda extends Efecto {
 		algoformer.perderTurno();
 	}
 
+	@Override
+	public void actualizar() {
+		turnosRestantes--;
+	}
+
 }

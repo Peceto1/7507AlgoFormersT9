@@ -6,6 +6,7 @@ class OptimusPrimeHumanoide extends EstadoHumanoide {
 	
 	private OptimusPrimeHumanoide(){
 		this.ataque = 50;
+		this.ataqueMax = ataque;
 		this.rango = 2;
 		this.velocidad = 2;
 	}

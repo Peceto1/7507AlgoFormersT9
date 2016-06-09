@@ -1,14 +1,13 @@
 package fiuba.algo3.model.unidades;
 
+import fiuba.algo3.model.arena.EfectoTormentaPsionica;
 import fiuba.algo3.model.espacio.Direccion;
 import fiuba.algo3.model.espacio.Punto;
-
-import java.util.List;
 
 abstract class Estado {
 
 	protected int ataque;
-	protected int ataqueInicial;
+	protected int ataqueMax;
 	protected int rango;
 	protected int velocidad;
 	protected Movimiento movimiento;
@@ -59,10 +58,13 @@ abstract class Estado {
 	abstract void actualizarEstado(Decepticon algoformer);
 
 
-	abstract void empantanar();
+	abstract void perderUnMovimiento();
 
 	void reducirAtaquePorcentaje(int porcentaje){
-		this.ataque = this.ataque - (ataqueInicial*(porcentaje/100));
+		this.ataque = (this.ataque - ((ataque*porcentaje)/100));
 	}
+
+
+	abstract void aplicarEfecto(EfectoTormentaPsionica efecto);
 
 }

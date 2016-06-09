@@ -7,6 +7,7 @@ class BumblebeeHumanoide extends EstadoHumanoide {
 	
 	private BumblebeeHumanoide(){
 		this.ataque = 40;
+		this.ataqueMax = ataque;
 		this.rango = 1;
 		this.velocidad = 2;
 	}

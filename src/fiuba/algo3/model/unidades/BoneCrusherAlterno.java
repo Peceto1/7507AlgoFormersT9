@@ -6,6 +6,7 @@ class BoneCrusherAlterno extends EstadoAlterno {
 	
     private BoneCrusherAlterno() {
         this.ataque = 30;
+        this.ataqueMax = ataque;
         this.rango = 3;
         this.velocidad = 8;
     }
