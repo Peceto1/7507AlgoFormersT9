@@ -3,6 +3,7 @@ package fiuba.algo3.model.unidades;
 import fiuba.algo3.model.arena.Arena;
 import fiuba.algo3.model.arena.Chispa;
 import fiuba.algo3.model.arena.Efecto;
+import fiuba.algo3.model.arena.EfectoTormentaPsionica;
 import fiuba.algo3.model.espacio.Direccion;
 import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.espacio.PuntoAireNoPuedeAscenderException;
@@ -110,8 +111,8 @@ public abstract class Algoformer {
 	}
 
 
-	public void empantanar() {
-		estado.empantanar();	
+	public void perderUnMovimiento() {
+		estado.perderUnMovimiento();	
 	}
 
 	
@@ -158,7 +159,7 @@ public abstract class Algoformer {
 		while(iter.hasNext()){
 			Efecto actual = iter.next();
 			actual.aplicarSobre(this);
-			actual.avanzarContadorDeTurnos();
+			actual.actualizar();
 			if (actual.LlegoElContadorDeTurnosRestantesACero())
 				iter.remove();
 		}
@@ -167,6 +168,10 @@ public abstract class Algoformer {
 
 	public void reducirAtaquePorcentaje(int porcentaje) {		
 		estado.reducirAtaquePorcentaje(porcentaje);		
+	}
+	
+	public boolean contieneEfecto(Efecto efecto) {
+		return efectos.contains(efecto);
 	}
 
 
@@ -178,4 +183,12 @@ public abstract class Algoformer {
 	abstract Boolean esLealA(Autobot algoformer);
 	abstract Boolean esLealA(Decepticon algoformer);
 
+	public void aplicarEfecto(Efecto efecto){
+		this.aplicarEfecto(efecto);
+	}
+	public void aplicarEfecto(EfectoTormentaPsionica efecto) {
+		estado.aplicarEfecto(efecto);
+		
+		
+	}
 }
