@@ -1,4 +1,4 @@
-package fiuba.algo3.model;
+package fiuba.algo3.model.juego;
 
 import fiuba.algo3.model.arena.Arena;
 import fiuba.algo3.model.unidades.Algoformer;

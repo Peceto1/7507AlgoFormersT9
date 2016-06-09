@@ -3,6 +3,8 @@ package fiuba.algo3.model;
 import fiuba.algo3.model.arena.Arena;
 import fiuba.algo3.model.espacio.*;
 import fiuba.algo3.model.espacio.Punto;
+import fiuba.algo3.model.juego.Juego;
+import fiuba.algo3.model.juego.Jugador;
 import fiuba.algo3.model.unidades.*;
 import org.junit.Assert;
 import org.junit.Before;
@@ -128,8 +130,8 @@ public class Entrega01Test {
         Punto posicionSobreLaChispa = new PuntoAire(26,26);
 
         Juego juego = new Juego();
-        juego.crearJugador(nombreJugador1, "DECEPTICONS");
-        juego.crearJugador(nombreJugador2, "AUTOBOTS");
+        juego.crearJugador(nombreJugador1, "AUTOBOTS");
+        juego.crearJugador(nombreJugador2, "DECEPTICONS");
         juego.comenzarPartida();
         Assert.assertTrue(arenaDeJuego.estaOcupado(posicionInicialRatchet));
         Assert.assertTrue(arenaDeJuego.estaOcupado(posicionInicialOptimus));

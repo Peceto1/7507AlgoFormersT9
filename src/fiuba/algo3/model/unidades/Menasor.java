@@ -22,4 +22,16 @@ class Menasor extends Decepticon {
     }
 
 
+    @Override
+    public Menasor combinarse() {
+        throw new CombinacionYaSeEncuentraCombinadaException();
+    }
+
+
+    @Override
+    public void separarse() {
+        System.out.println("Separar Menasor Debe Implementarse");
+    }
+
+
 }
