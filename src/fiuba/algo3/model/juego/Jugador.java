@@ -96,14 +96,14 @@ public class Jugador {
             }
 
         }
+        throw new NoHaySuficientesAlgoformersAdyacentesException();
 
     }
     
     public void separarAlgoformers(){   		
     	List<Algoformer> lista = algoformers.get(0).separarse();
-    	if (lista!= null){
-    		this.algoformers.addAll(lista);    		
-    	}   
+    	this.algoformers.remove(0);
+    	this.algoformers.addAll(lista);    		   
     	return;
     }
 }
