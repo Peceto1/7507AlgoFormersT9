@@ -31,6 +31,23 @@ public class AlgoformerPool {
 		decepticons.put(BONECRUSHER, new Decepticon(BONECRUSHER, 200, BoneCrusherHumanoide.getInstance()));
 		equipos.put("AUTOBOTS", new ArrayList<>(autobots.values()));
 		equipos.put("DECEPTICONS", new ArrayList<>(decepticons.values()));
+
+		resetearEstados();
+	}
+
+	private void resetearEstados() {
+		OptimusPrimeHumanoide.getInstance().resetearEstado();
+		OptimusPrimeAlterno.getInstance().resetearEstado();
+		RatchetHumanoide.getInstance().resetearEstado();
+		RatchetAlterno.getInstance().resetearEstado();
+		BumblebeeAlterno.getInstance().resetearEstado();
+		BumblebeeHumanoide.getInstance().resetearEstado();
+		MegatronHumanoide.getInstance().resetearEstado();
+		MegatronAlterno.getInstance().resetearEstado();
+		FrenzyHumanoide.getInstance().resetearEstado();
+		FrenzyAlterno.getInstance().resetearEstado();
+		BoneCrusherHumanoide.getInstance().resetearEstado();
+		BoneCrusherAlterno.getInstance().resetearEstado();
 	}
 
 

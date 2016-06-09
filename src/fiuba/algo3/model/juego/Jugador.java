@@ -72,12 +72,12 @@ public class Jugador {
     }
 
 
-    public void combinarse() {
+    public void combinarAlgoformers() {
 
     }
 
 
-    public void separarse() {
+    public void separarAlgoformers() {
 
     }
 }

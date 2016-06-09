@@ -67,4 +67,7 @@ abstract class Estado {
 
 	abstract void aplicarEfecto(EfectoTormentaPsionica efecto);
 
+	void resetearEstado() {
+		this.ataque = this.ataqueMax;
+	}
 }
