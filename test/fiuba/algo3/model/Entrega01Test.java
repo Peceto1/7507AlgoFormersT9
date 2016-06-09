@@ -127,12 +127,13 @@ public class Entrega01Test {
         String nombreJugador2 = "Santi";
         
         Punto posicionDeLaChispa = new PuntoTierra(26, 26);
-        Punto posicionSobreLaChispa = new PuntoAire(26,26);
+        Punto posicionSobreLaChispa = new PuntoAire(26, 26);
 
         Juego juego = new Juego();
-        juego.crearJugador(nombreJugador1, "AUTOBOTS");
-        juego.crearJugador(nombreJugador2, "DECEPTICONS");
+        juego.crearJugador(nombreJugador1, "DECEPTICONS");
+        juego.crearJugador(nombreJugador2, "AUTOBOTS");
         juego.comenzarPartida();
+
         Assert.assertTrue(arenaDeJuego.estaOcupado(posicionInicialRatchet));
         Assert.assertTrue(arenaDeJuego.estaOcupado(posicionInicialOptimus));
         Assert.assertTrue(arenaDeJuego.estaOcupado(posicionInicialBumblebee));
@@ -140,14 +141,15 @@ public class Entrega01Test {
         Assert.assertTrue(arenaDeJuego.estaOcupado(posicionInicialMegatron));
         Assert.assertTrue(arenaDeJuego.estaOcupado(posicionInicialBoneCrusher));
 
-        Jugador actual = juego.getJugadorEnTurno();
+        Jugador jugadorActual = juego.getJugadorEnTurno();
 
-        if (!actual.getNombre().equals(nombreJugador1)) {
+        if (!jugadorActual.getNombre().equals(nombreJugador1)) {
             juego.finalizarTurno();
-            actual = juego.getJugadorEnTurno();
+            jugadorActual = juego.getJugadorEnTurno();
         }
 
-        Algoformer megatron = instanciadorDeAlgoformers.obtenerMegatron();
+        Algoformer megatron = jugadorActual.obtenerAlgoformerEn(posicionInicialMegatron);
+
         Direccion izquierda = new DireccionIzquierda();
         int cantidadDeMovimientosTotalesDeMegatron = 8;
 
@@ -193,7 +195,7 @@ public class Entrega01Test {
 
         juego.finalizarTurno();
         Assert.assertTrue(juego.hayGanador());
-        Assert.assertEquals(juego.obtenerGanador(), actual);
+        Assert.assertEquals(juego.obtenerGanador(), jugadorActual);
     }
 
     @Test
