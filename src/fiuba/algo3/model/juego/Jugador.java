@@ -3,6 +3,8 @@ package fiuba.algo3.model.juego;
 import fiuba.algo3.model.arena.Arena;
 import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.unidades.Algoformer;
+import fiuba.algo3.model.unidades.EstadoAlternoNoPuedeDarLaOrdenDeCombinarseException;
+import fiuba.algo3.model.unidades.NoHaySuficientesAlgoformersAdyacentesException;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -73,6 +75,27 @@ public class Jugador {
 
 
     public void combinarAlgoformers() {
+
+        for (Algoformer algoformer : this.algoformers) {
+
+            Algoformer combinacion = null;
+
+            try {
+                combinacion = algoformer.combinarse();
+            }
+
+            catch (EstadoAlternoNoPuedeDarLaOrdenDeCombinarseException |
+                    NoHaySuficientesAlgoformersAdyacentesException e) {
+                continue;
+            }
+
+            if (combinacion != null) {
+                this.algoformers.clear();
+                this.algoformers.add(combinacion);
+                return;
+            }
+
+        }
 
     }
 

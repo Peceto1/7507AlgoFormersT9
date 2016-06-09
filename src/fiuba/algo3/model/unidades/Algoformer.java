@@ -1,17 +1,11 @@
 package fiuba.algo3.model.unidades;
 
-import fiuba.algo3.model.arena.Arena;
-import fiuba.algo3.model.arena.Chispa;
-import fiuba.algo3.model.arena.Efecto;
-import fiuba.algo3.model.arena.EfectoTormentaPsionica;
+import fiuba.algo3.model.arena.*;
 import fiuba.algo3.model.espacio.Direccion;
 import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.espacio.PuntoAireNoPuedeAscenderException;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 
 public abstract class Algoformer {
@@ -30,7 +24,7 @@ public abstract class Algoformer {
 		this.vida = vida;
 		this.vidaMax = vida;
 		this.estado = estado;
-		this.efectos = new ArrayList<>();
+		this.efectos = new LinkedList<>();
 	}
 
 	
@@ -150,11 +144,6 @@ public abstract class Algoformer {
 	}
 
 
-	public void perderTurno() {
-		estado.perderTurno();
-	}
-
-
 	public void aplicarEfectos() {
 		Iterator<Efecto> iter = efectos.listIterator();
 		while(iter.hasNext()){
@@ -166,13 +155,19 @@ public abstract class Algoformer {
 		}
 	}
 
-
-	public void reducirAtaquePorcentaje(int porcentaje) {		
-		estado.reducirAtaquePorcentaje(porcentaje);		
-	}
 	
 	public boolean contieneEfecto(Efecto efecto) {
 		return efectos.contains(efecto);
+	}
+
+
+	public void aplicarEfecto(EfectoTormentaPsionica efecto) {
+		estado.aplicarEfecto(efecto);
+	}
+
+
+	public void aplicarEfecto(EfectoNebulosaDeAndromeda efecto) {
+		this.estado.perderTurno();
 	}
 
 
@@ -184,13 +179,4 @@ public abstract class Algoformer {
 	abstract Boolean esLealA(Algoformer algoformer);
 	abstract Boolean esLealA(Autobot algoformer);
 	abstract Boolean esLealA(Decepticon algoformer);
-
-	public void aplicarEfecto(Efecto efecto){
-		this.aplicarEfecto(efecto);
-	}
-	public void aplicarEfecto(EfectoTormentaPsionica efecto) {
-		estado.aplicarEfecto(efecto);
-		
-		
-	}
 }

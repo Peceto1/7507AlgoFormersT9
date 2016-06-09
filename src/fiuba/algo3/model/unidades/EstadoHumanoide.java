@@ -34,7 +34,6 @@ abstract class EstadoHumanoide extends Estado{
             arena.removerAlgoformerEn(autobot.getUbicacion());
         }
 
-        // Acordarse de refactorizar ^
         Superion superion = new Superion(vidaSuperion, miembros, new EstadoProto());
         arena.ubicarAlgoformer(superion, ubicacionSuperion);
         return superion;
@@ -57,7 +56,6 @@ abstract class EstadoHumanoide extends Estado{
             arena.removerAlgoformerEn(decepticon.getUbicacion());
         }
 
-        // Acordarse de refactorizar ^
         Menasor menasor = new Menasor(vidaMenasor, miembros, new EstadoProto());
         arena.ubicarAlgoformer(menasor, ubicacionMenasor);
         return menasor;
@@ -80,8 +78,10 @@ abstract class EstadoHumanoide extends Estado{
     void perderUnMovimiento(){
     	throw new EstadoHumanoideNoPuedeEntrarEnPantanoException();
     }
+
     
     @Override
 	public void aplicarEfecto(EfectoTormentaPsionica efecto){}
+
 }
 

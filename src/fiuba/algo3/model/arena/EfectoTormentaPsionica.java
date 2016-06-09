@@ -4,14 +4,16 @@ import fiuba.algo3.model.unidades.Algoformer;
 
 public class EfectoTormentaPsionica extends Efecto {
 	
-	public EfectoTormentaPsionica(){
+	EfectoTormentaPsionica(){
 		turnosRestantes = 1;
 	}
 
+
 	@Override
 	public void aplicarSobre(Algoformer algoformer) {
-	algoformer.aplicarEfecto(this);
+		algoformer.aplicarEfecto(this);
 	}
+
 
 	@Override
 	public void actualizar() {}

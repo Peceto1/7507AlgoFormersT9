@@ -4,13 +4,13 @@ import fiuba.algo3.model.unidades.Algoformer;
 
 public class EfectoNebulosaDeAndromeda extends Efecto {
 	
-	EfectoNebulosaDeAndromeda(){
+	EfectoNebulosaDeAndromeda() {
 		turnosRestantes = 2;
 	}
 
 	@Override
 	public void aplicarSobre(Algoformer algoformer) {
-		algoformer.perderTurno();
+		algoformer.aplicarEfecto(this);
 	}
 
 	@Override

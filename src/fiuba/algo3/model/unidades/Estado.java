@@ -45,8 +45,13 @@ abstract class Estado {
     }
 
 
-	public void perderTurno() {
+	void perderTurno() {
 		movimiento.perderTurno();
+	}
+
+
+	void resetearEstado() {
+		this.ataque = this.ataqueMax;
 	}
 
 
@@ -56,18 +61,6 @@ abstract class Estado {
 	abstract Menasor combinarse(Decepticon dioLaOrden, Decepticon decepticon2, Decepticon decepticon3);
 	abstract void actualizarEstado(Autobot algoformer);
 	abstract void actualizarEstado(Decepticon algoformer);
-
-
 	abstract void perderUnMovimiento();
-
-	void reducirAtaquePorcentaje(int porcentaje){
-		this.ataque = (this.ataque - ((ataque*porcentaje)/100));
-	}
-
-
 	abstract void aplicarEfecto(EfectoTormentaPsionica efecto);
-
-	void resetearEstado() {
-		this.ataque = this.ataqueMax;
-	}
 }
