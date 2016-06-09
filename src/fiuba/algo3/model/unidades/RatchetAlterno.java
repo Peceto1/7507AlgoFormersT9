@@ -6,6 +6,7 @@ class RatchetAlterno extends EstadoAlterno {
 	
 	private RatchetAlterno(){
 		this.ataque = 35;
+		this.ataqueMax = ataque;
 		this.rango = 2;
 		this.velocidad = 8;
 	}

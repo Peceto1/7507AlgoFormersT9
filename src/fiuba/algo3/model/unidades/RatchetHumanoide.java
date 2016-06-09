@@ -6,6 +6,7 @@ class RatchetHumanoide extends EstadoHumanoide {
 	
 	private RatchetHumanoide(){
 		this.ataque = 5;
+		this.ataqueMax = ataque;
 		this.rango = 5;
 		this.velocidad = 1;
 	}

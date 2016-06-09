@@ -6,6 +6,7 @@ class MegatronAlterno extends EstadoAlterno {
 	
 	private MegatronAlterno(){
 		this.ataque = 55;
+		this.ataqueMax = ataque;
 		this.rango = 2;
 		this.velocidad = 8;
 	}

@@ -6,6 +6,7 @@ class BoneCrusherHumanoide extends EstadoHumanoide {
 	
 	private BoneCrusherHumanoide(){
 		this.ataque = 30;
+		this.ataqueMax = ataque;
 		this.rango = 3;
 		this.velocidad = 1;
 	}

@@ -6,6 +6,7 @@ class FrenzyAlterno extends EstadoAlterno {
 	
 	private FrenzyAlterno(){
 		this.ataque = 25;
+		this.ataqueMax = ataque;
 		this.rango = 2;
 		this.velocidad = 6;
 	}

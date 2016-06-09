@@ -7,6 +7,7 @@ class EstadoSuperion extends EstadoHumanoide {
 
     private EstadoSuperion() {
         this.ataque = 100;
+        this.ataqueMax = ataque;
         this.rango = 2;
         this.velocidad = 3;
     }

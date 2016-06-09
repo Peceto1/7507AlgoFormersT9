@@ -6,6 +6,7 @@ class BumblebeeAlterno extends EstadoAlterno {
 
     private BumblebeeAlterno() {
         this.ataque = 20;
+        this.ataqueMax = ataque;
         this.rango = 3;
         this.velocidad = 5;
     }
