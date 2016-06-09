@@ -1,9 +1,11 @@
 package fiuba.algo3.model.juego;
 
 import fiuba.algo3.model.arena.Arena;
+import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.unidades.Algoformer;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -35,11 +37,14 @@ public class Jugador {
 
     void removerMuertos(Arena arena) {
 
-        for (Algoformer actual : algoformers) {
+        Iterator<Algoformer> iter = this.algoformers.iterator();
+
+        while (iter.hasNext()) {
+            Algoformer actual = iter.next();
 
             if (!actual.estaVivo()) {
                 arena.removerAlgoformerEn(actual.getUbicacion());
-                algoformers.remove(actual);
+                iter.remove();
             }
         }
     }
@@ -58,5 +63,21 @@ public class Jugador {
 
     Boolean tieneVivos() {
         return algoformers.size() > 0;
+    }
+
+
+    public Algoformer obtenerAlgoformerEn(Punto punto) {
+        Algoformer algoformer = Arena.getInstance().obtenerAlgoformerEn(punto);
+        return (this.algoformers.contains(algoformer)) ? algoformer : null;
+    }
+
+
+    public void combinarse() {
+
+    }
+
+
+    public void separarse() {
+
     }
 }
