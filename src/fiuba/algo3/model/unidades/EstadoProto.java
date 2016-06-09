@@ -98,6 +98,13 @@ class EstadoProto extends Estado {
 	void pasarAHumanoide(Algoformer algoformer) {
 		throw new EstadoProtoNoPuedeRealizarAcciones();
 	}
+
+
+	@Override
+	void verificarProto() {
+		throw new EstadoProtoNoPuedeRealizarAcciones();
+	}
+
 	
 	@Override
 	public void aplicarEfecto(EfectoTormentaPsionica efecto){}

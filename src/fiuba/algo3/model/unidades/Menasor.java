@@ -40,6 +40,8 @@ class Menasor extends Decepticon {
         if (puntosAdyacentesLibres.size() < 2)
             throw new NoPuedeSepararseException();
 
+        estado.verificarProto();
+
         Arena arena = Arena.getInstance();
         arena.removerAlgoformerEn(this.ubicacion);
 
@@ -48,6 +50,7 @@ class Menasor extends Decepticon {
 
         for (Algoformer miembro : this.miembros)
             pasarAHumanoide(miembro);
+
 
         Algoformer primero = this.miembros.remove(0);
         arena.ubicarAlgoformer(primero, this.ubicacion);

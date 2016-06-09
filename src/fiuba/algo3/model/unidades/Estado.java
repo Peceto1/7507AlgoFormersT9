@@ -55,6 +55,11 @@ abstract class Estado {
 	}
 
 
+	void verificarProto() {
+
+	}
+
+
 	abstract void transformar(Algoformer algoformer);
 	abstract void capturarChispa(Algoformer captor);
 	abstract Superion combinarse(Autobot dioLaOrden, Autobot autobot2, Autobot autobot3);

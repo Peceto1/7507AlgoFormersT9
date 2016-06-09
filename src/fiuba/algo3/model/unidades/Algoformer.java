@@ -28,7 +28,7 @@ public abstract class Algoformer {
 	}
 
 	
-	String getNombre() {
+	public String getNombre() {
 		return this.nombre;
 	}
 
