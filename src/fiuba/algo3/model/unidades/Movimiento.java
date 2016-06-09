@@ -35,6 +35,7 @@ class Movimiento {
 			restarMovimiento();
 		}
 		catch(EstadoHumanoideNoPuedeEntrarEnPantanoException e){
+			//actualizarUbicacion(ubicacion);
 			throw new MovimientoNoValidoException();
 		}
 		return ubicacion;
@@ -62,8 +63,9 @@ class Movimiento {
 
 
 	private void actualizarUbicacion(Punto nuevo) {
-		Algoformer aUbicar = arena.removerAlgoformerEn(ubicacion);
-		arena.ubicarAlgoformer(aUbicar, nuevo);
+		Algoformer algoformerMoviendose = arena.obtenerAlgoformerEn(ubicacion);
+		arena.ubicarAlgoformer(algoformerMoviendose, nuevo);
+		arena.removerAlgoformerEn(ubicacion);
 		ubicacion = nuevo;
 	}
 

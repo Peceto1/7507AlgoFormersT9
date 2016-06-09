@@ -32,8 +32,8 @@ class Casillero {
 
 
     void colocar(Algoformer algoformer) {
-        this.contenido = algoformer;
         aplicarTerrenoSobre(algoformer);
+        this.contenido = algoformer;   ///LINEAS INVERTIDAS
     }
 
     

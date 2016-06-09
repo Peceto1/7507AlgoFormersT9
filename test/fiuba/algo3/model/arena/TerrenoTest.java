@@ -81,6 +81,24 @@ public class TerrenoTest {
 		bumblebee.moverseHacia(direccionIzquierda);		
 	}
 	
+	@Test
+	public void AlgoformerHumanoideNoSeMueveSiIntentaEntrarAPantano(){
+		Algoformer bumblebee = instanciadorDeAlgoformers.obtenerBumblebee();
+		Punto ubicacionPantanosa = new PuntoTierra(2,3);
+		Punto ubicacionInicialDeBumblebee = new PuntoTierra(3,3);
+		Direccion direccionIzquierda = new DireccionIzquierda();
+		
+		arenaDeJuego.setTerrenoEnPunto(ubicacionPantanosa, new Pantano());
+		arenaDeJuego.ubicarAlgoformer(bumblebee, ubicacionInicialDeBumblebee);
+		bumblebee.reiniciarMovimiento();
+		try{
+			bumblebee.moverseHacia(direccionIzquierda);		
+		} catch(MovimientoNoValidoException e){
+			Assert.assertTrue(arenaDeJuego.estaOcupado(ubicacionInicialDeBumblebee));
+		}
+	}
+	
+	
 	@Test(expected = MovimientoNoValidoException.class)
 	public void AlgoformerEnEstadoAlternoPierdeUnMovimientoExtraCuandoEntraAlPantano(){
 		Algoformer optimus = instanciadorDeAlgoformers.obtenerOptimus();
