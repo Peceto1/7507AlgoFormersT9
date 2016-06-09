@@ -98,9 +98,12 @@ public class Jugador {
         }
 
     }
-
-
-    public void separarAlgoformers() {
-
+    
+    public void separarAlgoformers(){   		
+    	List<Algoformer> lista = algoformers.get(0).separarse();
+    	if (lista!= null){
+    		this.algoformers.addAll(lista);    		
+    	}   
+    	return;
     }
 }
