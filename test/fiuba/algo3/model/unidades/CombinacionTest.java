@@ -369,6 +369,27 @@ public class CombinacionTest {
 
 		Assert.assertEquals(1000 - 115, superion.getVida());
 		Assert.assertEquals(1150 - 100, menasor.getVida());
+
+		Boolean entra = false;
+
+		try {
+			superion.combinarse();
+		} catch (CombinacionYaSeEncuentraCombinadaException e) {
+			entra = true;
+		}
+		Assert.assertTrue(entra);
+
+		entra = false;
+
+		try {
+			menasor.combinarse();
+		} catch (CombinacionYaSeEncuentraCombinadaException e) {
+			entra = true;
+		}
+		Assert.assertTrue(entra);
 	}
+
+
+
 
 }

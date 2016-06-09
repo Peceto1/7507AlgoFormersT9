@@ -41,7 +41,8 @@ public abstract class Algoformer {
 	public int getVida() {
 		return this.vida;
 	}
-	
+
+
 	public int getVidaMax(){
 		return this.vidaMax;
 	}
@@ -171,6 +172,7 @@ public abstract class Algoformer {
 
 
 	public abstract Algoformer combinarse();
+	public abstract void separarse();
 	public abstract void atacar(Algoformer atacado);
 	abstract void recibirAtaque(Autobot atacante, int danio);
 	abstract void recibirAtaque(Decepticon atacante, int danio);

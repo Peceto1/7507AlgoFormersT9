@@ -22,4 +22,15 @@ class Superion extends Autobot {
     }
 
 
+    @Override
+    public Superion combinarse() {
+        throw new CombinacionYaSeEncuentraCombinadaException();
+    }
+
+
+    @Override
+    public void separarse() {
+        System.out.println("Separar Superion Debe Implementarse");
+    }
+
 }

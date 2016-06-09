@@ -57,5 +57,11 @@ class Autobot extends Algoformer {
     			
     	return estado.combinarse(this, (Autobot)algoformer1, (Autobot) algoformer2);
     }
-    
+
+
+    @Override
+    public void separarse() {
+
+    }
+
 }
