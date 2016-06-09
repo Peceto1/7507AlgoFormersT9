@@ -2,12 +2,12 @@ package fiuba.algo3.model.arena;
 
 import fiuba.algo3.model.unidades.Algoformer;
 
-class NebulosaDeAndromeda implements Terreno {
+public class NebulosaDeAndromeda implements Terreno {
 	
 	private Efecto efecto;
 
 
-	NebulosaDeAndromeda() {
+	public NebulosaDeAndromeda() {
 		this.efecto = new EfectoNebulosaDeAndromeda();
 	}
 

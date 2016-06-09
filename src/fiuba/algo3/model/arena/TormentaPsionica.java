@@ -2,12 +2,12 @@ package fiuba.algo3.model.arena;
 
 import fiuba.algo3.model.unidades.Algoformer;
 
-class TormentaPsionica implements Terreno {
+public class TormentaPsionica implements Terreno {
 	
 	private Efecto efecto;
 
 
-	TormentaPsionica() {
+	public TormentaPsionica() {
 		efecto = new EfectoTormentaPsionica();
 	}
 	

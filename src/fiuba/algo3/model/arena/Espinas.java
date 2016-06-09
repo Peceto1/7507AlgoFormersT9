@@ -2,7 +2,9 @@ package fiuba.algo3.model.arena;
 
 import fiuba.algo3.model.unidades.Algoformer;
 
-class Espinas implements Terreno {
+public class Espinas implements Terreno {
+	
+	public Espinas(){}
 
 	@Override
 	public void aplicarseSobre(Algoformer algoformer) {
