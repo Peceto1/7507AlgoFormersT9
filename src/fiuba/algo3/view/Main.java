@@ -1,6 +1,8 @@
 package fiuba.algo3.view;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
@@ -22,18 +24,21 @@ public class Main extends Application{
         window.setTitle("Algoformers: Age of Exception");
         //dark side of code?
         //revenge of the patter?
-        // the last night (code) //esta es la nueva que va a salir //que? comentarios en los comentarios? que clase de locura es esa? //#jinception
+        // the last night (code) //esta es la nueva que va a salir //que? comentarios en los comentarios? que clase de locura es esa? //#Jinception
         
         
-        button = new Button("Click me");
+        button = new Button("Do nothing");
+        button.setOnAction(e -> { 
+        	System.out.println("Does nothing! Aint it amazing");
+        	System.out.println("Lambda expression FTW");
+        });
 
         StackPane layout = new StackPane();
         layout.getChildren().add(button);
-        Scene scene = new Scene(layout, 300, 250);
+        Scene scene = new Scene(layout, 1200, 700);
 
         window.setScene(scene);
         window.show();
 		
 	}
-
 }
