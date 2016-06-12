@@ -94,8 +94,8 @@ public class JuegoTest {
         juego.crearJugador(nombreJugador2, teamAutobots);
     }
 
-    @Test
-    public void crearJuegoYPedirUnAutobotAUnJugadorQueJuegaEnDecepticonsDevuelveNull() {
+    @Test (expected = JugadorNoPuedeObtenerAlgoformerContrarioException.class)
+    public void crearJuegoYPedirUnAutobotAUnJugadorQueJuegaEnDecepticonsLanzaExcepcion() {
 
         Juego juego = new Juego();
         juego.crearJugador(nombreJugador1, teamAutobots);
@@ -111,8 +111,6 @@ public class JuegoTest {
 
         Punto ubicacionInicialOptimusPrime = new PuntoTierra(1, 26);
         Algoformer optimus = jugadorEnTurno.obtenerAlgoformerEn(ubicacionInicialOptimusPrime);
-
-        Assert.assertNull(optimus);
     }
 
 }

@@ -16,6 +16,7 @@ import fiuba.algo3.model.espacio.PuntoAire;
 import fiuba.algo3.model.espacio.PuntoTierra;
 import fiuba.algo3.model.juego.Juego;
 import fiuba.algo3.model.juego.Jugador;
+import fiuba.algo3.model.juego.JugadorNoPuedeObtenerAlgoformerContrarioException;
 import fiuba.algo3.model.unidades.Algoformer;
 import fiuba.algo3.model.unidades.AlgoformerPool;
 import fiuba.algo3.model.unidades.EstadoProtoNoPuedeRealizarAcciones;
@@ -81,8 +82,14 @@ public class Entrega02Test {
         
         juego.finalizarTurno();
         jugadorActual = juego.getJugadorEnTurno();
-        
-        Assert.assertNull(jugadorActual.obtenerAlgoformerEn(posicionInicialBumblebee));
+
+        Algoformer algoformerSeleccionado = null;
+
+        try {
+            algoformerSeleccionado = jugadorActual.obtenerAlgoformerEn(posicionInicialBumblebee);
+        } catch (JugadorNoPuedeObtenerAlgoformerContrarioException e) {
+            Assert.assertNull(algoformerSeleccionado);
+        }
         
         Algoformer megatron = jugadorActual.obtenerAlgoformerEn(posicionInicialMegatron);
         megatron.transformarse();
