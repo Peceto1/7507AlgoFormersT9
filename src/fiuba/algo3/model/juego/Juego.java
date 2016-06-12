@@ -11,8 +11,8 @@ import java.util.List;
 public class Juego {
 
     private List<Jugador> jugadores;
-    private Arena arena;
-    private AlgoformerPool pool;
+    private Arena arenaSingleton;
+    private AlgoformerPool poolSingleton;
     private List<String> equiposDisponibles;
     private Jugador ganador;
     private int turno;
@@ -21,25 +21,25 @@ public class Juego {
     public Juego() {
 
         this.jugadores = new ArrayList<>();
-        this.pool = AlgoformerPool.getInstance();
-        this.arena = Arena.getInstance();
-        this.arena.inicializar();
-        this.pool.inicializar();
+        this.poolSingleton = AlgoformerPool.getInstance();
+        this.arenaSingleton = Arena.getInstance();
+        this.arenaSingleton.inicializar();
+        this.poolSingleton.inicializar();
         this.ubicarAlgoformers();
         this.inicializarEquipos();
-        this.arena.colocarChispa(new PuntoTierra(26, 26));
+        this.arenaSingleton.colocarChispa(new PuntoTierra(26, 26));
         this.ganador = null;
         this.turno = 1;
     }
 
 
     private void ubicarAlgoformers() {
-        arena.ubicarAlgoformer(pool.obtenerBumblebee(), new PuntoTierra(1, 25));
-        arena.ubicarAlgoformer(pool.obtenerOptimus(), new PuntoTierra(1, 26));
-        arena.ubicarAlgoformer(pool.obtenerRatchet(), new PuntoTierra(1, 27));
-        arena.ubicarAlgoformer(pool.obtenerFrenzy(), new PuntoTierra(51, 27));
-        arena.ubicarAlgoformer(pool.obtenerMegatron(), new PuntoTierra(51, 26));
-        arena.ubicarAlgoformer(pool.obtenerBonecrusher(), new PuntoTierra(51, 25));
+        arenaSingleton.ubicarAlgoformer(poolSingleton.obtenerBumblebee(), new PuntoTierra(1, 25));
+        arenaSingleton.ubicarAlgoformer(poolSingleton.obtenerOptimus(), new PuntoTierra(1, 26));
+        arenaSingleton.ubicarAlgoformer(poolSingleton.obtenerRatchet(), new PuntoTierra(1, 27));
+        arenaSingleton.ubicarAlgoformer(poolSingleton.obtenerFrenzy(), new PuntoTierra(51, 27));
+        arenaSingleton.ubicarAlgoformer(poolSingleton.obtenerMegatron(), new PuntoTierra(51, 26));
+        arenaSingleton.ubicarAlgoformer(poolSingleton.obtenerBonecrusher(), new PuntoTierra(51, 25));
     }
 
 
@@ -59,7 +59,7 @@ public class Juego {
             throw new EquipoNoDisponibleException();
         }
 
-        jugadores.add(new Jugador(nombre, pool.obtenerEquipo(equipo)));
+        jugadores.add(new Jugador(nombre, poolSingleton.obtenerEquipo(equipo)));
     }
 
 
@@ -110,7 +110,7 @@ public class Juego {
     private void actualizarMapa() {
 
         for (Jugador jugador : jugadores)
-            jugador.removerMuertos(arena);
+            jugador.removerMuertos();
     }
 
 

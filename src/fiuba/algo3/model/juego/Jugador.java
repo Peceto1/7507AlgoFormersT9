@@ -37,7 +37,7 @@ public class Jugador {
     }
 
 
-    void removerMuertos(Arena arena) {
+    void removerMuertos() {
 
         Iterator<Algoformer> iter = this.algoformers.iterator();
 
@@ -45,7 +45,7 @@ public class Jugador {
             Algoformer actual = iter.next();
 
             if (!actual.estaVivo()) {
-                arena.removerAlgoformerEn(actual.getUbicacion());
+                Arena.getInstance().removerAlgoformerEn(actual.getUbicacion());
                 iter.remove();
             }
         }
@@ -69,8 +69,12 @@ public class Jugador {
 
 
     public Algoformer obtenerAlgoformerEn(Punto punto) {
-        Algoformer algoformer = Arena.getInstance().obtenerAlgoformerEn(punto);
-        return (this.algoformers.contains(algoformer)) ? algoformer : null;
+        Algoformer algoformerSeleccionado = Arena.getInstance().obtenerAlgoformerEn(punto);
+
+        if (!this.algoformers.contains(algoformerSeleccionado))
+            throw new JugadorNoPuedeObtenerAlgoformerContrarioException();
+
+        return algoformerSeleccionado;
     }
 
 
@@ -100,10 +104,9 @@ public class Jugador {
 
     }
     
-    public void separarAlgoformers(){   		
+    public void separarAlgoformers() {
     	List<Algoformer> lista = algoformers.get(0).separarse();
     	this.algoformers.remove(0);
-    	this.algoformers.addAll(lista);    		   
-    	return;
+    	this.algoformers.addAll(lista);
     }
 }
