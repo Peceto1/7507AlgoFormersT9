@@ -21,10 +21,7 @@ public abstract class Efecto {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 
-		Efecto efecto = (Efecto) o;
-
-		return turnosRestantes == efecto.turnosRestantes;
-
+		return true;
 	}
 
 

@@ -14,10 +14,11 @@ public class TormentaPsionica implements Terreno {
 
 	@Override
 	public void aplicarseSobre(Algoformer algoformer) {		
-		if (!algoformer.contieneEfecto(efecto)){
-			efecto.aplicarSobre(algoformer);
-			algoformer.agregarEfecto(efecto);
+		if (algoformer.contieneEfecto(efecto)){
+			algoformer.removerEfecto(efecto);
 		}
+
+		algoformer.agregarEfecto(efecto);
 	}
 
 }
