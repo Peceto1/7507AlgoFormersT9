@@ -109,4 +109,10 @@ public class Jugador {
     	this.algoformers.remove(0);
     	this.algoformers.addAll(lista);
     }
+
+
+	public void resetStatsAlgoformers() {
+		for (Algoformer actual: algoformers)
+			actual.resetearStats();
+	}
 }

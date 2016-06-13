@@ -1,5 +1,6 @@
 package fiuba.algo3.model.unidades;
 
+import fiuba.algo3.model.arena.EfectoDobleCanon;
 import fiuba.algo3.model.arena.EfectoTormentaPsionica;
 import fiuba.algo3.model.espacio.Direccion;
 import fiuba.algo3.model.espacio.Punto;
@@ -57,6 +58,10 @@ abstract class Estado {
 
 	void verificarProto() {
 
+	}
+	
+	void aplicarEfecto(EfectoDobleCanon efecto){
+		this.ataque = (this.ataque*3);
 	}
 
 

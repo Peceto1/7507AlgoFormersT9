@@ -108,6 +108,10 @@ public class Arena {
     public void setTerrenoEnPunto(Punto punto, Terreno terreno){
     	arena.get(punto).setTerreno(terreno);
     }
+    
+    public void setBonusEnPunto(Punto punto, Bonus bonus){
+    	arena.get(punto).setBonus(bonus);
+    }
 
 
     public Algoformer removerAlgoformerEn(Punto punto) {

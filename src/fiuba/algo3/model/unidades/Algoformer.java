@@ -178,9 +178,17 @@ public abstract class Algoformer {
 	public boolean contieneEfecto(Efecto efecto) {
 		return efectos.contains(efecto);
 	}
+	
+	public void removerEfecto(Efecto efecto) {
+		efectos.remove(efecto);
+	}
 
 
 	public void aplicarEfecto(EfectoTormentaPsionica efecto) {
+		estado.aplicarEfecto(efecto);
+	}
+	
+	public void aplicarEfecto(EfectoDobleCanon efecto) {
 		estado.aplicarEfecto(efecto);
 	}
 
@@ -254,4 +262,10 @@ public abstract class Algoformer {
 	abstract Boolean esLealA(Algoformer algoformer);
 	abstract Boolean esLealA(Autobot algoformer);
 	abstract Boolean esLealA(Decepticon algoformer);
+
+
+	public void resetearStats() {
+		estado.resetearEstado();
+	}
+
 }

@@ -41,7 +41,7 @@ abstract class EstadoAlterno extends Estado {
     
     @Override
     public void aplicarEfecto(EfectoTormentaPsionica efecto){
-    	ataque = (ataqueMax - (ataqueMax*4)/10);
+    	ataque = ((ataque*6)/10);
     }
 
 

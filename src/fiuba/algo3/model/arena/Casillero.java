@@ -8,13 +8,15 @@ class Casillero {
     private Algoformer contenido;
     private Chispa chispa;
     private Terreno terreno;
+    private Bonus bonus;
 
 
     Casillero(Terreno terreno) {
         this.contenido = null;
         this.terreno = terreno;
+        this.bonus = new NullBonus();
     }
-
+    
 
     Boolean estaOcupado(){
         return this.contenido != null;
@@ -24,7 +26,12 @@ class Casillero {
     void aplicarTerrenoSobre(Algoformer algoformer){
     	this.terreno.aplicarseSobre(algoformer);
     }
-
+    
+    void aplicarBonusSobre(Algoformer algoformer){
+    	this.bonus.aplicarseSobre(algoformer);
+    	bonus.setEfecto(new NullEfecto());
+    }
+    
 
     void setTerreno(Terreno nuevo){
     	this.terreno = nuevo;
@@ -33,7 +40,8 @@ class Casillero {
 
     void colocar(Algoformer algoformer) {
         aplicarTerrenoSobre(algoformer);
-        this.contenido = algoformer;   ///LINEAS INVERTIDAS
+        aplicarBonusSobre(algoformer);
+        this.contenido = algoformer;
     }
 
     
@@ -64,4 +72,9 @@ class Casillero {
     Algoformer obtenerAlgoformer() {
         return this.contenido;
     }
+
+
+	public void setBonus(Bonus bonus) {
+		this.bonus = bonus;
+	}
 }

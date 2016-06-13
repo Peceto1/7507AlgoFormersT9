@@ -109,8 +109,10 @@ public class Juego {
 
     private void actualizarMapa() {
 
-        for (Jugador jugador : jugadores)
+        for (Jugador jugador : jugadores){
+        	jugador.resetStatsAlgoformers();
             jugador.removerMuertos();
+        }
     }
 
 
