@@ -9,7 +9,6 @@ import fiuba.algo3.model.espacio.DireccionDerecha;
 import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.espacio.PuntoTierra;
 
-import java.util.List;
 
 public class CombinacionTest {
 	

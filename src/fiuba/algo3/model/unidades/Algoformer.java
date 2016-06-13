@@ -4,6 +4,7 @@ import fiuba.algo3.model.arena.*;
 import fiuba.algo3.model.espacio.Direccion;
 import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.espacio.PuntoAireNoPuedeAscenderException;
+import fiuba.algo3.model.espacio.PuntoTierraNoPuedeDescenderException;
 
 import java.util.*;
 
@@ -191,6 +192,50 @@ public abstract class Algoformer {
 
 	public List<Algoformer> separarse() {
 		throw new NoPuedeSepararseException();
+	}
+
+
+	void transformarAlternosAHumanoide(List<Algoformer> miembros) {
+
+		Arena arena = Arena.getInstance();
+
+		for (Algoformer miembro : miembros){
+			arena.ubicarTemporalmente(miembro, arena.lugarInicialLibre());
+			try {
+				pasarAHumanoide(miembro);
+				// En caso de que sea volador
+			} catch (PuntoTierraNoPuedeDescenderException e) {
+				Punto puntoTierra = miembro.getUbicacion();
+				Punto puntoAire = puntoTierra.ascender();
+				arena.ubicarAlgoformer(miembro, puntoAire);
+				arena.removerAlgoformerEn(puntoTierra);
+				miembro.reiniciarMovimiento();
+				miembro.transformarse();
+			}
+			arena.removerAlgoformerEn(miembro.getUbicacion());
+		}
+	}
+
+
+	void removerMuertos(List<Algoformer> miembros) {
+		Iterator<Algoformer> iter = miembros.iterator();
+
+		while (iter.hasNext()) {
+			Algoformer actual = iter.next();
+
+			if (!actual.estaVivo())
+				iter.remove();
+		}
+	}
+
+
+	void distribuirDanioEntreMiembros(List<Algoformer> miembros) {
+
+		int dmgTotal = this.vidaMax - this.vida;
+		int dmgParcial = dmgTotal/miembros.size();
+
+		for (Algoformer miembro : miembros)
+			miembro.recibirDanio(dmgParcial);
 	}
 
 

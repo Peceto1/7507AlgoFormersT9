@@ -10,12 +10,12 @@ import java.util.Map;
 
 public class Arena {
 
-	private static Arena instancia = new Arena();
     private Map<Punto, Casillero> arena;
     private List<Punto> puntosDeInicioDecepticon;
     private List<Punto> puntosDeInicioAutobots;
     private final int ANCHO = 51;
     private final int ALTO = 51;
+    private static Arena instancia = new Arena();
 
 
     private Arena() {
@@ -38,8 +38,8 @@ public class Arena {
             }
         }
         
-        puntosDeInicioDecepticon = new ArrayList<Punto>();
-        puntosDeInicioAutobots = new ArrayList<Punto>();
+        puntosDeInicioDecepticon = new ArrayList<>();
+        puntosDeInicioAutobots = new ArrayList<>();
         
         puntosDeInicioAutobots.add(new PuntoTierra(1, 25));
         puntosDeInicioAutobots.add(new PuntoTierra(1, 26));
@@ -137,16 +137,20 @@ public class Arena {
     //===================== METODOS NUEVOS==================
     
     public Punto lugarInicialLibre(){
+
     	for (Punto punto: puntosDeInicioAutobots){
     		if (!estaOcupado(punto))
     			return punto;
     	}
+
     	for (Punto punto: puntosDeInicioDecepticon){
     		if (!estaOcupado(punto))
     			return punto;
     	}
+
     	return null;
     }
+
     
     public void ubicarTemporalmente(Algoformer algoformerAUbicar, Punto lugar){
     	this.ubicarAlgoformer(algoformerAUbicar, lugar);

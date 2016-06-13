@@ -41,28 +41,14 @@ class Menasor extends Decepticon {
         if (puntosAdyacentesLibres.size() < 2)
             throw new NoPuedeSepararseException();
 
-        estado.verificarProto();
+        this.estado.verificarProto();
 
         Arena arena = Arena.getInstance();
         arena.removerAlgoformerEn(this.ubicacion);
 
-        distribuirDanioEntreMiembros();
-        removerMuertos();
-
-        for (Algoformer miembro : this.miembros){
-        	arena.ubicarTemporalmente(miembro, arena.lugarInicialLibre());
-            try{
-                pasarAHumanoide(miembro);
-            }catch(PuntoTierraNoPuedeDescenderException e){
-            	Punto puntoTierra = miembro.getUbicacion();
-            	Punto puntoAire = puntoTierra.ascender();
-            	arena.ubicarAlgoformer(miembro, puntoAire);
-            	arena.removerAlgoformerEn(puntoTierra);
-            	miembro.reiniciarMovimiento();
-            	miembro.transformarse();
-            }
-            arena.removerAlgoformerEn(miembro.getUbicacion());
-        }
+        distribuirDanioEntreMiembros(this.miembros);
+        removerMuertos(this.miembros);
+        transformarAlternosAHumanoide(this.miembros);
 
         Algoformer primero = this.miembros.remove(0);
         arena.ubicarAlgoformer(primero, this.ubicacion);
@@ -75,28 +61,6 @@ class Menasor extends Decepticon {
 
         this.miembros.add(primero);
         return new ArrayList<>(this.miembros);
-    }
-
-
-    private void distribuirDanioEntreMiembros() {
-
-        int dmgTotal = this.vidaMax - this.vida;
-        int dmgParcial = dmgTotal/this.miembros.size();
-
-        for (Algoformer miembro : this.miembros)
-            miembro.recibirDanio(dmgParcial);
-    }
-
-
-    private void removerMuertos() {
-        Iterator<Algoformer> iter = this.miembros.iterator();
-
-        while (iter.hasNext()) {
-            Algoformer actual = iter.next();
-
-            if (!actual.estaVivo())
-                iter.remove();
-        }
     }
 
 
