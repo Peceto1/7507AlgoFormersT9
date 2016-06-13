@@ -291,6 +291,7 @@ public class TerrenoTest {
 		ratchet.transformarse();
 		
 		for(int i=0; i<50; i++){ //50: cantidad de turnos que voy a pasar
+			ratchet.resetearStats();
 			ratchet.reiniciarMovimiento();
 			ratchet.aplicarEfectos();
 		}
@@ -317,11 +318,13 @@ public class TerrenoTest {
 		megatron.reiniciarMovimiento();
 		megatron.transformarse();
 		
+		megatron.resetearStats();
 		megatron.reiniciarMovimiento();
 		megatron.aplicarEfectos();
 		
 		megatron.moverseHacia(direccionIzquierda);
 		
+		megatron.resetearStats();
 		megatron.reiniciarMovimiento();
 		megatron.aplicarEfectos();
 
