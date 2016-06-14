@@ -22,15 +22,11 @@ public class Main extends Application {
 		stage.setTitle("Algoformers 2016");
 
 		Juego juego = new Juego();
-		
-		BarraDeMenu menuBar = new BarraDeMenu(stage);
-		
+
 		ContenedorJuego contenedorJuego = new ContenedorJuego(stage, juego);
-		contenedorJuego.setTop(menuBar);
 		Scene escenaJuego = new Scene(contenedorJuego, 800, 600);
 
-		ContenedorInicio contenedorInicio = new ContenedorInicio(stage, escenaJuego);				
-		contenedorInicio.setTop(menuBar);
+		ContenedorInicio contenedorInicio = new ContenedorInicio(stage, escenaJuego);
 		Scene escenaInicio = new Scene(contenedorInicio, 800, 600);
 
 
