@@ -25,6 +25,10 @@ public class ContenedorJuego extends BorderPane {
     }
 
 
+    public BarraDeMenu getBarraMenu() {
+        return barraMenu;
+    }
+
     void setCentro(Arena arena) {
 
         canvasArena = new Canvas(50, 50);

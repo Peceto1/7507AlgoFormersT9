@@ -1,5 +1,6 @@
 package fiuba.algo3.view;
 
+import fiuba.algo3.view.eventos.OpcionSalirEventHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
@@ -15,31 +16,30 @@ public class BarraDeMenu extends MenuBar {
     Menu menuArchivo;
     Menu menuVer;
     Menu menuAyuda;
+    MenuItem opcionPantallaCompleta;
 
     public BarraDeMenu(Stage stage) {
 
         this.menuArchivo = new Menu("Archivo");
         this.menuVer = new Menu("Ver");
         this.menuAyuda = new Menu("Ayuda");
-        agregarOpcionesAMenus();
+        opcionPantallaCompleta = new MenuItem("Pantalla Completa");
+        agregarOpcionesAMenus(stage);
     }
 
 
-    private void agregarOpcionesAMenus() {
+    private void agregarOpcionesAMenus(Stage stage) {
 
         MenuItem opcionSalir = new MenuItem("Salir");
-        MenuItem opcionPantallaCompleta = new MenuItem("Pantalla Completa");
         MenuItem opcionAcercaDe = new MenuItem("Acerca de...");
-
-        // Si quiero usar fullscreen necesito usar el stage que me pasé por parámetro
-        // Por ahora no me interesa eso...
 
         this.menuArchivo.getItems().add(opcionSalir);
         this.menuVer.getItems().add(opcionPantallaCompleta);
         this.menuAyuda.getItems().add(opcionAcercaDe);
 
         opcionSalir.setOnAction(new OpcionSalirEventHandler());
-        opcionPantallaCompleta.setDisable(true);        // Pantalla completa desabilitada
+        opcionPantallaCompleta.setOnAction(new OpcionPantallaCompletaHandler(stage, opcionPantallaCompleta));
+        opcionPantallaCompleta.setDisable(true);
         opcionAcercaDe.setOnAction(new OpcionAcercaDeEventHandler());
 
 
@@ -47,12 +47,29 @@ public class BarraDeMenu extends MenuBar {
     }
 
 
-    private class OpcionSalirEventHandler implements EventHandler<ActionEvent> {
+    public void aplicacionMaximizada() {
+        opcionPantallaCompleta.setDisable(false);
+    }
+
+
+    private class OpcionPantallaCompletaHandler implements EventHandler<ActionEvent> {
+
+        Stage stage;
+        MenuItem opcionPantallaCompleta;
+
+        OpcionPantallaCompletaHandler(Stage stage, MenuItem opcionPantallaCompleta) {
+            this.stage = stage;
+            this.opcionPantallaCompleta = opcionPantallaCompleta;
+        }
 
         @Override
         public void handle(ActionEvent actionEvent) {
-            System.exit(0);
+            if (!this.stage.isFullScreen()) {
+                this.stage.setFullScreen(true);
+                this.opcionPantallaCompleta.setDisable(true);
+            }
         }
+
     }
 
 
