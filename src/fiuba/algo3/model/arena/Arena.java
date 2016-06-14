@@ -11,7 +11,7 @@ import java.util.Map;
 public class Arena {
 
     private Map<Punto, Casillero> arena;
-    private List<Punto> puntosDeInicioDecepticon;
+    private List<Punto> puntosDeInicioDecepticons;
     private List<Punto> puntosDeInicioAutobots;
     private final int ANCHO = 51;
     private final int ALTO = 51;
@@ -38,16 +38,16 @@ public class Arena {
             }
         }
         
-        puntosDeInicioDecepticon = new ArrayList<>();
+        puntosDeInicioDecepticons = new ArrayList<>();
         puntosDeInicioAutobots = new ArrayList<>();
         
         puntosDeInicioAutobots.add(new PuntoTierra(1, 25));
         puntosDeInicioAutobots.add(new PuntoTierra(1, 26));
         puntosDeInicioAutobots.add(new PuntoTierra(1, 27));
         
-        puntosDeInicioDecepticon.add(new PuntoTierra(51, 27));
-        puntosDeInicioDecepticon.add(new PuntoTierra(51, 26));
-        puntosDeInicioDecepticon.add( new PuntoTierra(51, 25));
+        puntosDeInicioDecepticons.add(new PuntoTierra(51, 27));
+        puntosDeInicioDecepticons.add(new PuntoTierra(51, 26));
+        puntosDeInicioDecepticons.add( new PuntoTierra(51, 25));
     }
 
 
@@ -63,6 +63,14 @@ public class Arena {
 
     public static Arena getInstance(){
         return instancia;
+    }
+    
+    public void setTerrenoAleatorio(){
+    	List<Punto> puntosASetearTerreno = new ArrayList<Punto>(arena.keySet());
+    	puntosASetearTerreno.removeAll(puntosDeInicioAutobots);
+    	puntosASetearTerreno.removeAll(puntosDeInicioDecepticons);
+    	for(Punto actual: puntosASetearTerreno)
+    		arena.get(actual).setTerrenoAleatorio();
     }
 
 
@@ -147,7 +155,7 @@ public class Arena {
     			return punto;
     	}
 
-    	for (Punto punto: puntosDeInicioDecepticon){
+    	for (Punto punto: puntosDeInicioDecepticons){
     		if (!estaOcupado(punto))
     			return punto;
     	}

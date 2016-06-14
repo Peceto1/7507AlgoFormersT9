@@ -5,7 +5,7 @@ import fiuba.algo3.model.unidades.Algoformer;
 public class EfectoTormentaPsionica extends Efecto {
 	
 	EfectoTormentaPsionica(){
-		turnosRestantes = 1;
+		turnosRestantes = (-1);
 	}
 
 

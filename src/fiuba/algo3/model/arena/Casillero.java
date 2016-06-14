@@ -10,7 +10,6 @@ class Casillero {
     private Terreno terreno;
     private Bonus bonus;
 
-
     Casillero(Terreno terreno) {
         this.contenido = null;
         this.terreno = terreno;
@@ -76,5 +75,10 @@ class Casillero {
 
 	public void setBonus(Bonus bonus) {
 		this.bonus = bonus;
+	}
+
+
+	public void setTerrenoAleatorio() {
+	//TODO	
 	}
 }
