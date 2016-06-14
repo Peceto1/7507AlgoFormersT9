@@ -1,10 +1,13 @@
 package fiuba.algo3.view;
 
 import fiuba.algo3.view.eventos.OpcionSalirEventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -12,18 +15,18 @@ import javafx.stage.Stage;
 
 import java.io.File;
 
-public class ContenedorInicio extends VBox {
+public class ContenedorInicio extends BorderPane {
 
     Stage stage;
     Scene proximaEscena;
     Button botonJugar;
     Button botonSalir;
+    ToggleButton botonMute;
 
     public ContenedorInicio(Stage stage, Scene proximaEscena) {
 
         this.stage = stage;
         this.proximaEscena = proximaEscena;
-        this.setAlignment(Pos.CENTER);
         cargarImagenDeFondo();
         crearBotones();
         cargarMusicaDeFondo();
@@ -39,6 +42,16 @@ public class ContenedorInicio extends VBox {
 
 
     private void crearBotones() {
+
+        VBox botonesCentro = new VBox();
+        botonesCentro.setAlignment(Pos.CENTER);
+        botonesCentro.setSpacing(20);
+        this.setCenter(botonesCentro);
+
+        VBox botonesAbajo = new VBox();
+        botonesAbajo.setAlignment(Pos.BOTTOM_RIGHT);
+        this.setBottom(botonesAbajo);
+
         botonJugar = new Button();
         botonJugar.setText("JUGAR");
         botonJugar.requestFocus();
@@ -46,9 +59,12 @@ public class ContenedorInicio extends VBox {
         botonSalir.setText("Salir");
         botonSalir.setOnAction(new OpcionSalirEventHandler());
 
-        this.setSpacing(20);
 
-        this.getChildren().addAll(botonJugar, botonSalir);
+        Image muteImage = new Image("file:src/fiuba/algo3/view/resources/images/mute.png");
+        botonMute = new ToggleButton("", new ImageView(muteImage));
+
+        botonesCentro.getChildren().addAll(botonJugar, botonSalir);
+        botonesAbajo.getChildren().add(botonMute);
     }
 
 
