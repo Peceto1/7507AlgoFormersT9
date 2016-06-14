@@ -1,6 +1,8 @@
 package fiuba.algo3.view;
 
 import fiuba.algo3.view.eventos.OpcionSalirEventHandler;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -15,6 +17,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 
+
 public class ContenedorInicio extends BorderPane {
 
     Stage stage;
@@ -22,12 +25,15 @@ public class ContenedorInicio extends BorderPane {
     Button botonJugar;
     Button botonSalir;
     ToggleButton botonMute;
+    ImageView imagenMute;
+    ImageView imagenUnMute;
 
     public ContenedorInicio(Stage stage, Scene proximaEscena) {
 
         this.stage = stage;
         this.proximaEscena = proximaEscena;
         cargarImagenDeFondo();
+        cargarImagenesBotones();
         crearBotones();
         cargarMusicaDeFondo();
     }
@@ -54,17 +60,26 @@ public class ContenedorInicio extends BorderPane {
 
         botonJugar = new Button();
         botonJugar.setText("JUGAR");
+        botonJugar.setPadding(new Insets(15, 15, 15, 15));
         botonJugar.requestFocus();
         botonSalir = new Button();
         botonSalir.setText("Salir");
         botonSalir.setOnAction(new OpcionSalirEventHandler());
 
 
-        Image muteImage = new Image("file:src/fiuba/algo3/view/resources/images/mute.png");
-        botonMute = new ToggleButton("", new ImageView(muteImage));
-
         botonesCentro.getChildren().addAll(botonJugar, botonSalir);
         botonesAbajo.getChildren().add(botonMute);
+    }
+
+
+    private void cargarImagenesBotones() {
+        Image imagen = new Image("file:src/fiuba/algo3/view/resources/images/unmute.png");
+        imagenUnMute = new ImageView(imagen);
+        botonMute = new ToggleButton("", imagenUnMute);
+        botonMute.setStyle("-fx-background-color: transparent;");
+
+        Image imagen2 = new Image("file:src/fiuba/algo3/view/resources/images/mute.png");
+        imagenMute = new ImageView(imagen2);
     }
 
 
@@ -75,6 +90,33 @@ public class ContenedorInicio extends BorderPane {
         Media sound = new Media(new File(musicFile).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(sound);
         mediaPlayer.play();
+
+        botonMute.setOnAction(new OpcionMuteEventHandler(mediaPlayer));
+    }
+
+
+    private class OpcionMuteEventHandler implements EventHandler<ActionEvent> {
+
+        MediaPlayer mediaPlayer;
+
+        OpcionMuteEventHandler(MediaPlayer mediaPlayer) {
+            this.mediaPlayer = mediaPlayer;
+        }
+
+        @Override
+        public void handle(ActionEvent actionEvent) {
+
+            if (!mediaPlayer.isMute()) {
+                this.mediaPlayer.setMute(true);
+                botonMute.setGraphic(imagenMute);
+            }
+
+            else {
+                this.mediaPlayer.setMute(false);
+                botonMute.setGraphic(imagenUnMute);
+            }
+        }
+
     }
 
 
