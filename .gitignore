@@ -27,3 +27,4 @@ bin/
 # Ant Build Files:
 /build
 /libs
+.ant-targets-build.xml
