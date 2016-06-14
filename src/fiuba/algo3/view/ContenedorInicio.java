@@ -61,6 +61,7 @@ public class ContenedorInicio extends BorderPane {
         botonJugar = new Button();
         botonJugar.setText("JUGAR");
         botonJugar.setPadding(new Insets(15, 15, 15, 15));
+        botonJugar.setOnAction(new OpcionJugarEventHandler(this.stage, this.proximaEscena));
         botonJugar.requestFocus();
         botonSalir = new Button();
         botonSalir.setText("Salir");
@@ -119,5 +120,24 @@ public class ContenedorInicio extends BorderPane {
 
     }
 
+
+    private class OpcionJugarEventHandler implements EventHandler<ActionEvent> {
+
+        Stage stage;
+        Scene escenaJuego;
+
+        OpcionJugarEventHandler(Stage stage, Scene escenaJuego) {
+            this.stage = stage;
+            this.escenaJuego = escenaJuego;
+        }
+
+
+        @Override
+        public void handle(ActionEvent actionEvent) {
+            this.stage.setScene(escenaJuego);
+            this.stage.setFullScreen(true);
+        }
+
+    }
 
 }
