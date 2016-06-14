@@ -174,6 +174,15 @@ public abstract class Algoformer {
 		}
 	}
 
+	public void limpiarEfectos(){
+		Iterator<Efecto> iter = efectos.listIterator();
+
+		while (iter.hasNext()){
+			Efecto actual = iter.next();
+			if (!actual.EsPermanente())
+				iter.remove();
+		}
+	}
 	
 	public boolean contieneEfecto(Efecto efecto) {
 		return efectos.contains(efecto);

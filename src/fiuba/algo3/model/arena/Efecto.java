@@ -10,6 +10,10 @@ public abstract class Efecto {
 	public boolean LlegoElContadorDeTurnosRestantesACero() {
 		return (turnosRestantes == 0);
 	}
+	
+	public boolean EsPermanente(){
+		return (turnosRestantes<0);
+	}
 
 
 	public abstract void aplicarSobre(Algoformer algoformer);
