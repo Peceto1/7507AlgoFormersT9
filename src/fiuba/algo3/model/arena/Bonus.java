@@ -10,6 +10,9 @@ abstract class Bonus {
 		if (algoformer.contieneEfecto(efecto)){
 			algoformer.removerEfecto(efecto);
 		}
+		else{
+			efecto.aplicarSobre(algoformer);
+		}
 
 		algoformer.agregarEfecto(efecto);
 	}

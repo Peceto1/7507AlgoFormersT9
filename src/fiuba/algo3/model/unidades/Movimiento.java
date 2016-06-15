@@ -81,4 +81,8 @@ class Movimiento {
 	void perderTurno() {
 		restantes = 0;
 	}
+
+	public void agregarMovimientos(int movimientos) {
+		restantes = (restantes + movimientos);
+	}
 }

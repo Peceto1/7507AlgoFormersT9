@@ -200,6 +200,10 @@ public abstract class Algoformer {
 	public void aplicarEfecto(EfectoDobleCanon efecto) {
 		estado.aplicarEfecto(efecto);
 	}
+	
+	public void aplicarEfecto(EfectoFlash efecto) {
+		estado.aplicarEfecto(efecto);
+	}
 
 
 	public void aplicarEfecto(EfectoNebulosaDeAndromeda efecto) {
@@ -260,9 +264,9 @@ public abstract class Algoformer {
 		algoformer.estado.pasarAHumanoide(algoformer);
 	}
 
-
-
-
+	public void resetearStats() {
+		estado.resetearEstado();
+	}
 
 	public abstract Algoformer combinarse();
 	public abstract void atacar(Algoformer atacado);
@@ -271,10 +275,5 @@ public abstract class Algoformer {
 	abstract Boolean esLealA(Algoformer algoformer);
 	abstract Boolean esLealA(Autobot algoformer);
 	abstract Boolean esLealA(Decepticon algoformer);
-
-
-	public void resetearStats() {
-		estado.resetearEstado();
-	}
 
 }
