@@ -19,6 +19,8 @@ public class CreadorDeTerrenoAleatorio {
 			new CreadorNube(),
 			new CreadorNebulosaDeAndromeda(),
 			new CreadorTormentaPsionica());
+		//Ajustar repeticion de Nube para controlar la 
+		//cantidad de terrenos con efectos que parecen en el mapa
 	private List<CreadorDeTerreno> terrenosTerrestres = Arrays.asList(
 			new CreadorRocoso(),
 			new CreadorRocoso(),
@@ -30,6 +32,8 @@ public class CreadorDeTerrenoAleatorio {
 			new CreadorRocoso(),
 			new CreadorEspinas(),
 			new CreadorPantano());
+		//Ajustar repeticion de Rocoso para controlar la 
+		//cantidad de terrenos con efectos que parecen en el mapa
 	
 	CreadorDeTerrenoAleatorio(){
 	}

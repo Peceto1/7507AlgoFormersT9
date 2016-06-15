@@ -74,19 +74,27 @@ public class Arena {
     		else
     			setTerrenoAleatorioEnPuntoTierra(actual);
     }
+    
 
-
-
-
-	private void setTerrenoAleatorioEnPuntoAire(Punto actual) {
+	private void setTerrenoAleatorioEnPuntoAire(Punto punto) {
 		CreadorDeTerrenoAleatorio factoryTerrenos = CreadorDeTerrenoAleatorio.getInstance();
-		arena.get(actual).setTerreno(factoryTerrenos.crearTerrenoAereoAleatorio());
+		arena.get(punto).setTerreno(factoryTerrenos.crearTerrenoAereoAleatorio());
 	}
 	
 	private void setTerrenoAleatorioEnPuntoTierra(Punto punto) {
 		CreadorDeTerrenoAleatorio factoryTerrenos = CreadorDeTerrenoAleatorio.getInstance();
 		arena.get(punto).setTerreno(factoryTerrenos.crearTerrenoTerrestreAleatorio());
 	}
+    
+    public void setBonusAleatorio(){
+    	List<Punto> puntosASetearTerreno = new ArrayList<Punto>(arena.keySet());
+    	puntosASetearTerreno.removeAll(puntosDeInicioAutobots);
+    	puntosASetearTerreno.removeAll(puntosDeInicioDecepticons);
+    	CreadorDeBonusAleatorio factoryBonus = CreadorDeBonusAleatorio.getInstance();
+    	for(Punto actual: puntosASetearTerreno)
+    		arena.get(actual).setBonus(factoryBonus.crearBonusAleatorio());
+    }
+
 
 	public void colocarChispa(Punto punto) {
         Casillero casilla_media = arena.get(punto);

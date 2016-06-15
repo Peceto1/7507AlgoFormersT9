@@ -44,7 +44,7 @@ public class Juego {
     
     public void setTrampas(){
     	arenaSingleton.setTerrenoAleatorio();
-    	//arenaSingleton.setBonusAleatorio();
+    	arenaSingleton.setBonusAleatorio();
     }
 
 
