@@ -18,6 +18,7 @@ public abstract class Algoformer {
 	Chispa chispa;
 	Punto ubicacion;
 	List<Efecto> efectos;
+	boolean tiene_burbuja;
 
 
 	Algoformer(String nombre, int vida, Estado estado) {
@@ -26,6 +27,7 @@ public abstract class Algoformer {
 		this.vidaMax = vida;
 		this.estado = estado;
 		this.efectos = new LinkedList<>();
+		this.tiene_burbuja = false;
 	}
 
 	
@@ -192,7 +194,6 @@ public abstract class Algoformer {
 		efectos.remove(efecto);
 	}
 
-
 	public void aplicarEfecto(EfectoTormentaPsionica efecto) {
 		estado.aplicarEfecto(efecto);
 	}
@@ -205,9 +206,12 @@ public abstract class Algoformer {
 		estado.aplicarEfecto(efecto);
 	}
 
-
 	public void aplicarEfecto(EfectoNebulosaDeAndromeda efecto) {
 		this.estado.perderTurno();
+	}
+	
+	public void aplicarEfecto(EfectoBurbujaInmaculada efectoBurbujaInmaculada) {
+		this.tiene_burbuja=true;
 	}
 
 
@@ -265,6 +269,7 @@ public abstract class Algoformer {
 	}
 
 	public void resetearStats() {
+		tiene_burbuja = false;
 		estado.resetearEstado();
 	}
 
@@ -275,5 +280,4 @@ public abstract class Algoformer {
 	abstract Boolean esLealA(Algoformer algoformer);
 	abstract Boolean esLealA(Autobot algoformer);
 	abstract Boolean esLealA(Decepticon algoformer);
-
 }
