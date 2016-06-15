@@ -83,7 +83,7 @@ public class BonusTest {
 	}
 	
 	@Test
-	public void AlgoformerQuePasaPorBonusDobleCanionMantieneElEfectoAlSegundoTurno(){
+	public void AlgoformerQuePasaPorBonusDobleCanionMantieneElEfectoAlTercerTurno(){
 		Algoformer megatron = instanciadorDeAlgoformers.obtenerMegatron();
 		Algoformer optimus = instanciadorDeAlgoformers.obtenerOptimus();
 		Punto ubicacionInicialOptimus = new PuntoTierra(3,4);
@@ -169,5 +169,76 @@ public class BonusTest {
 		Assert.assertEquals((optimus.getVidaMax()-99), optimus.getVida());	
 	}
 	
+	@Test
+	public void AlgoformerQuePasaPorBonusFlashGanaMovimientosExtra(){
+		Algoformer optimus = instanciadorDeAlgoformers.obtenerOptimus();
+		Punto ubicacionInicialOptimus = new PuntoTierra(3,4);
+		Punto ubicacionBonusFlash = new PuntoTierra(4,4);
+		Direccion direccionDerecha = new DireccionDerecha();
+		
+		arenaDeJuego.setBonusEnPunto(ubicacionBonusFlash, new BonusFlash());
+		arenaDeJuego.ubicarAlgoformer(optimus, ubicacionInicialOptimus);
+		optimus.reiniciarMovimiento();
+		
+		optimus.moverseHacia(direccionDerecha);
+		for (int i=0;i<5;i++)
+			optimus.moverseHacia(direccionDerecha);
+	}
+	
+	@Test
+	public void AlgoformerQuePasoPorBonusFlashMantieneMovimientosExtraEnElTercerTurno(){
+		Algoformer optimus = instanciadorDeAlgoformers.obtenerOptimus();
+		Punto ubicacionInicialOptimus = new PuntoTierra(3,4);
+		Punto ubicacionBonusFlash = new PuntoTierra(4,4);
+		Direccion direccionDerecha = new DireccionDerecha();
+		
+		arenaDeJuego.setBonusEnPunto(ubicacionBonusFlash, new BonusFlash());
+		arenaDeJuego.ubicarAlgoformer(optimus, ubicacionInicialOptimus);
+		optimus.reiniciarMovimiento();
+		optimus.moverseHacia(direccionDerecha);
+		
+		optimus.reiniciarMovimiento();
+		optimus.transformarse();
+		
+		optimus.resetearStats();
+		optimus.reiniciarMovimiento();
+		optimus.aplicarEfectos();
+		
+		for (int i=0;i<6;i++)
+			optimus.moverseHacia(direccionDerecha);
+				
+	}
+	
+	@Test(expected = MovimientoNoValidoException.class)
+	public void AlgoformerQuePasoPorBonusFlashNoMantieneMovimientosExtraLuegoDelTercerTurno(){
+		Algoformer optimus = instanciadorDeAlgoformers.obtenerOptimus();
+		Punto ubicacionInicialOptimus = new PuntoTierra(3,4);
+		Punto ubicacionBonusFlash = new PuntoTierra(4,4);
+		Direccion direccionDerecha = new DireccionDerecha();
+		
+		arenaDeJuego.setBonusEnPunto(ubicacionBonusFlash, new BonusFlash());
+		arenaDeJuego.ubicarAlgoformer(optimus, ubicacionInicialOptimus);
+		optimus.reiniciarMovimiento();
+		optimus.moverseHacia(direccionDerecha);
+		
+		optimus.reiniciarMovimiento();
+		optimus.transformarse();
+		
+		optimus.resetearStats();
+		optimus.reiniciarMovimiento();
+		optimus.aplicarEfectos();
+		
+		optimus.resetearStats();
+		optimus.reiniciarMovimiento();
+		optimus.aplicarEfectos();
+		
+		optimus.resetearStats();
+		optimus.reiniciarMovimiento();
+		optimus.aplicarEfectos();
+		
+		for (int i=0;i<6;i++)
+			optimus.moverseHacia(direccionDerecha);
+				
+	}
 	
 }
