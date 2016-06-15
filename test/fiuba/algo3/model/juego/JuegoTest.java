@@ -12,6 +12,16 @@ public class JuegoTest {
     private String nombreJugador2 = "Ana";
     private String teamAutobots = "AUTOBOTS";
     private String teamDecepticons = "DECEPTICONS";
+    
+    @Test
+    public void seCreaJuegoConTrampasAleatorias(){
+    	Juego juego = new Juego();
+    	juego.crearJugador(nombreJugador1, teamAutobots);
+        juego.crearJugador(nombreJugador2, teamDecepticons);
+    	juego.setTrampas();
+    	juego.comenzarPartida();
+    	Jugador jugadorEnTurno = juego.getJugadorEnTurno();
+    	}
 
 
     @Test

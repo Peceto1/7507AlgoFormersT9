@@ -16,8 +16,6 @@ public class Arena {
     private final int ANCHO = 51;
     private final int ALTO = 51;
     private static Arena instancia = new Arena();
-    private List<TerrenoAplicable> terrenosAereos;
-    private List<TerrenoAplicable> terrenosTerrestres;
 
 
     private Arena() {
@@ -71,11 +69,26 @@ public class Arena {
     	puntosASetearTerreno.removeAll(puntosDeInicioAutobots);
     	puntosASetearTerreno.removeAll(puntosDeInicioDecepticons);
     	for(Punto actual: puntosASetearTerreno)
-    		arena.get(actual).setTerrenoAleatorio();
+    		if (actual.obtenerNivel()==1)
+    		setTerrenoAleatorioEnPuntoAire(actual);
+    		else
+    			setTerrenoAleatorioEnPuntoTierra(actual);
     }
 
 
-    public void colocarChispa(Punto punto) {
+
+
+	private void setTerrenoAleatorioEnPuntoAire(Punto actual) {
+		CreadorDeTerrenoAleatorio factoryTerrenos = CreadorDeTerrenoAleatorio.getInstance();
+		arena.get(actual).setTerreno(factoryTerrenos.crearTerrenoAereoAleatorio());
+	}
+	
+	private void setTerrenoAleatorioEnPuntoTierra(Punto punto) {
+		CreadorDeTerrenoAleatorio factoryTerrenos = CreadorDeTerrenoAleatorio.getInstance();
+		arena.get(punto).setTerreno(factoryTerrenos.crearTerrenoTerrestreAleatorio());
+	}
+
+	public void colocarChispa(Punto punto) {
         Casillero casilla_media = arena.get(punto);
         casilla_media.colocar(new Chispa());
     }

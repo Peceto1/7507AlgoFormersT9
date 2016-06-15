@@ -41,6 +41,11 @@ public class Juego {
         arenaSingleton.ubicarAlgoformer(poolSingleton.obtenerMegatron(), new PuntoTierra(51, 26));
         arenaSingleton.ubicarAlgoformer(poolSingleton.obtenerBonecrusher(), new PuntoTierra(51, 25));
     }
+    
+    public void setTrampas(){
+    	arenaSingleton.setTerrenoAleatorio();
+    	//arenaSingleton.setBonusAleatorio();
+    }
 
 
     private void inicializarEquipos() {

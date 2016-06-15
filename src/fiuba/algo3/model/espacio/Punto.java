@@ -86,13 +86,7 @@ public abstract class Punto {
 
         return puntosAdyacentes;
     }
-
-
-    public abstract Punto obtenerPuntoEn(Direccion direccion);
-    public abstract Punto ascender();
-    public abstract Punto descender();
-
-
+    
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -114,5 +108,14 @@ public abstract class Punto {
         result = 31 * result + nivel;
         return result;
     }
+    
+    public int obtenerNivel(){
+    	return this.nivel;
+    }
+
+
+    public abstract Punto obtenerPuntoEn(Direccion direccion);
+    public abstract Punto ascender();
+    public abstract Punto descender();
 
 }

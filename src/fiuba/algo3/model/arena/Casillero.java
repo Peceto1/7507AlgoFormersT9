@@ -77,8 +77,4 @@ class Casillero {
 		this.bonus = bonus;
 	}
 
-
-	public void setTerrenoAleatorio() {
-	//TODO	
-	}
 }
