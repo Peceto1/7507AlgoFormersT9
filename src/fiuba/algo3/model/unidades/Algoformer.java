@@ -168,11 +168,12 @@ public abstract class Algoformer {
 
 		while (iter.hasNext()){
 			Efecto actual = iter.next();
-			actual.aplicarSobre(this);
 			actual.actualizar();
+			actual.aplicarSobre(this);
 
 			if (actual.LlegoElContadorDeTurnosRestantesACero())
 				iter.remove();
+			
 		}
 	}
 
@@ -269,8 +270,11 @@ public abstract class Algoformer {
 	}
 
 	public void resetearStats() {
-		tiene_burbuja = false;
 		estado.resetearEstado();
+	}
+	
+	public void desactivarBurbuja() {
+		this.tiene_burbuja = false;
 	}
 
 	public abstract Algoformer combinarse();

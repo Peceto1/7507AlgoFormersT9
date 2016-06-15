@@ -238,7 +238,104 @@ public class BonusTest {
 		
 		for (int i=0;i<6;i++)
 			optimus.moverseHacia(direccionDerecha);
-				
+		}
+	
+	@Test
+	public void AlgoformerConBurbujaInmaculadaNoPierdeVida(){
+		Algoformer ratchet = instanciadorDeAlgoformers.obtenerRatchet();
+		Algoformer bonecrusher = instanciadorDeAlgoformers.obtenerBonecrusher();
+		Punto ubicacionInicialRatchet = new PuntoTierra(3,4);
+		Punto ubicacionInicialBoneCrusher = new PuntoTierra(5,4);
+		Punto ubicacionBonusBurbuja = new PuntoTierra(4,4);
+		Direccion direccionDerecha = new DireccionDerecha();
+		
+		arenaDeJuego.setBonusEnPunto(ubicacionBonusBurbuja, new BonusBurbujaInmaculada());
+		arenaDeJuego.ubicarAlgoformer(ratchet, ubicacionInicialRatchet);
+		arenaDeJuego.ubicarAlgoformer(bonecrusher, ubicacionInicialBoneCrusher);
+		ratchet.reiniciarMovimiento();
+		bonecrusher.reiniciarMovimiento();
+		
+		ratchet.moverseHacia(direccionDerecha);
+		
+		ratchet.resetearStats();
+		bonecrusher.reiniciarMovimiento();
+		bonecrusher.aplicarEfectos();
+		
+		bonecrusher.atacar(ratchet);
+		Assert.assertEquals(ratchet.getVidaMax(), ratchet.getVida());
 	}
 	
+	@Test
+	public void AlgoformerConBurbujaInmaculadaNoPierdeVidaEnElSegundoTurno(){
+		Algoformer ratchet = instanciadorDeAlgoformers.obtenerRatchet();
+		Algoformer bonecrusher = instanciadorDeAlgoformers.obtenerBonecrusher();
+		Punto ubicacionInicialRatchet = new PuntoTierra(3,4);
+		Punto ubicacionInicialBoneCrusher = new PuntoTierra(5,4);
+		Punto ubicacionBonusBurbuja = new PuntoTierra(4,4);
+		Direccion direccionDerecha = new DireccionDerecha();
+		
+		arenaDeJuego.setBonusEnPunto(ubicacionBonusBurbuja, new BonusBurbujaInmaculada());
+		arenaDeJuego.ubicarAlgoformer(ratchet, ubicacionInicialRatchet);
+		arenaDeJuego.ubicarAlgoformer(bonecrusher, ubicacionInicialBoneCrusher);
+		ratchet.reiniciarMovimiento();
+		bonecrusher.reiniciarMovimiento();
+		
+		ratchet.moverseHacia(direccionDerecha);
+		
+		ratchet.resetearStats();
+		bonecrusher.reiniciarMovimiento();
+		bonecrusher.aplicarEfectos();
+		
+		bonecrusher.resetearStats();
+		ratchet.reiniciarMovimiento();
+		ratchet.aplicarEfectos();
+		
+		ratchet.resetearStats();
+		bonecrusher.reiniciarMovimiento();
+		bonecrusher.aplicarEfectos();
+		
+		bonecrusher.atacar(ratchet);
+		Assert.assertEquals(ratchet.getVidaMax(), ratchet.getVida());
+	}
+	
+	@Test
+	public void AlgoformerConBurbujaInmaculadaPierdeVidaEnElTercerTurno(){
+		Algoformer ratchet = instanciadorDeAlgoformers.obtenerRatchet();
+		Algoformer bonecrusher = instanciadorDeAlgoformers.obtenerBonecrusher();
+		Punto ubicacionInicialRatchet = new PuntoTierra(3,4);
+		Punto ubicacionInicialBoneCrusher = new PuntoTierra(5,4);
+		Punto ubicacionBonusBurbuja = new PuntoTierra(4,4);
+		Direccion direccionDerecha = new DireccionDerecha();
+		
+		arenaDeJuego.setBonusEnPunto(ubicacionBonusBurbuja, new BonusBurbujaInmaculada());
+		arenaDeJuego.ubicarAlgoformer(ratchet, ubicacionInicialRatchet);
+		arenaDeJuego.ubicarAlgoformer(bonecrusher, ubicacionInicialBoneCrusher);
+		ratchet.reiniciarMovimiento();
+		bonecrusher.reiniciarMovimiento();
+		
+		ratchet.moverseHacia(direccionDerecha);
+		
+		ratchet.resetearStats();
+		bonecrusher.reiniciarMovimiento();
+		bonecrusher.aplicarEfectos();
+		
+		bonecrusher.resetearStats();
+		ratchet.reiniciarMovimiento();
+		ratchet.aplicarEfectos();
+		
+		ratchet.resetearStats();
+		bonecrusher.reiniciarMovimiento();
+		bonecrusher.aplicarEfectos();
+		
+		bonecrusher.resetearStats();
+		ratchet.reiniciarMovimiento();
+		ratchet.aplicarEfectos();
+		
+		ratchet.resetearStats();
+		bonecrusher.reiniciarMovimiento();
+		bonecrusher.aplicarEfectos();
+		
+		bonecrusher.atacar(ratchet);
+		Assert.assertEquals((ratchet.getVidaMax()-30), ratchet.getVida());
+	}
 }

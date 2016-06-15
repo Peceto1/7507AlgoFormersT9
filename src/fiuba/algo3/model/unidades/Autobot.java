@@ -28,7 +28,8 @@ class Autobot extends Algoformer {
 
     @Override
     void recibirAtaque(Decepticon otro,int danio) {
-        recibirDanio(danio);
+    	if (!tiene_burbuja)
+    		recibirDanio(danio);
     }
 
 

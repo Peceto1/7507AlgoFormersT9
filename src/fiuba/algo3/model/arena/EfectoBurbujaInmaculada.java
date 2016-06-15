@@ -11,11 +11,14 @@ public class EfectoBurbujaInmaculada extends Efecto {
 	@Override
 	public void aplicarSobre(Algoformer algoformer) {
 		algoformer.aplicarEfecto(this);
+		if (turnosRestantes == 0)
+			algoformer.desactivarBurbuja();
 	}
 
 	@Override
 	public void actualizar() {
 		this.turnosRestantes--;
+		
 	}
 
 }
