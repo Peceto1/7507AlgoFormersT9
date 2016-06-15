@@ -16,12 +16,13 @@ public class Arena {
     private final int ANCHO = 51;
     private final int ALTO = 51;
     private static Arena instancia = new Arena();
+    private List<TerrenoAplicable> terrenosAereos;
+    private List<TerrenoAplicable> terrenosTerrestres;
 
 
     private Arena() {
         this.arena = new HashMap<>();
     }
-
 
     public void inicializar() {
 
@@ -113,7 +114,7 @@ public class Arena {
     }
 
     
-    public void setTerrenoEnPunto(Punto punto, Terreno terreno){
+    public void setTerrenoEnPunto(Punto punto, TerrenoAplicable terreno){
     	arena.get(punto).setTerreno(terreno);
     }
     

@@ -2,7 +2,7 @@ package fiuba.algo3.model.arena;
 
 import fiuba.algo3.model.unidades.Algoformer;
 
-class Nube implements Terreno {
+class Nube implements TerrenoAplicable {
 
 
 	@Override

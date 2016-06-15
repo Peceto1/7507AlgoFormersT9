@@ -2,7 +2,7 @@ package fiuba.algo3.model.arena;
 
 import fiuba.algo3.model.unidades.Algoformer;
 
-public class NebulosaDeAndromeda implements Terreno {
+public class NebulosaDeAndromeda implements TerrenoAplicable {
 	
 	private Efecto efecto;
 

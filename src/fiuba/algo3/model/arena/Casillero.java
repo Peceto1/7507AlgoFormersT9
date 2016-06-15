@@ -7,10 +7,10 @@ class Casillero {
 
     private Algoformer contenido;
     private Chispa chispa;
-    private Terreno terreno;
+    private TerrenoAplicable terreno;
     private Bonus bonus;
 
-    Casillero(Terreno terreno) {
+    Casillero(TerrenoAplicable terreno) {
         this.contenido = null;
         this.terreno = terreno;
         this.bonus = new NullBonus();
@@ -32,7 +32,7 @@ class Casillero {
     }
     
 
-    void setTerreno(Terreno nuevo){
+    void setTerreno(TerrenoAplicable nuevo){
     	this.terreno = nuevo;
     }
 
