@@ -28,7 +28,7 @@ public class ContenedorInicio extends BorderPane {
     ImageView imagenMute;
     ImageView imagenUnMute;
 
-    public ContenedorInicio(Stage stage, Scene proximaEscena) {
+    public ContenedorInicio(Stage stage, Scene proximaEscena, BarraDeMenu menuBar) {
 
         this.stage = stage;
         this.proximaEscena = proximaEscena;

@@ -1,27 +1,25 @@
 package fiuba.algo3.view;
 
 import fiuba.algo3.view.eventos.OpcionSalirEventHandler;
+import fiuba.algo3.view.eventos.SilenciarEventHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 
 
 public class BarraDeMenu extends MenuBar {
 
     Menu menuArchivo;
-    Menu menuVer;
+    Menu menuOpciones;
     Menu menuAyuda;
     MenuItem opcionPantallaCompleta;
 
     public BarraDeMenu(Stage stage) {
 
         this.menuArchivo = new Menu("Archivo");
-        this.menuVer = new Menu("Ver");
+        this.menuOpciones = new Menu("Opciones");
         this.menuAyuda = new Menu("Ayuda");
         opcionPantallaCompleta = new MenuItem("Pantalla Completa");
         agregarOpcionesAMenus(stage);
@@ -32,18 +30,20 @@ public class BarraDeMenu extends MenuBar {
 
         MenuItem opcionSalir = new MenuItem("Salir");
         MenuItem opcionAcercaDe = new MenuItem("Acerca de...");
+        MenuItem opcionSilenciar = new MenuItem("Silenciar/Reproducir");
 
         this.menuArchivo.getItems().add(opcionSalir);
-        this.menuVer.getItems().add(opcionPantallaCompleta);
+        this.menuOpciones.getItems().addAll(opcionPantallaCompleta, new SeparatorMenuItem(), opcionSilenciar);
         this.menuAyuda.getItems().add(opcionAcercaDe);
 
         opcionSalir.setOnAction(new OpcionSalirEventHandler());
+        opcionAcercaDe.setOnAction(new OpcionAcercaDeEventHandler());
+        opcionSilenciar.setOnAction(new SilenciarEventHandler());
         opcionPantallaCompleta.setOnAction(new OpcionPantallaCompletaHandler(stage, opcionPantallaCompleta));
         opcionPantallaCompleta.setDisable(true);
-        opcionAcercaDe.setOnAction(new OpcionAcercaDeEventHandler());
 
 
-        this.getMenus().addAll(menuArchivo, menuVer, menuAyuda);
+        this.getMenus().addAll(menuArchivo, menuOpciones, menuAyuda);
     }
 
 
@@ -81,7 +81,12 @@ public class BarraDeMenu extends MenuBar {
             alert.setTitle("Acerca De...");
             alert.setHeaderText("Algoformers");
             alert.setContentText("Grupo T9 - Algoritmos III\n" +
-                                "Primer Cuatrimestre 2016");
+                                "Primer Cuatrimestre 2016\n\n" +
+                                "Integrantes:\n" +
+                                "\tCzop, Guillermo\n" +
+                                "\tDorgan, Santiago\n" +
+                                "\tIrrazabal, Diego\n" +
+                                "\tPenovi, Francisco");
             alert.show();
         }
     }

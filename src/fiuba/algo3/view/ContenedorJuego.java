@@ -3,6 +3,7 @@ package fiuba.algo3.view;
 
 import fiuba.algo3.model.arena.Arena;
 import fiuba.algo3.model.juego.Juego;
+import fiuba.algo3.view.eventos.ApplicationOnKeyHandler;
 import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.BorderPane;
@@ -11,14 +12,16 @@ import javafx.stage.Stage;
 
 public class ContenedorJuego extends BorderPane {
 
+    Stage stage;
     BarraDeMenu barraMenu;
     VistaArena vistaArena;
     Canvas canvasArena;
     VBox contenedorArena;
 
 
-    public ContenedorJuego(Stage stage, Juego juego) {
-        this.barraMenu = new BarraDeMenu(stage);
+    public ContenedorJuego(Stage stage, Juego juego, BarraDeMenu menuBar) {
+        this.stage = stage;
+        this.barraMenu = menuBar;
         this.setTop(barraMenu);
         this.setCentro(Arena.getInstance());
         // this.setControles(); Setear algo en el sector de abajo
