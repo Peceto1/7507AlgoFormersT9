@@ -34,7 +34,7 @@ public abstract class ElegirEquipoHandler implements EventHandler<ActionEvent> {
             return;
         }
 
-        nroJugador.setText("Fin de Eleccion");
+        nroJugador.setText("Fin de Elección");
         nroJugador.setFill(Color.LIGHTGREEN);
         input.setDisable(true);
     }
