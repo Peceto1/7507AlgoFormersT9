@@ -214,4 +214,9 @@
 	<target name="jugar" depends="ejecutar.aplicacion">
 	</target>
 
+	<target name="limpiar">
+		<delete dir="${build}" />
+		<delete dir="${libs}" />
+	</target>
+
 </project>

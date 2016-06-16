@@ -3,6 +3,7 @@
 ### **EJECUCIÓN JUEGO**: ###
 
         $ ant jugar
+        $ ant limpiar # para limpiar las librerias descargadas
 
 
 ### **Instrucciones y como usar GIT**: ###
