@@ -58,13 +58,27 @@ public class Juego {
     public void crearJugador(String nombre, String equipo) {
         int indiceEquipo = this.equiposDisponibles.indexOf(equipo);
 
+        String equipoRemovido;
+
         try {
-            equipo = this.equiposDisponibles.remove(indiceEquipo);
+            equipoRemovido = this.equiposDisponibles.remove(indiceEquipo);
         } catch (IndexOutOfBoundsException e) {
             throw new EquipoNoDisponibleException();
         }
 
+        this.jugadores.forEach( (jugador) -> {
+            if (jugador.getNombre().equals(nombre)) {
+                this.equiposDisponibles.add(equipoRemovido);
+                throw new YaExisteJugadorConEseNombreException();
+            }
+        } );
+
         jugadores.add(new Jugador(nombre, poolSingleton.obtenerEquipo(equipo)));
+    }
+
+
+    public int getCantJugadores() {
+        return this.jugadores.size();
     }
 
 

@@ -1,15 +1,19 @@
 package fiuba.algo3.view;
 
+import fiuba.algo3.controller.ElegirAutobotsHandler;
+import fiuba.algo3.controller.ElegirDecepticonsHandler;
 import fiuba.algo3.model.juego.Juego;
 import fiuba.algo3.view.eventos.ApplicationOnKeyHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -21,10 +25,15 @@ public class ContenedorEleccionEquipos extends BorderPane {
     Stage stage;
     BarraDeMenu menuBar;
     Scene proximaEscena;
-    Juego juego;
     VBox autobots;
     VBox decepticons;
     VBox panelCentro;
+    TextField nombreJugador;
+    Text nroJugador;
+    Label msjError;
+    Button autobotsButton;
+    Button decepticonsButton;
+    Juego juego;
 
     ContenedorEleccionEquipos(Stage stage, Juego juego, BarraDeMenu menuBar, Scene proximaEscena) {
         this.stage = stage;
@@ -32,11 +41,11 @@ public class ContenedorEleccionEquipos extends BorderPane {
         this.proximaEscena = proximaEscena;
         this.proximaEscena.setOnKeyPressed(new ApplicationOnKeyHandler(stage, menuBar));
         this.juego = juego;
-        setearBarraMenuTop();
         cargarImagenDeFondo();
+        setearBarraMenuTop();
+        crearPanelCentro();
         crearPanelAutobots();
         crearPanelDecepticons();
-        crearPanelCentro();
     }
 
 
@@ -56,7 +65,9 @@ public class ContenedorEleccionEquipos extends BorderPane {
     private void crearPanelAutobots() {
         autobots = new VBox();
         Image autobotsImage = new Image("file:src/fiuba/algo3/view/resources/images/teamAutobots.jpg");
-        Button autobotsButton = new Button("", new ImageView(autobotsImage));
+        this.autobotsButton = new Button("", new ImageView(autobotsImage));
+        autobotsButton.setFocusTraversable(false);
+        autobotsButton.setOnAction(new ElegirAutobotsHandler(juego, nombreJugador, autobotsButton, msjError, nroJugador));
         autobots.getChildren().add(autobotsButton);
         autobots.setPadding(new Insets(0, 0, 0, 25));
         autobots.setAlignment(Pos.CENTER);
@@ -67,7 +78,9 @@ public class ContenedorEleccionEquipos extends BorderPane {
     private void crearPanelDecepticons() {
         decepticons = new VBox();
         Image decepticonsImage = new Image("file:src/fiuba/algo3/view/resources/images/teamDecepticons.jpg");
-        Button decepticonsButton = new Button("", new ImageView(decepticonsImage));
+        this.decepticonsButton = new Button("", new ImageView(decepticonsImage));
+        decepticonsButton.setFocusTraversable(false);
+        decepticonsButton.setOnAction(new ElegirDecepticonsHandler(juego, nombreJugador, decepticonsButton, msjError, nroJugador));
         decepticons.getChildren().add(decepticonsButton);
         decepticons.setPadding(new Insets(0, 25, 0, 0));
         decepticons.setAlignment(Pos.CENTER);
@@ -89,7 +102,7 @@ public class ContenedorEleccionEquipos extends BorderPane {
         VBox contenedorInput = new VBox();
         contenedorInput.setAlignment(Pos.CENTER);
         contenedorInput.setSpacing(10);
-        contenedorInput.setMaxWidth(200);
+        contenedorInput.setMaxWidth(235);
         contenedorInput.setPadding(new Insets(10, 0, 10, 0));
         contenedorInput.setStyle("-fx-background-color:\n" +
                 "    linear-gradient(#686868 0%, #3b423b 25%, #505250 75%, #8f8f8f 100%);\n" +
@@ -97,30 +110,54 @@ public class ContenedorEleccionEquipos extends BorderPane {
                 "    -fx-background-radius: 9;");
 
 
-        TextField nombreJugador = new TextField();
+        this.nombreJugador = new TextField();
         nombreJugador.setPromptText("Ingrese su nombre");
         nombreJugador.setMaxWidth(150);
+        nombreJugador.setFocusTraversable(false);
+
+        // NO PERMITO TEXTOS MAYORES A 10 CARACTERES
+        nombreJugador.lengthProperty().addListener( (observable, oldValue, newValue) -> {
+                if (newValue.intValue() > oldValue.intValue()) {
+
+                    if (nombreJugador.getText().length() >= 10)
+                        nombreJugador.setText(nombreJugador.getText().substring(0, 10));
+                }
+            });
+
+        Button botonLimpiar = new Button("Limpiar");
+        botonLimpiar.setStyle("-fx-font: 10 arial; -fx-base: #b6e7c9;");
+
+        botonLimpiar.setOnAction( (actionEvent) -> {
+            nombreJugador.clear();
+            nombreJugador.requestFocus();
+        } );
 
 
         GridPane formulario = new GridPane();
-        formulario.setAlignment(Pos.CENTER_LEFT);
+        formulario.setAlignment(Pos.TOP_CENTER);
         formulario.setVgap(10);
-        formulario.setHgap(10);
-        formulario.setPadding(new Insets(5, 5, 5, 10));
+        formulario.setHgap(8);
+        formulario.setPadding(new Insets(5, 10, 5, 10));
 
-        Text jugador = new Text("Jugador 1");
-        jugador.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+        this.nroJugador = new Text("Jugador 1");
+        nroJugador.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+        nroJugador.setFill(Color.ANTIQUEWHITE);
         Text informacion = new Text("Elija un equipo");
         informacion.setFont(Font.font("Tahoma", FontWeight.LIGHT, 12));
-        formulario.add(jugador, 0, 0);
+        formulario.add(nroJugador, 0, 0);
         formulario.add(nombreJugador, 0, 1);
         formulario.add(informacion, 0, 2);
+        formulario.add(botonLimpiar, 1, 2);
 
-        contenedorInput.getChildren().addAll(formulario);
+        this.msjError = new Label("");
+        msjError.setTextFill(Color.web("#FF0000"));
+
+        contenedorInput.getChildren().addAll(formulario, msjError);
 
         panelCentro.getChildren().addAll(versusImageView, espacio, contenedorInput);
         panelCentro.setAlignment(Pos.TOP_CENTER);
         this.setCenter(panelCentro);
+        botonLimpiar.requestFocus();
     }
 
 

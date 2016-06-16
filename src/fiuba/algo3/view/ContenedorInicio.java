@@ -1,8 +1,8 @@
 package fiuba.algo3.view;
 
+import fiuba.algo3.view.eventos.BotonJugarEventHandler;
 import fiuba.algo3.view.eventos.OpcionSalirEventHandler;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import fiuba.algo3.view.utilities.ReproductorMusica;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -11,11 +11,7 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-
-import java.io.File;
 
 
 public class ContenedorInicio extends BorderPane {
@@ -27,6 +23,7 @@ public class ContenedorInicio extends BorderPane {
     ToggleButton botonMute;
     ImageView imagenMute;
     ImageView imagenUnMute;
+
 
     public ContenedorInicio(Stage stage, Scene proximaEscena, BarraDeMenu menuBar) {
 
@@ -61,7 +58,7 @@ public class ContenedorInicio extends BorderPane {
         botonJugar = new Button();
         botonJugar.setText("JUGAR");
         botonJugar.setPadding(new Insets(15, 15, 15, 15));
-        botonJugar.setOnAction(new OpcionJugarEventHandler(this.stage, this.proximaEscena));
+        botonJugar.setOnAction(new BotonJugarEventHandler(this.stage, this.proximaEscena));
         botonJugar.requestFocus();
         botonSalir = new Button();
         botonSalir.setText("Salir");
@@ -87,57 +84,19 @@ public class ContenedorInicio extends BorderPane {
     private void cargarMusicaDeFondo() {
 
         String musicFile = "src/fiuba/algo3/view/resources/sounds/inicioMusic.mp3";
+        ReproductorMusica.playBackGroundTheme(musicFile, true);
 
-        Media sound = new Media(new File(musicFile).toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(sound);
-        mediaPlayer.play();
-
-        botonMute.setOnAction(new OpcionMuteEventHandler(mediaPlayer));
-    }
-
-
-    private class OpcionMuteEventHandler implements EventHandler<ActionEvent> {
-
-        MediaPlayer mediaPlayer;
-
-        OpcionMuteEventHandler(MediaPlayer mediaPlayer) {
-            this.mediaPlayer = mediaPlayer;
-        }
-
-        @Override
-        public void handle(ActionEvent actionEvent) {
-
-            if (!mediaPlayer.isMute()) {
-                this.mediaPlayer.setMute(true);
+        botonMute.setOnAction( (actionEvent) -> {
+            if (!ReproductorMusica.isMute()) {
+                ReproductorMusica.setMute(true);
                 botonMute.setGraphic(imagenMute);
             }
 
             else {
-                this.mediaPlayer.setMute(false);
+                ReproductorMusica.setMute(false);
                 botonMute.setGraphic(imagenUnMute);
             }
-        }
-
-    }
-
-
-    private class OpcionJugarEventHandler implements EventHandler<ActionEvent> {
-
-        Stage stage;
-        Scene escenaJuego;
-
-        OpcionJugarEventHandler(Stage stage, Scene escenaJuego) {
-            this.stage = stage;
-            this.escenaJuego = escenaJuego;
-        }
-
-
-        @Override
-        public void handle(ActionEvent actionEvent) {
-            this.stage.setScene(escenaJuego);
-            this.stage.setFullScreen(true);
-        }
-
+        } );
     }
 
 }
