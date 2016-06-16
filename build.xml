@@ -150,7 +150,7 @@
 	</target>
 
 	<target name="empaquetar" depends="compilar.paquete">
-		<jar destfile="${build}/dist/algo3.jar" basedir="${build}/classes" />
+		<jar destfile="${build}/dist/algoformers.jar" basedir="${build}/classes" />
 	</target>
 
 	<target name="integracion-continua" depends="run-pmd,coverage-report,alternate-coverage-report" description="Ejecuta todas las tareas de integracion y genera los correspondientes reportes"/>
@@ -201,14 +201,17 @@
 			<copydir src="src/gui/imagess"
 				dest="${build}/classes/gui/imagess"
 				includes="**/*.png"/>
-		<jar destfile="${build}/dist/algo3.jar" basedir="${build}/classes"/>
+		<jar destfile="${build}/dist/algoformers.jar" basedir="${build}/classes"/>
 	</target>
 
 	<target name="ejecutar.aplicacion" depends="empaquetar">
-		<java classname="fiuba.algo3.ejemplo1.Foo" fork="true">
+		<java classname="fiuba.algo3.view.Main" fork="true">
 			<classpath refid="classpath" />
-			<classpath location="${build}/dist/algo3.jar" />
+			<classpath location="${build}/dist/algoformers.jar" />
 		</java>
+	</target>
+
+	<target name="jugar" depends="ejecutar.aplicacion">
 	</target>
 
 </project>
