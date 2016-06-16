@@ -217,6 +217,7 @@
 	<target name="limpiar">
 		<delete dir="${build}" />
 		<delete dir="${libs}" />
+		<delete file=".ant-targets-build.xml"/>
 	</target>
 
 </project>
