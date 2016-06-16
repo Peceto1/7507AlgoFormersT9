@@ -1,5 +1,10 @@
 [![Build Status](https://travis-ci.org/fpenovi/7507AlgoFormersT9.svg?branch=master)](https://travis-ci.org/fpenovi/7507AlgoFormersT9)
 
+### **EJECUCIÓN JUEGO**: ###
+
+        $ ant jugar
+
+
 ### **Instrucciones y como usar GIT**: ###
 
 1. Siempre al prender la PC realizar un **PULL**, de ésta manera se actualiza tu versión local del TP por si algún compañero hizo algún avance. Esto se hace de la siguiente manera:
