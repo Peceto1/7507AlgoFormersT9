@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 public class Arena {
 
@@ -16,6 +17,7 @@ public class Arena {
     private final int ANCHO = 51;
     private final int ALTO = 51;
     private static Arena instancia = new Arena();
+    private Random random = new Random();
 
 
     private Arena() {
@@ -77,12 +79,12 @@ public class Arena {
     
 
 	private void setTerrenoAleatorioEnPuntoAire(Punto punto) {
-		CreadorDeTerrenoAleatorio factoryTerrenos = CreadorDeTerrenoAleatorio.getInstance();
+		CreadorDeTerrenoAleatorio factoryTerrenos = new CreadorDeTerrenoAleatorio(this.random);
 		arena.get(punto).setTerreno(factoryTerrenos.crearTerrenoAereoAleatorio());
 	}
 	
 	private void setTerrenoAleatorioEnPuntoTierra(Punto punto) {
-		CreadorDeTerrenoAleatorio factoryTerrenos = CreadorDeTerrenoAleatorio.getInstance();
+		CreadorDeTerrenoAleatorio factoryTerrenos = new CreadorDeTerrenoAleatorio(this.random);
 		arena.get(punto).setTerreno(factoryTerrenos.crearTerrenoTerrestreAleatorio());
 	}
     
@@ -90,7 +92,7 @@ public class Arena {
     	List<Punto> puntosASetearTerreno = new ArrayList<Punto>(arena.keySet());
     	puntosASetearTerreno.removeAll(puntosDeInicioAutobots);
     	puntosASetearTerreno.removeAll(puntosDeInicioDecepticons);
-    	CreadorDeBonusAleatorio factoryBonus = CreadorDeBonusAleatorio.getInstance();
+    	CreadorDeBonusAleatorio factoryBonus = new CreadorDeBonusAleatorio(this.random);
     	for(Punto actual: puntosASetearTerreno)
     		arena.get(actual).setBonus(factoryBonus.crearBonusAleatorio());
     }

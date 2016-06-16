@@ -5,8 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 public class CreadorDeBonusAleatorio {
-	private static CreadorDeBonusAleatorio instancia = new CreadorDeBonusAleatorio();
-	private Random random = new Random();
+	Random random;
 	private List<CreadorDeBonus> bonuses = Arrays.asList(
 			new CreadorNullBonus(),
 			new CreadorNullBonus(),
@@ -26,8 +25,8 @@ public class CreadorDeBonusAleatorio {
 	//Ajustar repeticion de NullBonus para controlar la 
 	//cantidad de bonuses que parecen en el mapa
 	
-	static CreadorDeBonusAleatorio getInstance(){
-		return instancia;
+	CreadorDeBonusAleatorio(Random random){
+		this.random =random;
 	}
 	
 	public Bonus crearBonusAleatorio(){
