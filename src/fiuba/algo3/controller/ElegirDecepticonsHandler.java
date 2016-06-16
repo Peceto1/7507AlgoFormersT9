@@ -1,38 +1,40 @@
 package fiuba.algo3.controller;
 
 import fiuba.algo3.model.juego.Juego;
+import fiuba.algo3.model.juego.YaExisteJugadorConEseNombreException;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 
-public class ElegirDecepticonsHandler implements EventHandler<ActionEvent> {
+public class ElegirDecepticonsHandler extends ElegirEquipoHandler {
 
-    Juego juego;
-    TextField input;
-    Button autobots;
     Button decepticons;
-    Label msjError;
 
-    public ElegirDecepticonsHandler(Juego juego, TextField input, Button autobots, Button decepticons, Label msjError) {
+
+    public ElegirDecepticonsHandler(Juego juego, TextField input, Button decepticons, Label msjError, Text nroJugador) {
         this.juego = juego;
         this.input = input;
-        this.autobots = autobots;
         this.decepticons = decepticons;
         this.msjError = msjError;
+        this.nroJugador = nroJugador;
     }
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        if (input.getText().trim().equals("")) {
-            msjError.setText("Debe ingresar un nombre");
-            this.msjError.setTextFill(Color.web("#FF0000"));
-            this.input.requestFocus();
+        if (!ingresoValido())
+            return;
+
+        try {
+            juego.crearJugador(input.getText().trim(), "DECEPTICONS");
+        } catch (YaExisteJugadorConEseNombreException e) {
+            msjError.setText("Nombre en uso");
             return;
         }
 
+        decepticons.setDisable(true);
+        limpiarPanel();
     }
 
 

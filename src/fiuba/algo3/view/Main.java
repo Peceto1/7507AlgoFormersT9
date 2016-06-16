@@ -4,6 +4,7 @@ import fiuba.algo3.model.juego.Juego;
 import fiuba.algo3.view.eventos.ApplicationOnKeyHandler;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 
@@ -37,7 +38,6 @@ public class Main extends Application {
 		Scene escenaInicio = new Scene(contenedorInicio, 800, 600);
 
 
-
 		ApplicationOnKeyHandler escHandler = new ApplicationOnKeyHandler(stage, menuBar);
 		escenaInicio.setOnKeyPressed(escHandler);
 		escenaEquipos.setOnKeyPressed(escHandler);
@@ -48,6 +48,5 @@ public class Main extends Application {
 		stage.setFullScreen(true);
 		stage.show();
 	}
-
 
 }

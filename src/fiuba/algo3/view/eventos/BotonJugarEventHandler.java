@@ -12,7 +12,7 @@ public class BotonJugarEventHandler implements EventHandler<ActionEvent> {
     Stage stage;
     Scene escenaJuego;
 
-    public BotonJugarEventHandler(Stage stage, Scene escenaJuego, Juego juego) {
+    public BotonJugarEventHandler(Stage stage, Scene escenaJuego) {
         this.stage = stage;
         this.escenaJuego = escenaJuego;
     }
