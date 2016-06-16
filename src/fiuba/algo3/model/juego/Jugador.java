@@ -115,4 +115,8 @@ public class Jugador {
 		for (Algoformer actual: algoformers)
 			actual.resetearStats();
 	}
+	
+	public int cantidadAlgoformers(){
+		return algoformers.size();
+	}
 }
