@@ -6,8 +6,7 @@ import java.util.Random;
 
 public class CreadorDeTerrenoAleatorio {
 	
-	private static CreadorDeTerrenoAleatorio instancia = new CreadorDeTerrenoAleatorio();
-	private Random random = new Random();
+	private Random random;
 	private List<CreadorDeTerreno> terrenosAereos = Arrays.asList(
 			new CreadorNube(),
 			new CreadorNube(),
@@ -38,9 +37,10 @@ public class CreadorDeTerrenoAleatorio {
 	CreadorDeTerrenoAleatorio(){
 	}
 	
-	static CreadorDeTerrenoAleatorio getInstance(){
-		return instancia;
+	CreadorDeTerrenoAleatorio(Random random){
+		this.random = random;
 	}
+
 	
 	public TerrenoAplicable crearTerrenoAereoAleatorio(){
 		int indice = random.nextInt(terrenosAereos.size());
