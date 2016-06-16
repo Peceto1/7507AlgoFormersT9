@@ -7,6 +7,7 @@ import org.junit.Assert;
 import fiuba.algo3.model.espacio.Direccion;
 import fiuba.algo3.model.espacio.DireccionArriba;
 import fiuba.algo3.model.espacio.DireccionDerecha;
+import fiuba.algo3.model.espacio.DireccionDerechaArriba;
 import fiuba.algo3.model.espacio.DireccionIzquierda;
 import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.espacio.PuntoAire;
@@ -186,6 +187,71 @@ public class BonusTest {
 	}
 	
 	@Test
+	public void AlgoformerQuePasaPorBonusFlashEnAlternoGanaVelocidad(){
+		Algoformer bonecrusher = instanciadorDeAlgoformers.obtenerBonecrusher();
+		Punto ubicacionInicialBonecrusher = new PuntoTierra(50,25);
+		Punto ubicacionBonusFlash = new PuntoTierra(49,25);
+		Direccion direccionIzquierda = new DireccionIzquierda();
+		
+		arenaDeJuego.ubicarAlgoformer(bonecrusher, ubicacionInicialBonecrusher);
+		arenaDeJuego.setBonusEnPunto(ubicacionBonusFlash, new BonusFlash());
+		
+		bonecrusher.reiniciarMovimiento();
+		bonecrusher.transformarse();
+		
+		bonecrusher.reiniciarMovimiento();
+		bonecrusher.moverseHacia(direccionIzquierda);
+		
+		bonecrusher.resetearStats();
+		bonecrusher.reiniciarMovimiento();	
+		bonecrusher.aplicarEfectos();
+		
+		for (int i =0; i< 24; i++){
+			bonecrusher.moverseHacia(direccionIzquierda);
+		}
+	}
+	
+	@Test
+	public void TransformacionesNoAfectanAlBonusFlashDuranteLosTurnosQueEstaActivo(){
+		Algoformer bumblebee = instanciadorDeAlgoformers.obtenerBumblebee();
+		Punto ubicacionInicialDeBumblebee = new PuntoTierra(1,1);
+		Punto ubicacionDeBonus = new PuntoTierra(2,2);
+		Direccion direccionDiagonal = new DireccionDerechaArriba();
+		
+		arenaDeJuego.ubicarAlgoformer(bumblebee, ubicacionInicialDeBumblebee);
+		arenaDeJuego.setBonusEnPunto(ubicacionDeBonus, new BonusFlash());
+		
+		bumblebee.reiniciarMovimiento();
+		bumblebee.moverseHacia(direccionDiagonal);
+		
+		for (int i=0; i<5;i++){
+			bumblebee.moverseHacia(direccionDiagonal);
+		}
+		
+		bumblebee.reiniciarMovimiento();
+		bumblebee.transformarse();
+		
+		bumblebee.reiniciarMovimiento();
+		bumblebee.aplicarEfectos();
+		
+		for(int i=0; i<15; i++){
+			bumblebee.moverseHacia(direccionDiagonal);
+		}
+		
+		bumblebee.reiniciarMovimiento();
+		bumblebee.transformarse();
+		
+		bumblebee.reiniciarMovimiento();
+		bumblebee.aplicarEfectos();
+		for(int i=0; i<6; i++){
+			bumblebee.moverseHacia(direccionDiagonal);
+		}
+				
+		
+		
+	}
+	
+	@Test
 	public void AlgoformerQuePasoPorBonusFlashMantieneMovimientosExtraEnElTercerTurno(){
 		Algoformer optimus = instanciadorDeAlgoformers.obtenerOptimus();
 		Punto ubicacionInicialOptimus = new PuntoTierra(3,4);
@@ -337,5 +403,30 @@ public class BonusTest {
 		
 		bonecrusher.atacar(ratchet);
 		Assert.assertEquals((ratchet.getVidaMax()-30), ratchet.getVida());
+	}
+	
+	public void AlgoformerQueCapturaBurbujaLaMantieneLuegoDeTransformarse(){
+		Algoformer bumblebee = instanciadorDeAlgoformers.obtenerBumblebee();
+		Algoformer frenzy = instanciadorDeAlgoformers.obtenerFrenzy();
+		Punto ubicacionInicialBumblebee = new PuntoTierra(19,11);
+		Punto ubicacionInicialFrenzy = new PuntoTierra(19,12);
+		Punto ubicacionBonusBurbuja = new PuntoTierra(19,13);
+		Direccion direccionArriba = new DireccionArriba();
+		
+		arenaDeJuego.setBonusEnPunto(ubicacionBonusBurbuja, new BonusBurbujaInmaculada());
+		arenaDeJuego.ubicarAlgoformer(bumblebee, ubicacionInicialBumblebee);
+		arenaDeJuego.ubicarAlgoformer(frenzy, ubicacionInicialFrenzy);
+		bumblebee.reiniciarMovimiento();
+		frenzy.reiniciarMovimiento();
+		
+		frenzy.moverseHacia(direccionArriba);
+		frenzy.transformarse();
+		
+		frenzy.resetearStats();
+		bumblebee.reiniciarMovimiento();
+		bumblebee.aplicarEfectos();
+		
+		bumblebee.atacar(bumblebee);
+		Assert.assertEquals(frenzy.getVidaMax(), frenzy.getVida());
 	}
 }
