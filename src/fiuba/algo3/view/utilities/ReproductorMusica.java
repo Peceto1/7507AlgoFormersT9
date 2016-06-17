@@ -1,13 +1,24 @@
 package fiuba.algo3.view.utilities;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 
 import java.io.File;
+import java.sql.Time;
 
 public class ReproductorMusica {
 
     private static MediaPlayer musicPlayer;
+    private static Timeline timeline;
+
+
+    public static Timeline getTimeline() {
+        return timeline;
+    }
 
 
     public static void playBackGroundTheme(String musicFile, Boolean loopeable) {
@@ -30,8 +41,17 @@ public class ReproductorMusica {
         musicPlayer.setMute(mute);
     }
 
+
     public static void stop() {
         musicPlayer.stop();
+    }
+
+
+    public static void fadeOut(Duration duracion) {
+
+        timeline = new Timeline(new KeyFrame(duracion, new KeyValue(musicPlayer.volumeProperty(), 0)));
+        timeline.play();
+        timeline.setOnFinished( (actionEvent) -> {musicPlayer.stop();} );
     }
 
 

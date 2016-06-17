@@ -1,6 +1,5 @@
 package fiuba.algo3.view.eventos;
 
-import fiuba.algo3.model.juego.Juego;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -10,17 +9,17 @@ public class BotonJugarEventHandler implements EventHandler<ActionEvent> {
 
 
     Stage stage;
-    Scene escenaJuego;
+    Scene escenaProxima;
 
-    public BotonJugarEventHandler(Stage stage, Scene escenaJuego) {
+    public BotonJugarEventHandler(Stage stage, Scene escenaProxima) {
         this.stage = stage;
-        this.escenaJuego = escenaJuego;
+        this.escenaProxima = escenaProxima;
     }
 
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        this.stage.setScene(escenaJuego);
+        this.stage.setScene(escenaProxima);
         this.stage.setFullScreen(true);
     }
 

@@ -1,7 +1,6 @@
 package fiuba.algo3.controller;
 
 import fiuba.algo3.model.juego.Juego;
-import fiuba.algo3.model.juego.YaExisteJugadorConEseNombreException;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

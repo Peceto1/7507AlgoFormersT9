@@ -58,10 +58,12 @@ class ContenedorInicio extends BorderPane {
         botonJugar = new Button();
         botonJugar.setText("JUGAR");
         botonJugar.setPadding(new Insets(15, 15, 15, 15));
+        botonJugar.setStyle("-fx-base: #474747;");
         botonJugar.setOnAction(new BotonJugarEventHandler(this.stage, this.proximaEscena));
         botonJugar.requestFocus();
         botonSalir = new Button();
         botonSalir.setText("Salir");
+        botonSalir.setStyle("-fx-base: #474747;");
         botonSalir.setOnAction(new OpcionSalirEventHandler());
 
 

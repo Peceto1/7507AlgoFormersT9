@@ -23,6 +23,7 @@ public class BarraDeMenu extends MenuBar {
         this.menuAyuda = new Menu("Ayuda");
         opcionPantallaCompleta = new MenuItem("Pantalla Completa");
         agregarOpcionesAMenus(stage);
+        this.setStyle("-fx-base: #474747;");
     }
 
 

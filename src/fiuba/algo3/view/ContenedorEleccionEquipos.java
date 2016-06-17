@@ -4,7 +4,6 @@ import fiuba.algo3.controller.BotonComenzarBatallaHandler;
 import fiuba.algo3.controller.ElegirAutobotsHandler;
 import fiuba.algo3.controller.ElegirDecepticonsHandler;
 import fiuba.algo3.model.juego.Juego;
-import fiuba.algo3.view.eventos.ApplicationOnKeyHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -42,7 +41,6 @@ class ContenedorEleccionEquipos extends BorderPane {
         this.stage = stage;
         this.menuBar = menuBar;
         this.proximaEscena = proximaEscena;
-        this.proximaEscena.setOnKeyPressed(new ApplicationOnKeyHandler(stage, menuBar));
         this.juego = juego;
         cargarImagenDeFondo();
         setearBarraMenuTop();
@@ -70,6 +68,7 @@ class ContenedorEleccionEquipos extends BorderPane {
         Image autobotsImage = new Image("file:src/fiuba/algo3/view/resources/images/teamAutobots.jpg");
         this.autobotsButton = new Button("", new ImageView(autobotsImage));
         autobotsButton.setFocusTraversable(false);
+        autobotsButton.setStyle("-fx-base: #474747;");
         autobotsButton.setOnAction(new ElegirAutobotsHandler(juego, nombreJugador, autobotsButton, msjError, nroJugador, panelAbajo));
         autobots.getChildren().add(autobotsButton);
         autobots.setPadding(new Insets(0, 0, 0, 25));
@@ -83,6 +82,7 @@ class ContenedorEleccionEquipos extends BorderPane {
         Image decepticonsImage = new Image("file:src/fiuba/algo3/view/resources/images/teamDecepticons.jpg");
         this.decepticonsButton = new Button("", new ImageView(decepticonsImage));
         decepticonsButton.setFocusTraversable(false);
+        decepticonsButton.setStyle("-fx-base: #474747;");
         decepticonsButton.setOnAction(new ElegirDecepticonsHandler(juego, nombreJugador, decepticonsButton, msjError, nroJugador, panelAbajo));
         decepticons.getChildren().add(decepticonsButton);
         decepticons.setPadding(new Insets(0, 25, 0, 0));
@@ -170,7 +170,7 @@ class ContenedorEleccionEquipos extends BorderPane {
         this.botonComenzarBatalla.setStyle("-fx-font: 24 arial; -fx-base: #64a500;");
         this.botonComenzarBatalla.setVisible(false);
         this.botonComenzarBatalla.setId("botonComenzarBatalla");
-        this.botonComenzarBatalla.setOnAction(new BotonComenzarBatallaHandler());
+        this.botonComenzarBatalla.setOnAction(new BotonComenzarBatallaHandler(stage, proximaEscena, juego, botonComenzarBatalla));
 
         this.panelAbajo.getChildren().addAll(panelElecciones, botonComenzarBatalla);
 
