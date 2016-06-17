@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 public class ElegirAutobotsHandler extends ElegirEquipoHandler {
@@ -13,12 +14,14 @@ public class ElegirAutobotsHandler extends ElegirEquipoHandler {
     Button autobots;
 
 
-    public ElegirAutobotsHandler(Juego juego, TextField input, Button autobots, Label msjError, Text nroJugador) {
+    public ElegirAutobotsHandler(Juego juego, TextField input, Button autobots, Label msjError, Text nroJugador, VBox panelAbajo) {
         this.juego = juego;
         this.input = input;
         this.autobots = autobots;
         this.msjError = msjError;
         this.nroJugador = nroJugador;
+        this.panelAbajo = panelAbajo;
+        this.equipo = "AUTOBOTS";
     }
 
     @Override
@@ -26,14 +29,11 @@ public class ElegirAutobotsHandler extends ElegirEquipoHandler {
         if (!ingresoValido())
             return;
 
-        try {
-            juego.crearJugador(input.getText().trim(), "AUTOBOTS");
-        } catch (YaExisteJugadorConEseNombreException e) {
-            msjError.setText("Nombre en uso");
+        if (!crearJugador())
             return;
-        }
 
         autobots.setDisable(true);
+        mostrarEleccion();
         limpiarPanel();
     }
 

@@ -2,7 +2,6 @@ package fiuba.algo3.view;
 
 import fiuba.algo3.view.eventos.OpcionSalirEventHandler;
 import fiuba.algo3.view.eventos.SilenciarEventHandler;
-import fiuba.algo3.view.utilities.ReproductorMusica;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.*;
@@ -17,7 +16,7 @@ public class BarraDeMenu extends MenuBar {
     Menu menuAyuda;
     MenuItem opcionPantallaCompleta;
 
-    public BarraDeMenu(Stage stage) {
+    BarraDeMenu(Stage stage) {
 
         this.menuArchivo = new Menu("Archivo");
         this.menuOpciones = new Menu("Opciones");

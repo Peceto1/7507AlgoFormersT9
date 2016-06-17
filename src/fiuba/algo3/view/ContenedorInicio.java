@@ -14,7 +14,7 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 
-public class ContenedorInicio extends BorderPane {
+class ContenedorInicio extends BorderPane {
 
     Stage stage;
     Scene proximaEscena;

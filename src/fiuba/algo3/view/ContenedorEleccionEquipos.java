@@ -1,5 +1,6 @@
 package fiuba.algo3.view;
 
+import fiuba.algo3.controller.BotonComenzarBatallaHandler;
 import fiuba.algo3.controller.ElegirAutobotsHandler;
 import fiuba.algo3.controller.ElegirDecepticonsHandler;
 import fiuba.algo3.model.juego.Juego;
@@ -20,7 +21,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
-public class ContenedorEleccionEquipos extends BorderPane {
+class ContenedorEleccionEquipos extends BorderPane {
 
     Stage stage;
     BarraDeMenu menuBar;
@@ -28,11 +29,13 @@ public class ContenedorEleccionEquipos extends BorderPane {
     VBox autobots;
     VBox decepticons;
     VBox panelCentro;
+    VBox panelAbajo;
     TextField nombreJugador;
     Text nroJugador;
     Label msjError;
     Button autobotsButton;
     Button decepticonsButton;
+    Button botonComenzarBatalla;
     Juego juego;
 
     ContenedorEleccionEquipos(Stage stage, Juego juego, BarraDeMenu menuBar, Scene proximaEscena) {
@@ -67,7 +70,7 @@ public class ContenedorEleccionEquipos extends BorderPane {
         Image autobotsImage = new Image("file:src/fiuba/algo3/view/resources/images/teamAutobots.jpg");
         this.autobotsButton = new Button("", new ImageView(autobotsImage));
         autobotsButton.setFocusTraversable(false);
-        autobotsButton.setOnAction(new ElegirAutobotsHandler(juego, nombreJugador, autobotsButton, msjError, nroJugador));
+        autobotsButton.setOnAction(new ElegirAutobotsHandler(juego, nombreJugador, autobotsButton, msjError, nroJugador, panelAbajo));
         autobots.getChildren().add(autobotsButton);
         autobots.setPadding(new Insets(0, 0, 0, 25));
         autobots.setAlignment(Pos.CENTER);
@@ -80,7 +83,7 @@ public class ContenedorEleccionEquipos extends BorderPane {
         Image decepticonsImage = new Image("file:src/fiuba/algo3/view/resources/images/teamDecepticons.jpg");
         this.decepticonsButton = new Button("", new ImageView(decepticonsImage));
         decepticonsButton.setFocusTraversable(false);
-        decepticonsButton.setOnAction(new ElegirDecepticonsHandler(juego, nombreJugador, decepticonsButton, msjError, nroJugador));
+        decepticonsButton.setOnAction(new ElegirDecepticonsHandler(juego, nombreJugador, decepticonsButton, msjError, nroJugador, panelAbajo));
         decepticons.getChildren().add(decepticonsButton);
         decepticons.setPadding(new Insets(0, 25, 0, 0));
         decepticons.setAlignment(Pos.CENTER);
@@ -154,7 +157,24 @@ public class ContenedorEleccionEquipos extends BorderPane {
 
         contenedorInput.getChildren().addAll(formulario, msjError);
 
-        panelCentro.getChildren().addAll(versusImageView, espacio, contenedorInput);
+        this.panelAbajo = new VBox(20);
+        this.panelAbajo.setPadding(new Insets(40, 0, 0, 0));
+        this.panelAbajo.setAlignment(Pos.CENTER);
+
+        VBox panelElecciones = new VBox();
+        panelElecciones.setSpacing(0);
+        panelElecciones.setAlignment(Pos.CENTER);
+        panelElecciones.setId("eleccionesVBox");
+
+        this.botonComenzarBatalla = new Button("Comenzar Batalla");
+        this.botonComenzarBatalla.setStyle("-fx-font: 24 arial; -fx-base: #64a500;");
+        this.botonComenzarBatalla.setVisible(false);
+        this.botonComenzarBatalla.setId("botonComenzarBatalla");
+        this.botonComenzarBatalla.setOnAction(new BotonComenzarBatallaHandler());
+
+        this.panelAbajo.getChildren().addAll(panelElecciones, botonComenzarBatalla);
+
+        panelCentro.getChildren().addAll(versusImageView, espacio, contenedorInput, panelAbajo);
         panelCentro.setAlignment(Pos.TOP_CENTER);
         this.setCenter(panelCentro);
         botonLimpiar.requestFocus();

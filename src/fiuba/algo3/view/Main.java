@@ -4,7 +4,6 @@ import fiuba.algo3.model.juego.Juego;
 import fiuba.algo3.view.eventos.ApplicationOnKeyHandler;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 

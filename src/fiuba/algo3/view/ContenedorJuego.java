@@ -10,7 +10,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class ContenedorJuego extends BorderPane {
+class ContenedorJuego extends BorderPane {
 
     Stage stage;
     BarraDeMenu barraMenu;
@@ -19,7 +19,7 @@ public class ContenedorJuego extends BorderPane {
     VBox contenedorArena;
 
 
-    public ContenedorJuego(Stage stage, Juego juego, BarraDeMenu menuBar) {
+    ContenedorJuego(Stage stage, Juego juego, BarraDeMenu menuBar) {
         this.stage = stage;
         this.barraMenu = menuBar;
         this.setTop(barraMenu);
