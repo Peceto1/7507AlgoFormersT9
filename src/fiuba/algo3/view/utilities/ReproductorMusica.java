@@ -8,7 +8,6 @@ import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
 import java.io.File;
-import java.sql.Time;
 
 public class ReproductorMusica {
 

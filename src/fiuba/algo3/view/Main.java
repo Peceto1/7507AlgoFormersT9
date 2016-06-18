@@ -19,30 +19,24 @@ public class Main extends Application {
 
 		stage.setTitle("Algoformers 2016");
 
-		// Creo la barra de menu que voy a utilizar en 2 de las 3 escenas
-		BarraDeMenu menuBar = new BarraDeMenu(stage);
+		VentanaDefault ventanaDefault = new VentanaDefault(stage);	// Ventana con MenuBar
+		Scene escena = new Scene(ventanaDefault, 800, 600);
 
 		Juego juego = new Juego();
 
 		// 3ra Escena
-		ContenedorJuego contenedorJuego = new ContenedorJuego(stage, juego, menuBar);
-		Scene escenaJuego = new Scene(contenedorJuego, 800, 600);
+		ContenedorJuego vistaJuego = new ContenedorJuego(juego);
 
 		// 2da Escena --> Seleccion de equipos
-		ContenedorEleccionEquipos contenedorEleccion = new ContenedorEleccionEquipos(stage, juego, menuBar, escenaJuego);
-		Scene escenaEquipos = new Scene(contenedorEleccion, 800, 600);
+		ContenedorEleccionEquipos vistaEquipos = new ContenedorEleccionEquipos(ventanaDefault, juego, vistaJuego);
 
 		// 1ra Escena
-		ContenedorInicio contenedorInicio = new ContenedorInicio(stage, escenaEquipos, menuBar);
-		Scene escenaInicio = new Scene(contenedorInicio, 800, 600);
+		ContenedorInicio contenedorInicio = new ContenedorInicio(ventanaDefault, vistaEquipos);
 
 
-		ApplicationOnKeyHandler escHandler = new ApplicationOnKeyHandler(stage, menuBar);
-		escenaInicio.setOnKeyPressed(escHandler);
-		escenaEquipos.setOnKeyPressed(escHandler);
-		escenaJuego.setOnKeyPressed(escHandler);
-
-		stage.setScene(escenaInicio);
+		ventanaDefault.setCenter(contenedorInicio);
+		escena.setOnKeyPressed(new ApplicationOnKeyHandler(stage, ventanaDefault.getMenuBar()));
+		stage.setScene(escena);
 		stage.setFullScreenExitHint("");
 		stage.setFullScreen(true);
 		stage.show();

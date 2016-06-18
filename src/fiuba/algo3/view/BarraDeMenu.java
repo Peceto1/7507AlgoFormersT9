@@ -15,15 +15,17 @@ public class BarraDeMenu extends MenuBar {
     Menu menuOpciones;
     Menu menuAyuda;
     MenuItem opcionPantallaCompleta;
+    String estiloNegro = "-fx-base: #474747;";
 
-    BarraDeMenu(Stage stage) {
+
+    public BarraDeMenu(Stage stage) {
 
         this.menuArchivo = new Menu("Archivo");
         this.menuOpciones = new Menu("Opciones");
         this.menuAyuda = new Menu("Ayuda");
         opcionPantallaCompleta = new MenuItem("Pantalla Completa");
         agregarOpcionesAMenus(stage);
-        this.setStyle("-fx-base: #474747;");
+        this.setStyle(estiloNegro);
     }
 
 

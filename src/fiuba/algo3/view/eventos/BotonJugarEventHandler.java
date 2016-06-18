@@ -1,26 +1,27 @@
 package fiuba.algo3.view.eventos;
 
+import fiuba.algo3.view.ContenedorEleccionEquipos;
+import fiuba.algo3.view.VentanaDefault;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
+import javafx.scene.layout.BorderPane;
 
 public class BotonJugarEventHandler implements EventHandler<ActionEvent> {
 
 
-    Stage stage;
-    Scene escenaProxima;
+    VentanaDefault ventanaDefault;
+    ContenedorEleccionEquipos escenaProxima;
 
-    public BotonJugarEventHandler(Stage stage, Scene escenaProxima) {
-        this.stage = stage;
+    public BotonJugarEventHandler(VentanaDefault ventanaDefault, ContenedorEleccionEquipos escenaProxima) {
+        this.ventanaDefault = ventanaDefault;
         this.escenaProxima = escenaProxima;
     }
 
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        this.stage.setScene(escenaProxima);
-        this.stage.setFullScreen(true);
+        this.ventanaDefault.setCenter(escenaProxima);
     }
 
 }

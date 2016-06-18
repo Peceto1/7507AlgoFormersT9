@@ -6,7 +6,6 @@ import fiuba.algo3.controller.ElegirDecepticonsHandler;
 import fiuba.algo3.model.juego.Juego;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -17,14 +16,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 
-class ContenedorEleccionEquipos extends BorderPane {
+public class ContenedorEleccionEquipos extends BorderPane {
 
-    Stage stage;
-    BarraDeMenu menuBar;
-    Scene proximaEscena;
+    VentanaDefault ventanaDefault;
+    ContenedorJuego proximaVista;
     VBox autobots;
     VBox decepticons;
     VBox panelCentro;
@@ -37,21 +34,14 @@ class ContenedorEleccionEquipos extends BorderPane {
     Button botonComenzarBatalla;
     Juego juego;
 
-    ContenedorEleccionEquipos(Stage stage, Juego juego, BarraDeMenu menuBar, Scene proximaEscena) {
-        this.stage = stage;
-        this.menuBar = menuBar;
-        this.proximaEscena = proximaEscena;
+    public ContenedorEleccionEquipos(VentanaDefault ventanaDefault, Juego juego, ContenedorJuego proximaVista) {
+        this.ventanaDefault = ventanaDefault;
+        this.proximaVista = proximaVista;
         this.juego = juego;
         cargarImagenDeFondo();
-        setearBarraMenuTop();
         crearPanelCentro();
         crearPanelAutobots();
         crearPanelDecepticons();
-    }
-
-
-    private void setearBarraMenuTop() {
-        this.setTop(menuBar);
     }
 
 
@@ -170,7 +160,7 @@ class ContenedorEleccionEquipos extends BorderPane {
         this.botonComenzarBatalla.setStyle("-fx-font: 24 arial; -fx-base: #64a500;");
         this.botonComenzarBatalla.setVisible(false);
         this.botonComenzarBatalla.setId("botonComenzarBatalla");
-        this.botonComenzarBatalla.setOnAction(new BotonComenzarBatallaHandler(stage, proximaEscena, juego, botonComenzarBatalla));
+        this.botonComenzarBatalla.setOnAction(new BotonComenzarBatallaHandler(ventanaDefault, proximaVista, juego, botonComenzarBatalla));
 
         this.panelAbajo.getChildren().addAll(panelElecciones, botonComenzarBatalla);
 

@@ -5,19 +5,17 @@ import fiuba.algo3.view.eventos.OpcionSalirEventHandler;
 import fiuba.algo3.view.utilities.ReproductorMusica;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.stage.Stage;
 
 
-class ContenedorInicio extends BorderPane {
+public class ContenedorInicio extends BorderPane {
 
-    Stage stage;
-    Scene proximaEscena;
+    VentanaDefault ventanaDefault;
+    ContenedorEleccionEquipos proximaEscena;
     Button botonJugar;
     Button botonSalir;
     ToggleButton botonMute;
@@ -25,9 +23,9 @@ class ContenedorInicio extends BorderPane {
     ImageView imagenUnMute;
 
 
-    public ContenedorInicio(Stage stage, Scene proximaEscena, BarraDeMenu menuBar) {
+    public ContenedorInicio(VentanaDefault ventanaDefault, ContenedorEleccionEquipos proximaEscena) {
 
-        this.stage = stage;
+        this.ventanaDefault = ventanaDefault;
         this.proximaEscena = proximaEscena;
         cargarImagenDeFondo();
         cargarImagenesBotones();
@@ -59,7 +57,7 @@ class ContenedorInicio extends BorderPane {
         botonJugar.setText("JUGAR");
         botonJugar.setPadding(new Insets(15, 15, 15, 15));
         botonJugar.setStyle("-fx-base: #474747;");
-        botonJugar.setOnAction(new BotonJugarEventHandler(this.stage, this.proximaEscena));
+        botonJugar.setOnAction(new BotonJugarEventHandler(this.ventanaDefault, this.proximaEscena));
         botonJugar.requestFocus();
         botonSalir = new Button();
         botonSalir.setText("Salir");
