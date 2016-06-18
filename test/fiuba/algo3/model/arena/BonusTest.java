@@ -306,6 +306,52 @@ public class BonusTest {
 			optimus.moverseHacia(direccionDerecha);
 		}
 	
+	@Test(expected = MovimientoNoValidoException.class)
+	public void AlgoformerConFlashQuePasaPorNebulosaPierdeElTurno(){
+		Algoformer megatron = instanciadorDeAlgoformers.obtenerMegatron();
+		Punto ubicacionInicialMegatron = new PuntoTierra(3,4);
+		Punto ubicacionBonusFlash = new PuntoAire(4,4);
+		Punto ubicacionNebulosa = new PuntoAire(5,4);
+		Direccion direccionDerecha = new DireccionDerecha();
+		
+		arenaDeJuego.setBonusEnPunto(ubicacionBonusFlash, new BonusFlash());
+		arenaDeJuego.setTerrenoEnPunto(ubicacionNebulosa, new NebulosaDeAndromeda());
+		arenaDeJuego.ubicarAlgoformer(megatron, ubicacionInicialMegatron);
+		megatron.reiniciarMovimiento();
+		megatron.transformarse();
+		
+		megatron.reiniciarMovimiento();
+		megatron.moverseHacia(direccionDerecha);
+		megatron.moverseHacia(direccionDerecha);
+		
+		megatron.moverseHacia(direccionDerecha);
+	}
+	
+	@Test(expected = MovimientoNoValidoException.class)
+	public void AlgoformerConFlashQuePasaPorNebulosaPierdeElSiguienteTurno(){
+		Algoformer megatron = instanciadorDeAlgoformers.obtenerMegatron();
+		Punto ubicacionInicialMegatron = new PuntoTierra(3,4);
+		Punto ubicacionBonusFlash = new PuntoAire(4,4);
+		Punto ubicacionNebulosa = new PuntoAire(5,4);
+		Direccion direccionDerecha = new DireccionDerecha();
+		
+		arenaDeJuego.setBonusEnPunto(ubicacionBonusFlash, new BonusFlash());
+		arenaDeJuego.setTerrenoEnPunto(ubicacionNebulosa, new NebulosaDeAndromeda());
+		arenaDeJuego.ubicarAlgoformer(megatron, ubicacionInicialMegatron);
+		megatron.reiniciarMovimiento();
+		megatron.transformarse();
+		
+		megatron.reiniciarMovimiento();
+		megatron.moverseHacia(direccionDerecha);
+		megatron.moverseHacia(direccionDerecha);
+		
+		megatron.resetearStats();
+		megatron.reiniciarMovimiento();
+		megatron.aplicarEfectos();
+		
+		megatron.moverseHacia(direccionDerecha);
+	}
+	
 	@Test
 	public void AlgoformerConBurbujaInmaculadaNoPierdeVida(){
 		Algoformer ratchet = instanciadorDeAlgoformers.obtenerRatchet();

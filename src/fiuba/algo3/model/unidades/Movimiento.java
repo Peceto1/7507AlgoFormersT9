@@ -83,6 +83,7 @@ class Movimiento {
 	}
 
 	public void agregarMovimientos(int movimientos) {
-		restantes = (restantes + movimientos);
+		if (restantes!=0)
+			restantes = (restantes + movimientos);
 	}
 }
