@@ -47,10 +47,10 @@ public abstract class Algoformer {
 
 
 	void setChispa() {
-		if (!ubicacion.contieneChispa()){
+		if (!Arena.getInstance().contieneChispa(ubicacion)){
 			throw new ImposibleCapturarChispaException();
 		}
-		chispa = ubicacion.obtenerChispa();
+		chispa = Arena.getInstance().obtenerChispa(ubicacion);
 	}
 
 

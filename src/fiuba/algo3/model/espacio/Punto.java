@@ -1,7 +1,6 @@
 package fiuba.algo3.model.espacio;
 
 import fiuba.algo3.model.arena.Arena;
-import fiuba.algo3.model.arena.Chispa;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,17 +23,6 @@ public abstract class Punto {
     public int distanciaAl(Punto other) {
         return Math.max(Math.abs(this.x - other.x), Math.abs(this.y - other.y));    // Distancia de Chebyshov
     }
-
-
-    public boolean contieneChispa() {
-        return Arena.getInstance().contieneChispa(this);
-    }
-
-
-    public Chispa obtenerChispa() {
-        return Arena.getInstance().obtenerChispa(this);
-    }
-
 
     public List<Punto> obtenerAdyacentes() {
 
