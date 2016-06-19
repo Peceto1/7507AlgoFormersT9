@@ -10,4 +10,9 @@ public class Pantano implements TerrenoAplicable {
 	public void aplicarseSobre(Algoformer algoformer) {
 		algoformer.perderUnMovimiento();
 	}
+	
+	@Override
+	public String devolverTipoTerreno(){
+		return "Pantano";
+	}
 }

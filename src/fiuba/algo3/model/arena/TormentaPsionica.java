@@ -20,5 +20,10 @@ public class TormentaPsionica implements TerrenoAplicable {
 
 		algoformer.agregarEfecto(efecto);
 	}
+	
+	@Override
+	public String devolverTipoTerreno(){
+		return "Tormenta Psionica";
+	}
 
 }

@@ -401,4 +401,33 @@ public class TerrenoTest {
 		Assert.assertEquals(400, frenzy.getVida());	
 	}
 	
+	@Test
+	public void TerrenoRocosoDevuelveSuTipoCorrectamente(){
+		Assert.assertEquals("Rocoso", new Rocoso().devolverTipoTerreno());
+	}
+	
+	@Test
+	public void TerrenoPantanosoDevuelveSuTipoCorrectamente(){
+		Assert.assertEquals("Pantano", new Pantano().devolverTipoTerreno());
+	}
+	
+	@Test
+	public void TerrenoEspinosoDevuelveSuTipoCorrectamente(){
+		Assert.assertEquals("Espinas", new Espinas().devolverTipoTerreno());
+	}
+	
+	@Test
+	public void TerrenoNubosoDevuelveSuTipoCorrectamente(){
+		Assert.assertEquals("Nube", new Nube().devolverTipoTerreno());
+	}
+	
+	@Test
+	public void TerrenoTormentaPsionicaDevuelveSuTipoCorrectamente(){
+		Assert.assertEquals("Tormenta Psionica", new TormentaPsionica().devolverTipoTerreno());
+	}
+	
+	@Test
+	public void TerrenoNebulosaDeAndromedaDevuelveSuTipoCorrectamente(){
+		Assert.assertEquals("Nebulosa de Andromeda", new NebulosaDeAndromeda().devolverTipoTerreno());
+	}
 }

@@ -9,5 +9,10 @@ class Nube implements TerrenoAplicable {
 	public void aplicarseSobre(Algoformer algoformer) {
 
 	}
+	
+	@Override
+	public String devolverTipoTerreno(){
+		return "Nube";
+	}
 
 }

@@ -7,5 +7,10 @@ class Rocoso implements TerrenoAplicable {
 	@Override
 	public void aplicarseSobre(Algoformer algoformer) {
 	}
+	
+	@Override
+	public String devolverTipoTerreno(){
+		return "Rocoso";
+	}
 
 }

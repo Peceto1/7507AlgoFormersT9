@@ -17,5 +17,10 @@ public class NebulosaDeAndromeda implements TerrenoAplicable {
 		algoformer.agregarEfecto(efecto);
 		efecto.aplicarSobre(algoformer);
 	}
+	
+	@Override
+	public String devolverTipoTerreno(){
+		return "Nebulosa de Andromeda";
+	}
 
 }

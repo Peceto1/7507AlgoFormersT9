@@ -92,6 +92,13 @@ public class ArenaTest {
         Assert.assertTrue(listaDeAlgoformers.containsAll(listaDeAlgoformers2));
     }
 
-
+    @Test
+    public void ArenaDevuelveCorrectamenteElTerrenoDeUnPunto(){
+    	Punto puntoEnTierra = new PuntoTierra(10,17);
+    	TerrenoAplicable roca = new Rocoso();
+    	arenaDeJuego.setTerrenoEnPunto(puntoEnTierra, roca);    	
+    	Assert.assertEquals(roca, arenaDeJuego.devolverTerrenoEn(puntoEnTierra));
+    	
+    }
 
 }

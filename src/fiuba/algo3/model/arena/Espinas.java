@@ -11,5 +11,10 @@ public class Espinas implements TerrenoAplicable {
 		int danio = algoformer.getVidaMax()/20;		// 5% = *5/100 = 1/20
 		algoformer.recibirDanio(danio);
 	}
+	
+	@Override
+	public String devolverTipoTerreno(){
+		return "Espinas";
+	}
 
 }

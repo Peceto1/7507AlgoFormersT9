@@ -169,9 +169,7 @@ public class Arena {
 
         return algoformers;
     }
-    
-    //===================== METODOS NUEVOS==================
-    
+        
     public Punto lugarInicialLibre(){
 
     	for (Punto punto: puntosDeInicioAutobots){
@@ -191,6 +189,12 @@ public class Arena {
     public void ubicarTemporalmente(Algoformer algoformerAUbicar, Punto lugar){
     	this.ubicarAlgoformer(algoformerAUbicar, lugar);
     	algoformerAUbicar.reiniciarMovimiento();
+    }
+    
+    public TerrenoAplicable devolverTerrenoEn(Punto punto){
+    	Casillero casilleroDelPunto = arena.get(punto);
+    	return casilleroDelPunto.getTerreno();
+    	
     }
 
 }

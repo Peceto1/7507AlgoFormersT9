@@ -122,5 +122,13 @@ public class JuegoTest {
         Punto ubicacionInicialOptimusPrime = new PuntoTierra(1, 26);
         Algoformer optimus = jugadorEnTurno.obtenerAlgoformerEn(ubicacionInicialOptimusPrime);
     }
+    
+    @Test (expected = YaExisteJugadorConEseNombreException.class)
+    public void DosJugadoresNoPuedenTenerMismoNombre(){
+    	Juego juego = new Juego();
+    	juego.crearJugador("Pedro", teamAutobots);
+    	juego.crearJugador("Pedro", teamDecepticons);
+    }
+    
 
 }
