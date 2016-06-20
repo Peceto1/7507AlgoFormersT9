@@ -3,8 +3,12 @@ package fiuba.algo3.view;
 import fiuba.algo3.model.juego.Juego;
 import fiuba.algo3.view.vistas.VistaArena;
 import fiuba.algo3.view.vistas.VistaMapaAlgoformer;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -35,6 +39,7 @@ public class ContenedorJuego extends BorderPane {
         panelLateral.setBackground(fondoPaneles);
         panelLateral.setMinWidth(160);
         this.setLeft(panelLateral);
+        dibujarInformacionDeTurno();
     }
 
 
@@ -72,5 +77,31 @@ public class ContenedorJuego extends BorderPane {
         gcAlgoformers.fillOval(60, 30, 10, 10);
     }
 
+    public void dibujarInformacionDeTurno(){
+        VBox panelInformacion = new VBox();
+        Label informacionTurno = new Label();
+        Label informacionJugador = new Label();
+
+        panelInformacion.setAlignment(Pos.TOP_LEFT);
+        panelInformacion.setPadding(new Insets(10,10,10,10));
+        panelInformacion.setSpacing(10);
+        panelInformacion.setMinWidth(50);
+
+        informacionJugador.setAlignment(Pos.TOP_CENTER);
+        informacionJugador.setText("Jugador:"); //Agregar nombre de jugadores.
+        informacionJugador.setStyle("-fx-base: #474747;");
+        informacionJugador.setPadding(new Insets(10,5,5,5));
+        panelInformacion.setMinWidth(160);
+
+
+        informacionTurno.setAlignment(Pos.BOTTOM_CENTER);
+        informacionTurno.setStyle("-fx-base: #474747;");
+        informacionTurno.setText("Turno:");
+        informacionTurno.setPadding(new Insets(10,5,5,5));
+        panelInformacion.setMinWidth(160);
+
+        panelInformacion.getChildren().addAll(informacionJugador, informacionTurno);
+        this.panelLateral.getChildren().addAll(panelInformacion);
+    }
 
 }
