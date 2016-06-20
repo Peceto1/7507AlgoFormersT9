@@ -99,6 +99,7 @@ public class Arena {
     public void setChispaAleatorio(Punto posicionChispa){
     	obtenerChispa(posicionChispa);
     	Punto nuevaPosicionChispa = new PuntoTierra(26, random.nextInt(ALTO));
+    	setTerrenoEnPunto(nuevaPosicionChispa,new Rocoso());
     	colocarChispa(nuevaPosicionChispa);
     }
 
