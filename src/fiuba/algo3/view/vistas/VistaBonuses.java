@@ -6,6 +6,7 @@ import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.espacio.PuntoAire;
 import fiuba.algo3.model.espacio.PuntoTierra;
 import fiuba.algo3.view.utilities.ConvertidorPuntoAPixels;
+import fiuba.algo3.view.utilities.PuntoPixels;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -18,6 +19,7 @@ public class VistaBonuses {
     Canvas canvasBonuses;
     Arena arena;
     Map<Punto, Bonus> bonusesEnMapa;
+    Map<PuntoPixels, Bonus>bonusesEnMapaPixels;
     private final String flashResource = "file:src/fiuba/algo3/view/resources/images/textures/flash.png";
     private final String canonResource = "file:src/fiuba/algo3/view/resources/images/textures/canon.png";
     private final String burburjaResource = "file:src/fiuba/algo3/view/resources/images/textures/burbuja.png";
@@ -38,12 +40,11 @@ public class VistaBonuses {
         this.imageBurbuja = new Image(burburjaResource);
         this.imageError = new Image(errorResource);
         this.bonusesEnMapa = new HashMap<>();
+        this.bonusesEnMapaPixels = new HashMap<>();
     }
-
-
-    public void mostrar() {
-
-        ConvertidorPuntoAPixels convertidor = new ConvertidorPuntoAPixels();
+    
+    private void obtenerPuntosConBonus(){
+    	ConvertidorPuntoAPixels convertidor = new ConvertidorPuntoAPixels();
         int ancho = arena.getAncho();
         int alto = arena.getAlto();
 
@@ -57,43 +58,54 @@ public class VistaBonuses {
                 Bonus bonusTierra = arena.devolverBonusEn(puntoTierra);
                 Bonus bonusAire = arena.devolverBonusEn(puntoAire);
 
-                if (!bonusTierra.getNombreBonus().equals("NullBonus"))
-                    bonusesEnMapa.put(puntoTierra, bonusTierra);
-
-                if (!bonusAire.getNombreBonus().equals("NullBonus"))
-                    bonusesEnMapa.put(puntoAire, bonusAire);
-
                 int pixelXTierra = convertidor.convertirX(puntoTierra);
                 int pixelYTierra = convertidor.convertirY(puntoTierra);
+                PuntoPixels tierra = new PuntoPixels(pixelXTierra,pixelYTierra);
+                
+                
                 int pixelXAire = convertidor.convertirX(puntoAire);
                 int pixelYAire = convertidor.convertirY(puntoAire);
+                PuntoPixels aire = new PuntoPixels(pixelXAire,pixelYAire);
+                
+                if (!bonusTierra.getNombreBonus().equals("NullBonus")){
+                    bonusesEnMapa.put(puntoTierra, bonusTierra);
+                	bonusesEnMapaPixels.put(tierra, bonusTierra);
+                }	
 
-                dibujarBonus(bonusTierra, pixelXTierra, pixelYTierra);
-                dibujarBonus(bonusAire, pixelXAire, pixelYAire);
+                if (!bonusAire.getNombreBonus().equals("NullBonus")){
+                    bonusesEnMapa.put(puntoAire, bonusAire);
+                    bonusesEnMapaPixels.put(aire, bonusAire);
+                }
             }
         }
     }
 
 
-    private void dibujarBonus(Bonus bonusADibujar, int x, int y) {
+    public void mostrar() {
+    	obtenerPuntosConBonus();
+    	for (PuntoPixels actual: bonusesEnMapaPixels.keySet())
+    		dibujar(actual);
+    }
+
+
+    private void dibujar(PuntoPixels punto) {
 
         GraphicsContext gc = canvasBonuses.getGraphicsContext2D();
 
-        x = x - imageWidthSize/2;
-        y = y - imageHeightSize/2;
+        Bonus bonusADibujar = bonusesEnMapaPixels.get(punto);
 
         switch (bonusADibujar.getNombreBonus()) {
 
             case "Flash" :
-                gc.drawImage(imageFlash, x, y);
+                gc.drawImage(imageFlash, punto.getX(), punto.getY());
                 return;
 
             case "Burbuja Inmaculada" :
-                gc.drawImage(imageBurbuja, x, y);
+                gc.drawImage(imageBurbuja, punto.getX(), punto.getY());
                 return;
 
             case "Doble Cañon" :
-                gc.drawImage(imageCanon, x, y);
+                gc.drawImage(imageCanon, punto.getX(), punto.getY());
                 return;
 
             case "NullBonus" :
@@ -101,7 +113,7 @@ public class VistaBonuses {
         }
 
         // No deberia llegar
-        gc.drawImage(imageError, x, y);
+        gc.drawImage(imageError, punto.getX(), punto.getY());
     }
 
 
