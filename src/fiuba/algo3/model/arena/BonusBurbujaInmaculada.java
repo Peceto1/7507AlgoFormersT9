@@ -4,6 +4,7 @@ public class BonusBurbujaInmaculada extends Bonus {
 	
 	public BonusBurbujaInmaculada(){
 		efecto = new EfectoBurbujaInmaculada();
+		nombreBonus = "Burbuja Inmaculada";
 	}
 
 }

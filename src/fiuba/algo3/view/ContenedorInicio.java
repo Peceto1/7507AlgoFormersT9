@@ -22,13 +22,11 @@ public class ContenedorInicio extends BorderPane {
     ToggleButton botonMute;
     ImageView imagenMute;
     ImageView imagenUnMute;
-    Juego juego;
 
 
-    public ContenedorInicio(VentanaDefault ventanaDefault, Juego juego) {
+    public ContenedorInicio(VentanaDefault ventanaDefault) {
 
         this.ventanaDefault = ventanaDefault;
-        this.juego = juego;
         cargarImagenDeFondo();
         cargarImagenesBotones();
         crearBotones();
@@ -59,7 +57,7 @@ public class ContenedorInicio extends BorderPane {
         botonJugar.setText("JUGAR");
         botonJugar.setPadding(new Insets(15, 15, 15, 15));
         botonJugar.setStyle("-fx-base: #474747;");
-        botonJugar.setOnAction(new BotonJugarEventHandler(this.ventanaDefault, this.juego));
+        botonJugar.setOnAction(new BotonJugarEventHandler(this.ventanaDefault));
         botonJugar.requestFocus();
         botonSalir = new Button();
         botonSalir.setText("Salir");

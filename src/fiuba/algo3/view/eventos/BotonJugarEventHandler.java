@@ -5,8 +5,7 @@ import fiuba.algo3.view.ContenedorEleccionEquipos;
 import fiuba.algo3.view.VentanaDefault;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
+
 
 public class BotonJugarEventHandler implements EventHandler<ActionEvent> {
 
@@ -15,9 +14,9 @@ public class BotonJugarEventHandler implements EventHandler<ActionEvent> {
     ContenedorEleccionEquipos escenaProxima;
     Juego juego;
 
-    public BotonJugarEventHandler(VentanaDefault ventanaDefault, Juego juego) {
+    public BotonJugarEventHandler(VentanaDefault ventanaDefault) {
         this.ventanaDefault = ventanaDefault;
-        this.juego = juego;
+        this.juego = new Juego();
     }
 
 

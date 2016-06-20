@@ -1,6 +1,5 @@
 package fiuba.algo3.view;
 
-import fiuba.algo3.model.juego.Juego;
 import fiuba.algo3.view.eventos.ApplicationOnKeyHandler;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -21,8 +20,7 @@ public class Main extends Application {
 		VentanaDefault ventanaDefault = new VentanaDefault(stage);	// Ventana con MenuBar
 		Scene escena = new Scene(ventanaDefault, 800, 600);
 
-		Juego juego = new Juego();
-		ContenedorInicio contenedorInicio = new ContenedorInicio(ventanaDefault, juego);
+		ContenedorInicio contenedorInicio = new ContenedorInicio(ventanaDefault);
 
 
 		ventanaDefault.setCenter(contenedorInicio);
