@@ -24,7 +24,6 @@ public class Juego {
         this.poolSingleton = AlgoformerPool.getInstance();
         this.arenaSingleton = Arena.getInstance();
         this.arenaSingleton.inicializar();
-        this.arenaSingleton.setTerrenoAleatorio();
         this.poolSingleton.inicializar();
         this.ubicarAlgoformers();
         this.inicializarEquipos();
