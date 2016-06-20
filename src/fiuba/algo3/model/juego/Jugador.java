@@ -14,6 +14,7 @@ import java.util.List;
 public class Jugador {
 
     private String nombre;
+    private String equipo;
     private List<Algoformer> algoformers;
 
 
@@ -25,6 +26,21 @@ public class Jugador {
 
     public String getNombre() {
         return nombre;
+    }
+
+
+    public void setEquipo(String equipo) {
+        this.equipo = equipo;
+    }
+
+
+    public String getEquipo() {
+        return equipo;
+    }
+
+
+    public List<Algoformer> getAlgoformers() {
+        return this.algoformers;
     }
 
 

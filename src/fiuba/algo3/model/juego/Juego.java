@@ -18,6 +18,8 @@ public class Juego {
     private Jugador ganador;
     private int turno;
     private Punto posicionChispa = new PuntoTierra(26, 26);
+    public static String AUTOBOTS;
+    public static String DECEPTICONS;
 
 
     public Juego() {
@@ -29,6 +31,9 @@ public class Juego {
         this.poolSingleton.inicializar();
         this.ubicarAlgoformers();
         this.inicializarEquipos();
+        AUTOBOTS = this.equiposDisponibles.get(0);
+        DECEPTICONS = this.equiposDisponibles.get(1);
+
         this.arenaSingleton.colocarChispa(posicionChispa);
         this.ganador = null;
         this.turno = 1;
@@ -48,8 +53,9 @@ public class Juego {
     	arenaSingleton.setTerrenoAleatorio();
     	arenaSingleton.setBonusAleatorio();
     }
-    
-    public void setChispaAleatorio(){
+
+
+    public void setChispaAleatorio() {
     	arenaSingleton.setChispaAleatorio(posicionChispa);
     }
 
@@ -79,7 +85,20 @@ public class Juego {
             }
         } );
 
-        jugadores.add(new Jugador(nombre, poolSingleton.obtenerEquipo(equipo)));
+        Jugador nuevoJug = new Jugador(nombre, poolSingleton.obtenerEquipo(equipo));
+        nuevoJug.setEquipo(equipo);
+        jugadores.add(nuevoJug);
+    }
+
+
+    public Jugador getJugadorDeEquipo(String equipo) {
+
+        for (Jugador jugador : this.jugadores) {
+            if (jugador.getEquipo().equals(equipo))
+                return jugador;
+        }
+
+        throw new NoHayJugadorConEseEquipoException();
     }
 
 

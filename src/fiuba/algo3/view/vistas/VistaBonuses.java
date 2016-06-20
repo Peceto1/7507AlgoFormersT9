@@ -5,7 +5,6 @@ import fiuba.algo3.model.arena.Bonus;
 import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.espacio.PuntoAire;
 import fiuba.algo3.model.espacio.PuntoTierra;
-import fiuba.algo3.view.Dibujable;
 import fiuba.algo3.view.utilities.ConvertidorPuntoAPixels;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -14,7 +13,7 @@ import javafx.scene.image.Image;
 import java.util.HashMap;
 import java.util.Map;
 
-public class VistaBonuses implements Dibujable {
+public class VistaBonuses {
 
     Canvas canvasBonuses;
     Arena arena;
@@ -42,8 +41,7 @@ public class VistaBonuses implements Dibujable {
     }
 
 
-    @Override
-    public void dibujar() {
+    public void mostrar() {
 
         ConvertidorPuntoAPixels convertidor = new ConvertidorPuntoAPixels();
         int ancho = arena.getAncho();
@@ -104,18 +102,6 @@ public class VistaBonuses implements Dibujable {
 
         // No deberia llegar
         gc.drawImage(imageError, x, y);
-    }
-
-
-    @Override
-    public void actualizar() {
-
-    }
-
-
-    @Override
-    public void limpiar() {
-
     }
 
 

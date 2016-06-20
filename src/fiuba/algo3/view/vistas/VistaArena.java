@@ -9,7 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 
-public class VistaArena extends GridPane implements Dibujable {
+public class VistaArena extends GridPane {
 
     private int filas;
     private int columnas;
@@ -44,8 +44,7 @@ public class VistaArena extends GridPane implements Dibujable {
     }
 
 
-    @Override
-    public void dibujar() {
+    public void dibujarArena() {
 
         int y2;
         TerrenoAplicable terreno;
@@ -63,14 +62,6 @@ public class VistaArena extends GridPane implements Dibujable {
         }
 
     }
-
-
-    @Override
-    public void actualizar() {}
-
-
-    @Override
-    public void limpiar() {}
 
 
     private ImageView obtenerImagenDeTerreno(TerrenoAplicable terreno) {
