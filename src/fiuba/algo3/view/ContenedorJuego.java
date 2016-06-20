@@ -2,6 +2,7 @@ package fiuba.algo3.view;
 
 import fiuba.algo3.model.juego.Juego;
 import fiuba.algo3.view.vistas.VistaArena;
+import fiuba.algo3.view.vistas.VistaMapaAlgoformers;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import fiuba.algo3.view.vistas.VistaBonuses;
@@ -62,6 +63,9 @@ public class ContenedorJuego extends BorderPane {
         vistaArena.dibujarArena();
         VistaBonuses vistaBonuses = new VistaBonuses(canvasBonuses);
         vistaBonuses.mostrar();
+
+        VistaMapaAlgoformers vistaAlgoformers = new VistaMapaAlgoformers(canvasAlgoformers, juego);
+        vistaAlgoformers.mostrar();
 
 
         contenedorCanvases.getChildren().addAll(vistaArena, canvasBonuses, canvasAlgoformers);
