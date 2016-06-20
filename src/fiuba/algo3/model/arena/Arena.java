@@ -11,13 +11,16 @@ import java.util.Random;
 
 public class Arena {
 
-    private Map<Punto, Casillero> arena;
+	private Map<Punto, Casillero> arena;
     private List<Punto> puntosDeInicioDecepticons;
     private List<Punto> puntosDeInicioAutobots;
     private final int ANCHO = 51;
     private final int ALTO = 51;
     private static Arena instancia = new Arena();
     private Random random = new Random();
+    private static final int CANTIDAD_TRAMPAS = (3000);
+
+    private static final int CANTIDAD_BONUS = (100);
 
 
     private Arena() {
@@ -70,30 +73,67 @@ public class Arena {
     	List<Punto> puntosASetearTerreno = new ArrayList<Punto>(arena.keySet());
     	puntosASetearTerreno.removeAll(puntosDeInicioAutobots);
     	puntosASetearTerreno.removeAll(puntosDeInicioDecepticons);
-    	for(Punto actual: puntosASetearTerreno)
-    		if (actual.obtenerNivel()==1)
-    		setTerrenoAleatorioEnPuntoAire(actual);
-    		else
-    			setTerrenoAleatorioEnPuntoTierra(actual);
+    	for (int i=0; i<CANTIDAD_TRAMPAS;i++){
+    		Punto puntoElegido = puntosASetearTerreno.get(random.nextInt(puntosASetearTerreno.size()));
+    		if (puntoElegido.obtenerNivel()==1)
+    	    	setTerrenoAleatorioEnPuntoAire(puntoElegido);
+    	    else
+    	    	setTerrenoAleatorioEnPuntoTierra(puntoElegido);
+    	}
+
     }    
 
 	private void setTerrenoAleatorioEnPuntoAire(Punto punto) {
-		CreadorDeTerrenoAleatorio factoryTerrenos = new CreadorDeTerrenoAleatorio(this.random);
-		arena.get(punto).setTerreno(factoryTerrenos.crearTerrenoAereoAleatorio());
+		int indice = random.nextInt(2);
+		if (indice == 0){
+			setTerrenoEnPunto(punto,new NebulosaDeAndromeda());
+			return;
+		}
+		setTerrenoEnPunto(punto,new TormentaPsionica());
+		
 	}
 	
 	private void setTerrenoAleatorioEnPuntoTierra(Punto punto) {
-		CreadorDeTerrenoAleatorio factoryTerrenos = new CreadorDeTerrenoAleatorio(this.random);
-		arena.get(punto).setTerreno(factoryTerrenos.crearTerrenoTerrestreAleatorio());
+		int indice = random.nextInt(2);
+		if (indice == 0){
+			setTerrenoEnPunto(punto,new Espinas());
+			return;
+		}
+		setTerrenoEnPunto(punto,new Pantano());	
 	}
+	
+    public void setTerrenoEnPunto(Punto punto, TerrenoAplicable terreno){
+    	arena.get(punto).setTerreno(terreno);
+    }
+    
     
     public void setBonusAleatorio(){
     	List<Punto> puntosASetearTerreno = new ArrayList<Punto>(arena.keySet());
     	puntosASetearTerreno.removeAll(puntosDeInicioAutobots);
     	puntosASetearTerreno.removeAll(puntosDeInicioDecepticons);
-    	CreadorDeBonusAleatorio factoryBonus = new CreadorDeBonusAleatorio(this.random);
-    	for(Punto actual: puntosASetearTerreno)
-    		arena.get(actual).setBonus(factoryBonus.crearBonusAleatorio());
+    	
+    	for (int i=0; i<CANTIDAD_BONUS;i++){
+    		Punto puntoElegido = puntosASetearTerreno.get(random.nextInt(puntosASetearTerreno.size()));
+    		setBonusAleatorioEnPunto(puntoElegido);
+    	}
+    }
+    
+    private void setBonusAleatorioEnPunto(Punto punto){
+    	int indice = random.nextInt(3);
+		
+		if (indice == 0){
+			setBonusEnPunto(punto,new BonusBurbujaInmaculada());
+			return;
+		}
+		if (indice == 1){
+		setBonusEnPunto(punto,new BonusFlash());
+		return;
+		}
+		setBonusEnPunto(punto,new BonusDobleCanon());
+    }
+    
+    public void setBonusEnPunto(Punto punto, Bonus bonus){
+    	arena.get(punto).setBonus(bonus);
     }
     
     public void setChispaAleatorio(Punto posicionChispa){
@@ -141,16 +181,6 @@ public class Arena {
         arena.get(punto).colocar(algoformer);
         algoformer.setUbicacion(punto);
     }
-
-    
-    public void setTerrenoEnPunto(Punto punto, TerrenoAplicable terreno){
-    	arena.get(punto).setTerreno(terreno);
-    }
-    
-    public void setBonusEnPunto(Punto punto, Bonus bonus){
-    	arena.get(punto).setBonus(bonus);
-    }
-
 
     public Algoformer removerAlgoformerEn(Punto punto) {
         return arena.get(punto).removerAlgoformer();
