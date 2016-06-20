@@ -1,5 +1,6 @@
 package fiuba.algo3.view;
 
+import fiuba.algo3.model.juego.Juego;
 import fiuba.algo3.view.eventos.BotonJugarEventHandler;
 import fiuba.algo3.view.eventos.OpcionSalirEventHandler;
 import fiuba.algo3.view.utilities.ReproductorMusica;
@@ -21,12 +22,13 @@ public class ContenedorInicio extends BorderPane {
     ToggleButton botonMute;
     ImageView imagenMute;
     ImageView imagenUnMute;
+    Juego juego;
 
 
-    public ContenedorInicio(VentanaDefault ventanaDefault, ContenedorEleccionEquipos proximaEscena) {
+    public ContenedorInicio(VentanaDefault ventanaDefault, Juego juego) {
 
         this.ventanaDefault = ventanaDefault;
-        this.proximaEscena = proximaEscena;
+        this.juego = juego;
         cargarImagenDeFondo();
         cargarImagenesBotones();
         crearBotones();
@@ -57,7 +59,7 @@ public class ContenedorInicio extends BorderPane {
         botonJugar.setText("JUGAR");
         botonJugar.setPadding(new Insets(15, 15, 15, 15));
         botonJugar.setStyle("-fx-base: #474747;");
-        botonJugar.setOnAction(new BotonJugarEventHandler(this.ventanaDefault, this.proximaEscena));
+        botonJugar.setOnAction(new BotonJugarEventHandler(this.ventanaDefault, this.juego));
         botonJugar.requestFocus();
         botonSalir = new Button();
         botonSalir.setText("Salir");

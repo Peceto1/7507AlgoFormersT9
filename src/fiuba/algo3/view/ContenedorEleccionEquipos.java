@@ -34,9 +34,8 @@ public class ContenedorEleccionEquipos extends BorderPane {
     Button botonComenzarBatalla;
     Juego juego;
 
-    public ContenedorEleccionEquipos(VentanaDefault ventanaDefault, Juego juego, ContenedorJuego proximaVista) {
+    public ContenedorEleccionEquipos(VentanaDefault ventanaDefault, Juego juego) {
         this.ventanaDefault = ventanaDefault;
-        this.proximaVista = proximaVista;
         this.juego = juego;
         cargarImagenDeFondo();
         crearPanelCentro();
@@ -160,7 +159,7 @@ public class ContenedorEleccionEquipos extends BorderPane {
         this.botonComenzarBatalla.setStyle("-fx-font: 24 arial; -fx-base: #64a500;");
         this.botonComenzarBatalla.setVisible(false);
         this.botonComenzarBatalla.setId("botonComenzarBatalla");
-        this.botonComenzarBatalla.setOnAction(new BotonComenzarBatallaHandler(ventanaDefault, proximaVista, juego, botonComenzarBatalla));
+        this.botonComenzarBatalla.setOnAction(new BotonComenzarBatallaHandler(ventanaDefault, juego, botonComenzarBatalla));
 
         this.panelAbajo.getChildren().addAll(panelElecciones, botonComenzarBatalla);
 

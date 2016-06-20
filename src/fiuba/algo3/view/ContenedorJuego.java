@@ -2,6 +2,7 @@ package fiuba.algo3.view;
 
 import fiuba.algo3.model.juego.Juego;
 import fiuba.algo3.view.vistas.VistaArena;
+import fiuba.algo3.view.vistas.VistaMapaAlgoformer;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ScrollPane;

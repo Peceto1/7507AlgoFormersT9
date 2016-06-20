@@ -1,5 +1,6 @@
 package fiuba.algo3.view.eventos;
 
+import fiuba.algo3.model.juego.Juego;
 import fiuba.algo3.view.ContenedorEleccionEquipos;
 import fiuba.algo3.view.VentanaDefault;
 import javafx.event.ActionEvent;
@@ -12,15 +13,17 @@ public class BotonJugarEventHandler implements EventHandler<ActionEvent> {
 
     VentanaDefault ventanaDefault;
     ContenedorEleccionEquipos escenaProxima;
+    Juego juego;
 
-    public BotonJugarEventHandler(VentanaDefault ventanaDefault, ContenedorEleccionEquipos escenaProxima) {
+    public BotonJugarEventHandler(VentanaDefault ventanaDefault, Juego juego) {
         this.ventanaDefault = ventanaDefault;
-        this.escenaProxima = escenaProxima;
+        this.juego = juego;
     }
 
 
     @Override
     public void handle(ActionEvent actionEvent) {
+        this.escenaProxima = new ContenedorEleccionEquipos(ventanaDefault, juego);
         this.ventanaDefault.setCenter(escenaProxima);
     }
 

@@ -18,20 +18,11 @@ public class Main extends Application {
 	public void start(Stage stage) throws Exception {
 
 		stage.setTitle("Algoformers 2016");
-
 		VentanaDefault ventanaDefault = new VentanaDefault(stage);	// Ventana con MenuBar
 		Scene escena = new Scene(ventanaDefault, 800, 600);
 
 		Juego juego = new Juego();
-
-		// 3ra Escena
-		ContenedorJuego vistaJuego = new ContenedorJuego(juego);
-
-		// 2da Escena --> Seleccion de equipos
-		ContenedorEleccionEquipos vistaEquipos = new ContenedorEleccionEquipos(ventanaDefault, juego, vistaJuego);
-
-		// 1ra Escena
-		ContenedorInicio contenedorInicio = new ContenedorInicio(ventanaDefault, vistaEquipos);
+		ContenedorInicio contenedorInicio = new ContenedorInicio(ventanaDefault, juego);
 
 
 		ventanaDefault.setCenter(contenedorInicio);
