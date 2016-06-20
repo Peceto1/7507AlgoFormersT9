@@ -20,6 +20,16 @@ public abstract class Punto {
     }
 
 
+    public int getX() {
+        return this.x;
+    }
+
+
+    public int getY() {
+        return this.y;
+    }
+
+
     public int distanciaAl(Punto other) {
         return Math.max(Math.abs(this.x - other.x), Math.abs(this.y - other.y));    // Distancia de Chebyshov
     }

@@ -82,4 +82,8 @@ class Casillero {
 		return this.terreno;
 	}
 
+
+    public Bonus getBonus() {
+        return this.bonus;
+    }
 }
