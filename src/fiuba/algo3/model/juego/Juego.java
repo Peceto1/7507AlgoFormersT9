@@ -1,6 +1,7 @@
 package fiuba.algo3.model.juego;
 
 import fiuba.algo3.model.arena.Arena;
+import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.espacio.PuntoTierra;
 import fiuba.algo3.model.unidades.AlgoformerPool;
 
@@ -16,6 +17,7 @@ public class Juego {
     private List<String> equiposDisponibles;
     private Jugador ganador;
     private int turno;
+    private Punto posicionChispa = new PuntoTierra(26, 26);
 
 
     public Juego() {
@@ -27,7 +29,7 @@ public class Juego {
         this.poolSingleton.inicializar();
         this.ubicarAlgoformers();
         this.inicializarEquipos();
-        this.arenaSingleton.colocarChispa(new PuntoTierra(26, 26));
+        this.arenaSingleton.colocarChispa(posicionChispa);
         this.ganador = null;
         this.turno = 1;
     }
@@ -45,6 +47,10 @@ public class Juego {
     public void setTrampas(){
     	arenaSingleton.setTerrenoAleatorio();
     	arenaSingleton.setBonusAleatorio();
+    }
+    
+    public void setChispaAleatorio(){
+    	arenaSingleton.setChispaAleatorio(posicionChispa);
     }
 
 

@@ -75,8 +75,7 @@ public class Arena {
     		setTerrenoAleatorioEnPuntoAire(actual);
     		else
     			setTerrenoAleatorioEnPuntoTierra(actual);
-    }
-    
+    }    
 
 	private void setTerrenoAleatorioEnPuntoAire(Punto punto) {
 		CreadorDeTerrenoAleatorio factoryTerrenos = new CreadorDeTerrenoAleatorio(this.random);
@@ -95,6 +94,12 @@ public class Arena {
     	CreadorDeBonusAleatorio factoryBonus = new CreadorDeBonusAleatorio(this.random);
     	for(Punto actual: puntosASetearTerreno)
     		arena.get(actual).setBonus(factoryBonus.crearBonusAleatorio());
+    }
+    
+    public void setChispaAleatorio(Punto posicionChispa){
+    	obtenerChispa(posicionChispa);
+    	Punto nuevaPosicionChispa = new PuntoTierra(26, random.nextInt(ALTO));
+    	colocarChispa(nuevaPosicionChispa);
     }
 
 
