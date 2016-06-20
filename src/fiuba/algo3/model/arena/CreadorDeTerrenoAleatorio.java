@@ -13,17 +13,11 @@ public class CreadorDeTerrenoAleatorio {
 			new CreadorNube(),
 			new CreadorNube(),
 			new CreadorNube(),
-			new CreadorNube(),
-			new CreadorNube(),
-			new CreadorNube(),
 			new CreadorNebulosaDeAndromeda(),
 			new CreadorTormentaPsionica());
 		//Ajustar repeticion de Nube para controlar la 
 		//cantidad de terrenos con efectos que parecen en el mapa
 	private List<CreadorDeTerreno> terrenosTerrestres = Arrays.asList(
-			new CreadorRocoso(),
-			new CreadorRocoso(),
-			new CreadorRocoso(),
 			new CreadorRocoso(),
 			new CreadorRocoso(),
 			new CreadorRocoso(),
