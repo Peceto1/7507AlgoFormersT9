@@ -97,15 +97,15 @@ public class VistaBonuses {
         switch (bonusADibujar.getNombreBonus()) {
 
             case "Flash" :
-                gc.drawImage(imageFlash, punto.getX(), punto.getY());
+                gc.drawImage(imageFlash, (punto.getX()-imageWidthSize/2), (punto.getY()-imageHeightSize/2));
                 return;
 
             case "Burbuja Inmaculada" :
-                gc.drawImage(imageBurbuja, punto.getX(), punto.getY());
+                gc.drawImage(imageBurbuja, (punto.getX()-imageWidthSize/2), (punto.getY()-imageHeightSize/2));
                 return;
 
             case "Doble Cañon" :
-                gc.drawImage(imageCanon, punto.getX(), punto.getY());
+                gc.drawImage(imageCanon, (punto.getX()-imageWidthSize/2), (punto.getY()-imageHeightSize/2));
                 return;
 
             case "NullBonus" :
