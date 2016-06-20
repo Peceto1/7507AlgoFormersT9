@@ -58,14 +58,8 @@ public class VistaBonuses {
                 Bonus bonusTierra = arena.devolverBonusEn(puntoTierra);
                 Bonus bonusAire = arena.devolverBonusEn(puntoAire);
 
-                int pixelXTierra = convertidor.convertirX(puntoTierra);
-                int pixelYTierra = convertidor.convertirY(puntoTierra);
-                PuntoPixels tierra = new PuntoPixels(pixelXTierra,pixelYTierra);
-                
-                
-                int pixelXAire = convertidor.convertirX(puntoAire);
-                int pixelYAire = convertidor.convertirY(puntoAire);
-                PuntoPixels aire = new PuntoPixels(pixelXAire,pixelYAire);
+                PuntoPixels tierra = convertidor.convertir(puntoTierra);
+                PuntoPixels aire = convertidor.convertir(puntoAire);
                 
                 if (!bonusTierra.getNombreBonus().equals("NullBonus")){
                     bonusesEnMapa.put(puntoTierra, bonusTierra);

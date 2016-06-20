@@ -4,17 +4,20 @@ public class PuntoPixels {
 	
 	int x;
 	int y;
-	
-	public PuntoPixels(int x,int y){
-		this.x=x;
-		this.y=y;
+
+
+	public PuntoPixels(int x,int y) {
+		this.x = x;
+		this.y = y;
 	}
-	
-	public int getX(){
+
+
+	public int getX() {
 		return x;
 	}
-	
-	public int getY(){
+
+
+	public int getY() {
 		return y;
 	}
 

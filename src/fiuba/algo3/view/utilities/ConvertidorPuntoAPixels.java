@@ -15,27 +15,23 @@ public class ConvertidorPuntoAPixels {
     }
 
 
-    public int convertirX(PuntoAire punto) {
+    public PuntoPixels convertir(PuntoAire punto) {
         int x = punto.getX();
-        return anchoPxCasillero * x - altoPxCasillero;
+        int y = punto.getY();
+
+        int xPixel = anchoPxCasillero * x - anchoPxCasillero/2;
+        int yPixel = 2 * altoPxCasillero * y - (altoPxCasillero + altoPxCasillero/2);
+        return new PuntoPixels(xPixel, yPixel);
     }
 
 
-    public int convertirX(PuntoTierra punto) {
+    public PuntoPixels convertir(PuntoTierra punto) {
         int x = punto.getX();
-        return anchoPxCasillero * x - altoPxCasillero;
-    }
-
-
-    public int convertirY(PuntoAire punto) {
         int y = punto.getY();
-        return 2 * altoPxCasillero * y - (altoPxCasillero + altoPxCasillero/2);
-    }
 
-
-    public int convertirY(PuntoTierra punto) {
-        int y = punto.getY();
-        return 2 * altoPxCasillero * y - (altoPxCasillero - altoPxCasillero/2);
+        int xPixel = anchoPxCasillero * x - anchoPxCasillero/2;
+        int yPixel = 2 * altoPxCasillero * y - (altoPxCasillero - altoPxCasillero/2);
+        return new PuntoPixels(xPixel, yPixel);
     }
 
 

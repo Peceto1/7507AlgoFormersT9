@@ -6,6 +6,7 @@ import fiuba.algo3.model.unidades.Algoformer;
 import fiuba.algo3.model.unidades.AlgoformerPool;
 import fiuba.algo3.view.Dibujable;
 import fiuba.algo3.view.utilities.ConvertidorPuntoAPixels;
+import fiuba.algo3.view.utilities.PuntoPixels;
 import fiuba.algo3.view.vistas.vistasAlgoformers.*;
 import javafx.scene.canvas.Canvas;
 
@@ -46,10 +47,9 @@ public class VistaMapaAlgoformers implements Dibujable {
 
             VistaAlgoformer vistaActual = par.getValue();
             PuntoTierra ubicacion = (PuntoTierra) par.getKey().getUbicacion();
-            int pixelX = convertidor.convertirX(ubicacion);
-            int pixelY = convertidor.convertirY(ubicacion);
 
-            vistaActual.dibujar(pixelX, pixelY);
+            PuntoPixels punto = convertidor.convertir(ubicacion);
+            vistaActual.dibujar(punto.getX(), punto.getY());
         }
     }
 
