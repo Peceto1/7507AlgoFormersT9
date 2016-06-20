@@ -4,6 +4,7 @@ public class NullBonus extends Bonus {
 	
 	public NullBonus(){
 		this.efecto = new NullEfecto();
+		this.nombreBonus = "NullBonus";
 	}
 
 }

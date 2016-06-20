@@ -2,7 +2,7 @@ package fiuba.algo3.view;
 
 import fiuba.algo3.model.juego.Juego;
 import fiuba.algo3.view.vistas.VistaArena;
-import fiuba.algo3.view.vistas.VistaMapaAlgoformer;
+import fiuba.algo3.view.vistas.VistaBonuses;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ScrollPane;
@@ -49,10 +49,16 @@ public class ContenedorJuego extends BorderPane {
     private void crearContenedorCentral() {
         this.contenedorCentral = new ScrollPane();
         StackPane contenedorCanvases = new StackPane();
-        VistaArena vistaArena = new VistaArena(102, 51);
 
         this.canvasBonuses = new Canvas(2040, 2040);
         this.canvasAlgoformers = new Canvas(2040, 2040);
+
+
+        VistaArena vistaArena = new VistaArena(102, 51);
+        vistaArena.dibujar();
+        VistaBonuses vistaBonuses = new VistaBonuses(canvasBonuses);
+        vistaBonuses.dibujar();
+
 
         contenedorCanvases.getChildren().addAll(vistaArena, canvasBonuses, canvasAlgoformers);
         contenedorCentral.setContent(contenedorCanvases);

@@ -197,4 +197,10 @@ public class Arena {
     	
     }
 
+
+    public Bonus devolverBonusEn(Punto punto) {
+        Casillero casillero = arena.get(punto);
+        return casillero.getBonus();
+    }
+
 }

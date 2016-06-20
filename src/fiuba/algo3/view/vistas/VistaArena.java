@@ -41,7 +41,6 @@ public class VistaArena extends GridPane implements Dibujable {
         this.imageNebulosa = new Image(nebulosaResource);
         this.imageTormenta = new Image(tormentaResource);
         this.imageError = new Image(errorResource);
-        this.dibujar();
     }
 
 

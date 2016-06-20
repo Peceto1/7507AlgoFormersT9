@@ -2,7 +2,7 @@ package fiuba.algo3.model.arena;
 
 import fiuba.algo3.model.unidades.Algoformer;
 
-abstract class Bonus {
+public abstract class Bonus {
 	Efecto efecto;
 	String nombreBonus;
 	
