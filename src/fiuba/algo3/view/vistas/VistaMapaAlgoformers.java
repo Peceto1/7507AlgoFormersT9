@@ -4,7 +4,6 @@ import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.juego.Juego;
 import fiuba.algo3.model.unidades.Algoformer;
 import fiuba.algo3.model.unidades.AlgoformerPool;
-import fiuba.algo3.view.Dibujable;
 import fiuba.algo3.view.utilities.ConvertidorPuntoAPixels;
 import fiuba.algo3.view.utilities.PuntoPixels;
 import fiuba.algo3.view.vistas.vistasAlgoformers.*;

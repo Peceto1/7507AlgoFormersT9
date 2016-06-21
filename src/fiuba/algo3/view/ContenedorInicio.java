@@ -1,6 +1,5 @@
 package fiuba.algo3.view;
 
-import fiuba.algo3.model.juego.Juego;
 import fiuba.algo3.view.eventos.BotonJugarEventHandler;
 import fiuba.algo3.view.eventos.OpcionSalirEventHandler;
 import fiuba.algo3.view.utilities.ReproductorMusica;

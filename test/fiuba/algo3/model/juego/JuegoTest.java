@@ -20,7 +20,6 @@ public class JuegoTest {
         juego.crearJugador(nombreJugador2, teamDecepticons);
     	juego.setTrampas();
     	juego.comenzarPartida();
-    	Jugador jugadorEnTurno = juego.getJugadorEnTurno();
     	}
 
 
@@ -120,7 +119,7 @@ public class JuegoTest {
         }
 
         Punto ubicacionInicialOptimusPrime = new PuntoTierra(1, 26);
-        Algoformer optimus = jugadorEnTurno.obtenerAlgoformerEn(ubicacionInicialOptimusPrime);
+        jugadorEnTurno.obtenerAlgoformerEn(ubicacionInicialOptimusPrime);
     }
     
     @Test (expected = YaExisteJugadorConEseNombreException.class)

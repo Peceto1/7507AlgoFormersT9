@@ -2,7 +2,6 @@ package fiuba.algo3.controller.HandlersMovimiento;
 
 
 import fiuba.algo3.model.espacio.Direccion;
-import fiuba.algo3.model.espacio.DireccionDerecha;
 import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.unidades.Algoformer;
 import fiuba.algo3.model.unidades.AlgoformerPool;
