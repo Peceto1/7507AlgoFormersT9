@@ -1,10 +1,7 @@
 package fiuba.algo3.view.layouts;
 
 import fiuba.algo3.controller.BotonTerminarTurnoHandler;
-import fiuba.algo3.controller.HandlersMovimiento.MoverAlgoformerAbajoHandler;
-import fiuba.algo3.controller.HandlersMovimiento.MoverAlgoformerArribaHandler;
-import fiuba.algo3.controller.HandlersMovimiento.MoverAlgoformerDerechaHandler;
-import fiuba.algo3.controller.HandlersMovimiento.MoverAlgoformerIzquierdaHandler;
+import fiuba.algo3.controller.HandlersMovimiento.*;
 import fiuba.algo3.view.ContenedorJuego;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -135,6 +132,10 @@ public class PanelAbajo extends HBox {
         leftButton.setOnAction(new MoverAlgoformerIzquierdaHandler(contenedorJuego));
         upButton.setOnAction(new MoverAlgoformerAbajoHandler(contenedorJuego));
         downButton.setOnAction(new MoverAlgoformerArribaHandler(contenedorJuego));
+        upRightButton.setOnAction(new MoverAlgoformerDerechaAbajoHandler(contenedorJuego));
+        upLeftButton.setOnAction(new MoverAlgoformerIzquierdaAbajoHandler(contenedorJuego));
+        downLeftButton.setOnAction(new MoverAlgoformerIzquierdaArribaHandler(contenedorJuego));
+        downRightButton.setOnAction(new MoverAlgoformerDerechaArribaHandler(contenedorJuego));
         // ToDo agregar setOnAction del resto de los botones
         /*upRightButton;
         upLeftButton;
