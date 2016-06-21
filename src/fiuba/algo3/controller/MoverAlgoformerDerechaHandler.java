@@ -1,13 +1,15 @@
 package fiuba.algo3.controller;
 
+import fiuba.algo3.model.arena.Arena;
 import fiuba.algo3.model.espacio.DireccionDerecha;
 import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.unidades.Algoformer;
 import fiuba.algo3.model.unidades.AlgoformerPool;
 import fiuba.algo3.model.unidades.MovimientoNoValidoException;
 import fiuba.algo3.view.ContenedorJuego;
+
 import fiuba.algo3.view.utilities.PuntoPixels;
-import fiuba.algo3.view.vistas.VistaBonuses;
+import fiuba.algo3.view.vistas.VistaMapaBonuses;
 import fiuba.algo3.view.vistas.VistaMapaAlgoformers;
 import fiuba.algo3.view.vistas.vistasAlgoformers.VistaAlgoformer;
 import javafx.event.ActionEvent;
@@ -17,11 +19,11 @@ import javafx.scene.text.Text;
 public class MoverAlgoformerDerechaHandler implements EventHandler<ActionEvent> {
 
     private VistaMapaAlgoformers vistaAlgoformers;
-    private VistaBonuses vistaBonuses;
+    private VistaMapaBonuses vistaBonuses;
     private Text msjError;
 
 
-    public MoverAlgoformerDerechaHandler(VistaMapaAlgoformers vistaAlgoformers, VistaBonuses vistaBonuses, ContenedorJuego contenedorJuego) {
+    public MoverAlgoformerDerechaHandler(VistaMapaAlgoformers vistaAlgoformers, VistaMapaBonuses vistaBonuses, ContenedorJuego contenedorJuego) {
         this.vistaAlgoformers = vistaAlgoformers;
         this.vistaBonuses = vistaBonuses;
         this.msjError = contenedorJuego.getMsjError();
@@ -46,8 +48,8 @@ public class MoverAlgoformerDerechaHandler implements EventHandler<ActionEvent> 
         VistaAlgoformer a = this.vistaAlgoformers.getVista(bumblebee);
 
         a.actualizar(ubicacionPixelVieja.getX(), ubicacionPixelVieja.getY());
-        //this.vistaBonuses.actualizar();
 
+        //
+        vistaBonuses.actualizar(ubicacionNueva);
     }
-
 }
