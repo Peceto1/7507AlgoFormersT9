@@ -70,8 +70,16 @@ public class Arena {
     
     public void setTerrenoAleatorio(){
     	List<Punto> puntosASetearTerreno = new ArrayList<>(arena.keySet());
-    	puntosASetearTerreno.removeAll(puntosDeInicioAutobots);
-    	puntosASetearTerreno.removeAll(puntosDeInicioDecepticons);
+    	
+    	for (Punto puntoActual: puntosDeInicioAutobots){
+    		puntosASetearTerreno.remove(puntoActual);
+    		puntosASetearTerreno.remove(puntoActual.ascender());
+    	}
+    	for (Punto puntoActual: puntosDeInicioDecepticons){
+    		puntosASetearTerreno.remove(puntoActual);
+    		puntosASetearTerreno.remove(puntoActual.ascender());
+    	}
+    	
     	for (int i=0; i<CANTIDAD_TRAMPAS;i++){
     		Punto puntoElegido = puntosASetearTerreno.get(random.nextInt(puntosASetearTerreno.size()));
     		if (puntoElegido.obtenerNivel()==1)
@@ -108,8 +116,15 @@ public class Arena {
     
     public void setBonusAleatorio(){
     	List<Punto> puntosASetearTerreno = new ArrayList<>(arena.keySet());
-    	puntosASetearTerreno.removeAll(puntosDeInicioAutobots);
-    	puntosASetearTerreno.removeAll(puntosDeInicioDecepticons);
+    	
+    	for (Punto puntoActual: puntosDeInicioAutobots){
+    		puntosASetearTerreno.remove(puntoActual);
+    		puntosASetearTerreno.remove(puntoActual.ascender());
+    	}
+    	for (Punto puntoActual: puntosDeInicioDecepticons){
+    		puntosASetearTerreno.remove(puntoActual);
+    		puntosASetearTerreno.remove(puntoActual.ascender());
+    	}
     	
     	for (int i=0; i<CANTIDAD_BONUS;i++){
     		Punto puntoElegido = puntosASetearTerreno.get(random.nextInt(puntosASetearTerreno.size()));
