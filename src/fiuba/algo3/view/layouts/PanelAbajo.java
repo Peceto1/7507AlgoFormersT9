@@ -157,7 +157,7 @@ public class PanelAbajo extends HBox {
     private void crearBotonFinalizarTurno() {
         VBox contenedorFinalizarTurno = new VBox();
         Button finalizarTurnoButton = new Button("Finalizar\nTurno");
-        finalizarTurnoButton.setOnAction(new BotonTerminarTurnoHandler(contenedorJuego.getPanelLateral(), contenedorJuego.getJuego()));
+        finalizarTurnoButton.setOnAction(new BotonTerminarTurnoHandler(contenedorJuego.getPanelLateral(), contenedorJuego.getJuego(),contenedorJuego.getMsjError()));
 
         contenedorFinalizarTurno.getChildren().add(finalizarTurnoButton);
         this.getChildren().add(contenedorFinalizarTurno);

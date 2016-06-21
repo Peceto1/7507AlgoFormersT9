@@ -50,6 +50,7 @@ abstract class HandlerMovimiento implements EventHandler<ActionEvent> {
         a.actualizar(ubicacionPixelVieja.getX(), ubicacionPixelVieja.getY());
 
         //
+        this.msjError.setText("");
         vistaMapaBonuses.actualizar(ubicacionNueva);
     }
 
