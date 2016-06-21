@@ -15,11 +15,11 @@ public class BotonTerminarTurnoHandler implements EventHandler<ActionEvent> {
     private Juego modelJuego;
     private Text msjError;
 
-    public BotonTerminarTurnoHandler(PanelLateral panelLateral, Juego juego,Text msjError) {
+    public BotonTerminarTurnoHandler(PanelLateral panelLateral, Juego juego) {
         this.infoJugador = (Label) panelLateral.lookup("#infoJugador");
         this.infoEquipo = (Label) panelLateral.lookup("#infoEquipo");
         this.infoTurno = (Label) panelLateral.lookup("#infoTurno");
-        this.msjError = msjError;
+        this.msjError = (Text) panelLateral.lookup("#msjErrorText");
         this.modelJuego = juego;
     }
 

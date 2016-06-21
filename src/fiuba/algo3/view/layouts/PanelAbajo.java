@@ -24,6 +24,7 @@ public class PanelAbajo extends HBox {
         this.setMaxHeight(120);
         this.contenedorJuego = contenedorJuego;
         dibujarBloqueBotones();
+        crearBotonesSepararseYCombinarse();
         crearBotonFinalizarTurno();
     }
 
@@ -58,7 +59,10 @@ public class PanelAbajo extends HBox {
         moveButton.setOnAction( (actionEvent) -> {
             contenedorDirecciones.setVisible(true);
             contenedorAcciones.setDisable(true);
+            this.lookup("#contenedorCombinarseVBox").setDisable(true);
         } );
+
+        // ToDo falta implementar el resto de los handlers
 
         Button atkButton = new Button("Atacar");
         atkButton.setMinSize(150, 25);
@@ -136,11 +140,6 @@ public class PanelAbajo extends HBox {
         upLeftButton.setOnAction(new MoverAlgoformerIzquierdaAbajoHandler(contenedorJuego));
         downLeftButton.setOnAction(new MoverAlgoformerIzquierdaArribaHandler(contenedorJuego));
         downRightButton.setOnAction(new MoverAlgoformerDerechaArribaHandler(contenedorJuego));
-        // ToDo agregar setOnAction del resto de los botones
-        /*upRightButton;
-        upLeftButton;
-        downLeftButton;
-        downRightButton;*/
 
         grillaBotonesDirecciones.add(upButton, 1, 0);
         //.add(movRestantes, 1, 1);     ToDo agregar movimientos restantes
@@ -154,10 +153,33 @@ public class PanelAbajo extends HBox {
     }
 
 
+    private void crearBotonesSepararseYCombinarse() {
+        VBox contenedorCombinarseSepararse = new VBox(10);
+        contenedorCombinarseSepararse.setPadding(new Insets(25, 0, 0, 15));
+        contenedorCombinarseSepararse.setId("contenedorCombinarseVBox");
+
+        // ToDo falta implementar handlers de combinarse/separarse
+
+        Button combinarseButton = new Button("Combinarse");
+        combinarseButton.setStyle(estiloNegro);
+        combinarseButton.setMinSize(150, 25);
+        combinarseButton.setMaxSize(150, 25);
+        Button separarseButton = new Button("Separarse");
+        separarseButton.setStyle(estiloNegro);
+        separarseButton.setMinSize(150, 25);
+        separarseButton.setMaxSize(150, 25);
+
+        contenedorCombinarseSepararse.getChildren().addAll(combinarseButton, separarseButton);
+        this.getChildren().add(contenedorCombinarseSepararse);
+    }
+
+
     private void crearBotonFinalizarTurno() {
-        VBox contenedorFinalizarTurno = new VBox();
-        Button finalizarTurnoButton = new Button("Finalizar\nTurno");
-        finalizarTurnoButton.setOnAction(new BotonTerminarTurnoHandler(contenedorJuego.getPanelLateral(), contenedorJuego.getJuego(),contenedorJuego.getMsjError()));
+        HBox contenedorFinalizarTurno = new HBox();
+        contenedorFinalizarTurno.setPadding(new Insets(15, 0, 0, 50));
+        Button finalizarTurnoButton = new Button("Finalizar\n Turno");
+        finalizarTurnoButton.setStyle("-fx-font: 24 arial; -fx-base: #be0000;");
+        finalizarTurnoButton.setOnAction(new BotonTerminarTurnoHandler(contenedorJuego.getPanelLateral(), contenedorJuego.getJuego()));
 
         contenedorFinalizarTurno.getChildren().add(finalizarTurnoButton);
         this.getChildren().add(contenedorFinalizarTurno);
