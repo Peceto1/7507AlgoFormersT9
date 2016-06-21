@@ -107,18 +107,49 @@ public class PanelAbajo extends HBox {
         rightImageView.setFitWidth(25);
         Button rightButton = new Button("", rightImageView);
 
+        Image upRightImage = new Image("file:src/fiuba/algo3/view/resources/images/upRight.png");
+        ImageView upRightImageView = new ImageView(upRightImage);
+        upRightImageView.setPreserveRatio(true);
+        upRightImageView.setFitWidth(25);
+        Button upRightButton = new Button("", upRightImageView);
+
+        Image upLeftImage = new Image("file:src/fiuba/algo3/view/resources/images/upLeft.png");
+        ImageView upLeftImageView = new ImageView(upLeftImage);
+        upLeftImageView.setPreserveRatio(true);
+        upLeftImageView.setFitWidth(25);
+        Button upLeftButton = new Button("", upLeftImageView);
+
+        Image downLeftImage = new Image("file:src/fiuba/algo3/view/resources/images/downLeft.png");
+        ImageView downLeftImageView = new ImageView(downLeftImage);
+        downLeftImageView.setPreserveRatio(true);
+        downLeftImageView.setFitWidth(25);
+        Button downLeftButton = new Button("", downLeftImageView);
+
+        Image downRightImage = new Image("file:src/fiuba/algo3/view/resources/images/downRight.png");
+        ImageView downRightImageView = new ImageView(downRightImage);
+        downRightImageView.setPreserveRatio(true);
+        downRightImageView.setFitWidth(25);
+        Button downRightButton = new Button("", downRightImageView);
+
         rightButton.setOnAction(new MoverAlgoformerDerechaHandler(contenedorJuego));
         leftButton.setOnAction(new MoverAlgoformerIzquierdaHandler(contenedorJuego));
         upButton.setOnAction(new MoverAlgoformerAbajoHandler(contenedorJuego));
         downButton.setOnAction(new MoverAlgoformerArribaHandler(contenedorJuego));
-
+        // ToDo agregar setOnAction del resto de los botones
+        /*upRightButton;
+        upLeftButton;
+        downLeftButton;
+        downRightButton;*/
 
         grillaBotonesDirecciones.add(upButton, 1, 0);
         //.add(movRestantes, 1, 1);     ToDo agregar movimientos restantes
         grillaBotonesDirecciones.add(leftButton, 0, 1);
         grillaBotonesDirecciones.add(downButton, 1, 2);
         grillaBotonesDirecciones.add(rightButton, 2, 1);
-
+        grillaBotonesDirecciones.add(upRightButton, 2, 0);
+        grillaBotonesDirecciones.add(upLeftButton, 0, 0);
+        grillaBotonesDirecciones.add(downLeftButton, 0, 2);
+        grillaBotonesDirecciones.add(downRightButton, 2, 2);
     }
 
 
