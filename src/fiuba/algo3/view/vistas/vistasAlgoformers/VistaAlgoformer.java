@@ -80,11 +80,5 @@ public abstract class VistaAlgoformer implements Dibujable {
     }
 
 
-    @Override
-    public void mostrar() {
-
-    }
-
-
 
 }

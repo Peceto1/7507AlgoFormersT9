@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class VistaMapaAlgoformers implements Dibujable {
+public class VistaMapaAlgoformers {
 
     private Map<Algoformer, VistaAlgoformer> algoformersEnMapa;
     private Juego juego;
@@ -43,7 +43,6 @@ public class VistaMapaAlgoformers implements Dibujable {
     }
 
 
-    @Override
     public void mostrar() {
 
         ConvertidorPuntoAPixels convertidor = new ConvertidorPuntoAPixels();
@@ -58,23 +57,6 @@ public class VistaMapaAlgoformers implements Dibujable {
         }
     }
 
-
-    @Override
-    public void actualizar(int x, int y) {
-
-    }
-
-
-    @Override
-    public void limpiar(int x, int y) {
-
-    }
-
-
-    @Override
-    public void dibujar(int x, int y) {
-
-    }
 
 
 

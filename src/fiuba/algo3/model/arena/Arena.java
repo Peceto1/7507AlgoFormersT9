@@ -20,7 +20,7 @@ public class Arena {
     private Random random = new Random();
     private static final int CANTIDAD_TRAMPAS = (3000);
 
-    private static final int CANTIDAD_BONUS = (100);
+    private static final int CANTIDAD_BONUS = (1500); //volver a 100
 
 
     private Arena() {

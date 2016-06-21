@@ -4,8 +4,8 @@ import fiuba.algo3.controller.MoverAlgoformerDerechaHandler;
 import fiuba.algo3.model.juego.Juego;
 import fiuba.algo3.view.vistas.VistaArena;
 import fiuba.algo3.view.vistas.VistaMapaAlgoformers;
+import fiuba.algo3.view.vistas.VistaMapaBonuses;
 import javafx.geometry.Insets;
-import fiuba.algo3.view.vistas.VistaBonuses;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
@@ -23,7 +23,7 @@ public class ContenedorJuego extends BorderPane {
     Canvas canvasAlgoformers;
     Canvas canvasBonuses;
     VistaMapaAlgoformers vistaAlgoformers;
-    VistaBonuses vistaBonuses;
+    VistaMapaBonuses vistaBonuses;
     VistaArena vistaArena;
     Background fondoPaneles = new Background(new BackgroundFill(Color.web("#000f3d"), null, null));
     String estiloNegro = "-fx-base: #474747;";
@@ -71,7 +71,7 @@ public class ContenedorJuego extends BorderPane {
 
         this.vistaArena = new VistaArena(102, 51);
         this.vistaArena.dibujarArena();
-        this.vistaBonuses = new VistaBonuses(canvasBonuses);
+        this.vistaBonuses = new VistaMapaBonuses(canvasBonuses);
         this.vistaBonuses.mostrar();
 
         this.vistaAlgoformers = new VistaMapaAlgoformers(canvasAlgoformers, juego);
