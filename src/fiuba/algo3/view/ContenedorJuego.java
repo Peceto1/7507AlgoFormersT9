@@ -71,7 +71,6 @@ public class ContenedorJuego extends BorderPane {
         this.setCenter(contenedorCentral);
     }
 
-
     public Text getMsjError() {
         return this.msjError;
     }

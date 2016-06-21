@@ -1,7 +1,10 @@
 package fiuba.algo3.view.layouts;
 
 import fiuba.algo3.controller.BotonTerminarTurnoHandler;
-import fiuba.algo3.controller.MoverAlgoformerDerechaHandler;
+import fiuba.algo3.controller.HandlersMovimiento.MoverAlgoformerAbajoHandler;
+import fiuba.algo3.controller.HandlersMovimiento.MoverAlgoformerArribaHandler;
+import fiuba.algo3.controller.HandlersMovimiento.MoverAlgoformerDerechaHandler;
+import fiuba.algo3.controller.HandlersMovimiento.MoverAlgoformerIzquierdaHandler;
 import fiuba.algo3.view.ContenedorJuego;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -104,7 +107,11 @@ public class PanelAbajo extends HBox {
         rightImageView.setFitWidth(25);
         Button rightButton = new Button("", rightImageView);
 
-        rightButton.setOnAction(new MoverAlgoformerDerechaHandler(this.contenedorJuego));
+        rightButton.setOnAction(new MoverAlgoformerDerechaHandler(contenedorJuego));
+        leftButton.setOnAction(new MoverAlgoformerIzquierdaHandler(contenedorJuego));
+        upButton.setOnAction(new MoverAlgoformerAbajoHandler(contenedorJuego));
+        downButton.setOnAction(new MoverAlgoformerArribaHandler(contenedorJuego));
+
 
         grillaBotonesDirecciones.add(upButton, 1, 0);
         //.add(movRestantes, 1, 1);     ToDo agregar movimientos restantes
