@@ -31,9 +31,7 @@ public class MoverAlgoformerDerechaHandler implements EventHandler<ActionEvent> 
         AlgoformerPool pool = AlgoformerPool.getInstance();
         Algoformer bumblebee = pool.obtenerBumblebee();
 
-        bumblebee.reiniciarMovimiento();
-
-        PuntoTierra ubicacionVieja = (PuntoTierra) bumblebee.getUbicacion();
+        PuntoPixels ubicacionPixelVieja = this.vistaAlgoformers.getVista(bumblebee).getUbicacion();
 
         try {
             bumblebee.moverseHacia(new DireccionDerecha());
@@ -42,16 +40,10 @@ public class MoverAlgoformerDerechaHandler implements EventHandler<ActionEvent> 
             return;
         }
 
-        System.out.println("Antes Convertidor");
-
-        ConvertidorPuntoAPixels convertidor = new ConvertidorPuntoAPixels();
-        System.out.println("Despues de Instanciar Convertidor");
-        PuntoPixels puntoViejo = convertidor.convertir(ubicacionVieja);
-        System.out.println("Despues de Convertir");
-
+        Punto ubicacionNueva = bumblebee.getUbicacion();
         VistaAlgoformer a = this.vistaAlgoformers.getVista(bumblebee);
-        System.out.println(a);
-        a.actualizar(puntoViejo.getX(), puntoViejo.getY());
+
+        a.actualizar(ubicacionPixelVieja.getX(), ubicacionPixelVieja.getY());
         //this.vistaBonuses.actualizar();
 
     }

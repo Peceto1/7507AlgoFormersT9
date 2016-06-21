@@ -5,7 +5,6 @@ import fiuba.algo3.model.juego.Juego;
 import fiuba.algo3.view.vistas.VistaArena;
 import fiuba.algo3.view.vistas.VistaMapaAlgoformers;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import fiuba.algo3.view.vistas.VistaBonuses;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -45,6 +44,7 @@ public class ContenedorJuego extends BorderPane {
         panelLateral.setMinWidth(160);
         this.setLeft(panelLateral);
         dibujarInformacionDeTurno();
+        dibujarInformacionDeErrores();
     }
 
 
@@ -96,31 +96,43 @@ public class ContenedorJuego extends BorderPane {
         gcAlgoformers.fillOval(60, 30, 10, 10);
     }
 
-    public void dibujarInformacionDeTurno(){
+
+    public void dibujarInformacionDeTurno() {
         VBox panelInformacion = new VBox();
-        Label informacionTurno = new Label();
-        Label informacionJugador = new Label();
-
-        panelInformacion.setAlignment(Pos.TOP_LEFT);
-        panelInformacion.setPadding(new Insets(10,10,10,10));
         panelInformacion.setSpacing(10);
-        panelInformacion.setMinWidth(50);
+        panelInformacion.setPadding(new Insets(10, 0, 5, 10));
+        double ancho = this.getLeft().getLayoutBounds().getWidth();
+        panelInformacion.setMinWidth(ancho);
+        panelInformacion.setStyle("-fx-border-style: solid inside;" +
+                "-fx-border-width: 5;" +
+                "-fx-border-color: black;");
 
-        informacionJugador.setAlignment(Pos.TOP_CENTER);
-        informacionJugador.setText("Jugador:"); //Agregar nombre de jugadores.
+
+        Label informacionJugador = new Label();
+        Label informacionTurno = new Label();
+        Label informacionEquipo = new Label();
+
+        String nombreJug = juego.getJugadorEnTurno().getNombre();
+        String equipoJug = juego.getJugadorEnTurno().getEquipo();
+        String numeroTurno = Integer.toString(juego.getTurno());
+
+        informacionJugador.setText("Jugador: " + nombreJug); //Agregar nombre de jugadores.
         informacionJugador.setStyle("-fx-base: #474747;");
-        informacionJugador.setPadding(new Insets(10,5,5,5));
-        panelInformacion.setMinWidth(160);
 
-
-        informacionTurno.setAlignment(Pos.BOTTOM_CENTER);
         informacionTurno.setStyle("-fx-base: #474747;");
-        informacionTurno.setText("Turno:");
-        informacionTurno.setPadding(new Insets(10,5,5,5));
-        panelInformacion.setMinWidth(160);
+        informacionTurno.setText("Turno: " + numeroTurno);
 
-        panelInformacion.getChildren().addAll(informacionJugador, informacionTurno);
+        informacionEquipo.setStyle("-fx-base: #474747;");
+        informacionEquipo.setText("Equipo: " + equipoJug);
+
+        panelInformacion.getChildren().addAll(informacionJugador, informacionEquipo, informacionTurno);
         this.panelLateral.getChildren().addAll(panelInformacion);
     }
+
+
+    private void dibujarInformacionDeErrores() {
+
+    }
+
 
 }

@@ -1,6 +1,6 @@
 package fiuba.algo3.view.vistas;
 
-import fiuba.algo3.model.espacio.PuntoTierra;
+import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.juego.Juego;
 import fiuba.algo3.model.unidades.Algoformer;
 import fiuba.algo3.model.unidades.AlgoformerPool;
@@ -51,7 +51,7 @@ public class VistaMapaAlgoformers implements Dibujable {
         for (Map.Entry<Algoformer, VistaAlgoformer> par : this.algoformersEnMapa.entrySet()) {
 
             VistaAlgoformer vistaActual = par.getValue();
-            PuntoTierra ubicacion = (PuntoTierra) par.getKey().getUbicacion();
+            Punto ubicacion = par.getKey().getUbicacion();
 
             PuntoPixels punto = convertidor.convertir(ubicacion);
             vistaActual.dibujar(punto.getX(), punto.getY());

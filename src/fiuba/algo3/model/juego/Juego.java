@@ -107,6 +107,11 @@ public class Juego {
     }
 
 
+    public int getTurno() {
+        return this.turno;
+    }
+
+
     public Jugador getJugadorEnTurno() {
         int cantJugadores = this.jugadores.size();
         return this.jugadores.get(turno % cantJugadores);

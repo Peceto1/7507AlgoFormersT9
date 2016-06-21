@@ -1,7 +1,6 @@
 package fiuba.algo3.view.utilities;
 
-import fiuba.algo3.model.espacio.PuntoAire;
-import fiuba.algo3.model.espacio.PuntoTierra;
+import fiuba.algo3.model.espacio.Punto;
 
 public class ConvertidorPuntoAPixels {
 
@@ -15,24 +14,14 @@ public class ConvertidorPuntoAPixels {
     }
 
 
-    public PuntoPixels convertir(PuntoAire punto) {
+    public PuntoPixels convertir(Punto punto) {
         int x = punto.getX();
         int y = punto.getY();
+        int nivel = punto.getNivel();
 
         int xPixel = anchoPxCasillero * x - anchoPxCasillero/2;
-        int yPixel = 2 * altoPxCasillero * y - (altoPxCasillero + altoPxCasillero/2);
+        int yPixel = (nivel == 0) ? 2 * altoPxCasillero * y - (altoPxCasillero - altoPxCasillero/2) : 2 * altoPxCasillero * y - (altoPxCasillero + altoPxCasillero/2);
         return new PuntoPixels(xPixel, yPixel);
     }
-
-
-    public PuntoPixels convertir(PuntoTierra punto) {
-        int x = punto.getX();
-        int y = punto.getY();
-
-        int xPixel = anchoPxCasillero * x - anchoPxCasillero/2;
-        int yPixel = 2 * altoPxCasillero * y - (altoPxCasillero - altoPxCasillero/2);
-        return new PuntoPixels(xPixel, yPixel);
-    }
-
 
 }

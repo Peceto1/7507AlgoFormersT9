@@ -1,6 +1,5 @@
 package fiuba.algo3.view.vistas.vistasAlgoformers;
 
-import fiuba.algo3.model.espacio.PuntoTierra;
 import fiuba.algo3.model.unidades.Algoformer;
 import fiuba.algo3.view.Dibujable;
 import fiuba.algo3.view.utilities.ConvertidorPuntoAPixels;
@@ -22,6 +21,7 @@ public abstract class VistaAlgoformer implements Dibujable {
     int imageWidthSize;
     Canvas canvasAlgoformers;
     Algoformer algoformer;
+    ConvertidorPuntoAPixels convertidor;
 
 
     public VistaAlgoformer(Canvas canvasAlgoformers, Algoformer algoformer) {
@@ -31,11 +31,17 @@ public abstract class VistaAlgoformer implements Dibujable {
         this.imageWidthSize = 20;
         this.imagenesAlgoformer = new ArrayList<>();
         this.indiceImagenActual = 0;
+        this.convertidor = new ConvertidorPuntoAPixels();
     }
 
 
     Image obtenerImagenActual() {
         return this.imagenesAlgoformer.get(indiceImagenActual % 2);
+    }
+
+
+    public PuntoPixels getUbicacion() {
+        return this.convertidor.convertir( this.algoformer.getUbicacion() );
     }
 
 
@@ -58,8 +64,7 @@ public abstract class VistaAlgoformer implements Dibujable {
     @Override
     public void actualizar(int x, int y) {
         limpiar(x, y);
-        ConvertidorPuntoAPixels convertidor = new ConvertidorPuntoAPixels();
-        PuntoPixels nuevoPunto = convertidor.convertir((PuntoTierra) this.algoformer.getUbicacion());
+        PuntoPixels nuevoPunto = convertidor.convertir(this.algoformer.getUbicacion());
         dibujar(nuevoPunto.getX(), nuevoPunto.getY());
     }
 
