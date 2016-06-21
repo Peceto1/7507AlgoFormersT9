@@ -1,6 +1,6 @@
 package fiuba.algo3.view;
 
-import fiuba.algo3.controller.MoverAlgoformerDerechaHandler;
+import fiuba.algo3.controller.HandlersMovimiento.MoverAlgoformerDerechaHandler;
 import fiuba.algo3.model.juego.Juego;
 import fiuba.algo3.view.layouts.PanelLateral;
 import fiuba.algo3.view.vistas.VistaArena;
