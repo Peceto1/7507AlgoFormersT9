@@ -18,9 +18,8 @@ public class Arena {
     private final int ALTO = 51;
     private static Arena instancia = new Arena();
     private Random random = new Random();
-    private static final int CANTIDAD_TRAMPAS = (3000);
-
-    private static final int CANTIDAD_BONUS = (1500); //volver a 100
+    private static final int CANTIDAD_TRAMPAS = (2000);
+    private static final int CANTIDAD_BONUS = (100);
 
 
     private Arena() {
@@ -70,7 +69,7 @@ public class Arena {
     }
     
     public void setTerrenoAleatorio(){
-    	List<Punto> puntosASetearTerreno = new ArrayList<Punto>(arena.keySet());
+    	List<Punto> puntosASetearTerreno = new ArrayList<>(arena.keySet());
     	puntosASetearTerreno.removeAll(puntosDeInicioAutobots);
     	puntosASetearTerreno.removeAll(puntosDeInicioDecepticons);
     	for (int i=0; i<CANTIDAD_TRAMPAS;i++){
@@ -108,7 +107,7 @@ public class Arena {
     
     
     public void setBonusAleatorio(){
-    	List<Punto> puntosASetearTerreno = new ArrayList<Punto>(arena.keySet());
+    	List<Punto> puntosASetearTerreno = new ArrayList<>(arena.keySet());
     	puntosASetearTerreno.removeAll(puntosDeInicioAutobots);
     	puntosASetearTerreno.removeAll(puntosDeInicioDecepticons);
     	
