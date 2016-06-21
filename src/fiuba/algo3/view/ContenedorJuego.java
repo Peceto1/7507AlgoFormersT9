@@ -82,7 +82,7 @@ public class ContenedorJuego extends BorderPane {
     }
 
 
-    public VBox getPanelLateral() {
+    public PanelLateral getPanelLateral() {
         return this.panelLateral;
     }
 

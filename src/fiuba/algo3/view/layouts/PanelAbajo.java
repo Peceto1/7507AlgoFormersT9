@@ -1,5 +1,6 @@
 package fiuba.algo3.view.layouts;
 
+import fiuba.algo3.controller.BotonTerminarTurnoHandler;
 import fiuba.algo3.controller.MoverAlgoformerDerechaHandler;
 import fiuba.algo3.view.ContenedorJuego;
 import javafx.geometry.Insets;
@@ -9,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 public class PanelAbajo extends HBox {
 
@@ -22,6 +24,7 @@ public class PanelAbajo extends HBox {
         this.setMaxHeight(120);
         this.contenedorJuego = contenedorJuego;
         dibujarBloqueBotones();
+        crearBotonFinalizarTurno();
     }
 
 
@@ -109,6 +112,16 @@ public class PanelAbajo extends HBox {
         grillaBotonesDirecciones.add(downButton, 1, 2);
         grillaBotonesDirecciones.add(rightButton, 2, 1);
 
+    }
+
+
+    private void crearBotonFinalizarTurno() {
+        VBox contenedorFinalizarTurno = new VBox();
+        Button finalizarTurnoButton = new Button("Finalizar\nTurno");
+        finalizarTurnoButton.setOnAction(new BotonTerminarTurnoHandler(contenedorJuego.getPanelLateral(), contenedorJuego.getJuego()));
+
+        contenedorFinalizarTurno.getChildren().add(finalizarTurnoButton);
+        this.getChildren().add(contenedorFinalizarTurno);
     }
 
 
