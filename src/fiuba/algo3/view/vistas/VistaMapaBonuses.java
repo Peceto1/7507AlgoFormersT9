@@ -51,10 +51,9 @@ public class VistaMapaBonuses {
 
     public void actualizar(Punto puntoAActualizar){
 
-        if (!bonusesEnMapa.containsKey(puntoAActualizar)) {
-            System.out.println("No Hay Bonus");
+        if (!bonusesEnMapa.containsKey(puntoAActualizar))
             return;
-        }
+
         //Bonus bonusPisado = bonusesEnMapa.get(puntoAActualizar);
 
         ConvertidorPuntoAPixels conversor = new ConvertidorPuntoAPixels();

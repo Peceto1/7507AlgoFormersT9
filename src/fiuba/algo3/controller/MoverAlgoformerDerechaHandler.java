@@ -1,6 +1,5 @@
 package fiuba.algo3.controller;
 
-import fiuba.algo3.model.arena.Arena;
 import fiuba.algo3.model.espacio.DireccionDerecha;
 import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.unidades.Algoformer;
@@ -18,14 +17,14 @@ import javafx.scene.text.Text;
 
 public class MoverAlgoformerDerechaHandler implements EventHandler<ActionEvent> {
 
-    private VistaMapaAlgoformers vistaAlgoformers;
-    private VistaMapaBonuses vistaBonuses;
+    private VistaMapaAlgoformers vistaMapaAlgoformers;
+    private VistaMapaBonuses vistaMapaBonuses;
     private Text msjError;
 
 
-    public MoverAlgoformerDerechaHandler(VistaMapaAlgoformers vistaAlgoformers, VistaMapaBonuses vistaBonuses, ContenedorJuego contenedorJuego) {
-        this.vistaAlgoformers = vistaAlgoformers;
-        this.vistaBonuses = vistaBonuses;
+    public MoverAlgoformerDerechaHandler(ContenedorJuego contenedorJuego) {
+        this.vistaMapaAlgoformers = contenedorJuego.getVistaMapaAlgoformers();
+        this.vistaMapaBonuses = contenedorJuego.getVistaMapaBonuses();
         this.msjError = contenedorJuego.getMsjError();
     }
 
@@ -35,7 +34,7 @@ public class MoverAlgoformerDerechaHandler implements EventHandler<ActionEvent> 
         AlgoformerPool pool = AlgoformerPool.getInstance();
         Algoformer bumblebee = pool.obtenerBumblebee();
 
-        PuntoPixels ubicacionPixelVieja = this.vistaAlgoformers.getVista(bumblebee).getUbicacion();
+        PuntoPixels ubicacionPixelVieja = this.vistaMapaAlgoformers.getVista(bumblebee).getUbicacion();
 
         try {
             bumblebee.moverseHacia(new DireccionDerecha());
@@ -45,11 +44,11 @@ public class MoverAlgoformerDerechaHandler implements EventHandler<ActionEvent> 
         }
 
         Punto ubicacionNueva = bumblebee.getUbicacion();
-        VistaAlgoformer a = this.vistaAlgoformers.getVista(bumblebee);
+        VistaAlgoformer a = this.vistaMapaAlgoformers.getVista(bumblebee);
 
         a.actualizar(ubicacionPixelVieja.getX(), ubicacionPixelVieja.getY());
 
         //
-        vistaBonuses.actualizar(ubicacionNueva);
+        vistaMapaBonuses.actualizar(ubicacionNueva);
     }
 }
