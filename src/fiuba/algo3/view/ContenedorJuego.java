@@ -1,6 +1,9 @@
 package fiuba.algo3.view;
 
+import fiuba.algo3.controller.HandlersMovimiento.MoverAlgoformerAbajoHandler;
+import fiuba.algo3.controller.HandlersMovimiento.MoverAlgoformerArribaHandler;
 import fiuba.algo3.controller.HandlersMovimiento.MoverAlgoformerDerechaHandler;
+import fiuba.algo3.controller.HandlersMovimiento.MoverAlgoformerIzquierdaHandler;
 import fiuba.algo3.model.juego.Juego;
 import fiuba.algo3.view.layouts.PanelLateral;
 import fiuba.algo3.view.vistas.VistaArena;
@@ -157,6 +160,9 @@ public class ContenedorJuego extends BorderPane {
         Button rightButton = new Button("", rightImageView);
 
         rightButton.setOnAction(new MoverAlgoformerDerechaHandler(this));
+        leftButton.setOnAction(new MoverAlgoformerIzquierdaHandler(this));
+        upButton.setOnAction(new MoverAlgoformerAbajoHandler(this));
+        downButton.setOnAction(new MoverAlgoformerArribaHandler(this));
 
         grillaBotonesDirecciones.add(upButton, 1, 0);
         //.add(movRestantes, 1, 1);     ToDo agregar movimientos restantes
