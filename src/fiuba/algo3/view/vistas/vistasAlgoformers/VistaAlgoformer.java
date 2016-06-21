@@ -1,7 +1,10 @@
 package fiuba.algo3.view.vistas.vistasAlgoformers;
 
+import fiuba.algo3.model.espacio.PuntoTierra;
 import fiuba.algo3.model.unidades.Algoformer;
 import fiuba.algo3.view.Dibujable;
+import fiuba.algo3.view.utilities.ConvertidorPuntoAPixels;
+import fiuba.algo3.view.utilities.PuntoPixels;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -53,14 +56,22 @@ public abstract class VistaAlgoformer implements Dibujable {
 
 
     @Override
-    public void actualizar() {
-
+    public void actualizar(int x, int y) {
+        limpiar(x, y);
+        ConvertidorPuntoAPixels convertidor = new ConvertidorPuntoAPixels();
+        PuntoPixels nuevoPunto = convertidor.convertir((PuntoTierra) this.algoformer.getUbicacion());
+        dibujar(nuevoPunto.getX(), nuevoPunto.getY());
     }
 
 
     @Override
-    public void limpiar() {
+    public void limpiar(int x, int y) {
 
+        x = x - imageWidthSize/2;
+        y = y - imageHeightSize/2;
+
+        GraphicsContext gc = canvasAlgoformers.getGraphicsContext2D();
+        gc.clearRect(x, y, 40, 20);
     }
 
 

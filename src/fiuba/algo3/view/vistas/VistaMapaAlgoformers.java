@@ -38,6 +38,11 @@ public class VistaMapaAlgoformers implements Dibujable {
     }
 
 
+    public VistaAlgoformer getVista(Algoformer algoformer) {
+        return this.algoformersEnMapa.get(algoformer);
+    }
+
+
     @Override
     public void mostrar() {
 
@@ -55,13 +60,13 @@ public class VistaMapaAlgoformers implements Dibujable {
 
 
     @Override
-    public void actualizar() {
+    public void actualizar(int x, int y) {
 
     }
 
 
     @Override
-    public void limpiar() {
+    public void limpiar(int x, int y) {
 
     }
 

@@ -1,5 +1,6 @@
 package fiuba.algo3.view;
 
+import fiuba.algo3.controller.MoverAlgoformerDerechaHandler;
 import fiuba.algo3.model.juego.Juego;
 import fiuba.algo3.view.vistas.VistaArena;
 import fiuba.algo3.view.vistas.VistaMapaAlgoformers;
@@ -8,6 +9,7 @@ import javafx.geometry.Pos;
 import fiuba.algo3.view.vistas.VistaBonuses;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
@@ -21,15 +23,18 @@ public class ContenedorJuego extends BorderPane {
     ScrollPane contenedorCentral;
     Canvas canvasAlgoformers;
     Canvas canvasBonuses;
+    VistaMapaAlgoformers vistaAlgoformers;
+    VistaBonuses vistaBonuses;
+    VistaArena vistaArena;
     Background fondoPaneles = new Background(new BackgroundFill(Color.web("#000f3d"), null, null));
     String estiloNegro = "-fx-base: #474747;";
 
 
     public ContenedorJuego(Juego juego) {
         this.juego = juego;
+        crearContenedorCentral();
         crearPanelLateral();
         crearPanelAbajo();
-        crearContenedorCentral();
         //pruebaDibujar();
     }
 
@@ -48,6 +53,11 @@ public class ContenedorJuego extends BorderPane {
         panelAbajo.setBackground(fondoPaneles);
         panelAbajo.setMinHeight(115);
         this.setBottom(panelAbajo);
+
+
+        Button moverse = new Button("Mover Derecha");
+        moverse.setOnAction(new MoverAlgoformerDerechaHandler(this.vistaAlgoformers, this.vistaBonuses));
+        panelAbajo.getChildren().add(moverse);
     }
 
 
@@ -59,13 +69,13 @@ public class ContenedorJuego extends BorderPane {
         this.canvasAlgoformers = new Canvas(2040, 2040);
 
 
-        VistaArena vistaArena = new VistaArena(102, 51);
-        vistaArena.dibujarArena();
-        VistaBonuses vistaBonuses = new VistaBonuses(canvasBonuses);
-        vistaBonuses.mostrar();
+        this.vistaArena = new VistaArena(102, 51);
+        this.vistaArena.dibujarArena();
+        this.vistaBonuses = new VistaBonuses(canvasBonuses);
+        this.vistaBonuses.mostrar();
 
-        VistaMapaAlgoformers vistaAlgoformers = new VistaMapaAlgoformers(canvasAlgoformers, juego);
-        vistaAlgoformers.mostrar();
+        this.vistaAlgoformers = new VistaMapaAlgoformers(canvasAlgoformers, juego);
+        this.vistaAlgoformers.mostrar();
 
 
         contenedorCanvases.getChildren().addAll(vistaArena, canvasBonuses, canvasAlgoformers);
