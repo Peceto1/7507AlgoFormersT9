@@ -3,6 +3,7 @@ package fiuba.algo3.view.layouts;
 import fiuba.algo3.controller.BotonTerminarTurnoHandler;
 import fiuba.algo3.controller.HandlersMovimiento.*;
 import fiuba.algo3.view.ContenedorJuego;
+import fiuba.algo3.view.resources.images.textures.BotonTransformarHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -39,19 +40,22 @@ public class PanelAbajo extends HBox {
         grillaBotonesAcciones.setHgap(10);
         grillaBotonesAcciones.setVgap(10);
         GridPane grillaBotonesDirecciones = new GridPane();
+
+        VBox contenedorCombinarseSepararse = new VBox(10);
         
         contenedorAcciones.setId("contenedorAcciones");
         contenedorDirecciones.setId("contenedorDirecciones");
+        contenedorCombinarseSepararse.setId("contenedorCombinarseVBox");
 
-        crearBotonesDeAcciones(contenedorAcciones, grillaBotonesAcciones, contenedorDirecciones);
+        crearBotonesDeAcciones(contenedorAcciones, grillaBotonesAcciones, contenedorDirecciones, contenedorCombinarseSepararse);
         crearBotonesDeDirecciones(grillaBotonesDirecciones);
         contenedorAcciones.getChildren().add(grillaBotonesAcciones);
         contenedorDirecciones.getChildren().add(grillaBotonesDirecciones);
-        this.getChildren().addAll(contenedorAcciones, contenedorDirecciones);
+        this.getChildren().addAll(contenedorAcciones, contenedorDirecciones,contenedorCombinarseSepararse);
     }
 
 
-    private void crearBotonesDeAcciones(HBox contenedorAcciones, GridPane grillaBotonesAcciones, HBox contenedorDirecciones) {
+    private void crearBotonesDeAcciones(HBox contenedorAcciones, GridPane grillaBotonesAcciones, HBox contenedorDirecciones, VBox contenedorCombinarseSepararse) {
 
         Button moveButton = new Button("Mover");
         moveButton.setMinSize(150, 25);
@@ -74,6 +78,8 @@ public class PanelAbajo extends HBox {
         transformButton.setMinSize(150, 25);
         transformButton.setMaxSize(150, 25);
         transformButton.setStyle(estiloNegro);
+        
+        transformButton.setOnAction(new BotonTransformarHandler(contenedorJuego,contenedorAcciones,contenedorCombinarseSepararse));
         Button captureButton = new Button("Capturar Chispa");
         captureButton.setMinSize(150, 25);
         captureButton.setMaxSize(150, 25);
@@ -156,9 +162,8 @@ public class PanelAbajo extends HBox {
 
 
     private void crearBotonesSepararseYCombinarse() {
-        VBox contenedorCombinarseSepararse = new VBox(10);
+    	VBox contenedorCombinarseSepararse = (VBox) this.lookup("#contenedorCombinarseVBox");
         contenedorCombinarseSepararse.setPadding(new Insets(25, 0, 0, 15));
-        contenedorCombinarseSepararse.setId("contenedorCombinarseVBox");
 
         // ToDo falta implementar handlers de combinarse/separarse
 
@@ -172,7 +177,6 @@ public class PanelAbajo extends HBox {
         separarseButton.setMaxSize(150, 25);
 
         contenedorCombinarseSepararse.getChildren().addAll(combinarseButton, separarseButton);
-        this.getChildren().add(contenedorCombinarseSepararse);
     }
 
 
