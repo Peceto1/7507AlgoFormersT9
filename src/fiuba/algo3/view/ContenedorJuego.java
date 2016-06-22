@@ -1,9 +1,15 @@
 package fiuba.algo3.view;
 
-
+import fiuba.algo3.model.arena.Arena;
+import fiuba.algo3.model.arena.Bonus;
+import fiuba.algo3.model.arena.TerrenoAplicable;
+import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.juego.Juego;
+import fiuba.algo3.model.unidades.Algoformer;
 import fiuba.algo3.view.layouts.PanelAbajo;
 import fiuba.algo3.view.layouts.PanelLateral;
+import fiuba.algo3.view.utilities.ConvertidorPuntoAPixels;
+import fiuba.algo3.view.utilities.PuntoPixels;
 import fiuba.algo3.view.vistas.VistaArena;
 import fiuba.algo3.view.vistas.VistaMapaAlgoformers;
 import fiuba.algo3.view.vistas.VistaMapaBonuses;
@@ -27,6 +33,10 @@ public class ContenedorJuego extends BorderPane {
     private Background fondoPaneles = new Background(new BackgroundFill(Color.web("#000f3d"), null, null));
     private String estiloNegro = "-fx-base: #474747;";
     private Text msjError;
+    public Algoformer algoformerSeleccionado;
+    public TerrenoAplicable terrenoSeleccionado;
+    public Bonus bonusSeleccionado;
+    ConvertidorPuntoAPixels conversor;
 
 
     public ContenedorJuego(Juego juego) {
@@ -34,6 +44,7 @@ public class ContenedorJuego extends BorderPane {
         crearContenedorCentral();
         crearPanelLateral();
         crearPanelAbajo();
+        this.conversor = new ConvertidorPuntoAPixels();
     }
 
 
@@ -53,6 +64,11 @@ public class ContenedorJuego extends BorderPane {
         this.contenedorCentral = new ScrollPane();
         StackPane contenedorCanvases = new StackPane();
 
+        contenedorCanvases.setOnMouseClicked( (mouseEvent) -> {
+            System.out.printf("x: %f  y: %f", mouseEvent.getX(), mouseEvent.getY());
+            seleccionarCasillero(mouseEvent.getX(),mouseEvent.getY());
+        } );
+
         this.canvasBonuses = new Canvas(2040, 2040);
         this.canvasAlgoformers = new Canvas(2040, 2040);
 
@@ -70,6 +86,17 @@ public class ContenedorJuego extends BorderPane {
         contenedorCentral.setPannable(true);
         contenedorCentral.setVvalue(0.5);   // Para que el scroll vertical arranque a la mitad
         this.setCenter(contenedorCentral);
+    }
+
+    private void seleccionarCasillero(double x, double y) {
+
+        PuntoPixels parPixel = new PuntoPixels((int)x, (int)y);
+        Punto ubicacion = conversor.reconvertir(parPixel);
+
+        algoformerSeleccionado = Arena.getInstance().obtenerAlgoformerEn(ubicacion);
+        terrenoSeleccionado = Arena.getInstance().devolverTerrenoEn(ubicacion);
+        bonusSeleccionado = Arena.getInstance().devolverBonusEn(ubicacion);
+
     }
 
     public Text getMsjError() {
@@ -103,7 +130,6 @@ public class ContenedorJuego extends BorderPane {
     public void setMsjError(Text msjError) {
         this.msjError = msjError;
     }
-
 
 
 }
