@@ -231,8 +231,8 @@ public class MovimientoTest {
     	bumblebee.moverseHacia(direccionDiagonalIzquierdaArriba);
     }
     
-	@Test
-	public void AlgoformerMuertoNoPuedeTransformarse(){
+	@Test(expected = MovimientoNoValidoException.class)
+	public void AlgoformerMuertoNoPuedeMoverse(){
 		Algoformer optimusprime = instanciadorDeAlgoformers.obtenerOptimus();
 		Algoformer megatron = instanciadorDeAlgoformers.obtenerMegatron();
 		
