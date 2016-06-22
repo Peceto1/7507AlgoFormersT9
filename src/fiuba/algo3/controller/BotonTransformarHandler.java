@@ -37,10 +37,9 @@ public class BotonTransformarHandler implements EventHandler<ActionEvent> {
 
 	@Override
 	public void handle(ActionEvent actionEvent) {
-		 //AlgoformerPool pool = AlgoformerPool.getInstance();
-	     //Algoformer bumblebee = pool.obtenerBumblebee();
-	     contenedorJuego.setearAccionado();
-	     Algoformer algoformerATransformarse = contenedorJuego.algoformerAccionado;
+
+	     contenedorJuego.setAccionado();
+	     Algoformer algoformerATransformarse = contenedorJuego.getAlgoformerAccionado();
 	     
 	     if (algoformerATransformarse == null){
 	            return;

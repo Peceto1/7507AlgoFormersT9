@@ -34,11 +34,11 @@ public class ContenedorJuego extends BorderPane {
     private Background fondoPaneles = new Background(new BackgroundFill(Color.web("#000f3d"), null, null));
     private String estiloNegro = "-fx-base: #474747;";
     private Text msjError;
-    Algoformer algoformerSeleccionado;
-    TerrenoAplicable terrenoSeleccionado;
-    Bonus bonusSeleccionado;
-    public Algoformer algoformerAccionado;
-    ConvertidorPuntoAPixels conversor;
+    private Algoformer algoformerSeleccionado;
+    private TerrenoAplicable terrenoSeleccionado;
+    private Bonus bonusSeleccionado;
+    private Algoformer algoformerAccionado;
+    private ConvertidorPuntoAPixels conversor;
 
 
     public ContenedorJuego(Juego juego) {
@@ -134,12 +134,17 @@ public class ContenedorJuego extends BorderPane {
     }
 
 
+    public Algoformer getAlgoformerAccionado() {
+        return algoformerAccionado;
+    }
+
+
     public void setMsjError(Text msjError) {
         this.msjError = msjError;
     }
 
 
-    public void setearAccionado() {
+    public void setAccionado() {
         this.algoformerAccionado = this.algoformerSeleccionado;
     }
 

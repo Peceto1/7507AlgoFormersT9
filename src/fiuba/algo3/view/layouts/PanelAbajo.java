@@ -1,9 +1,9 @@
 package fiuba.algo3.view.layouts;
 
+import fiuba.algo3.controller.BotonMoverHandler;
 import fiuba.algo3.controller.BotonTerminarTurnoHandler;
 import fiuba.algo3.controller.BotonTransformarHandler;
-import fiuba.algo3.controller.HandlersMovimiento.*;
-import fiuba.algo3.model.juego.JugadorNoPuedeObtenerAlgoformerContrarioException;
+import fiuba.algo3.controller.MovimientoHandlers.*;
 import fiuba.algo3.view.ContenedorJuego;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -22,7 +22,7 @@ import javafx.scene.text.FontWeight;
 
 public class PanelAbajo extends HBox {
 
-    ContenedorJuego contenedorJuego;
+    private ContenedorJuego contenedorJuego;
     private String estiloNegro = "-fx-base: #474747;";
 
     public PanelAbajo(ContenedorJuego contenedorJuego, Background fondoPanel) {
@@ -69,26 +69,7 @@ public class PanelAbajo extends HBox {
         moveButton.setMaxSize(150, 25);
         moveButton.setStyle(estiloNegro);
 
-        // ToDo pasar este lambda a un EventHandler en controller y si los restantes son > 0 que muestre 0.
-
-        moveButton.setOnAction( (actionEvent) -> {
-            contenedorJuego.setearAccionado();
-            if (contenedorJuego.algoformerAccionado == null){
-                return;
-            }
-
-            try{
-                contenedorJuego.obtenerJugadorEnTurno().obtenerAlgoformerEn(contenedorJuego.algoformerAccionado.getUbicacion());
-                Label movRestantes = (Label) contenedorJuego.getPanelAbajo().lookup("#movRestantesLabel");
-                movRestantes.setText(Integer.toString(contenedorJuego.algoformerAccionado.getMovimientosRestantes()));
-            }catch(JugadorNoPuedeObtenerAlgoformerContrarioException e){
-                return;
-            }
-
-            contenedorDirecciones.setVisible(true);
-            contenedorAcciones.setDisable(true);
-            this.lookup("#contenedorCombinarseVBox").setDisable(true);
-        } );
+        moveButton.setOnAction(new BotonMoverHandler(contenedorJuego));
 
         // ToDo falta implementar el resto de los handlers
 
