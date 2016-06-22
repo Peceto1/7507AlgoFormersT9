@@ -2,10 +2,8 @@ package fiuba.algo3.controller;
 
 import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.unidades.Algoformer;
-import fiuba.algo3.model.unidades.AlgoformerPool;
 import fiuba.algo3.model.unidades.MovimientoNoValidoException;
 import fiuba.algo3.view.ContenedorJuego;
-import fiuba.algo3.view.layouts.PanelAbajo;
 import fiuba.algo3.view.utilities.PuntoPixels;
 import fiuba.algo3.view.vistas.VistaMapaAlgoformers;
 import fiuba.algo3.view.vistas.VistaMapaBonuses;
@@ -39,10 +37,9 @@ public class BotonTransformarHandler implements EventHandler<ActionEvent> {
 
 	@Override
 	public void handle(ActionEvent actionEvent) {
-		 //AlgoformerPool pool = AlgoformerPool.getInstance();
-	     //Algoformer bumblebee = pool.obtenerBumblebee();
-	     contenedorJuego.setearAccionado();
-	     Algoformer algoformerATransformarse = contenedorJuego.algoformerAccionado;
+
+	     contenedorJuego.setAccionado();
+	     Algoformer algoformerATransformarse = contenedorJuego.getAlgoformerAccionado();
 	     
 	     if (algoformerATransformarse == null){
 	            return;

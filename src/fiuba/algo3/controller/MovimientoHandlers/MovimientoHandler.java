@@ -1,4 +1,4 @@
-package fiuba.algo3.controller.HandlersMovimiento;
+package fiuba.algo3.controller.MovimientoHandlers;
 
 
 import fiuba.algo3.model.espacio.Direccion;
@@ -15,14 +15,15 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 
-abstract class HandlerMovimiento implements EventHandler<ActionEvent> {
+abstract class MovimientoHandler implements EventHandler<ActionEvent> {
 
     private VistaMapaAlgoformers vistaMapaAlgoformers;
     private VistaMapaBonuses vistaMapaBonuses;
     private ContenedorJuego contenedorJuego;
     private Text msjError;
 
-    public HandlerMovimiento(ContenedorJuego contenedorJuego){
+
+    public MovimientoHandler(ContenedorJuego contenedorJuego){
         this.vistaMapaAlgoformers = contenedorJuego.getVistaMapaAlgoformers();
         this.vistaMapaBonuses = contenedorJuego.getVistaMapaBonuses();
         this.contenedorJuego = contenedorJuego;
@@ -31,7 +32,7 @@ abstract class HandlerMovimiento implements EventHandler<ActionEvent> {
 
     public void handle(ActionEvent actionEvent) {
 
-        Algoformer algoformerAMoverse = this.contenedorJuego.algoformerAccionado;
+        Algoformer algoformerAMoverse = this.contenedorJuego.getAlgoformerAccionado();
         PuntoPixels ubicacionPixelVieja = this.vistaMapaAlgoformers.getVista(algoformerAMoverse).getUbicacion();
 
         try {
@@ -55,7 +56,12 @@ abstract class HandlerMovimiento implements EventHandler<ActionEvent> {
 
     private void actualizarMovimientosRestantes(Algoformer algoformerAMoverse) {
         Label movRestantes = (Label) contenedorJuego.getPanelAbajo().lookup("#movRestantesLabel");
-        movRestantes.setText(Integer.toString(algoformerAMoverse.getMovimientosRestantes()));
+
+        if (algoformerAMoverse.getMovimientosRestantes() < 0)
+            movRestantes.setText("0");
+
+        else
+            movRestantes.setText(Integer.toString(algoformerAMoverse.getMovimientosRestantes()));
     }
 
 
