@@ -1,9 +1,9 @@
 package fiuba.algo3.view.layouts;
 
 import fiuba.algo3.controller.BotonTerminarTurnoHandler;
+import fiuba.algo3.controller.BotonTransformarHandler;
 import fiuba.algo3.controller.HandlersMovimiento.*;
 import fiuba.algo3.view.ContenedorJuego;
-import fiuba.algo3.view.resources.images.textures.BotonTransformarHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;

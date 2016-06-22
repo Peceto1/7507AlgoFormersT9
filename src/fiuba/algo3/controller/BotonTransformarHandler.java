@@ -1,4 +1,4 @@
-package fiuba.algo3.view.resources.images.textures;
+package fiuba.algo3.controller;
 
 import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.unidades.Algoformer;
@@ -23,6 +23,7 @@ public class BotonTransformarHandler implements EventHandler<ActionEvent> {
     private Text msjError;
     private HBox botoneraDeAcciones;
     private VBox botoneraDeCombinacion;
+    private ContenedorJuego contenedorJuego;
     
     
     public BotonTransformarHandler(ContenedorJuego contenedorJuego, HBox contenedorAcciones, VBox contenedorCombinarseSepararse){
@@ -31,25 +32,32 @@ public class BotonTransformarHandler implements EventHandler<ActionEvent> {
         this.msjError = contenedorJuego.getMsjError();
         this.botoneraDeAcciones = contenedorAcciones;
         this.botoneraDeCombinacion = contenedorCombinarseSepararse;
+        this.contenedorJuego = contenedorJuego;
         
         
     }
 
 	@Override
 	public void handle(ActionEvent actionEvent) {
-		 AlgoformerPool pool = AlgoformerPool.getInstance();
-	     Algoformer bumblebee = pool.obtenerBumblebee();
+		 //AlgoformerPool pool = AlgoformerPool.getInstance();
+	     //Algoformer bumblebee = pool.obtenerBumblebee();
+	     
+	     Algoformer algoformerATransformarse = this.contenedorJuego.algoformerSeleccionado;
+	     
+	     if (algoformerATransformarse == null){
+	            return;
+	        }
 		
-		PuntoPixels ubicacionPixelVieja = this.vistaMapaAlgoformers.getVista(bumblebee).getUbicacion();
+		PuntoPixels ubicacionPixelVieja = this.vistaMapaAlgoformers.getVista(algoformerATransformarse).getUbicacion();
 
         try {
-            bumblebee.transformarse();
+        	algoformerATransformarse.transformarse();
         } catch (MovimientoNoValidoException e) {
             this.msjError.setText("No se puede transformar");// Solo ocurre en caso de un aereo intentando descender a pantano
             return;
         }
-        Punto ubicacionNueva = bumblebee.getUbicacion();
-        VistaAlgoformer a = this.vistaMapaAlgoformers.getVista(bumblebee);
+        Punto ubicacionNueva = algoformerATransformarse.getUbicacion();
+        VistaAlgoformer a = this.vistaMapaAlgoformers.getVista(algoformerATransformarse);
         
         a.cambiarImagen();
         a.actualizar(ubicacionPixelVieja.getX(), ubicacionPixelVieja.getY());
