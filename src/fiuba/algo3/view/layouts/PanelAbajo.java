@@ -2,6 +2,7 @@ package fiuba.algo3.view.layouts;
 
 import fiuba.algo3.controller.BotonTerminarTurnoHandler;
 import fiuba.algo3.controller.HandlersMovimiento.*;
+import fiuba.algo3.model.juego.JugadorNoPuedeObtenerAlgoformerContrarioException;
 import fiuba.algo3.view.ContenedorJuego;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -59,6 +60,17 @@ public class PanelAbajo extends HBox {
         moveButton.setStyle(estiloNegro);
 
         moveButton.setOnAction( (actionEvent) -> {
+            contenedorJuego.setearAccionado();
+            if (contenedorJuego.algoformerAccionado == null){
+                return;
+            }
+
+            try{
+                contenedorJuego.obtenerJugadorEnTurno().obtenerAlgoformerEn(contenedorJuego.algoformerAccionado.getUbicacion());
+            }catch(JugadorNoPuedeObtenerAlgoformerContrarioException e){
+                return;
+            }
+
             contenedorDirecciones.setVisible(true);
             contenedorAcciones.setDisable(true);
             this.lookup("#contenedorCombinarseVBox").setDisable(true);

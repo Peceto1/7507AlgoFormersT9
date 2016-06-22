@@ -5,6 +5,7 @@ import fiuba.algo3.model.arena.Bonus;
 import fiuba.algo3.model.arena.TerrenoAplicable;
 import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.juego.Juego;
+import fiuba.algo3.model.juego.Jugador;
 import fiuba.algo3.model.unidades.Algoformer;
 import fiuba.algo3.view.layouts.PanelAbajo;
 import fiuba.algo3.view.layouts.PanelLateral;
@@ -33,9 +34,10 @@ public class ContenedorJuego extends BorderPane {
     private Background fondoPaneles = new Background(new BackgroundFill(Color.web("#000f3d"), null, null));
     private String estiloNegro = "-fx-base: #474747;";
     private Text msjError;
-    public Algoformer algoformerSeleccionado;
-    public TerrenoAplicable terrenoSeleccionado;
-    public Bonus bonusSeleccionado;
+    Algoformer algoformerSeleccionado;
+    TerrenoAplicable terrenoSeleccionado;
+    Bonus bonusSeleccionado;
+    public Algoformer algoformerAccionado;
     ConvertidorPuntoAPixels conversor;
 
 
@@ -65,7 +67,6 @@ public class ContenedorJuego extends BorderPane {
         StackPane contenedorCanvases = new StackPane();
 
         contenedorCanvases.setOnMouseClicked( (mouseEvent) -> {
-            System.out.printf("x: %f  y: %f", mouseEvent.getX(), mouseEvent.getY());
             seleccionarCasillero(mouseEvent.getX(),mouseEvent.getY());
         } );
 
@@ -132,4 +133,12 @@ public class ContenedorJuego extends BorderPane {
     }
 
 
+    public void setearAccionado() {
+        this.algoformerAccionado = this.algoformerSeleccionado;
+    }
+
+    //METODO FEO
+    public Jugador obtenerJugadorEnTurno(){
+        return juego.getJugadorEnTurno();
+    }
 }
