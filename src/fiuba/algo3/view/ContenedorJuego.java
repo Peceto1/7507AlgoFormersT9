@@ -1,9 +1,5 @@
 package fiuba.algo3.view;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 6c8c837501639f960b951e9b627e9b83b56f870a
 import fiuba.algo3.model.juego.Juego;
 import fiuba.algo3.view.layouts.PanelAbajo;
 import fiuba.algo3.view.layouts.PanelLateral;
