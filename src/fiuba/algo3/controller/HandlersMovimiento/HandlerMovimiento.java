@@ -38,12 +38,7 @@ abstract class HandlerMovimiento implements EventHandler<ActionEvent> {
         //Algoformer bumblebee = pool.obtenerBumblebee();
 
 
-        Algoformer algoformerAMoverse = this.contenedorJuego.algoformerSeleccionado;
-
-        if (algoformerAMoverse == null){
-            return;
-        }
-
+        Algoformer algoformerAMoverse = this.contenedorJuego.algoformerAccionado;
         PuntoPixels ubicacionPixelVieja = this.vistaMapaAlgoformers.getVista(algoformerAMoverse).getUbicacion();
 
         try {
