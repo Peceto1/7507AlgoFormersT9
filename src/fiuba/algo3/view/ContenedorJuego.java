@@ -1,6 +1,5 @@
 package fiuba.algo3.view;
 
-import com.sun.xml.internal.ws.org.objectweb.asm.Label;
 
 import fiuba.algo3.model.juego.Juego;
 import fiuba.algo3.view.layouts.PanelAbajo;
