@@ -46,6 +46,11 @@ public abstract class Algoformer {
 	}
 
 
+	public int getMovimientosRestantes() {
+		return this.estado.movimiento.getMovimientosRestantes();
+	}
+
+
 	void setChispa() {
 		if (!Arena.getInstance().contieneChispa(ubicacion)){
 			throw new ImposibleCapturarChispaException();
@@ -175,9 +180,9 @@ public abstract class Algoformer {
 
 			if (actual.LlegoElContadorDeTurnosRestantesACero())
 				iter.remove();
-			
 		}
 	}
+
 
 	public void limpiarEfectos(){
 		Iterator<Efecto> iter = efectos.listIterator();
@@ -190,31 +195,38 @@ public abstract class Algoformer {
 		desactivarBurbuja();
 		resetearStats();
 	}
-	
+
+
 	public boolean contieneEfecto(Efecto efecto) {
 		return efectos.contains(efecto);
 	}
-	
+
+
 	public void removerEfecto(Efecto efecto) {
 		efectos.remove(efecto);
 	}
 
+
 	public void aplicarEfecto(EfectoTormentaPsionica efecto) {
 		estado.aplicarEfecto(efecto);
 	}
-	
+
+
 	public void aplicarEfecto(EfectoDobleCanon efecto) {
 		estado.aplicarEfecto(efecto);
 	}
-	
+
+
 	public void aplicarEfecto(EfectoFlash efecto) {
 		estado.aplicarEfecto(efecto);
 	}
 
+
 	public void aplicarEfecto(EfectoNebulosaDeAndromeda efecto) {
 		this.estado.perderTurno();
 	}
-	
+
+
 	public void aplicarEfecto(EfectoBurbujaInmaculada efectoBurbujaInmaculada) {
 		this.tiene_burbuja=true;
 	}
@@ -273,13 +285,16 @@ public abstract class Algoformer {
 		algoformer.estado.pasarAHumanoide(algoformer);
 	}
 
+
 	public void resetearStats() {
 		estado.resetearEstado();
 	}
-	
+
+
 	public void desactivarBurbuja() {
 		this.tiene_burbuja = false;
 	}
+
 
 	public abstract Algoformer combinarse();
 	public abstract void atacar(Algoformer atacado);

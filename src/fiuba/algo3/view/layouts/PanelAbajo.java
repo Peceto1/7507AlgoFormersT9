@@ -5,6 +5,7 @@ import fiuba.algo3.controller.BotonTransformarHandler;
 import fiuba.algo3.controller.HandlersMovimiento.*;
 import fiuba.algo3.model.juego.JugadorNoPuedeObtenerAlgoformerContrarioException;
 import fiuba.algo3.view.ContenedorJuego;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -69,6 +70,8 @@ public class PanelAbajo extends HBox {
         moveButton.setMaxSize(150, 25);
         moveButton.setStyle(estiloNegro);
 
+        // ToDo pasar este lambda a un EventHandler en controller y si los restantes son > 0 que muestre 0.
+
         moveButton.setOnAction( (actionEvent) -> {
             contenedorJuego.setearAccionado();
             if (contenedorJuego.algoformerAccionado == null){
@@ -77,6 +80,8 @@ public class PanelAbajo extends HBox {
 
             try{
                 contenedorJuego.obtenerJugadorEnTurno().obtenerAlgoformerEn(contenedorJuego.algoformerAccionado.getUbicacion());
+                Label movRestantes = (Label) contenedorJuego.getPanelAbajo().lookup("#movRestantesLabel");
+                movRestantes.setText(Integer.toString(contenedorJuego.algoformerAccionado.getMovimientosRestantes()));
             }catch(JugadorNoPuedeObtenerAlgoformerContrarioException e){
                 return;
             }
@@ -158,15 +163,12 @@ public class PanelAbajo extends HBox {
         downRightImageView.setFitWidth(25);
         Button downRightButton = new Button("", downRightImageView);
         
-        Label middle = new Label("M");
-        middle.setAlignment(Pos.CENTER);
-        middle.setBackground(new Background(new BackgroundFill(Color.web("#A6A6A6"), null, null)));
-        middle.setPrefWidth(40);
-        middle.setPrefHeight(40);
+        Label movRestantes = new Label("M");
+        movRestantes.setAlignment(Pos.CENTER);
 
-        middle.setTextFill(Color.BLACK);
-        middle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 14));
-        middle.setId("Contador de Movimientos");
+        movRestantes.setTextFill(Color.ANTIQUEWHITE);
+        movRestantes.setFont(Font.font("Tahoma", FontWeight.BOLD, 16));
+        movRestantes.setId("movRestantesLabel");
 
         rightButton.setOnAction(new MoverAlgoformerDerechaHandler(contenedorJuego));
         leftButton.setOnAction(new MoverAlgoformerIzquierdaHandler(contenedorJuego));
@@ -178,7 +180,6 @@ public class PanelAbajo extends HBox {
         downRightButton.setOnAction(new MoverAlgoformerDerechaArribaHandler(contenedorJuego));
 
         grillaBotonesDirecciones.add(upButton, 1, 0);
-        //.add(movRestantes, 1, 1);     ToDo agregar movimientos restantes
         grillaBotonesDirecciones.add(leftButton, 0, 1);
         grillaBotonesDirecciones.add(downButton, 1, 2);
         grillaBotonesDirecciones.add(rightButton, 2, 1);
@@ -186,8 +187,8 @@ public class PanelAbajo extends HBox {
         grillaBotonesDirecciones.add(upLeftButton, 0, 0);
         grillaBotonesDirecciones.add(downLeftButton, 0, 2);
         grillaBotonesDirecciones.add(downRightButton, 2, 2);
-        grillaBotonesDirecciones.add(middle, 1, 1);
-        
+        grillaBotonesDirecciones.add(movRestantes, 1, 1);
+        GridPane.setHalignment(movRestantes, HPos.CENTER);
     }
 
 

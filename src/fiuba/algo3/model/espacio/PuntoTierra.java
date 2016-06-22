@@ -1,6 +1,6 @@
 package fiuba.algo3.model.espacio;
 
-public class PuntoTierra extends Punto{
+public class PuntoTierra extends Punto {
 
 	public PuntoTierra(int x, int y) {
 		super(x, y, 0);

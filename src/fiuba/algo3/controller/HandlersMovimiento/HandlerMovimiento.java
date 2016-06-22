@@ -1,11 +1,9 @@
 package fiuba.algo3.controller.HandlersMovimiento;
 
 
-import fiuba.algo3.model.arena.Arena;
 import fiuba.algo3.model.espacio.Direccion;
 import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.unidades.Algoformer;
-import fiuba.algo3.model.unidades.AlgoformerPool;
 import fiuba.algo3.model.unidades.MovimientoNoValidoException;
 import fiuba.algo3.view.ContenedorJuego;
 import fiuba.algo3.view.utilities.PuntoPixels;
@@ -14,6 +12,7 @@ import fiuba.algo3.view.vistas.VistaMapaBonuses;
 import fiuba.algo3.view.vistas.vistasAlgoformers.VistaAlgoformer;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 
 abstract class HandlerMovimiento implements EventHandler<ActionEvent> {
@@ -32,32 +31,38 @@ abstract class HandlerMovimiento implements EventHandler<ActionEvent> {
 
     public void handle(ActionEvent actionEvent) {
 
-        //Algoformer algoformerAMoverse; //Ver como conseguirlo
-
-        //AlgoformerPool pool = AlgoformerPool.getInstance();
-        //Algoformer bumblebee = pool.obtenerBumblebee();
-
-
         Algoformer algoformerAMoverse = this.contenedorJuego.algoformerAccionado;
         PuntoPixels ubicacionPixelVieja = this.vistaMapaAlgoformers.getVista(algoformerAMoverse).getUbicacion();
 
         try {
             algoformerAMoverse.moverseHacia(obtenerDireccion());
         } catch (MovimientoNoValidoException e) {
+            // ToDo this.msjError.setText(e.getMessage());
             this.msjError.setText("No se puede mover");
             return;
         }
 
+        actualizarMovimientosRestantes(algoformerAMoverse);
+
         Punto ubicacionNueva = algoformerAMoverse.getUbicacion();
-        VistaAlgoformer a = this.vistaMapaAlgoformers.getVista(algoformerAMoverse);
+        VistaAlgoformer vistaAlgoformerAMover = this.vistaMapaAlgoformers.getVista(algoformerAMoverse);
+        vistaAlgoformerAMover.actualizar(ubicacionPixelVieja.getX(), ubicacionPixelVieja.getY());
 
-        a.actualizar(ubicacionPixelVieja.getX(), ubicacionPixelVieja.getY());
-
-        //
-        this.msjError.setText("");
+        limpiarMsjError();
         vistaMapaBonuses.actualizar(ubicacionNueva);
     }
 
-    abstract Direccion obtenerDireccion();
 
+    private void actualizarMovimientosRestantes(Algoformer algoformerAMoverse) {
+        Label movRestantes = (Label) contenedorJuego.getPanelAbajo().lookup("#movRestantesLabel");
+        movRestantes.setText(Integer.toString(algoformerAMoverse.getMovimientosRestantes()));
+    }
+
+
+    private void limpiarMsjError() {
+        this.msjError.setText("");
+    }
+
+
+    abstract Direccion obtenerDireccion();
 }
