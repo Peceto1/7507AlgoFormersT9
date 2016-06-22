@@ -94,12 +94,12 @@ public class VistaMapaBonuses {
                 PuntoPixels tierra = convertidor.convertir(puntoTierra);
                 PuntoPixels aire = convertidor.convertir(puntoAire);
 
-                if (!bonusTierra.getNombreBonus().equals("NullBonus")){
+                if (!bonusTierra.getNombreBonus().equals("Sin Bonus")){
                     bonusesEnMapa.put(puntoTierra, bonusTierra);
                     bonusesEnMapaPixels.put(tierra, bonusTierra);
                 }
 
-                if (!bonusAire.getNombreBonus().equals("NullBonus")){
+                if (!bonusAire.getNombreBonus().equals("Sin Bonus")){
                     bonusesEnMapa.put(puntoAire, bonusAire);
                     bonusesEnMapaPixels.put(aire, bonusAire);
                 }

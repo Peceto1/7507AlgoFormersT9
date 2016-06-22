@@ -45,6 +45,17 @@ public abstract class Algoformer {
 		return this.vidaMax;
 	}
 
+	public int getAtk(){
+		return estado.ataque;
+	}
+	
+	public int getSpd(){
+		return estado.velocidad;
+	}
+	
+	public int getRange(){
+		return estado.rango;
+	}
 
 	public int getMovimientosRestantes() {
 		return this.estado.movimiento.getMovimientosRestantes();

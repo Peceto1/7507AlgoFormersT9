@@ -29,6 +29,7 @@ class Casillero {
     void aplicarBonusSobre(Algoformer algoformer){
     	this.bonus.aplicarseSobre(algoformer);
     	bonus.setEfecto(new NullEfecto());
+    	bonus.setNombre("Sin Bonus");
     }
     
 

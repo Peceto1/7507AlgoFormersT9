@@ -48,8 +48,10 @@ abstract class HandlerMovimiento implements EventHandler<ActionEvent> {
         VistaAlgoformer vistaAlgoformerAMover = this.vistaMapaAlgoformers.getVista(algoformerAMoverse);
         vistaAlgoformerAMover.actualizar(ubicacionPixelVieja.getX(), ubicacionPixelVieja.getY());
 
+        
         limpiarMsjError();
         vistaMapaBonuses.actualizar(ubicacionNueva);
+        contenedorJuego.actualizarStatsLateral(algoformerAMoverse.getUbicacion());
     }
 
 

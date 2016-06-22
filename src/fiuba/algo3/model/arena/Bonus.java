@@ -46,4 +46,9 @@ public abstract class Bonus {
 		result = 31 * result + (nombreBonus != null ? nombreBonus.hashCode() : 0);
 		return result;
 	}
+
+
+	public void setNombre(String string) {
+		this.nombreBonus = string;
+	}
 }

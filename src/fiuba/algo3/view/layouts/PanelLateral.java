@@ -1,6 +1,9 @@
 package fiuba.algo3.view.layouts;
 
+import fiuba.algo3.model.arena.Bonus;
+import fiuba.algo3.model.arena.TerrenoAplicable;
 import fiuba.algo3.model.juego.Juego;
+import fiuba.algo3.model.unidades.Algoformer;
 import fiuba.algo3.view.ContenedorJuego;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -114,18 +117,24 @@ public class PanelLateral extends VBox {
         vida.setFill(Color.ANTIQUEWHITE);
         Text ataque = new Text("Ataque: ");
         ataque.setFill(Color.ANTIQUEWHITE);
+        Text rango = new Text("Rango: ");
+        rango.setFill(Color.ANTIQUEWHITE);
         Text velocidad = new Text("Velocidad: ");
         velocidad.setFill(Color.ANTIQUEWHITE);
 
-        Text cantVida = new Text("100");
+        Text cantVida = new Text("");
         cantVida.setFill(Color.ANTIQUEWHITE);
         cantVida.setStyle("-fx-font-weight: bold;");
         cantVida.setId("statVidaText");
-        Text cantAtaque = new Text("15");
+        Text cantAtaque = new Text("");
         cantAtaque.setFill(Color.ANTIQUEWHITE);
         cantAtaque.setStyle("-fx-font-weight: bold;");
         cantAtaque.setId("statAtkText");
-        Text cantVelocidad = new Text("2");
+        Text cantRango = new Text("");
+        cantRango.setFill(Color.ANTIQUEWHITE);
+        cantRango.setStyle("-fx-font-weight: bold;");
+        cantRango.setId("statRngText");
+        Text cantVelocidad = new Text("");
         cantVelocidad.setFill(Color.ANTIQUEWHITE);
         cantVelocidad.setStyle("-fx-font-weight: bold;");
         cantVelocidad.setId("statSpdText");
@@ -134,7 +143,8 @@ public class PanelLateral extends VBox {
 
         grillaStats.addRow(0, vida, cantVida);
         grillaStats.addRow(1, ataque, cantAtaque);
-        grillaStats.addRow(2, velocidad, cantVelocidad);
+        grillaStats.addRow(2, rango, cantRango);
+        grillaStats.addRow(3, velocidad, cantVelocidad);
 
         contenedorStats.getChildren().addAll(imagen, grillaStats);
         this.getChildren().add(contenedorStats);
@@ -152,11 +162,11 @@ public class PanelLateral extends VBox {
         Text bonus = new Text("Bonus: ");
         bonus.setFill(Color.ANTIQUEWHITE);
 
-        Text tipoTerreno = new Text("Un terreno");
+        Text tipoTerreno = new Text("");
         tipoTerreno.setFill(Color.ANTIQUEWHITE);
         tipoTerreno.setStyle("-fx-font-weight: bold;");
         tipoTerreno.setId("tipoTerrenoText");
-        Text tipoBonus = new Text("Un bonus");
+        Text tipoBonus = new Text("");
         tipoBonus.setFill(Color.ANTIQUEWHITE);
         tipoBonus.setStyle("-fx-font-weight: bold;");
         tipoBonus.setId("tipoBonusText");
@@ -222,6 +232,31 @@ public class PanelLateral extends VBox {
 
         contenedorImagenesAlgoformers.getChildren().add(grillaAlgoformers);
         this.getChildren().add(contenedorImagenesAlgoformers);
+    }
+    
+    public void actualizarStats(Algoformer algoformerSeleccionado, Bonus bonusSeleccionado, TerrenoAplicable terrenoSeleccionado){
+    	Text textTerreno = (Text) this.lookup("#tipoTerrenoText");
+    	Text textBonus = (Text) this.lookup("#tipoBonusText");
+    	
+    	textTerreno.setText(terrenoSeleccionado.devolverTipoTerreno());
+    	textBonus.setText(bonusSeleccionado.getNombreBonus());
+    	
+    	Text cantVida = (Text) this.lookup("#statVidaText");
+    	Text cantAtk = (Text) this.lookup("#statAtkText");
+    	Text cantRng = (Text) this.lookup("#statRngText");
+    	Text cantSpd = (Text) this.lookup("#statSpdText");
+    	
+    	if (algoformerSeleccionado == null){
+    		cantVida.setText("");
+    		cantAtk.setText("");
+    		cantRng.setText("");
+    		cantSpd.setText("");
+    		return;
+    	}
+    	cantVida.setText(Integer.toString(algoformerSeleccionado.getVida()));
+    	cantAtk.setText(Integer.toString(algoformerSeleccionado.getAtk()));
+    	cantRng.setText(Integer.toString(algoformerSeleccionado.getRange()));
+    	cantSpd.setText(Integer.toString(algoformerSeleccionado.getSpd()));    	
     }
 
 
