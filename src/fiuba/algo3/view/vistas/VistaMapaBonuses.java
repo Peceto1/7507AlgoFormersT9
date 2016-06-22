@@ -23,6 +23,8 @@ public class VistaMapaBonuses {
     VistaBonus vistaFlash;
     VistaBonus vistaBurbuja;
     VistaBonus vistaError;
+    private VistaMapaChispa mapaChispa;
+    private Canvas canvas;
 
     public VistaMapaBonuses(Canvas canvasBonuses){
 
@@ -31,6 +33,8 @@ public class VistaMapaBonuses {
         this.vistaDeBonuses = new HashMap<>();
         arenaDeJuegoSingleton = Arena.getInstance();
         construirVistasBonuses(canvasBonuses);
+        this.canvas = canvasBonuses;
+        this.mapaChispa = new VistaMapaChispa(arenaDeJuegoSingleton.getChispa(), arenaDeJuegoSingleton.getUbicacionChispa());
     }
 
     public void mostrar() {
@@ -43,6 +47,7 @@ public class VistaMapaBonuses {
 
             vistaActual.dibujar(ubicacion.getX(), ubicacion.getY());
         }
+        mapaChispa.dibujar(canvas);
     }
 
     private VistaBonus getVista(Bonus bonus) {

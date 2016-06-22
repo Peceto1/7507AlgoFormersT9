@@ -87,4 +87,10 @@ class Casillero {
     public Bonus getBonus() {
         return this.bonus;
     }
+
+
+	public Chispa verChispa() {
+		return this.chispa;
+		
+	}
 }

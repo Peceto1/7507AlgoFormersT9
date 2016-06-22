@@ -2,6 +2,7 @@ package fiuba.algo3.view.vistas.vistasBonuses;
 
 import fiuba.algo3.model.arena.Arena;
 import fiuba.algo3.view.Dibujable;
+import fiuba.algo3.view.vistas.VistaMapaChispa;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;

@@ -29,6 +29,7 @@ public class BotonComenzarBatallaHandler implements EventHandler<ActionEvent> {
     public void handle(ActionEvent actionEvent) {
 
         juego.comenzarPartida();
+        juego.setChispaAleatorio();
         juego.setTrampas();
 
         this.proximaVista = new ContenedorJuego(juego);

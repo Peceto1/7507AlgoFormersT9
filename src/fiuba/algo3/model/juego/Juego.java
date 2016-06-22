@@ -34,7 +34,7 @@ public class Juego {
         AUTOBOTS = this.equiposDisponibles.get(0);
         DECEPTICONS = this.equiposDisponibles.get(1);
 
-        this.arenaSingleton.colocarChispa(posicionChispa);
+        this.arenaSingleton.colocarChispa();
         this.ganador = null;
         this.turno = 1;
     }
@@ -50,13 +50,13 @@ public class Juego {
     }
     
     public void setTrampas(){
-    	arenaSingleton.setTerrenoAleatorio(posicionChispa);
-    	arenaSingleton.setBonusAleatorio(posicionChispa);
+    	arenaSingleton.setTerrenoAleatorio();
+    	arenaSingleton.setBonusAleatorio();
     }
 
 
     public void setChispaAleatorio() {
-    	Punto nuevaPosicion = arenaSingleton.setChispaAleatorio(posicionChispa);
+    	Punto nuevaPosicion = arenaSingleton.setChispaAleatorio();
     	this.posicionChispa = nuevaPosicion;
     }
 

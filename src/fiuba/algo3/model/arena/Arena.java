@@ -17,6 +17,7 @@ public class Arena {
     private final int ANCHO = 51;
     private final int ALTO = 51;
     private static Arena instancia = new Arena();
+    private Punto ubicacionChispa = new PuntoTierra(26,26);
     private Random random = new Random();
     private static final int CANTIDAD_TRAMPAS = (2000);
     private static final int CANTIDAD_BONUS = (100);
@@ -52,23 +53,29 @@ public class Arena {
         puntosDeInicioDecepticons.add(new PuntoTierra(51, 26));
         puntosDeInicioDecepticons.add( new PuntoTierra(51, 25));
     }
-
+    
+    public static Arena getInstance(){
+        return instancia;
+    }
 
     public int getAncho() {
         return this.ANCHO;
+    }
+    
+    public Punto getUbicacionChispa(){
+    	return this.ubicacionChispa;
     }
 
 
     public int getAlto() {
         return this.ALTO;
     }
-
-
-    public static Arena getInstance(){
-        return instancia;
-    }
     
-    public void setTerrenoAleatorio(Punto posicionChispa){
+	public Chispa getChispa() {
+		return arena.get(ubicacionChispa).verChispa();
+	}
+    
+    public void setTerrenoAleatorio(){
     	List<Punto> puntosASetearTerreno = new ArrayList<>(arena.keySet());
     	
     	for (Punto puntoActual: puntosDeInicioAutobots){
@@ -79,7 +86,8 @@ public class Arena {
     		puntosASetearTerreno.remove(puntoActual);
     		puntosASetearTerreno.remove(puntoActual.ascender());
     	}
-    	puntosASetearTerreno.remove(posicionChispa);	
+    	puntosASetearTerreno.remove(ubicacionChispa);
+    	puntosASetearTerreno.remove(ubicacionChispa.ascender());
     	
     	for (int i=0; i<CANTIDAD_TRAMPAS;i++){
     		Punto puntoElegido = puntosASetearTerreno.get(random.nextInt(puntosASetearTerreno.size()));
@@ -115,7 +123,7 @@ public class Arena {
     }
     
     
-    public void setBonusAleatorio(Punto posicionChispa){
+    public void setBonusAleatorio(){
     	List<Punto> puntosASetearBonus = new ArrayList<>(arena.keySet());
     	
     	for (Punto puntoActual: puntosDeInicioAutobots){
@@ -126,7 +134,8 @@ public class Arena {
     		puntosASetearBonus.remove(puntoActual);
     		puntosASetearBonus.remove(puntoActual.ascender());
     	}
-    	puntosASetearBonus.remove(posicionChispa);
+    	puntosASetearBonus.remove(ubicacionChispa);
+    	puntosASetearBonus.remove(ubicacionChispa.ascender());
     	
     	for (int i=0; i<CANTIDAD_BONUS;i++){
     		Punto puntoElegido = puntosASetearBonus.get(random.nextInt(puntosASetearBonus.size()));
@@ -152,18 +161,24 @@ public class Arena {
     	arena.get(punto).setBonus(bonus);
     }
     
-    public Punto setChispaAleatorio(Punto posicionChispa){
-    	obtenerChispa(posicionChispa);
+    public Punto setChispaAleatorio(){
+    	obtenerChispa(ubicacionChispa);
     	Punto nuevaPosicionChispa = new PuntoTierra(26, random.nextInt(ALTO));
     	setTerrenoEnPunto(nuevaPosicionChispa,new Rocoso());
     	colocarChispa(nuevaPosicionChispa);
+    	this.ubicacionChispa = nuevaPosicionChispa;
     	return nuevaPosicionChispa;
     }
 
+    public void colocarChispa(){
+    	Casillero casilla_media = arena.get(ubicacionChispa);
+        casilla_media.colocar(new Chispa());
+    }
 
 	public void colocarChispa(Punto punto) {
         Casillero casilla_media = arena.get(punto);
         casilla_media.colocar(new Chispa());
+        this.ubicacionChispa = punto;
     }
 
     
@@ -255,5 +270,4 @@ public class Arena {
         Casillero casillero = arena.get(punto);
         return casillero.getBonus();
     }
-
 }
