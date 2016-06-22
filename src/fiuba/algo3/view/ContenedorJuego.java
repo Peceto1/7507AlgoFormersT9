@@ -1,7 +1,5 @@
 package fiuba.algo3.view;
 
-import com.sun.xml.internal.ws.org.objectweb.asm.Label;
-
 import fiuba.algo3.model.juego.Juego;
 import fiuba.algo3.view.layouts.PanelAbajo;
 import fiuba.algo3.view.layouts.PanelLateral;
@@ -53,6 +51,10 @@ public class ContenedorJuego extends BorderPane {
     private void crearContenedorCentral() {
         this.contenedorCentral = new ScrollPane();
         StackPane contenedorCanvases = new StackPane();
+
+        contenedorCanvases.setOnMouseClicked( (mouseEvent) -> {
+            System.out.printf("x: %f  y: %f", mouseEvent.getX(), mouseEvent.getY());
+        } );
 
         this.canvasBonuses = new Canvas(2040, 2040);
         this.canvasAlgoformers = new Canvas(2040, 2040);
