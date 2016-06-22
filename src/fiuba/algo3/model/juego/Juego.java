@@ -50,13 +50,14 @@ public class Juego {
     }
     
     public void setTrampas(){
-    	arenaSingleton.setTerrenoAleatorio();
-    	arenaSingleton.setBonusAleatorio();
+    	arenaSingleton.setTerrenoAleatorio(posicionChispa);
+    	arenaSingleton.setBonusAleatorio(posicionChispa);
     }
 
 
     public void setChispaAleatorio() {
-    	arenaSingleton.setChispaAleatorio(posicionChispa);
+    	Punto nuevaPosicion = arenaSingleton.setChispaAleatorio(posicionChispa);
+    	this.posicionChispa = nuevaPosicion;
     }
 
 

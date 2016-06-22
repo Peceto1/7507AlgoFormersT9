@@ -68,7 +68,7 @@ public class Arena {
         return instancia;
     }
     
-    public void setTerrenoAleatorio(){
+    public void setTerrenoAleatorio(Punto posicionChispa){
     	List<Punto> puntosASetearTerreno = new ArrayList<>(arena.keySet());
     	
     	for (Punto puntoActual: puntosDeInicioAutobots){
@@ -79,6 +79,7 @@ public class Arena {
     		puntosASetearTerreno.remove(puntoActual);
     		puntosASetearTerreno.remove(puntoActual.ascender());
     	}
+    	puntosASetearTerreno.remove(posicionChispa);	
     	
     	for (int i=0; i<CANTIDAD_TRAMPAS;i++){
     		Punto puntoElegido = puntosASetearTerreno.get(random.nextInt(puntosASetearTerreno.size()));
@@ -114,20 +115,21 @@ public class Arena {
     }
     
     
-    public void setBonusAleatorio(){
-    	List<Punto> puntosASetearTerreno = new ArrayList<>(arena.keySet());
+    public void setBonusAleatorio(Punto posicionChispa){
+    	List<Punto> puntosASetearBonus = new ArrayList<>(arena.keySet());
     	
     	for (Punto puntoActual: puntosDeInicioAutobots){
-    		puntosASetearTerreno.remove(puntoActual);
-    		puntosASetearTerreno.remove(puntoActual.ascender());
+    		puntosASetearBonus.remove(puntoActual);
+    		puntosASetearBonus.remove(puntoActual.ascender());
     	}
     	for (Punto puntoActual: puntosDeInicioDecepticons){
-    		puntosASetearTerreno.remove(puntoActual);
-    		puntosASetearTerreno.remove(puntoActual.ascender());
+    		puntosASetearBonus.remove(puntoActual);
+    		puntosASetearBonus.remove(puntoActual.ascender());
     	}
+    	puntosASetearBonus.remove(posicionChispa);
     	
     	for (int i=0; i<CANTIDAD_BONUS;i++){
-    		Punto puntoElegido = puntosASetearTerreno.get(random.nextInt(puntosASetearTerreno.size()));
+    		Punto puntoElegido = puntosASetearBonus.get(random.nextInt(puntosASetearBonus.size()));
     		setBonusAleatorioEnPunto(puntoElegido);
     	}
     }
@@ -150,11 +152,12 @@ public class Arena {
     	arena.get(punto).setBonus(bonus);
     }
     
-    public void setChispaAleatorio(Punto posicionChispa){
+    public Punto setChispaAleatorio(Punto posicionChispa){
     	obtenerChispa(posicionChispa);
     	Punto nuevaPosicionChispa = new PuntoTierra(26, random.nextInt(ALTO));
     	setTerrenoEnPunto(nuevaPosicionChispa,new Rocoso());
     	colocarChispa(nuevaPosicionChispa);
+    	return nuevaPosicionChispa;
     }
 
 
