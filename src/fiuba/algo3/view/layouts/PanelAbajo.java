@@ -6,13 +6,19 @@ import fiuba.algo3.controller.HandlersMovimiento.*;
 import fiuba.algo3.model.juego.JugadorNoPuedeObtenerAlgoformerContrarioException;
 import fiuba.algo3.view.ContenedorJuego;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 public class PanelAbajo extends HBox {
 
@@ -151,6 +157,16 @@ public class PanelAbajo extends HBox {
         downRightImageView.setPreserveRatio(true);
         downRightImageView.setFitWidth(25);
         Button downRightButton = new Button("", downRightImageView);
+        
+        Label middle = new Label("M");
+        middle.setAlignment(Pos.CENTER);
+        middle.setBackground(new Background(new BackgroundFill(Color.web("#A6A6A6"), null, null)));
+        middle.setPrefWidth(40);
+        middle.setPrefHeight(40);
+
+        middle.setTextFill(Color.BLACK);
+        middle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 14));
+        middle.setId("Contador de Movimientos");
 
         rightButton.setOnAction(new MoverAlgoformerDerechaHandler(contenedorJuego));
         leftButton.setOnAction(new MoverAlgoformerIzquierdaHandler(contenedorJuego));
@@ -170,6 +186,8 @@ public class PanelAbajo extends HBox {
         grillaBotonesDirecciones.add(upLeftButton, 0, 0);
         grillaBotonesDirecciones.add(downLeftButton, 0, 2);
         grillaBotonesDirecciones.add(downRightButton, 2, 2);
+        grillaBotonesDirecciones.add(middle, 1, 1);
+        
     }
 
 
