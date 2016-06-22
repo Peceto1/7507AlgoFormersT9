@@ -45,7 +45,7 @@ public abstract class VistaAlgoformer implements Dibujable {
     }
 
 
-    void cambiarImagen() {
+    public void cambiarImagen() {
         this.indiceImagenActual++;
     }
 
