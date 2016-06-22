@@ -39,10 +39,12 @@ public class PanelAbajo extends HBox {
         grillaBotonesAcciones.setHgap(10);
         grillaBotonesAcciones.setVgap(10);
         GridPane grillaBotonesDirecciones = new GridPane();
+        
+        contenedorAcciones.setId("contenedorAcciones");
+        contenedorDirecciones.setId("contenedorDirecciones");
 
         crearBotonesDeAcciones(contenedorAcciones, grillaBotonesAcciones, contenedorDirecciones);
         crearBotonesDeDirecciones(grillaBotonesDirecciones);
-
         contenedorAcciones.getChildren().add(grillaBotonesAcciones);
         contenedorDirecciones.getChildren().add(grillaBotonesDirecciones);
         this.getChildren().addAll(contenedorAcciones, contenedorDirecciones);
@@ -179,7 +181,7 @@ public class PanelAbajo extends HBox {
         contenedorFinalizarTurno.setPadding(new Insets(15, 0, 0, 50));
         Button finalizarTurnoButton = new Button("Finalizar\n Turno");
         finalizarTurnoButton.setStyle("-fx-font: 24 arial; -fx-base: #be0000;");
-        finalizarTurnoButton.setOnAction(new BotonTerminarTurnoHandler(contenedorJuego.getPanelLateral(), contenedorJuego.getJuego()));
+        finalizarTurnoButton.setOnAction(new BotonTerminarTurnoHandler(contenedorJuego.getPanelLateral(), this, contenedorJuego.getJuego()));
 
         contenedorFinalizarTurno.getChildren().add(finalizarTurnoButton);
         this.getChildren().add(contenedorFinalizarTurno);

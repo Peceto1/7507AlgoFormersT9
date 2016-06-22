@@ -87,6 +87,9 @@ public class ContenedorJuego extends BorderPane {
         return this.panelLateral;
     }
 
+	public PanelAbajo getPanelAbajo() {
+		return this.panelAbajo;
+	}
 
     public VistaMapaAlgoformers getVistaMapaAlgoformers() {
         return this.vistaAlgoformers;
@@ -101,4 +104,7 @@ public class ContenedorJuego extends BorderPane {
     public void setMsjError(Text msjError) {
         this.msjError = msjError;
     }
+
+
+
 }
