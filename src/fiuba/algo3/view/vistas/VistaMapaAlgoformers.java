@@ -28,12 +28,12 @@ public class VistaMapaAlgoformers {
 
     private void construirVistas(Canvas canvasAlgoformers) {
         AlgoformerPool poolSingleton = AlgoformerPool.getInstance();
-        //this.algoformersEnMapa.put(poolSingleton.obtenerOptimus(), new VistaOptimus(canvasAlgoformers, poolSingleton.obtenerOptimus()));
+        this.algoformersEnMapa.put(poolSingleton.obtenerOptimus(), new VistaOptimus(canvasAlgoformers, poolSingleton.obtenerOptimus()));
         this.algoformersEnMapa.put(poolSingleton.obtenerBumblebee(), new VistaBumbleblee(canvasAlgoformers, poolSingleton.obtenerBumblebee()));
-        //this.algoformersEnMapa.put(poolSingleton.obtenerRatchet(), new VistaRatchet(canvasAlgoformers, poolSingleton.obtenerRatchet()));
-        //this.algoformersEnMapa.put(poolSingleton.obtenerMegatron(), new VistaMegatron(canvasAlgoformers, poolSingleton.obtenerMegatron()));
-        //this.algoformersEnMapa.put(poolSingleton.obtenerBonecrusher(), new VistaBonecrusher(canvasAlgoformers, poolSingleton.obtenerBonecrusher()));
-        //this.algoformersEnMapa.put(poolSingleton.obtenerFrenzy(), new VistaFrenzy(canvasAlgoformers, poolSingleton.obtenerFrenzy()));
+        this.algoformersEnMapa.put(poolSingleton.obtenerRatchet(), new VistaRatchet(canvasAlgoformers, poolSingleton.obtenerRatchet()));
+        this.algoformersEnMapa.put(poolSingleton.obtenerMegatron(), new VistaMegatron(canvasAlgoformers, poolSingleton.obtenerMegatron()));
+        this.algoformersEnMapa.put(poolSingleton.obtenerBonecrusher(), new VistaBonecrusher(canvasAlgoformers, poolSingleton.obtenerBonecrusher()));
+        this.algoformersEnMapa.put(poolSingleton.obtenerFrenzy(), new VistaFrenzy(canvasAlgoformers, poolSingleton.obtenerFrenzy()));
     }
 
 
