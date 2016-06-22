@@ -1,6 +1,7 @@
 package fiuba.algo3.controller.HandlersMovimiento;
 
 
+import fiuba.algo3.model.arena.Arena;
 import fiuba.algo3.model.espacio.Direccion;
 import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.unidades.Algoformer;
@@ -19,11 +20,13 @@ abstract class HandlerMovimiento implements EventHandler<ActionEvent> {
 
     private VistaMapaAlgoformers vistaMapaAlgoformers;
     private VistaMapaBonuses vistaMapaBonuses;
+    private ContenedorJuego contenedorJuego;
     private Text msjError;
 
     public HandlerMovimiento(ContenedorJuego contenedorJuego){
         this.vistaMapaAlgoformers = contenedorJuego.getVistaMapaAlgoformers();
         this.vistaMapaBonuses = contenedorJuego.getVistaMapaBonuses();
+        this.contenedorJuego = contenedorJuego;
         this.msjError = contenedorJuego.getMsjError();
     }
 
@@ -31,20 +34,27 @@ abstract class HandlerMovimiento implements EventHandler<ActionEvent> {
 
         //Algoformer algoformerAMoverse; //Ver como conseguirlo
 
-        AlgoformerPool pool = AlgoformerPool.getInstance();
-        Algoformer bumblebee = pool.obtenerBumblebee();
+        //AlgoformerPool pool = AlgoformerPool.getInstance();
+        //Algoformer bumblebee = pool.obtenerBumblebee();
 
-        PuntoPixels ubicacionPixelVieja = this.vistaMapaAlgoformers.getVista(bumblebee).getUbicacion();
+
+        Algoformer algoformerAMoverse = this.contenedorJuego.algoformerSeleccionado;
+
+        if (algoformerAMoverse == null){
+            return;
+        }
+
+        PuntoPixels ubicacionPixelVieja = this.vistaMapaAlgoformers.getVista(algoformerAMoverse).getUbicacion();
 
         try {
-            bumblebee.moverseHacia(obtenerDireccion());
+            algoformerAMoverse.moverseHacia(obtenerDireccion());
         } catch (MovimientoNoValidoException e) {
             this.msjError.setText("No se puede mover");
             return;
         }
 
-        Punto ubicacionNueva = bumblebee.getUbicacion();
-        VistaAlgoformer a = this.vistaMapaAlgoformers.getVista(bumblebee);
+        Punto ubicacionNueva = algoformerAMoverse.getUbicacion();
+        VistaAlgoformer a = this.vistaMapaAlgoformers.getVista(algoformerAMoverse);
 
         a.actualizar(ubicacionPixelVieja.getX(), ubicacionPixelVieja.getY());
 
