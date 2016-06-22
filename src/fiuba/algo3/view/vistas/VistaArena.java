@@ -4,7 +4,6 @@ import fiuba.algo3.model.arena.Arena;
 import fiuba.algo3.model.arena.TerrenoAplicable;
 import fiuba.algo3.model.espacio.PuntoAire;
 import fiuba.algo3.model.espacio.PuntoTierra;
-import fiuba.algo3.view.Dibujable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;

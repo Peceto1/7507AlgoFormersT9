@@ -1,5 +1,9 @@
 package fiuba.algo3.view;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6c8c837501639f960b951e9b627e9b83b56f870a
 import fiuba.algo3.model.juego.Juego;
 import fiuba.algo3.view.layouts.PanelAbajo;
 import fiuba.algo3.view.layouts.PanelLateral;
@@ -52,6 +56,10 @@ public class ContenedorJuego extends BorderPane {
         this.contenedorCentral = new ScrollPane();
         StackPane contenedorCanvases = new StackPane();
 
+        contenedorCanvases.setOnMouseClicked( (mouseEvent) -> {
+            System.out.printf("x: %f  y: %f", mouseEvent.getX(), mouseEvent.getY());
+        } );
+
         this.canvasBonuses = new Canvas(2040, 2040);
         this.canvasAlgoformers = new Canvas(2040, 2040);
 
@@ -85,6 +93,9 @@ public class ContenedorJuego extends BorderPane {
         return this.panelLateral;
     }
 
+	public PanelAbajo getPanelAbajo() {
+		return this.panelAbajo;
+	}
 
     public VistaMapaAlgoformers getVistaMapaAlgoformers() {
         return this.vistaAlgoformers;
@@ -99,4 +110,7 @@ public class ContenedorJuego extends BorderPane {
     public void setMsjError(Text msjError) {
         this.msjError = msjError;
     }
+
+
+
 }

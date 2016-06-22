@@ -90,6 +90,8 @@ public abstract class Algoformer {
 
 
 	public void moverseHacia(Direccion direccion) {
+		if (!estaVivo())
+			throw new MovimientoNoValidoException();
 		ubicacion = estado.moverse(direccion);
 	}
 
