@@ -7,6 +7,8 @@ import fiuba.algo3.model.unidades.FueraDeRangoException;
 import fiuba.algo3.view.ContenedorJuego;
 import fiuba.algo3.view.utilities.ConvertidorPuntoAPixels;
 import fiuba.algo3.view.utilities.PuntoPixels;
+import fiuba.algo3.view.vistas.VistaMapaAlgoformers;
+import fiuba.algo3.view.vistas.vistasAlgoformers.VistaAlgoformer;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -37,7 +39,8 @@ public class ClickearEnemigoHandler implements EventHandler<MouseEvent> {
         PuntoPixels ubicacionPixelsAtacado = new PuntoPixels((int) mouseEvent.getX(), (int) mouseEvent.getY());
         Punto ubicacionAtacado = conversor.reconvertir(ubicacionPixelsAtacado);
         Algoformer algoformerAtacado = Arena.getInstance().obtenerAlgoformerEn(ubicacionAtacado);
-
+        
+        
         try {
             atacante.atacar(algoformerAtacado);
         } catch (NullPointerException e) {
@@ -50,11 +53,12 @@ public class ClickearEnemigoHandler implements EventHandler<MouseEvent> {
             rehabilitarAcciones();
         }
 
-        if (algoformerAtacado != null && !algoformerAtacado.estaVivo())
-            System.out.println("Borrar Algoformer");
-
-        // TODO Borrar algoformer del mapa si murio
-        
+        if (algoformerAtacado != null && !algoformerAtacado.estaVivo()){
+        	VistaMapaAlgoformers vistaMapaAlgoformers = contenedorJuego.getVistaMapaAlgoformers();
+            VistaAlgoformer vistaAtacado = vistaMapaAlgoformers.getVista(algoformerAtacado);
+        	vistaAtacado.limpiar(ubicacionPixelsAtacado.getX(),ubicacionPixelsAtacado.getY());
+        }
+    
         HBox contenedorTerminarTurno = (HBox) this.contenedorJuego.lookup("#ContenedorFinalizarTurno");
         contenedorTerminarTurno.setDisable(false);
         StackPane contenedorCanvases = (StackPane) contenedorJuego.lookup("#contenedorStackPane");
