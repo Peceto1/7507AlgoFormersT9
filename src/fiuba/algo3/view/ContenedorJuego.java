@@ -102,12 +102,12 @@ public class ContenedorJuego extends BorderPane {
     }
 
 
-    /*private void setPantalla(PuntoPixels parPixel) {
-		double valorEnX = (double)parPixel.getX() / 2040;
-		double valorEnY = (double)parPixel.getY() / 2040;
+    private void setPantalla(PuntoPixels parPixel) {
+		double valorEnX = parPixel.getX() / (double)canvasSize;
+		double valorEnY = parPixel.getY() / (double)canvasSize;
 		contenedorCentral.setHvalue(valorEnX);
 		contenedorCentral.setVvalue(valorEnY);
-	}*/
+	}
 
 
 	public void actualizarStatsLateral(Punto punto){
@@ -119,12 +119,15 @@ public class ContenedorJuego extends BorderPane {
     public void panearCamara() {
         Punto ubicacion = juego.getJugadorEnTurno().getUltimoAlgoformerUtilizado().getUbicacion();
         PuntoPixels ubicacionPixeles = conversor.convertir(ubicacion);
-
-        double porcentajePaneoHorizontal = ubicacionPixeles.getX() / (double) canvasSize;
-        double porcentajePaneoVertical = ubicacionPixeles.getY() / (double) canvasSize;
-
-        contenedorCentral.setVvalue(porcentajePaneoVertical);
-        contenedorCentral.setHvalue(porcentajePaneoHorizontal);
+        
+        setPantalla(ubicacionPixeles);
+    }
+    
+    public void panearCamara(Algoformer algoformer) {
+    	Punto ubicacion = algoformer.getUbicacion();
+    	PuntoPixels ubicacionPixeles = conversor.convertir(ubicacion);
+        
+        setPantalla(ubicacionPixeles);
     }
 
 

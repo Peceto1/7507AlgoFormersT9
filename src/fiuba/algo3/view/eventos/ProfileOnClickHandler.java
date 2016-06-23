@@ -17,10 +17,11 @@ public class ProfileOnClickHandler implements EventHandler<ActionEvent> {
 	}
 
 	@Override
-	public void handle(ActionEvent arg0) {
+	public void handle(ActionEvent actionEvent) {
 		ConvertidorPuntoAPixels conversor = new ConvertidorPuntoAPixels();
 		PuntoPixels ubicacionPixels = conversor.convertir(algoformer.getUbicacion());
 		contenedor.seleccionarCasillero(ubicacionPixels.getX(), ubicacionPixels.getY());
+		contenedor.panearCamara(algoformer);
 	}
 
 }
