@@ -42,4 +42,6 @@ public abstract class BotonAccionHandler implements EventHandler<ActionEvent> {
         contenedorAcciones.setDisable(true);
         contenedorCombinarse.setDisable(true);
     }
+    
+    
 }

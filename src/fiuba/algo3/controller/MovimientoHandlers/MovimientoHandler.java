@@ -6,6 +6,7 @@ import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.unidades.Algoformer;
 import fiuba.algo3.model.unidades.MovimientoNoValidoException;
 import fiuba.algo3.view.ContenedorJuego;
+import fiuba.algo3.view.utilities.ConvertidorPuntoAPixels;
 import fiuba.algo3.view.utilities.PuntoPixels;
 import fiuba.algo3.view.vistas.VistaMapaAlgoformers;
 import fiuba.algo3.view.vistas.VistaMapaBonuses;
@@ -46,6 +47,8 @@ public abstract class MovimientoHandler implements EventHandler<ActionEvent> {
         actualizarMovimientosRestantes(algoformerAMoverse);
 
         Punto ubicacionNueva = algoformerAMoverse.getUbicacion();
+        
+        
         VistaAlgoformer vistaAlgoformerAMover = this.vistaMapaAlgoformers.getVista(algoformerAMoverse);
         vistaAlgoformerAMover.actualizar(ubicacionPixelVieja.getX(), ubicacionPixelVieja.getY());
 
@@ -53,7 +56,9 @@ public abstract class MovimientoHandler implements EventHandler<ActionEvent> {
         limpiarMsjError();
         vistaMapaBonuses.actualizar(ubicacionNueva);
         contenedorJuego.actualizarStatsLateral(algoformerAMoverse.getUbicacion());
-        // TODO borrar algoformer del mapa si murio caminando :S
+        if (!algoformerAMoverse.estaVivo()){//muerte por espinas
+        	limpiarAlgoformerDePantalla(ubicacionNueva,algoformerAMoverse);
+        }
     }
 
 
@@ -70,6 +75,14 @@ public abstract class MovimientoHandler implements EventHandler<ActionEvent> {
 
     private void limpiarMsjError() {
         this.msjError.setText("");
+    }
+    
+    protected void limpiarAlgoformerDePantalla(Punto ubicacion, Algoformer algoformer){
+    	ConvertidorPuntoAPixels conversor = new ConvertidorPuntoAPixels();
+        PuntoPixels ubicacionPixelsNueva = conversor.convertir(ubicacion);
+    	VistaMapaAlgoformers vistaMapaAlgoformers = contenedorJuego.getVistaMapaAlgoformers();
+        VistaAlgoformer vistaAlgoformer = vistaMapaAlgoformers.getVista(algoformer);
+    	vistaAlgoformer.limpiar(ubicacionPixelsNueva.getX(),ubicacionPixelsNueva.getY());
     }
 
 

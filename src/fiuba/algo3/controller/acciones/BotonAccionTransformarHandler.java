@@ -4,6 +4,7 @@ import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.unidades.Algoformer;
 import fiuba.algo3.model.unidades.MovimientoNoValidoException;
 import fiuba.algo3.view.ContenedorJuego;
+import fiuba.algo3.view.utilities.ConvertidorPuntoAPixels;
 import fiuba.algo3.view.utilities.PuntoPixels;
 import fiuba.algo3.view.vistas.VistaMapaAlgoformers;
 import fiuba.algo3.view.vistas.VistaMapaBonuses;
@@ -50,11 +51,23 @@ public class BotonAccionTransformarHandler extends BotonAccionHandler implements
         
         a.cambiarImagen();
         a.actualizar(ubicacionPixelVieja.getX(), ubicacionPixelVieja.getY());
+        
+        if (!algoformerATransformarse.estaVivo()){//muerte por espinas
+        	limpiarAlgoformerDePantalla(ubicacionNueva,algoformerATransformarse);
+        }
 
         contenedorJuego.actualizarStatsLateral(algoformerATransformarse.getUbicacion());
         deshabilitarAcciones();
         this.msjError.setText("");
         vistaMapaBonuses.actualizar(ubicacionNueva);
+	}
+
+	private void limpiarAlgoformerDePantalla(Punto ubicacion, Algoformer algoformer) {
+		ConvertidorPuntoAPixels conversor = new ConvertidorPuntoAPixels();
+        PuntoPixels ubicacionPixelsNueva = conversor.convertir(ubicacion);
+    	VistaMapaAlgoformers vistaMapaAlgoformers = contenedorJuego.getVistaMapaAlgoformers();
+        VistaAlgoformer vistaAlgoformer = vistaMapaAlgoformers.getVista(algoformer);
+    	vistaAlgoformer.limpiar(ubicacionPixelsNueva.getX(),ubicacionPixelsNueva.getY());		
 	}
 
 
