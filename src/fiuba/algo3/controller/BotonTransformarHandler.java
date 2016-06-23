@@ -43,7 +43,7 @@ public class BotonTransformarHandler implements EventHandler<ActionEvent> {
 	     
 	     if (algoformerATransformarse == null){
 	            return;
-	        }
+	     }
 		
 		PuntoPixels ubicacionPixelVieja = this.vistaMapaAlgoformers.getVista(algoformerATransformarse).getUbicacion();
 

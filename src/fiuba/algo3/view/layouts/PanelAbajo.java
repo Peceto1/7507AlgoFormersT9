@@ -1,5 +1,6 @@
 package fiuba.algo3.view.layouts;
 
+import fiuba.algo3.controller.BotonCapturarChispaHandler;
 import fiuba.algo3.controller.BotonMoverHandler;
 import fiuba.algo3.controller.BotonTerminarTurnoHandler;
 import fiuba.algo3.controller.BotonTransformarHandler;
@@ -83,10 +84,13 @@ public class PanelAbajo extends HBox {
         transformButton.setStyle(estiloNegro);
         
         transformButton.setOnAction(new BotonTransformarHandler(contenedorJuego,contenedorAcciones,contenedorCombinarseSepararse));
+        
         Button captureButton = new Button("Capturar Chispa");
         captureButton.setMinSize(150, 25);
         captureButton.setMaxSize(150, 25);
         captureButton.setStyle(estiloNegro);
+        
+        captureButton.setOnAction(new BotonCapturarChispaHandler(contenedorJuego,contenedorAcciones,contenedorCombinarseSepararse));
 
         grillaBotonesAcciones.addColumn(0, moveButton, atkButton);
         grillaBotonesAcciones.addColumn(1, transformButton, captureButton);
