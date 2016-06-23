@@ -4,8 +4,10 @@ import fiuba.algo3.controller.*;
 import fiuba.algo3.controller.MovimientoHandlers.*;
 import fiuba.algo3.controller.acciones.BotonAccionAtacarHandler;
 import fiuba.algo3.controller.acciones.BotonAccionCapturarChispaHandler;
+import fiuba.algo3.controller.acciones.BotonAccionCombinarseHandler;
 import fiuba.algo3.controller.acciones.BotonAccionTransformarHandler;
 import fiuba.algo3.controller.acciones.BotonAccionMoverHandler;
+import fiuba.algo3.controller.acciones.BotonAccionSepararseHandler;
 import fiuba.algo3.view.ContenedorJuego;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -189,10 +191,13 @@ public class PanelAbajo extends HBox {
         combinarseButton.setStyle(estiloNegro);
         combinarseButton.setMinSize(150, 25);
         combinarseButton.setMaxSize(150, 25);
+        combinarseButton.setOnAction(new BotonAccionCombinarseHandler(contenedorJuego));
+        
         Button separarseButton = new Button("Separarse");
         separarseButton.setStyle(estiloNegro);
         separarseButton.setMinSize(150, 25);
         separarseButton.setMaxSize(150, 25);
+        separarseButton.setOnAction(new BotonAccionSepararseHandler(contenedorJuego));
 
         contenedorCombinarseSepararse.getChildren().addAll(combinarseButton, separarseButton);
     }
