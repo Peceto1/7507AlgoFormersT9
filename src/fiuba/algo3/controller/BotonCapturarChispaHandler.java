@@ -9,30 +9,27 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-public class BotonCapturarChispaHandler implements EventHandler<ActionEvent> {
+public class BotonCapturarChispaHandler extends BotonAccionHandler implements EventHandler<ActionEvent> {
 	private Text msjError;
 	private HBox botoneraDeAcciones;
     private VBox botoneraDeCombinacion;
-    private ContenedorJuego contenedorJuego;
     
     public BotonCapturarChispaHandler(ContenedorJuego contenedor, HBox contenedorAcciones, VBox contenedorCombinacion){
+    	super(contenedor);
     	this.botoneraDeAcciones = contenedorAcciones;
     	this.botoneraDeCombinacion = contenedorCombinacion;
     	this.msjError = contenedor.getMsjError();
-    	this.contenedorJuego = contenedor;
     }
     
 	@Override
 	public void handle(ActionEvent actionEvent) {
 		contenedorJuego.setAccionado();
-	     Algoformer algoformerATransformarse = contenedorJuego.getAlgoformerAccionado();
-	     
-	     if (algoformerATransformarse == null){
-	            return;
-	     }
+	     Algoformer algoformerACapturar = contenedorJuego.getAlgoformerAccionado();
+	     if(!puedeRealizarAccion(algoformerACapturar))
+	    	 return;
 	     
 	     try {
-	        	algoformerATransformarse.capturarChispa();
+	        	algoformerACapturar.capturarChispa();
 	        } catch (ImposibleCapturarChispaException e) {
 	            this.msjError.setText("No se esta localizado sobre la chispa");
 	            return;
@@ -41,5 +38,5 @@ public class BotonCapturarChispaHandler implements EventHandler<ActionEvent> {
 	     botoneraDeCombinacion.setDisable(true);
 	     this.msjError.setText("Chispa Capturada!");
 	}
-
+	
 }

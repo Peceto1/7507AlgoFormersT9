@@ -10,36 +10,21 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class BotonMoverHandler implements EventHandler<ActionEvent> {
-
-
-    private ContenedorJuego contenedorJuego;
-
+public class BotonMoverHandler extends BotonAccionHandler  implements EventHandler<ActionEvent> {
+	
 
     public BotonMoverHandler(ContenedorJuego contenedorJuego) {
-        this.contenedorJuego = contenedorJuego;
+    	super(contenedorJuego);
     }
 
 
     @Override
     public void handle(ActionEvent actionEvent) {
-
-        contenedorJuego.setAccionado();
+    	contenedorJuego.setAccionado();
         Algoformer algoformerAccionado = contenedorJuego.getAlgoformerAccionado();
-
-        if (algoformerAccionado == null)
-            return;
-
-        Jugador jugadorEnTurno = contenedorJuego.getJuego().getJugadorEnTurno();
-
-        try {
-            jugadorEnTurno.obtenerAlgoformerEn(algoformerAccionado.getUbicacion());
-            inicializarMovimientosRestantes(algoformerAccionado);
-        } catch (JugadorNoPuedeObtenerAlgoformerContrarioException e) {
-            contenedorJuego.getMsjError().setText(e.devolverMensajeError());
-            return;
-        }
-
+    	if (!puedeRealizarAccion(algoformerAccionado))
+    		return;
+        inicializarMovimientosRestantes(algoformerAccionado);
         deshabilitarAcciones();
     }
 
@@ -58,6 +43,4 @@ public class BotonMoverHandler implements EventHandler<ActionEvent> {
         Label movRestantes = (Label) contenedorJuego.getPanelAbajo().lookup("#movRestantesLabel");
         movRestantes.setText(Integer.toString(algoformerAccionado.getMovimientosRestantes()));
     }
-
-
 }
