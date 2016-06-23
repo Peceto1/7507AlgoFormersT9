@@ -423,11 +423,11 @@ public class TerrenoTest {
 	
 	@Test
 	public void TerrenoTormentaPsionicaDevuelveSuTipoCorrectamente(){
-		Assert.assertEquals("Tormenta Psionica", new TormentaPsionica().devolverTipoTerreno());
+		Assert.assertEquals("Tormenta", new TormentaPsionica().devolverTipoTerreno());
 	}
 	
 	@Test
 	public void TerrenoNebulosaDeAndromedaDevuelveSuTipoCorrectamente(){
-		Assert.assertEquals("Nebulosa de Andromeda", new NebulosaDeAndromeda().devolverTipoTerreno());
+		Assert.assertEquals("Nebulosa", new NebulosaDeAndromeda().devolverTipoTerreno());
 	}
 }
