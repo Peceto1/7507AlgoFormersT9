@@ -69,7 +69,6 @@ public class PanelAbajo extends HBox {
 
         moveButton.setOnAction(new BotonMoverHandler(contenedorJuego));
 
-        // ToDo falta implementar el resto de los handlers
 
         Button atkButton = new Button("Atacar");
         atkButton.setMinSize(150, 25);

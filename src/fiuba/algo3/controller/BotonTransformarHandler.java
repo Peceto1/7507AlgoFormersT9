@@ -14,23 +14,23 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-public class BotonTransformarHandler implements EventHandler<ActionEvent> {
+public class BotonTransformarHandler extends BotonAccionHandler implements EventHandler<ActionEvent> {
 	
 	private VistaMapaAlgoformers vistaMapaAlgoformers;
     private VistaMapaBonuses vistaMapaBonuses;
     private Text msjError;
     private HBox botoneraDeAcciones;
     private VBox botoneraDeCombinacion;
-    private ContenedorJuego contenedorJuego;
     
     
     public BotonTransformarHandler(ContenedorJuego contenedorJuego, HBox contenedorAcciones, VBox contenedorCombinarseSepararse){
-        this.vistaMapaAlgoformers = contenedorJuego.getVistaMapaAlgoformers();
+    	super(contenedorJuego);
+    	this.vistaMapaAlgoformers = contenedorJuego.getVistaMapaAlgoformers();
         this.vistaMapaBonuses = contenedorJuego.getVistaMapaBonuses();
         this.msjError = contenedorJuego.getMsjError();
         this.botoneraDeAcciones = contenedorAcciones;
         this.botoneraDeCombinacion = contenedorCombinarseSepararse;
-        this.contenedorJuego = contenedorJuego;
+        
         
         
     }
@@ -41,9 +41,8 @@ public class BotonTransformarHandler implements EventHandler<ActionEvent> {
 	     contenedorJuego.setAccionado();
 	     Algoformer algoformerATransformarse = contenedorJuego.getAlgoformerAccionado();
 	     
-	     if (algoformerATransformarse == null){
-	            return;
-	     }
+	     if (!puedeRealizarAccion(algoformerATransformarse))
+	    		 return;
 		
 		PuntoPixels ubicacionPixelVieja = this.vistaMapaAlgoformers.getVista(algoformerATransformarse).getUbicacion();
 
@@ -66,7 +65,6 @@ public class BotonTransformarHandler implements EventHandler<ActionEvent> {
         this.msjError.setText("");
         vistaMapaBonuses.actualizar(ubicacionNueva);
 	}
-	
-	
+
 
 }
