@@ -78,7 +78,7 @@ public class ContenedorJuego extends BorderPane {
         this.vistaBonuses = new VistaMapaBonuses(canvasBonuses);
         this.vistaBonuses.mostrar();
 
-        this.vistaAlgoformers = new VistaMapaAlgoformers(canvasAlgoformers, juego);
+        this.vistaAlgoformers = new VistaMapaAlgoformers(canvasAlgoformers);
         this.vistaAlgoformers.mostrar();
 
         contenedorCanvases.getChildren().addAll(vistaArena, canvasBonuses, canvasAlgoformers);

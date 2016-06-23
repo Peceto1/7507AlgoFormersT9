@@ -20,7 +20,7 @@ public class NebulosaDeAndromeda implements TerrenoAplicable {
 	
 	@Override
 	public String devolverTipoTerreno(){
-		return "Nebulosa de Andromeda";
+		return "Nebulosa";
 	}
 
 }

@@ -23,7 +23,7 @@ public class TormentaPsionica implements TerrenoAplicable {
 	
 	@Override
 	public String devolverTipoTerreno(){
-		return "Tormenta Psionica";
+		return "Tormenta";
 	}
 
 }

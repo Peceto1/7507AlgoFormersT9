@@ -1,7 +1,6 @@
 package fiuba.algo3.view.vistas;
 
 import fiuba.algo3.model.espacio.Punto;
-import fiuba.algo3.model.juego.Juego;
 import fiuba.algo3.model.unidades.Algoformer;
 import fiuba.algo3.model.unidades.AlgoformerPool;
 import fiuba.algo3.view.utilities.ConvertidorPuntoAPixels;
@@ -16,11 +15,9 @@ import java.util.Map;
 public class VistaMapaAlgoformers {
 
     private Map<Algoformer, VistaAlgoformer> algoformersEnMapa;
-    private Juego juego;
 
 
-    public VistaMapaAlgoformers(Canvas canvasAlgoformers, Juego juego) {
-        this.juego = juego;
+    public VistaMapaAlgoformers(Canvas canvasAlgoformers) {
         this.algoformersEnMapa = new HashMap<>();
         construirVistas(canvasAlgoformers);
     }

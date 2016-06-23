@@ -38,8 +38,7 @@ abstract class MovimientoHandler implements EventHandler<ActionEvent> {
         try {
             algoformerAMoverse.moverseHacia(obtenerDireccion());
         } catch (MovimientoNoValidoException e) {
-            // ToDo this.msjError.setText(e.getMessage());
-            this.msjError.setText("No se puede mover");
+            this.msjError.setText(e.devolverMensajeError());
             return;
         }
 

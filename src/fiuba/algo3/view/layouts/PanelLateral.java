@@ -4,9 +4,12 @@ import fiuba.algo3.model.arena.Bonus;
 import fiuba.algo3.model.arena.TerrenoAplicable;
 import fiuba.algo3.model.juego.Juego;
 import fiuba.algo3.model.unidades.Algoformer;
+import fiuba.algo3.model.unidades.AlgoformerPool;
 import fiuba.algo3.view.ContenedorJuego;
+import fiuba.algo3.view.vistas.VistaProfileAlgoformers;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -20,6 +23,7 @@ public class PanelLateral extends VBox {
     private ContenedorJuego contenedorJuego;
     private Juego juego;
     private Text msjError;
+    private VistaProfileAlgoformers vistaProfiles;
 
     public PanelLateral(ContenedorJuego contenedorJuego, Background fondoPanel) {
         this.contenedorJuego = contenedorJuego;
@@ -28,6 +32,7 @@ public class PanelLateral extends VBox {
         this.setBackground(fondoPanel);
         this.setMinWidth(180);
         this.setMaxWidth(180);
+        this.vistaProfiles = new VistaProfileAlgoformers();
         dibujarInformacionDeTurno();
         dibujarInformacionDeErrores();
         dibujarBloqueStatsSeleccionado();
@@ -91,8 +96,8 @@ public class PanelLateral extends VBox {
         this.contenedorJuego.setMsjError(msjError);
 
         VBox espacio = new VBox();
-        espacio.setMinHeight(90);
-        espacio.setMaxHeight(90);
+        espacio.setMinHeight(80);
+        espacio.setMaxHeight(80);
 
         contenedorErrores.getChildren().addAll(titulo, msjError);
         this.getChildren().addAll(contenedorErrores, espacio);
@@ -105,10 +110,9 @@ public class PanelLateral extends VBox {
         contenedorStats.setPadding(new Insets(0, 0, 0, 10));
 
         VBox imagen = new VBox();
-        imagen.setMinHeight(100);
-        imagen.setMaxHeight(100);
-        imagen.setMinWidth(100);
-        imagen.setMaxWidth(100);
+        imagen.setId("imagenStatsVBox");
+        imagen.setMinSize(100, 100);
+        imagen.setMaxSize(100, 100);
         imagen.setBackground(new Background(new BackgroundFill(Color.GRAY, null, null)));
         imagen.setBorder(new Border(new BorderStroke(Color.GREEN, BorderStrokeStyle.SOLID, null, new BorderWidths(3, 3, 3, 3))));
         imagen.setAlignment(Pos.CENTER);
@@ -184,44 +188,40 @@ public class PanelLateral extends VBox {
                 "-fx-border-width: 2;" +
                 "-fx-border-color: black;");
 
-        contenedorImagenesAlgoformers.setPadding(new Insets(20, 0, 0, 30));
+        contenedorImagenesAlgoformers.setPadding(new Insets(10, 0, 0, 30));
 
-        // ToDO separar en funcion aparte la carga de los profile de los Algoformers
+        // ToDo agregar SetOnAction a los botones
 
-        VBox profileOptimus = new VBox();
-        profileOptimus.setMinHeight(50);
-        profileOptimus.setMinWidth(50);
-        profileOptimus.setBackground(new Background(new BackgroundFill(Color.GRAY, null, null)));
+        AlgoformerPool poolSingleton = AlgoformerPool.getInstance();
+
+        Button profileOptimus = new Button("", vistaProfiles.getVista(poolSingleton.obtenerOptimus(), 50));
+        profileOptimus.setMinSize(50, 50);
+        profileOptimus.setMaxSize(50, 50);
         profileOptimus.setBorder(new Border(new BorderStroke(Color.GREEN, BorderStrokeStyle.SOLID, null, new BorderWidths(1, 1, 1, 1))));
 
-        VBox profileBumblebee = new VBox();
-        profileBumblebee.setMinHeight(50);
-        profileBumblebee.setMinWidth(50);
-        profileBumblebee.setBackground(new Background(new BackgroundFill(Color.GRAY, null, null)));
+        Button profileBumblebee = new Button("", vistaProfiles.getVista(poolSingleton.obtenerBumblebee(), 50));
+        profileBumblebee.setMinSize(50, 50);
+        profileBumblebee.setMaxSize(50, 50);
         profileBumblebee.setBorder(new Border(new BorderStroke(Color.GREEN, BorderStrokeStyle.SOLID, null, new BorderWidths(1, 1, 1, 1))));
 
-        VBox profileRatchet = new VBox();
-        profileRatchet.setMinHeight(50);
-        profileRatchet.setMinWidth(50);
-        profileRatchet.setBackground(new Background(new BackgroundFill(Color.GRAY, null, null)));
+        Button profileRatchet = new Button("", vistaProfiles.getVista(poolSingleton.obtenerRatchet(), 50));
+        profileRatchet.setMinSize(50, 50);
+        profileRatchet.setMaxSize(50, 50);
         profileRatchet.setBorder(new Border(new BorderStroke(Color.GREEN, BorderStrokeStyle.SOLID, null, new BorderWidths(1, 1, 1, 1))));
 
-        VBox profileMegatron = new VBox();
-        profileMegatron.setMinHeight(50);
-        profileMegatron.setMinWidth(50);
-        profileMegatron.setBackground(new Background(new BackgroundFill(Color.GRAY, null, null)));
+        Button profileMegatron = new Button("", vistaProfiles.getVista(poolSingleton.obtenerMegatron(), 50));
+        profileMegatron.setMinSize(50, 50);
+        profileMegatron.setMaxSize(50, 50);
         profileMegatron.setBorder(new Border(new BorderStroke(Color.GREEN, BorderStrokeStyle.SOLID, null, new BorderWidths(1, 1, 1, 1))));
 
-        VBox profileBonecrusher = new VBox();
-        profileBonecrusher.setMinHeight(50);
-        profileBonecrusher.setMinWidth(50);
-        profileBonecrusher.setBackground(new Background(new BackgroundFill(Color.GRAY, null, null)));
+        Button profileBonecrusher = new Button("", vistaProfiles.getVista(poolSingleton.obtenerBonecrusher(), 50));
+        profileBonecrusher.setMinSize(50, 50);
+        profileBonecrusher.setMaxSize(50, 50);
         profileBonecrusher.setBorder(new Border(new BorderStroke(Color.GREEN, BorderStrokeStyle.SOLID, null, new BorderWidths(1, 1, 1, 1))));
 
-        VBox profileFrenzy = new VBox();
-        profileFrenzy.setMinHeight(50);
-        profileFrenzy.setMinWidth(50);
-        profileFrenzy.setBackground(new Background(new BackgroundFill(Color.GRAY, null, null)));
+        Button profileFrenzy = new Button("", vistaProfiles.getVista(poolSingleton.obtenerFrenzy(), 50));
+        profileFrenzy.setMinSize(50, 50);
+        profileFrenzy.setMaxSize(50, 50);
         profileFrenzy.setBorder(new Border(new BorderStroke(Color.GREEN, BorderStrokeStyle.SOLID, null, new BorderWidths(1, 1, 1, 1))));
 
         GridPane grillaAlgoformers = new GridPane();
@@ -233,7 +233,8 @@ public class PanelLateral extends VBox {
         contenedorImagenesAlgoformers.getChildren().add(grillaAlgoformers);
         this.getChildren().add(contenedorImagenesAlgoformers);
     }
-    
+
+
     public void actualizarStats(Algoformer algoformerSeleccionado, Bonus bonusSeleccionado, TerrenoAplicable terrenoSeleccionado){
     	Text textTerreno = (Text) this.lookup("#tipoTerrenoText");
     	Text textBonus = (Text) this.lookup("#tipoBonusText");
@@ -245,14 +246,20 @@ public class PanelLateral extends VBox {
     	Text cantAtk = (Text) this.lookup("#statAtkText");
     	Text cantRng = (Text) this.lookup("#statRngText");
     	Text cantSpd = (Text) this.lookup("#statSpdText");
+        VBox imagenProfile = (VBox) this.lookup("#imagenStatsVBox");
     	
     	if (algoformerSeleccionado == null){
     		cantVida.setText("");
     		cantAtk.setText("");
     		cantRng.setText("");
     		cantSpd.setText("");
+            imagenProfile.setBackground(new Background(new BackgroundFill(Color.GRAY, null, null)));
     		return;
     	}
+
+        BackgroundImage nuevaImagen = new BackgroundImage(vistaProfiles.getVista(algoformerSeleccionado, 100).getImage(), null, null, null, null);
+        imagenProfile.setBackground(new Background(nuevaImagen));
+
     	cantVida.setText(Integer.toString(algoformerSeleccionado.getVida()));
     	cantAtk.setText(Integer.toString(algoformerSeleccionado.getAtk()));
     	cantRng.setText(Integer.toString(algoformerSeleccionado.getRange()));

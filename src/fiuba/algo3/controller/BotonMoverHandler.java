@@ -36,8 +36,7 @@ public class BotonMoverHandler implements EventHandler<ActionEvent> {
             jugadorEnTurno.obtenerAlgoformerEn(algoformerAccionado.getUbicacion());
             inicializarMovimientosRestantes(algoformerAccionado);
         } catch (JugadorNoPuedeObtenerAlgoformerContrarioException e) {
-            // ToDo mensajes excepciones
-            //contenedorJuego.getMsjError().setText(e.getMessage());
+            contenedorJuego.getMsjError().setText(e.devolverMensajeError());
             return;
         }
 

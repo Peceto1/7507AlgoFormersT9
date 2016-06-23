@@ -79,10 +79,10 @@ public class VistaArena extends GridPane {
             case "Espinas" :
                 return new ImageView(imageEspinas);
 
-            case "Tormenta Psionica" :
+            case "Tormenta" :
                 return new ImageView(imageTormenta);
 
-            case "Nebulosa de Andromeda" :
+            case "Nebulosa" :
                 return new ImageView(imageNebulosa);
         }
 
