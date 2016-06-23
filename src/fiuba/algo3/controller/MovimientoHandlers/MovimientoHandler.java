@@ -30,6 +30,7 @@ abstract class MovimientoHandler implements EventHandler<ActionEvent> {
         this.msjError = contenedorJuego.getMsjError();
     }
 
+
     public void handle(ActionEvent actionEvent) {
 
         Algoformer algoformerAMoverse = this.contenedorJuego.getAlgoformerAccionado();
@@ -52,6 +53,7 @@ abstract class MovimientoHandler implements EventHandler<ActionEvent> {
         limpiarMsjError();
         vistaMapaBonuses.actualizar(ubicacionNueva);
         contenedorJuego.actualizarStatsLateral(algoformerAMoverse.getUbicacion());
+        // ToDo borrar algoformer del mapa si murio caminando :S
     }
 
 

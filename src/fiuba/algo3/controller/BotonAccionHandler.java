@@ -6,10 +6,12 @@ import fiuba.algo3.view.ContenedorJuego;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
-public abstract class BotonAccionHandler{
+public abstract class BotonAccionHandler implements EventHandler<ActionEvent> {
+
 	public ContenedorJuego contenedorJuego;
 	
-	public BotonAccionHandler(ContenedorJuego contenedor){
+
+    public BotonAccionHandler(ContenedorJuego contenedor){
 		this.contenedorJuego = contenedor;
 	}
 	

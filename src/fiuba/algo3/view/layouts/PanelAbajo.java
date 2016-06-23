@@ -75,7 +75,7 @@ public class PanelAbajo extends HBox {
         atkButton.setMaxSize(150, 25);
         atkButton.setStyle(estiloNegro);
 
-        atkButton.setOnAction(new BotonAccionAtacarHandler());
+        atkButton.setOnAction(new BotonAccionAtacarHandler(contenedorJuego));
 
         Button transformButton = new Button("Transformar");
         transformButton.setMinSize(150, 25);
