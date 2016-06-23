@@ -41,6 +41,7 @@ public class ContenedorJuego extends BorderPane {
     private Bonus bonusSeleccionado;
     private Algoformer algoformerAccionado;
     private ConvertidorPuntoAPixels conversor;
+    private int canvasSize = 2040;
 
 
     public ContenedorJuego(Juego juego) {
@@ -70,8 +71,8 @@ public class ContenedorJuego extends BorderPane {
         contenedorCanvases.setId("contenedorStackPane");
         contenedorCanvases.setOnMouseClicked(new ClickEnMapaHandler(this));
 
-        this.canvasBonuses = new Canvas(2040, 2040);
-        this.canvasAlgoformers = new Canvas(2040, 2040);
+        this.canvasBonuses = new Canvas(canvasSize, canvasSize);
+        this.canvasAlgoformers = new Canvas(canvasSize, canvasSize);
 
         this.vistaArena = new VistaArena(102, 51);
         this.vistaArena.dibujarArena();
@@ -105,6 +106,18 @@ public class ContenedorJuego extends BorderPane {
     public void actualizarStatsLateral(Punto punto){
     	PuntoPixels puntoEnPixeles = conversor.convertir(punto);
     	seleccionarCasillero(puntoEnPixeles.getX(),puntoEnPixeles.getY());
+    }
+
+
+    public void panearCamara() {
+        Punto ubicacion = juego.getJugadorEnTurno().getUltimoAlgoformerUtilizado().getUbicacion();
+        PuntoPixels ubicacionPixeles = conversor.convertir(ubicacion);
+
+        double porcentajePaneoHorizontal = ubicacionPixeles.getX() / (double) canvasSize;
+        double porcentajePaneoVertical = ubicacionPixeles.getY() / (double) canvasSize;
+
+        contenedorCentral.setVvalue(porcentajePaneoVertical);
+        contenedorCentral.setHvalue(porcentajePaneoHorizontal);
     }
 
 
