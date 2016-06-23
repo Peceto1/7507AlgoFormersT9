@@ -1,9 +1,6 @@
 package fiuba.algo3.view.layouts;
 
-import fiuba.algo3.controller.BotonCapturarChispaHandler;
-import fiuba.algo3.controller.BotonMoverHandler;
-import fiuba.algo3.controller.BotonTerminarTurnoHandler;
-import fiuba.algo3.controller.BotonTransformarHandler;
+import fiuba.algo3.controller.*;
 import fiuba.algo3.controller.MovimientoHandlers.*;
 import fiuba.algo3.view.ContenedorJuego;
 import javafx.geometry.HPos;
@@ -78,6 +75,9 @@ public class PanelAbajo extends HBox {
         atkButton.setMinSize(150, 25);
         atkButton.setMaxSize(150, 25);
         atkButton.setStyle(estiloNegro);
+
+        atkButton.setOnAction(new BotonAccionAtacarHandler());
+
         Button transformButton = new Button("Transformar");
         transformButton.setMinSize(150, 25);
         transformButton.setMaxSize(150, 25);

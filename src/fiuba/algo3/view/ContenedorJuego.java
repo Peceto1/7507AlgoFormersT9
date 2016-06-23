@@ -1,5 +1,6 @@
 package fiuba.algo3.view;
 
+import fiuba.algo3.controller.ClickEnMapaHandler;
 import fiuba.algo3.model.arena.Arena;
 import fiuba.algo3.model.arena.Bonus;
 import fiuba.algo3.model.arena.TerrenoAplicable;
@@ -19,6 +20,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+
 
 public class ContenedorJuego extends BorderPane {
 
@@ -65,10 +67,8 @@ public class ContenedorJuego extends BorderPane {
     private void crearContenedorCentral() {
         this.contenedorCentral = new ScrollPane();
         StackPane contenedorCanvases = new StackPane();
-
-        contenedorCanvases.setOnMouseClicked( (mouseEvent) -> {
-            seleccionarCasillero(mouseEvent.getX(),mouseEvent.getY());
-        } );
+        contenedorCanvases.setId("contenedorStackPane");
+        contenedorCanvases.setOnMouseClicked(new ClickEnMapaHandler(this));
 
         this.canvasBonuses = new Canvas(2040, 2040);
         this.canvasAlgoformers = new Canvas(2040, 2040);
@@ -100,11 +100,13 @@ public class ContenedorJuego extends BorderPane {
         panelLateral.actualizarStats(algoformerSeleccionado, bonusSeleccionado, terrenoSeleccionado);
 
     }
-    
+
+
     public void actualizarStatsLateral(Punto punto){
     	PuntoPixels puntoEnPixeles = conversor.convertir(punto);
     	seleccionarCasillero(puntoEnPixeles.getX(),puntoEnPixeles.getY());
     }
+
 
     public Text getMsjError() {
         return this.msjError;
