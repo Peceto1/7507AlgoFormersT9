@@ -44,6 +44,7 @@ public class ClickearEnemigoHandler implements EventHandler<MouseEvent> {
         
         try {
             atacante.atacar(algoformerAtacado);
+            ReproductorFX.reproducirFX(ReproductorFX.ATTACKFX);
         } catch (NullPointerException e) {
             ReproductorFX.reproducirFX(ReproductorFX.ERROR1);
             msjError.setText("No hay algoformer para atacar");
@@ -56,7 +57,6 @@ public class ClickearEnemigoHandler implements EventHandler<MouseEvent> {
             rehabilitarAcciones();
         }
 
-        ReproductorFX.reproducirFX(ReproductorFX.ATTACKFX);
 
         if (algoformerAtacado != null && !algoformerAtacado.estaVivo()){
         	VistaMapaAlgoformers vistaMapaAlgoformers = contenedorJuego.getVistaMapaAlgoformers();
