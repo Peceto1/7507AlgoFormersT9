@@ -98,11 +98,18 @@ public class ContenedorJuego extends BorderPane {
         terrenoSeleccionado = Arena.getInstance().devolverTerrenoEn(ubicacion);
         bonusSeleccionado = Arena.getInstance().devolverBonusEn(ubicacion);
         panelLateral.actualizarStats(algoformerSeleccionado, bonusSeleccionado, terrenoSeleccionado);
-
     }
 
 
-    public void actualizarStatsLateral(Punto punto){
+    /*private void setPantalla(PuntoPixels parPixel) {
+		double valorEnX = (double)parPixel.getX() / 2040;
+		double valorEnY = (double)parPixel.getY() / 2040;
+		contenedorCentral.setHvalue(valorEnX);
+		contenedorCentral.setVvalue(valorEnY);
+	}*/
+
+
+	public void actualizarStatsLateral(Punto punto){
     	PuntoPixels puntoEnPixeles = conversor.convertir(punto);
     	seleccionarCasillero(puntoEnPixeles.getX(),puntoEnPixeles.getY());
     }

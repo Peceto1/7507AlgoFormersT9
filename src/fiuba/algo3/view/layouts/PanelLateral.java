@@ -6,6 +6,7 @@ import fiuba.algo3.model.juego.Juego;
 import fiuba.algo3.model.unidades.Algoformer;
 import fiuba.algo3.model.unidades.AlgoformerPool;
 import fiuba.algo3.view.ContenedorJuego;
+import fiuba.algo3.view.eventos.ProfileOnClickHandler;
 import fiuba.algo3.view.vistas.VistaProfileAlgoformers;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -188,9 +189,7 @@ public class PanelLateral extends VBox {
                 "-fx-border-width: 2;" +
                 "-fx-border-color: black;");
 
-        contenedorImagenesAlgoformers.setPadding(new Insets(10, 0, 0, 30));
-
-        // TODO agregar SetOnAction a los botones
+        contenedorImagenesAlgoformers.setPadding(new Insets(10, 0, 10, 30));
 
         AlgoformerPool poolSingleton = AlgoformerPool.getInstance();
 
@@ -198,32 +197,38 @@ public class PanelLateral extends VBox {
         profileOptimus.setMinSize(50, 50);
         profileOptimus.setMaxSize(50, 50);
         profileOptimus.setBorder(new Border(new BorderStroke(Color.GREEN, BorderStrokeStyle.SOLID, null, new BorderWidths(1, 1, 1, 1))));
-
+        profileOptimus.setOnAction(new ProfileOnClickHandler(poolSingleton.obtenerOptimus(),contenedorJuego));
+        
         Button profileBumblebee = new Button("", vistaProfiles.getVista(poolSingleton.obtenerBumblebee(), 50));
         profileBumblebee.setMinSize(50, 50);
         profileBumblebee.setMaxSize(50, 50);
         profileBumblebee.setBorder(new Border(new BorderStroke(Color.GREEN, BorderStrokeStyle.SOLID, null, new BorderWidths(1, 1, 1, 1))));
-
+        profileBumblebee.setOnAction(new ProfileOnClickHandler(poolSingleton.obtenerBumblebee(),contenedorJuego));
+        
         Button profileRatchet = new Button("", vistaProfiles.getVista(poolSingleton.obtenerRatchet(), 50));
         profileRatchet.setMinSize(50, 50);
         profileRatchet.setMaxSize(50, 50);
         profileRatchet.setBorder(new Border(new BorderStroke(Color.GREEN, BorderStrokeStyle.SOLID, null, new BorderWidths(1, 1, 1, 1))));
-
+        profileRatchet.setOnAction(new ProfileOnClickHandler(poolSingleton.obtenerRatchet(),contenedorJuego));
+        
         Button profileMegatron = new Button("", vistaProfiles.getVista(poolSingleton.obtenerMegatron(), 50));
         profileMegatron.setMinSize(50, 50);
         profileMegatron.setMaxSize(50, 50);
-        profileMegatron.setBorder(new Border(new BorderStroke(Color.GREEN, BorderStrokeStyle.SOLID, null, new BorderWidths(1, 1, 1, 1))));
-
+        profileMegatron.setBorder(new Border(new BorderStroke(Color.RED, BorderStrokeStyle.SOLID, null, new BorderWidths(1, 1, 1, 1))));
+        profileMegatron.setOnAction(new ProfileOnClickHandler(poolSingleton.obtenerMegatron(),contenedorJuego));
+        
         Button profileBonecrusher = new Button("", vistaProfiles.getVista(poolSingleton.obtenerBonecrusher(), 50));
         profileBonecrusher.setMinSize(50, 50);
         profileBonecrusher.setMaxSize(50, 50);
-        profileBonecrusher.setBorder(new Border(new BorderStroke(Color.GREEN, BorderStrokeStyle.SOLID, null, new BorderWidths(1, 1, 1, 1))));
-
+        profileBonecrusher.setBorder(new Border(new BorderStroke(Color.RED, BorderStrokeStyle.SOLID, null, new BorderWidths(1, 1, 1, 1))));
+        profileBonecrusher.setOnAction(new ProfileOnClickHandler(poolSingleton.obtenerBonecrusher(),contenedorJuego));
+        
         Button profileFrenzy = new Button("", vistaProfiles.getVista(poolSingleton.obtenerFrenzy(), 50));
         profileFrenzy.setMinSize(50, 50);
         profileFrenzy.setMaxSize(50, 50);
-        profileFrenzy.setBorder(new Border(new BorderStroke(Color.GREEN, BorderStrokeStyle.SOLID, null, new BorderWidths(1, 1, 1, 1))));
-
+        profileFrenzy.setBorder(new Border(new BorderStroke(Color.RED, BorderStrokeStyle.SOLID, null, new BorderWidths(1, 1, 1, 1))));
+        profileFrenzy.setOnAction(new ProfileOnClickHandler(poolSingleton.obtenerFrenzy(),contenedorJuego));
+        
         GridPane grillaAlgoformers = new GridPane();
         grillaAlgoformers.setHgap(10);
         grillaAlgoformers.setVgap(10);
