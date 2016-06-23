@@ -2,6 +2,7 @@ package fiuba.algo3.controller;
 
 import fiuba.algo3.model.juego.Juego;
 import fiuba.algo3.model.juego.YaExisteJugadorConEseNombreException;
+import fiuba.algo3.view.utilities.ReproductorFX;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
@@ -24,6 +25,7 @@ public abstract class ElegirEquipoHandler implements EventHandler<ActionEvent> {
 
     Boolean ingresoValido() {
         if (input.getText().trim().equals("")) {
+            ReproductorFX.reproducirFX(ReproductorFX.ERROR1);
             msjError.setText("Debe ingresar un nombre");
             this.input.requestFocus();
             return false;
@@ -37,6 +39,7 @@ public abstract class ElegirEquipoHandler implements EventHandler<ActionEvent> {
         try {
             juego.crearJugador(input.getText().trim(), equipo);
         } catch (YaExisteJugadorConEseNombreException e) {
+            ReproductorFX.reproducirFX(ReproductorFX.ERROR1);
             msjError.setText("Nombre en uso");
             return false;
         }

@@ -8,6 +8,7 @@ import fiuba.algo3.model.unidades.MovimientoNoValidoException;
 import fiuba.algo3.view.ContenedorJuego;
 import fiuba.algo3.view.utilities.ConvertidorPuntoAPixels;
 import fiuba.algo3.view.utilities.PuntoPixels;
+import fiuba.algo3.view.utilities.ReproductorFX;
 import fiuba.algo3.view.vistas.VistaMapaAlgoformers;
 import fiuba.algo3.view.vistas.VistaMapaBonuses;
 import fiuba.algo3.view.vistas.vistasAlgoformers.VistaAlgoformer;
@@ -40,6 +41,7 @@ public abstract class MovimientoHandler implements EventHandler<ActionEvent> {
         try {
             algoformerAMoverse.moverseHacia(obtenerDireccion());
         } catch (MovimientoNoValidoException e) {
+            ReproductorFX.reproducirFX(ReproductorFX.ERROR1);
             this.msjError.setText(e.devolverMensajeError());
             return;
         }
@@ -56,8 +58,9 @@ public abstract class MovimientoHandler implements EventHandler<ActionEvent> {
         limpiarMsjError();
         vistaMapaBonuses.actualizar(ubicacionNueva);
         contenedorJuego.actualizarStatsLateral(algoformerAMoverse.getUbicacion());
-        if (!algoformerAMoverse.estaVivo()){//muerte por espinas
-        	limpiarAlgoformerDePantalla(ubicacionNueva,algoformerAMoverse);
+
+        if (!algoformerAMoverse.estaVivo()) {
+        	limpiarAlgoformerDePantalla(ubicacionNueva, algoformerAMoverse);
         }
     }
 

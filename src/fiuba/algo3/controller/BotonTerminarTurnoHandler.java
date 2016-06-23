@@ -4,6 +4,7 @@ import fiuba.algo3.model.juego.Juego;
 import fiuba.algo3.view.ContenedorJuego;
 import fiuba.algo3.view.layouts.PanelAbajo;
 import fiuba.algo3.view.layouts.PanelLateral;
+import fiuba.algo3.view.utilities.ReproductorFX;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
@@ -47,6 +48,7 @@ public class BotonTerminarTurnoHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent actionEvent) {
 
+        ReproductorFX.reproducirFX(ReproductorFX.ENDTURN);
     	juego.finalizarTurno();
 
     	if (juego.hayGanador()) {

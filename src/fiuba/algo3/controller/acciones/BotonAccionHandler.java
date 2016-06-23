@@ -3,6 +3,7 @@ import fiuba.algo3.model.juego.Jugador;
 import fiuba.algo3.model.juego.JugadorNoPuedeObtenerAlgoformerContrarioException;
 import fiuba.algo3.model.unidades.Algoformer;
 import fiuba.algo3.view.ContenedorJuego;
+import fiuba.algo3.view.utilities.ReproductorFX;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.layout.HBox;
@@ -27,6 +28,7 @@ public abstract class BotonAccionHandler implements EventHandler<ActionEvent> {
         try {
             jugadorEnTurno.obtenerAlgoformerEn(algoformerAccionado.getUbicacion());
         } catch (JugadorNoPuedeObtenerAlgoformerContrarioException e) {
+            ReproductorFX.reproducirFX(ReproductorFX.ERROR1);
             contenedorJuego.getMsjError().setText(e.devolverMensajeError());
             return false;
         }
@@ -36,9 +38,9 @@ public abstract class BotonAccionHandler implements EventHandler<ActionEvent> {
 	}
 	
     protected void deshabilitarAcciones() {
-       HBox contenedorAcciones = (HBox) contenedorJuego.getPanelAbajo().lookup("#contenedorAcciones");
-       VBox contenedorCombinarse = (VBox) contenedorJuego.getPanelAbajo().lookup("#contenedorCombinarseVBox");
-        
+        HBox contenedorAcciones = (HBox) contenedorJuego.getPanelAbajo().lookup("#contenedorAcciones");
+        VBox contenedorCombinarse = (VBox) contenedorJuego.getPanelAbajo().lookup("#contenedorCombinarseVBox");
+        ReproductorFX.reproducirFX(ReproductorFX.HITFX);
         contenedorAcciones.setDisable(true);
         contenedorCombinarse.setDisable(true);
     }

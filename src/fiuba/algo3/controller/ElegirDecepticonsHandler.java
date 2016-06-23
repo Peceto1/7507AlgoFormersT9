@@ -1,6 +1,7 @@
 package fiuba.algo3.controller;
 
 import fiuba.algo3.model.juego.Juego;
+import fiuba.algo3.view.utilities.ReproductorFX;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -34,6 +35,7 @@ public class ElegirDecepticonsHandler extends ElegirEquipoHandler {
         decepticons.setDisable(true);
         mostrarEleccion();
         limpiarPanel();
+        ReproductorFX.reproducirFX(ReproductorFX.HITFX);
     }
 
 
