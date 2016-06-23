@@ -21,7 +21,6 @@ import javafx.scene.text.Text;
 public class ContenedorEleccionEquipos extends BorderPane {
 
     VentanaDefault ventanaDefault;
-    ContenedorJuego proximaVista;
     VBox autobots;
     VBox decepticons;
     VBox panelCentro;
@@ -62,6 +61,8 @@ public class ContenedorEleccionEquipos extends BorderPane {
         autobots.getChildren().add(autobotsButton);
         autobots.setPadding(new Insets(0, 0, 0, 25));
         autobots.setAlignment(Pos.CENTER);
+        autobotsButton.setMinSize(320, 620);
+        autobotsButton.setMaxSize(320, 620);
         this.setLeft(autobots);
     }
 
@@ -76,6 +77,8 @@ public class ContenedorEleccionEquipos extends BorderPane {
         decepticons.getChildren().add(decepticonsButton);
         decepticons.setPadding(new Insets(0, 25, 0, 0));
         decepticons.setAlignment(Pos.CENTER);
+        decepticonsButton.setMinSize(320, 620);
+        decepticonsButton.setMaxSize(320, 620);
         this.setRight(decepticons);
     }
 
