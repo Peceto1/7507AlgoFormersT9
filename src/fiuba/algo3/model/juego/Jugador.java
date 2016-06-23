@@ -16,11 +16,13 @@ public class Jugador {
     private String nombre;
     private String equipo;
     private List<Algoformer> algoformers;
+    private Algoformer ultimoAlgoformerUtilizado;
 
 
     Jugador(String nombre, List<Algoformer> equipo) {
         this.nombre = nombre;
         this.algoformers = new ArrayList<>(equipo);
+        this.ultimoAlgoformerUtilizado = this.algoformers.get(0);
     }
 
 
@@ -31,6 +33,16 @@ public class Jugador {
 
     public void setEquipo(String equipo) {
         this.equipo = equipo;
+    }
+
+
+    public Algoformer getUltimoAlgoformerUtilizado() {
+        return ultimoAlgoformerUtilizado;
+    }
+
+
+    public void setUltimoAlgoformerUtilizado(Algoformer algoformer) {
+        this.ultimoAlgoformerUtilizado = algoformer;
     }
 
 
@@ -119,7 +131,8 @@ public class Jugador {
         throw new NoHaySuficientesAlgoformersAdyacentesException();
 
     }
-    
+
+
     public void separarAlgoformers() {
     	List<Algoformer> lista = algoformers.get(0).separarse();
     	this.algoformers.remove(0);
@@ -131,7 +144,8 @@ public class Jugador {
 		for (Algoformer actual: algoformers)
 			actual.resetearStats();
 	}
-	
+
+
 	public int cantidadAlgoformers(){
 		return algoformers.size();
 	}

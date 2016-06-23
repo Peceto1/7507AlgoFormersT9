@@ -1,4 +1,4 @@
-package fiuba.algo3.controller;
+package fiuba.algo3.controller.acciones;
 
 import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.unidades.Algoformer;
@@ -13,22 +13,20 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.text.Text;
 
-public class BotonTransformarHandler extends BotonAccionHandler implements EventHandler<ActionEvent> {
+public class BotonAccionTransformarHandler extends BotonAccionHandler implements EventHandler<ActionEvent> {
 	
 	private VistaMapaAlgoformers vistaMapaAlgoformers;
     private VistaMapaBonuses vistaMapaBonuses;
     private Text msjError;
     
-    
-    public BotonTransformarHandler(ContenedorJuego contenedorJuego){
+
+    public BotonAccionTransformarHandler(ContenedorJuego contenedorJuego){
     	super(contenedorJuego);
     	this.vistaMapaAlgoformers = contenedorJuego.getVistaMapaAlgoformers();
         this.vistaMapaBonuses = contenedorJuego.getVistaMapaBonuses();
         this.msjError = contenedorJuego.getMsjError();
-        
-        
-        
     }
+
 
 	@Override
 	public void handle(ActionEvent actionEvent) {
@@ -47,6 +45,7 @@ public class BotonTransformarHandler extends BotonAccionHandler implements Event
             this.msjError.setText("No se puede transformar");// Solo ocurre en caso de un aereo intentando descender a pantano
             return;
         }
+
         Punto ubicacionNueva = algoformerATransformarse.getUbicacion();
         VistaAlgoformer a = this.vistaMapaAlgoformers.getVista(algoformerATransformarse);
         
@@ -57,7 +56,6 @@ public class BotonTransformarHandler extends BotonAccionHandler implements Event
         	limpiarAlgoformerDePantalla(ubicacionNueva,algoformerATransformarse);
         }
 
-        //
         contenedorJuego.actualizarStatsLateral(algoformerATransformarse.getUbicacion());
         deshabilitarAcciones();
         this.msjError.setText("");

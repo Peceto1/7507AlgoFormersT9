@@ -1,4 +1,4 @@
-package fiuba.algo3.controller;
+package fiuba.algo3.controller.acciones;
 import fiuba.algo3.model.juego.Jugador;
 import fiuba.algo3.model.juego.JugadorNoPuedeObtenerAlgoformerContrarioException;
 import fiuba.algo3.model.unidades.Algoformer;
@@ -30,6 +30,8 @@ public abstract class BotonAccionHandler implements EventHandler<ActionEvent> {
             contenedorJuego.getMsjError().setText(e.devolverMensajeError());
             return false;
         }
+
+        contenedorJuego.getJuego().getJugadorEnTurno().setUltimoAlgoformerUtilizado(algoformerAccionado);
         return true;
 	}
 	
