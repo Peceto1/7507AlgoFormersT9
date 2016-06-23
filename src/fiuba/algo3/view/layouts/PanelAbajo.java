@@ -85,15 +85,15 @@ public class PanelAbajo extends HBox {
         transformButton.setMinSize(150, 25);
         transformButton.setMaxSize(150, 25);
         transformButton.setStyle(estiloNegro);
-        
-        transformButton.setOnAction(new BotonAccionTransformarHandler(contenedorJuego,contenedorAcciones,contenedorCombinarseSepararse));
+
+        transformButton.setOnAction(new BotonAccionTransformarHandler(contenedorJuego));
         
         Button captureButton = new Button("Capturar Chispa");
         captureButton.setMinSize(150, 25);
         captureButton.setMaxSize(150, 25);
         captureButton.setStyle(estiloNegro);
-        
-        captureButton.setOnAction(new BotonAccionCapturarChispaHandler(contenedorJuego,contenedorAcciones,contenedorCombinarseSepararse));
+
+        captureButton.setOnAction(new BotonAccionCapturarChispaHandler(contenedorJuego));
 
         grillaBotonesAcciones.addColumn(0, moveButton, atkButton);
         grillaBotonesAcciones.addColumn(1, transformButton, captureButton);
@@ -183,7 +183,7 @@ public class PanelAbajo extends HBox {
     	VBox contenedorCombinarseSepararse = (VBox) this.lookup("#contenedorCombinarseVBox");
         contenedorCombinarseSepararse.setPadding(new Insets(25, 0, 0, 15));
 
-        // ToDo falta implementar handlers de combinarse/separarse
+        // TODO falta implementar handlers de combinarse/separarse
 
         Button combinarseButton = new Button("Combinarse");
         combinarseButton.setStyle(estiloNegro);
@@ -204,10 +204,9 @@ public class PanelAbajo extends HBox {
         Button finalizarTurnoButton = new Button("Finalizar\n Turno");
         finalizarTurnoButton.setStyle("-fx-font: 24 arial; -fx-base: #be0000;");
         finalizarTurnoButton.setOnAction(new BotonTerminarTurnoHandler(contenedorJuego.getPanelLateral(), this, contenedorJuego.getJuego()));
-
+        contenedorFinalizarTurno.setId("ContenedorFinalizarTurno");
         contenedorFinalizarTurno.getChildren().add(finalizarTurnoButton);
         this.getChildren().add(contenedorFinalizarTurno);
     }
-
 
 }

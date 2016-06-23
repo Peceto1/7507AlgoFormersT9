@@ -53,7 +53,7 @@ public abstract class MovimientoHandler implements EventHandler<ActionEvent> {
         limpiarMsjError();
         vistaMapaBonuses.actualizar(ubicacionNueva);
         contenedorJuego.actualizarStatsLateral(algoformerAMoverse.getUbicacion());
-        // ToDo borrar algoformer del mapa si murio caminando :S
+        // TODO borrar algoformer del mapa si murio caminando :S
     }
 
 

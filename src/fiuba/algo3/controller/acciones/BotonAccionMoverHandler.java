@@ -6,7 +6,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 
 public class BotonAccionMoverHandler extends BotonAccionHandler implements EventHandler<ActionEvent> {
 	
@@ -24,17 +23,10 @@ public class BotonAccionMoverHandler extends BotonAccionHandler implements Event
     		return;
         inicializarMovimientosRestantes(algoformerAccionado);
         deshabilitarAcciones();
-    }
-
-
-    private void deshabilitarAcciones() {
         HBox contenedorDirecciones = (HBox) contenedorJuego.getPanelAbajo().lookup("#contenedorDirecciones");
-        HBox contenedorAcciones = (HBox) contenedorJuego.getPanelAbajo().lookup("#contenedorAcciones");
-        VBox contenedorCombinarse = (VBox) contenedorJuego.getPanelAbajo().lookup("#contenedorCombinarseVBox");
         contenedorDirecciones.setVisible(true);
-        contenedorAcciones.setDisable(true);
-        contenedorCombinarse.setDisable(true);
     }
+
 
 
     private void inicializarMovimientosRestantes(Algoformer algoformerAccionado) {

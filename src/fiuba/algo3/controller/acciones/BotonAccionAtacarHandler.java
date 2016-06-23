@@ -4,6 +4,7 @@ import fiuba.algo3.controller.ClickearEnemigoHandler;
 import fiuba.algo3.model.unidades.Algoformer;
 import fiuba.algo3.view.ContenedorJuego;
 import javafx.event.ActionEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 
 public class BotonAccionAtacarHandler extends BotonAccionHandler {
@@ -25,7 +26,13 @@ public class BotonAccionAtacarHandler extends BotonAccionHandler {
 
         StackPane contenedorCanvases = (StackPane) this.contenedorJuego.lookup("#contenedorStackPane");
         contenedorCanvases.setOnMouseClicked(new ClickearEnemigoHandler(algoformerAtacante, contenedorJuego));
+        HBox contenedorTerminarTurno = (HBox) this.contenedorJuego.lookup("#ContenedorFinalizarTurno");
+        contenedorTerminarTurno.setDisable(true);
+        deshabilitarAcciones();
+        
     }
+    
+    
 
 
 }

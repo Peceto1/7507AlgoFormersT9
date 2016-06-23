@@ -49,7 +49,7 @@ public class BonusTest {
 		
 		optimus.atacar(megatron);
 		
-		Assert.assertEquals((megatron.getVidaMax()-150), megatron.getVida());	
+		Assert.assertEquals((megatron.getVidaMax()-100), megatron.getVida());	
 	}
 	
 	@Test
@@ -80,7 +80,7 @@ public class BonusTest {
 		
 		optimus.atacar(megatron);
 		
-		Assert.assertEquals((megatron.getVidaMax()-45), megatron.getVida());
+		Assert.assertEquals((megatron.getVidaMax()-30), megatron.getVida());
 	}
 	
 	@Test
@@ -109,7 +109,7 @@ public class BonusTest {
 
 		optimus.atacar(megatron);
 		
-		Assert.assertEquals((megatron.getVidaMax()-150), megatron.getVida());	
+		Assert.assertEquals((megatron.getVidaMax()-100), megatron.getVida());	
 	}
 	
 	@Test
@@ -167,7 +167,7 @@ public class BonusTest {
 
 		megatron.atacar(optimus);
 		
-		Assert.assertEquals((optimus.getVidaMax()-99), optimus.getVida());	
+		Assert.assertEquals((optimus.getVidaMax()-66), optimus.getVida());	
 	}
 	
 	@Test

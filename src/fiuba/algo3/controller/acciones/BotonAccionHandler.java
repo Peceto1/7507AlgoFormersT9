@@ -5,6 +5,8 @@ import fiuba.algo3.model.unidades.Algoformer;
 import fiuba.algo3.view.ContenedorJuego;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 public abstract class BotonAccionHandler implements EventHandler<ActionEvent> {
 
@@ -32,4 +34,12 @@ public abstract class BotonAccionHandler implements EventHandler<ActionEvent> {
         contenedorJuego.getJuego().getJugadorEnTurno().setUltimoAlgoformerUtilizado(algoformerAccionado);
         return true;
 	}
+	
+    protected void deshabilitarAcciones() {
+       HBox contenedorAcciones = (HBox) contenedorJuego.getPanelAbajo().lookup("#contenedorAcciones");
+       VBox contenedorCombinarse = (VBox) contenedorJuego.getPanelAbajo().lookup("#contenedorCombinarseVBox");
+        
+        contenedorAcciones.setDisable(true);
+        contenedorCombinarse.setDisable(true);
+    }
 }
