@@ -8,6 +8,7 @@ import fiuba.algo3.view.ContenedorJuego;
 import fiuba.algo3.view.layouts.PanelAbajo;
 import fiuba.algo3.view.layouts.PanelLateral;
 import fiuba.algo3.view.utilities.ReproductorFX;
+import fiuba.algo3.view.utilities.ReproductorMusica;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
@@ -32,6 +33,7 @@ public class BotonTerminarTurnoHandler implements EventHandler<ActionEvent> {
     private HBox botoneraDeAcciones;
     private VBox botoneraDeCombinacion;
     private ContenedorJuego contenedorJuego;
+    private String victoryThemeResource = "src/fiuba/algo3/view/resources/sounds/victoryTheme.mp3";
 
 
     public BotonTerminarTurnoHandler(PanelLateral panelLateral, PanelAbajo panelAbajo, ContenedorJuego contenedorJuego) {
@@ -56,6 +58,8 @@ public class BotonTerminarTurnoHandler implements EventHandler<ActionEvent> {
 
     	if (juego.hayGanador()) {
             // ToDo refactor en un metodo
+            ReproductorMusica.stop();
+            ReproductorMusica.playBackGroundTheme(victoryThemeResource, false);
     		Alert alert = new Alert(AlertType.INFORMATION);
     		alert.setTitle("¡GANADOR!");
     		alert.setHeaderText(null);
