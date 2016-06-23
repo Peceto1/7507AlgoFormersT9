@@ -13,7 +13,7 @@ public class ReproductorMusica {
 
     private static MediaPlayer musicPlayer;
     private static Timeline timeline;
-
+    private static Boolean isMute = false;
 
     public static Timeline getTimeline() {
         return timeline;
@@ -32,12 +32,13 @@ public class ReproductorMusica {
 
 
     public static Boolean isMute() {
-        return musicPlayer.isMute();
+        return isMute;
     }
 
 
     public static void setMute(Boolean mute) {
         musicPlayer.setMute(mute);
+        isMute = mute;
     }
 
 

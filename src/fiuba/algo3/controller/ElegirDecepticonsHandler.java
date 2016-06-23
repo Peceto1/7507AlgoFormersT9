@@ -11,7 +11,7 @@ import javafx.scene.text.Text;
 
 public class ElegirDecepticonsHandler extends ElegirEquipoHandler {
 
-    Button decepticons;
+    private Button decepticons;
 
 
     public ElegirDecepticonsHandler(Juego juego, TextField input, Button decepticons, Label msjError, Text nroJugador, VBox panelAbajo) {

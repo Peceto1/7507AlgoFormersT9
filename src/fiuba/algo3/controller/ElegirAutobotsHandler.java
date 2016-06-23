@@ -11,7 +11,7 @@ import javafx.scene.text.Text;
 
 public class ElegirAutobotsHandler extends ElegirEquipoHandler {
 
-    Button autobots;
+    private Button autobots;
 
 
     public ElegirAutobotsHandler(Juego juego, TextField input, Button autobots, Label msjError, Text nroJugador, VBox panelAbajo) {

@@ -13,10 +13,10 @@ import javafx.util.Duration;
 public class BotonComenzarBatallaHandler implements EventHandler<ActionEvent> {
 
 
-    VentanaDefault ventanaDefault;
-    ContenedorJuego proximaVista;
-    Juego juego;
-    Button botonComenzarBatalla;
+    private VentanaDefault ventanaDefault;
+    private ContenedorJuego proximaVista;
+    private Juego juego;
+    private Button botonComenzarBatalla;
 
     public BotonComenzarBatallaHandler(VentanaDefault ventanaDefault, Juego juego, Button botonComenzarBatalla) {
         this.ventanaDefault = ventanaDefault;
@@ -42,6 +42,8 @@ public class BotonComenzarBatallaHandler implements EventHandler<ActionEvent> {
         accionDeFadeOut.setOnFinished( (ae) -> {
             this.ventanaDefault.setCenter(this.proximaVista);
             ReproductorMusica.playBackGroundTheme("src/fiuba/algo3/view/resources/sounds/battleTheme.mp3", true);
+            if (ReproductorMusica.isMute())
+                ReproductorMusica.setMute(true);
         } );
     }
 }

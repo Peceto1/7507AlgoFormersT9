@@ -2,6 +2,7 @@ package fiuba.algo3.view;
 
 import fiuba.algo3.view.eventos.BotonJugarEventHandler;
 import fiuba.algo3.view.eventos.OpcionSalirEventHandler;
+import fiuba.algo3.view.utilities.ReproductorFX;
 import fiuba.algo3.view.utilities.ReproductorMusica;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -88,6 +89,7 @@ public class ContenedorInicio extends BorderPane {
         botonMute.setOnAction( (actionEvent) -> {
             if (!ReproductorMusica.isMute()) {
                 ReproductorMusica.setMute(true);
+                ReproductorFX.setMute(true);
                 botonMute.setGraphic(imagenMute);
             }
 
