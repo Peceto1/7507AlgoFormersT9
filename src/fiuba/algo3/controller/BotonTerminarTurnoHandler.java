@@ -57,18 +57,7 @@ public class BotonTerminarTurnoHandler implements EventHandler<ActionEvent> {
     	juego.finalizarTurno();
 
     	if (juego.hayGanador()) {
-            // ToDo refactor en un metodo
-            ReproductorMusica.stop();
-            ReproductorMusica.playBackGroundTheme(victoryThemeResource, false);
-    		Alert alert = new Alert(AlertType.INFORMATION);
-    		alert.setTitle("¡GANADOR!");
-    		alert.setHeaderText(null);
-    		alert.setContentText("¡EL JUGADOR: " + juego.obtenerGanador().getNombre().toUpperCase() + " HA GANADO LA PARTIDA!");
-    		ButtonType boton = new ButtonType("Terminar", ButtonData.FINISH);
-    		alert.getButtonTypes().setAll(boton);
-    		Optional<ButtonType> result = alert.showAndWait();
-    		System.exit(0);
-    		alert.show();
+    		alertarGanador();
     	}
 
         this.contenedorJuego.panearCamara();
@@ -92,6 +81,20 @@ public class BotonTerminarTurnoHandler implements EventHandler<ActionEvent> {
 
         //
         msjError.setText("");
+    }
+    
+    public void alertarGanador(){
+    	ReproductorMusica.stop();
+        ReproductorMusica.playBackGroundTheme(victoryThemeResource, false);
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("¡GANADOR!");
+		alert.setHeaderText(null);
+		alert.setContentText("¡EL JUGADOR: " + juego.obtenerGanador().getNombre().toUpperCase() + " HA GANADO LA PARTIDA!");
+		ButtonType boton = new ButtonType("Terminar", ButtonData.FINISH);
+		alert.getButtonTypes().setAll(boton);
+		Optional<ButtonType> result = alert.showAndWait();
+		System.exit(0);
+		alert.show();
     }
 
 
