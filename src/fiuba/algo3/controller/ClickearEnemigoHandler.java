@@ -7,6 +7,7 @@ import fiuba.algo3.model.unidades.FueraDeRangoException;
 import fiuba.algo3.view.ContenedorJuego;
 import fiuba.algo3.view.utilities.ConvertidorPuntoAPixels;
 import fiuba.algo3.view.utilities.PuntoPixels;
+import fiuba.algo3.view.utilities.ReproductorFX;
 import fiuba.algo3.view.vistas.VistaMapaAlgoformers;
 import fiuba.algo3.view.vistas.vistasAlgoformers.VistaAlgoformer;
 import javafx.event.EventHandler;
@@ -44,14 +45,18 @@ public class ClickearEnemigoHandler implements EventHandler<MouseEvent> {
         try {
             atacante.atacar(algoformerAtacado);
         } catch (NullPointerException e) {
+            ReproductorFX.reproducirFX(ReproductorFX.ERROR1);
             msjError.setText("No hay algoformer para atacar");
             rehabilitarAcciones();
         }
 
         catch (FueraDeRangoException e) {
+            ReproductorFX.reproducirFX(ReproductorFX.ERROR1);
             msjError.setText(e.devolverMensajeError());
             rehabilitarAcciones();
         }
+
+        ReproductorFX.reproducirFX(ReproductorFX.ATTACKFX);
 
         if (algoformerAtacado != null && !algoformerAtacado.estaVivo()){
         	VistaMapaAlgoformers vistaMapaAlgoformers = contenedorJuego.getVistaMapaAlgoformers();

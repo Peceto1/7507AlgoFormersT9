@@ -46,6 +46,8 @@ public abstract class MovimientoHandler implements EventHandler<ActionEvent> {
             return;
         }
 
+        ReproductorFX.reproducirFX(ReproductorFX.MOVEFX);
+
         actualizarMovimientosRestantes(algoformerAMoverse);
 
         Punto ubicacionNueva = algoformerAMoverse.getUbicacion();
