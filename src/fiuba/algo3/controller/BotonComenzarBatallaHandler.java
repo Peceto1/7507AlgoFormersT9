@@ -41,6 +41,7 @@ public class BotonComenzarBatallaHandler implements EventHandler<ActionEvent> {
 
         accionDeFadeOut.setOnFinished( (ae) -> {
             this.ventanaDefault.setCenter(this.proximaVista);
+            ReproductorMusica.playBackGroundTheme("src/fiuba/algo3/view/resources/sounds/battleTheme.mp3", true);
         } );
     }
 }

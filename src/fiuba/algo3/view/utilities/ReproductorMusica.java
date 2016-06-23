@@ -50,7 +50,10 @@ public class ReproductorMusica {
 
         timeline = new Timeline(new KeyFrame(duracion, new KeyValue(musicPlayer.volumeProperty(), 0)));
         timeline.play();
-        timeline.setOnFinished( (actionEvent) -> {musicPlayer.stop();} );
+        timeline.setOnFinished( (actionEvent) -> {
+            musicPlayer.stop();
+            timeline.stop();
+        } );
     }
 
 

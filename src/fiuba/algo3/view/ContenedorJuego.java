@@ -12,6 +12,7 @@ import fiuba.algo3.view.layouts.PanelAbajo;
 import fiuba.algo3.view.layouts.PanelLateral;
 import fiuba.algo3.view.utilities.ConvertidorPuntoAPixels;
 import fiuba.algo3.view.utilities.PuntoPixels;
+import fiuba.algo3.view.utilities.ReproductorMusica;
 import fiuba.algo3.view.vistas.VistaArena;
 import fiuba.algo3.view.vistas.VistaMapaAlgoformers;
 import fiuba.algo3.view.vistas.VistaMapaBonuses;
