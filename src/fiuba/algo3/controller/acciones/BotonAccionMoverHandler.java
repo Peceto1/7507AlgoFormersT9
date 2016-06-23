@@ -17,7 +17,7 @@ public class BotonAccionMoverHandler extends BotonAccionHandler implements Event
 
     @Override
     public void handle(ActionEvent actionEvent) {
-    	contenedorJuego.setAccionado();
+    	contenedorJuego.setAccionado(null);
         Algoformer algoformerAccionado = contenedorJuego.getAlgoformerAccionado();
     	if (!puedeRealizarAccion(algoformerAccionado))
     		return;

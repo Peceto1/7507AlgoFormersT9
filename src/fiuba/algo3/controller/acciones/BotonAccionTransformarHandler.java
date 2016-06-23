@@ -31,7 +31,7 @@ public class BotonAccionTransformarHandler extends BotonAccionHandler implements
 	@Override
 	public void handle(ActionEvent actionEvent) {
 
-	     contenedorJuego.setAccionado();
+	     contenedorJuego.setAccionado(null);
 	     Algoformer algoformerATransformarse = contenedorJuego.getAlgoformerAccionado();
 	     
 	     if (!puedeRealizarAccion(algoformerATransformarse))

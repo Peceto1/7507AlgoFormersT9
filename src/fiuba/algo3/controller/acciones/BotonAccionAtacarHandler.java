@@ -18,7 +18,7 @@ public class BotonAccionAtacarHandler extends BotonAccionHandler {
     @Override
     public void handle(ActionEvent actionEvent) {
 
-        contenedorJuego.setAccionado();
+        contenedorJuego.setAccionado(null);
         Algoformer algoformerAtacante = contenedorJuego.getAlgoformerAccionado();
 
         if (!puedeRealizarAccion(algoformerAtacante))

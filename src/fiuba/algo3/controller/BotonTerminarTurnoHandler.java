@@ -1,6 +1,9 @@
 package fiuba.algo3.controller;
 
+import fiuba.algo3.model.arena.Arena;
+import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.juego.Juego;
+import fiuba.algo3.model.unidades.Algoformer;
 import fiuba.algo3.view.ContenedorJuego;
 import fiuba.algo3.view.layouts.PanelAbajo;
 import fiuba.algo3.view.layouts.PanelLateral;
@@ -76,6 +79,14 @@ public class BotonTerminarTurnoHandler implements EventHandler<ActionEvent> {
         infoJugador.setText("Jugador: " + nombreJug);
         infoTurno.setText("Turno: " + numeroTurno);
         infoEquipo.setText("Equipo: " + equipoJug);
+
+        //
+        Algoformer ultimoUsado = juego.getJugadorEnTurno().getUltimoAlgoformerUtilizado();
+        contenedorJuego.setAccionado(ultimoUsado);
+        Punto ubicacionA = ultimoUsado.getUbicacion();
+        contenedorJuego.getPanelLateral().actualizarStats(ultimoUsado, Arena.getInstance().devolverBonusEn(ubicacionA),Arena.getInstance().devolverTerrenoEn(ubicacionA));
+
+        //
         msjError.setText("");
     }
 

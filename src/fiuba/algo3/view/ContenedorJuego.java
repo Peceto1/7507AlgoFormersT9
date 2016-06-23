@@ -170,7 +170,9 @@ public class ContenedorJuego extends BorderPane {
     }
 
 
-    public void setAccionado() {
+    public void setAccionado(Algoformer algoformerOpcional) {
+        if (algoformerOpcional != null)
+            this.algoformerSeleccionado = algoformerOpcional;
         this.algoformerAccionado = this.algoformerSeleccionado;
     }
 

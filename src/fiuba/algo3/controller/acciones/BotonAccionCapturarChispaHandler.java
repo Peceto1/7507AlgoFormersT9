@@ -21,7 +21,7 @@ public class BotonAccionCapturarChispaHandler extends BotonAccionHandler impleme
     
 	@Override
 	public void handle(ActionEvent actionEvent) {
-		contenedorJuego.setAccionado();
+		contenedorJuego.setAccionado(null);
 	     Algoformer algoformerACapturar = contenedorJuego.getAlgoformerAccionado();
 
 	     if (!puedeRealizarAccion(algoformerACapturar))
