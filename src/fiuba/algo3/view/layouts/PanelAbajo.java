@@ -56,7 +56,7 @@ public class PanelAbajo extends HBox {
         contenedorDirecciones.setId("contenedorDirecciones");
         contenedorCombinarseSepararse.setId("contenedorCombinarseVBox");
 
-        crearBotonesDeAcciones(contenedorAcciones, grillaBotonesAcciones, contenedorDirecciones, contenedorCombinarseSepararse);
+        crearBotonesDeAcciones(grillaBotonesAcciones);
         crearBotonesDeDirecciones(grillaBotonesDirecciones);
         contenedorAcciones.getChildren().add(grillaBotonesAcciones);
         contenedorDirecciones.getChildren().add(grillaBotonesDirecciones);
@@ -64,7 +64,7 @@ public class PanelAbajo extends HBox {
     }
 
 
-    private void crearBotonesDeAcciones(HBox contenedorAcciones, GridPane grillaBotonesAcciones, HBox contenedorDirecciones, VBox contenedorCombinarseSepararse) {
+    private void crearBotonesDeAcciones(GridPane grillaBotonesAcciones) {
 
         Button moveButton = new Button("Mover");
         moveButton.setMinSize(150, 25);
@@ -203,7 +203,7 @@ public class PanelAbajo extends HBox {
         contenedorFinalizarTurno.setPadding(new Insets(15, 0, 0, 50));
         Button finalizarTurnoButton = new Button("Finalizar\n Turno");
         finalizarTurnoButton.setStyle("-fx-font: 24 arial; -fx-base: #be0000;");
-        finalizarTurnoButton.setOnAction(new BotonTerminarTurnoHandler(contenedorJuego.getPanelLateral(), this, contenedorJuego.getJuego()));
+        finalizarTurnoButton.setOnAction(new BotonTerminarTurnoHandler(contenedorJuego.getPanelLateral(), this, contenedorJuego));
         contenedorFinalizarTurno.setId("ContenedorFinalizarTurno");
         contenedorFinalizarTurno.getChildren().add(finalizarTurnoButton);
         this.getChildren().add(contenedorFinalizarTurno);
