@@ -10,8 +10,6 @@ import fiuba.algo3.view.vistas.VistaMapaBonuses;
 import fiuba.algo3.view.vistas.vistasAlgoformers.VistaAlgoformer;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 public class BotonTransformarHandler extends BotonAccionHandler implements EventHandler<ActionEvent> {
@@ -19,17 +17,13 @@ public class BotonTransformarHandler extends BotonAccionHandler implements Event
 	private VistaMapaAlgoformers vistaMapaAlgoformers;
     private VistaMapaBonuses vistaMapaBonuses;
     private Text msjError;
-    private HBox botoneraDeAcciones;
-    private VBox botoneraDeCombinacion;
     
     
-    public BotonTransformarHandler(ContenedorJuego contenedorJuego, HBox contenedorAcciones, VBox contenedorCombinarseSepararse){
+    public BotonTransformarHandler(ContenedorJuego contenedorJuego){
     	super(contenedorJuego);
     	this.vistaMapaAlgoformers = contenedorJuego.getVistaMapaAlgoformers();
         this.vistaMapaBonuses = contenedorJuego.getVistaMapaBonuses();
         this.msjError = contenedorJuego.getMsjError();
-        this.botoneraDeAcciones = contenedorAcciones;
-        this.botoneraDeCombinacion = contenedorCombinarseSepararse;
         
         
         
@@ -60,8 +54,7 @@ public class BotonTransformarHandler extends BotonAccionHandler implements Event
 
         //
         contenedorJuego.actualizarStatsLateral(algoformerATransformarse.getUbicacion());
-        botoneraDeAcciones.setDisable(true);
-        botoneraDeCombinacion.setDisable(true);
+        deshabilitarAcciones();
         this.msjError.setText("");
         vistaMapaBonuses.actualizar(ubicacionNueva);
 	}

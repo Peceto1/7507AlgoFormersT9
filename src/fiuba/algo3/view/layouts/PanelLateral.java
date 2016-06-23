@@ -190,7 +190,7 @@ public class PanelLateral extends VBox {
 
         contenedorImagenesAlgoformers.setPadding(new Insets(10, 0, 0, 30));
 
-        // ToDo agregar SetOnAction a los botones
+        // TODO agregar SetOnAction a los botones
 
         AlgoformerPool poolSingleton = AlgoformerPool.getInstance();
 

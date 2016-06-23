@@ -5,19 +5,13 @@ import fiuba.algo3.model.unidades.ImposibleCapturarChispaException;
 import fiuba.algo3.view.ContenedorJuego;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 public class BotonCapturarChispaHandler extends BotonAccionHandler implements EventHandler<ActionEvent> {
 	private Text msjError;
-	private HBox botoneraDeAcciones;
-    private VBox botoneraDeCombinacion;
     
-    public BotonCapturarChispaHandler(ContenedorJuego contenedor, HBox contenedorAcciones, VBox contenedorCombinacion){
+    public BotonCapturarChispaHandler(ContenedorJuego contenedor){
     	super(contenedor);
-    	this.botoneraDeAcciones = contenedorAcciones;
-    	this.botoneraDeCombinacion = contenedorCombinacion;
     	this.msjError = contenedor.getMsjError();
     }
     
@@ -34,8 +28,7 @@ public class BotonCapturarChispaHandler extends BotonAccionHandler implements Ev
 	            this.msjError.setText("No se esta localizado sobre la chispa");
 	            return;
 	        }
-	     botoneraDeAcciones.setDisable(true);
-	     botoneraDeCombinacion.setDisable(true);
+	     deshabilitarAcciones();
 	     this.msjError.setText("Chispa Capturada!");
 	}
 	

@@ -62,7 +62,7 @@ abstract class Estado {
 	}
 	
 	void aplicarEfecto(EfectoDobleCanon efecto){
-		this.ataque = (this.ataque*3);
+		this.ataque = (this.ataque*2);
 	}
 	
 	public void aplicarEfecto(EfectoFlash efecto) {

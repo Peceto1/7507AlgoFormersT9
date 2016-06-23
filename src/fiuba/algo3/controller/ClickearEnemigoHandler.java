@@ -9,7 +9,9 @@ import fiuba.algo3.view.utilities.ConvertidorPuntoAPixels;
 import fiuba.algo3.view.utilities.PuntoPixels;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 
@@ -40,20 +42,31 @@ public class ClickearEnemigoHandler implements EventHandler<MouseEvent> {
             atacante.atacar(algoformerAtacado);
         } catch (NullPointerException e) {
             msjError.setText("No hay algoformer para atacar");
+            rehabilitarAcciones();
         }
 
         catch (FueraDeRangoException e) {
             msjError.setText(e.devolverMensajeError());
+            rehabilitarAcciones();
         }
 
         if (algoformerAtacado != null && !algoformerAtacado.estaVivo())
             System.out.println("Borrar Algoformer");
 
-        // ToDo Borrar algoformer del mapa si murio
-        // ToDo Deshabilitar boton finalizar turno para evitar que la Flasheada quede en estado invalido
-
+        // TODO Borrar algoformer del mapa si murio
+        
+        HBox contenedorTerminarTurno = (HBox) this.contenedorJuego.lookup("#ContenedorFinalizarTurno");
+        contenedorTerminarTurno.setDisable(false);
         StackPane contenedorCanvases = (StackPane) contenedorJuego.lookup("#contenedorStackPane");
         contenedorCanvases.setOnMouseClicked(new ClickEnMapaHandler(contenedorJuego));
+    }
+    
+    private void rehabilitarAcciones(){
+    	HBox contenedorAcciones = (HBox) contenedorJuego.getPanelAbajo().lookup("#contenedorAcciones");
+        VBox contenedorCombinarse = (VBox) contenedorJuego.getPanelAbajo().lookup("#contenedorCombinarseVBox");
+         
+         contenedorAcciones.setDisable(false);
+         contenedorCombinarse.setDisable(false);
     }
 
 
