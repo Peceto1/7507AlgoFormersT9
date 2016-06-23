@@ -1,5 +1,6 @@
-package fiuba.algo3.controller;
+package fiuba.algo3.controller.acciones;
 
+import fiuba.algo3.controller.acciones.BotonAccionHandler;
 import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.unidades.Algoformer;
 import fiuba.algo3.model.unidades.MovimientoNoValidoException;
@@ -14,7 +15,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-public class BotonTransformarHandler extends BotonAccionHandler implements EventHandler<ActionEvent> {
+public class BotonAccionTransformarHandler extends BotonAccionHandler implements EventHandler<ActionEvent> {
 	
 	private VistaMapaAlgoformers vistaMapaAlgoformers;
     private VistaMapaBonuses vistaMapaBonuses;
@@ -23,7 +24,7 @@ public class BotonTransformarHandler extends BotonAccionHandler implements Event
     private VBox botoneraDeCombinacion;
     
     
-    public BotonTransformarHandler(ContenedorJuego contenedorJuego, HBox contenedorAcciones, VBox contenedorCombinarseSepararse){
+    public BotonAccionTransformarHandler(ContenedorJuego contenedorJuego, HBox contenedorAcciones, VBox contenedorCombinarseSepararse){
     	super(contenedorJuego);
     	this.vistaMapaAlgoformers = contenedorJuego.getVistaMapaAlgoformers();
         this.vistaMapaBonuses = contenedorJuego.getVistaMapaBonuses();

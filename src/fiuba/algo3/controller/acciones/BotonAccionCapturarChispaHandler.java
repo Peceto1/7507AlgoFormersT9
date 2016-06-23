@@ -1,5 +1,6 @@
-package fiuba.algo3.controller;
+package fiuba.algo3.controller.acciones;
 
+import fiuba.algo3.controller.acciones.BotonAccionHandler;
 import fiuba.algo3.model.unidades.Algoformer;
 import fiuba.algo3.model.unidades.ImposibleCapturarChispaException;
 import fiuba.algo3.view.ContenedorJuego;
@@ -9,12 +10,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-public class BotonCapturarChispaHandler extends BotonAccionHandler implements EventHandler<ActionEvent> {
+public class BotonAccionCapturarChispaHandler extends BotonAccionHandler implements EventHandler<ActionEvent> {
 	private Text msjError;
 	private HBox botoneraDeAcciones;
     private VBox botoneraDeCombinacion;
     
-    public BotonCapturarChispaHandler(ContenedorJuego contenedor, HBox contenedorAcciones, VBox contenedorCombinacion){
+    public BotonAccionCapturarChispaHandler(ContenedorJuego contenedor, HBox contenedorAcciones, VBox contenedorCombinacion){
     	super(contenedor);
     	this.botoneraDeAcciones = contenedorAcciones;
     	this.botoneraDeCombinacion = contenedorCombinacion;

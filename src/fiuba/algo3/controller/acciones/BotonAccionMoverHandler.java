@@ -1,7 +1,5 @@
-package fiuba.algo3.controller;
+package fiuba.algo3.controller.acciones;
 
-import fiuba.algo3.model.juego.Jugador;
-import fiuba.algo3.model.juego.JugadorNoPuedeObtenerAlgoformerContrarioException;
 import fiuba.algo3.model.unidades.Algoformer;
 import fiuba.algo3.view.ContenedorJuego;
 import javafx.event.ActionEvent;
@@ -10,10 +8,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class BotonMoverHandler extends BotonAccionHandler  implements EventHandler<ActionEvent> {
+public class BotonAccionMoverHandler extends BotonAccionHandler implements EventHandler<ActionEvent> {
 	
 
-    public BotonMoverHandler(ContenedorJuego contenedorJuego) {
+    public BotonAccionMoverHandler(ContenedorJuego contenedorJuego) {
     	super(contenedorJuego);
     }
 

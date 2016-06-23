@@ -2,6 +2,10 @@ package fiuba.algo3.view.layouts;
 
 import fiuba.algo3.controller.*;
 import fiuba.algo3.controller.MovimientoHandlers.*;
+import fiuba.algo3.controller.acciones.BotonAccionAtacarHandler;
+import fiuba.algo3.controller.acciones.BotonAccionCapturarChispaHandler;
+import fiuba.algo3.controller.acciones.BotonAccionTransformarHandler;
+import fiuba.algo3.controller.acciones.BotonAccionMoverHandler;
 import fiuba.algo3.view.ContenedorJuego;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -67,7 +71,7 @@ public class PanelAbajo extends HBox {
         moveButton.setMaxSize(150, 25);
         moveButton.setStyle(estiloNegro);
 
-        moveButton.setOnAction(new BotonMoverHandler(contenedorJuego));
+        moveButton.setOnAction(new BotonAccionMoverHandler(contenedorJuego));
 
 
         Button atkButton = new Button("Atacar");
@@ -82,14 +86,14 @@ public class PanelAbajo extends HBox {
         transformButton.setMaxSize(150, 25);
         transformButton.setStyle(estiloNegro);
         
-        transformButton.setOnAction(new BotonTransformarHandler(contenedorJuego,contenedorAcciones,contenedorCombinarseSepararse));
+        transformButton.setOnAction(new BotonAccionTransformarHandler(contenedorJuego,contenedorAcciones,contenedorCombinarseSepararse));
         
         Button captureButton = new Button("Capturar Chispa");
         captureButton.setMinSize(150, 25);
         captureButton.setMaxSize(150, 25);
         captureButton.setStyle(estiloNegro);
         
-        captureButton.setOnAction(new BotonCapturarChispaHandler(contenedorJuego,contenedorAcciones,contenedorCombinarseSepararse));
+        captureButton.setOnAction(new BotonAccionCapturarChispaHandler(contenedorJuego,contenedorAcciones,contenedorCombinarseSepararse));
 
         grillaBotonesAcciones.addColumn(0, moveButton, atkButton);
         grillaBotonesAcciones.addColumn(1, transformButton, captureButton);

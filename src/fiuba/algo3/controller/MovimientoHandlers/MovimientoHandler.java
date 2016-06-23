@@ -15,7 +15,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 
-abstract class MovimientoHandler implements EventHandler<ActionEvent> {
+public abstract class MovimientoHandler implements EventHandler<ActionEvent> {
 
     private VistaMapaAlgoformers vistaMapaAlgoformers;
     private VistaMapaBonuses vistaMapaBonuses;
