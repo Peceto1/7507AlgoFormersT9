@@ -12,6 +12,7 @@ import fiuba.algo3.view.layouts.PanelAbajo;
 import fiuba.algo3.view.layouts.PanelLateral;
 import fiuba.algo3.view.utilities.ConvertidorPuntoAPixels;
 import fiuba.algo3.view.utilities.PuntoPixels;
+import fiuba.algo3.view.utilities.ReproductorFX;
 import fiuba.algo3.view.vistas.VistaArena;
 import fiuba.algo3.view.vistas.VistaMapaAlgoformers;
 import fiuba.algo3.view.vistas.VistaMapaBonuses;
@@ -101,8 +102,11 @@ public class ContenedorJuego extends BorderPane {
         terrenoSeleccionado = Arena.getInstance().devolverTerrenoEn(ubicacion);
         bonusSeleccionado = Arena.getInstance().devolverBonusEn(ubicacion);
         panelLateral.actualizarStats(algoformerSeleccionado, bonusSeleccionado, terrenoSeleccionado);
+        if (algoformerSeleccionado == null)
+        	deshabilitarAcciones(true);
+        else
+        	deshabilitarAcciones(false);
     }
-
 
     private void setPantalla(PuntoPixels parPixel) {
 		double valorEnX = parPixel.getX() / (double)canvasSize;
@@ -177,8 +181,15 @@ public class ContenedorJuego extends BorderPane {
         this.algoformerAccionado = this.algoformerSeleccionado;
     }
 
-    //METODO FEO
     public Jugador obtenerJugadorEnTurno(){
         return juego.getJugadorEnTurno();
     }
+    
+    protected void deshabilitarAcciones(boolean disable) {
+        HBox contenedorAcciones = (HBox) this.getPanelAbajo().lookup("#contenedorAcciones");
+        VBox contenedorCombinarse = (VBox) this.getPanelAbajo().lookup("#contenedorCombinarseVBox");
+        //ReproductorFX.reproducirFX(ReproductorFX.HITFX);
+        contenedorAcciones.setDisable(disable);
+        contenedorCombinarse.setDisable(disable);
+    }    
 }
