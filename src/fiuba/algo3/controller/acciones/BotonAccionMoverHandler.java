@@ -31,6 +31,6 @@ public class BotonAccionMoverHandler extends BotonAccionHandler implements Event
 
     private void inicializarMovimientosRestantes(Algoformer algoformerAccionado) {
         Label movRestantes = (Label) contenedorJuego.getPanelAbajo().lookup("#movRestantesLabel");
-        movRestantes.setText(Integer.toString(algoformerAccionado.getMovimientosRestantes()));
+        movRestantes.setText(Integer.toString(Math.max(0, algoformerAccionado.getMovimientosRestantes())));
     }
 }
