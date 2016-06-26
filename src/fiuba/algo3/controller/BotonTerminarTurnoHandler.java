@@ -89,7 +89,7 @@ public class BotonTerminarTurnoHandler implements EventHandler<ActionEvent> {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("¡GANADOR!");
 		alert.setHeaderText(null);
-		alert.setContentText("¡EL JUGADOR: " + juego.obtenerGanador().getNombre().toUpperCase() + " HA GANADO LA PARTIDA!");
+		alert.setContentText("¡EL JUGADOR: " + juego.obtenerGanador().getNombre() + " HA GANADO LA PARTIDA!");
 		ButtonType boton = new ButtonType("Terminar", ButtonData.FINISH);
 		alert.getButtonTypes().setAll(boton);
 		Optional<ButtonType> result = alert.showAndWait();

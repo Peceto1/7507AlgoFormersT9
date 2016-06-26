@@ -109,6 +109,12 @@ public class PanelLateral extends VBox {
         VBox contenedorStats = new VBox();
         contenedorStats.setSpacing(10);
         contenedorStats.setPadding(new Insets(0, 0, 0, 10));
+        
+        Text nombre = new Text("");
+        nombre.setFill(Color.ANTIQUEWHITE);
+        nombre.setStyle("-fx-font-weight: bold;");
+        nombre.setId("statNombre");
+        
 
         VBox imagen = new VBox();
         imagen.setId("imagenStatsVBox");
@@ -151,7 +157,7 @@ public class PanelLateral extends VBox {
         grillaStats.addRow(2, rango, cantRango);
         grillaStats.addRow(3, velocidad, cantVelocidad);
 
-        contenedorStats.getChildren().addAll(imagen, grillaStats);
+        contenedorStats.getChildren().addAll(nombre,imagen, grillaStats);
         this.getChildren().add(contenedorStats);
     }
 
@@ -247,6 +253,7 @@ public class PanelLateral extends VBox {
     	textTerreno.setText(terrenoSeleccionado.devolverTipoTerreno());
     	textBonus.setText(bonusSeleccionado.getNombreBonus());
     	
+    	Text nombre = (Text) this.lookup("#statNombre");
     	Text cantVida = (Text) this.lookup("#statVidaText");
     	Text cantAtk = (Text) this.lookup("#statAtkText");
     	Text cantRng = (Text) this.lookup("#statRngText");
@@ -254,10 +261,11 @@ public class PanelLateral extends VBox {
         VBox imagenProfile = (VBox) this.lookup("#imagenStatsVBox");
     	
     	if (algoformerSeleccionado == null){
-    		cantVida.setText("");
-    		cantAtk.setText("");
-    		cantRng.setText("");
-    		cantSpd.setText("");
+    		nombre.setText("------");
+    		cantVida.setText("-");
+    		cantAtk.setText("-");
+    		cantRng.setText("-");
+    		cantSpd.setText("-");
             imagenProfile.setBackground(new Background(new BackgroundFill(Color.GRAY, null, null)));
     		return;
     	}
@@ -265,6 +273,7 @@ public class PanelLateral extends VBox {
         BackgroundImage nuevaImagen = new BackgroundImage(vistaProfiles.getVista(algoformerSeleccionado, 100).getImage(), null, null, null, null);
         imagenProfile.setBackground(new Background(nuevaImagen));
 
+        nombre.setText(algoformerSeleccionado.getNombre().toUpperCase());
     	cantVida.setText(Integer.toString(algoformerSeleccionado.getVida()));
     	cantAtk.setText(Integer.toString(algoformerSeleccionado.getAtk()));
     	cantRng.setText(Integer.toString(algoformerSeleccionado.getRange()));

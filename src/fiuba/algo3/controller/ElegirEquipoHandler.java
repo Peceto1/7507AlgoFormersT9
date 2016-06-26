@@ -37,7 +37,7 @@ public abstract class ElegirEquipoHandler implements EventHandler<ActionEvent> {
     Boolean crearJugador() {
 
         try {
-            juego.crearJugador(input.getText().trim(), equipo);
+            juego.crearJugador(input.getText().trim().toUpperCase(), equipo);
         } catch (YaExisteJugadorConEseNombreException e) {
             ReproductorFX.reproducirFX(ReproductorFX.ERROR1);
             msjError.setText("Nombre en uso");
@@ -57,7 +57,7 @@ public abstract class ElegirEquipoHandler implements EventHandler<ActionEvent> {
         else
             eleccion.setTextFill(Color.INDIANRED);
 
-        eleccion.setText(input.getText().trim() + " eligió " + equipo);
+        eleccion.setText(input.getText().trim().toUpperCase() + " eligió " + equipo);
         VBox elecciones = (VBox) panelAbajo.lookup("#eleccionesVBox");
         elecciones.getChildren().add(eleccion);
     }
