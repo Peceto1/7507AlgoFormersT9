@@ -1,7 +1,6 @@
 package fiuba.algo3.view;
 
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class VentanaDefault extends BorderPane {
@@ -23,7 +22,7 @@ public class VentanaDefault extends BorderPane {
 
 
     public void ocultarBarraDeMenu() {
-        this.setTop(new VBox());
+        this.setTop(null);
     }
 
 
