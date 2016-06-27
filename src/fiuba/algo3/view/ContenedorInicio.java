@@ -4,19 +4,21 @@ import fiuba.algo3.view.eventos.BotonJugarEventHandler;
 import fiuba.algo3.view.eventos.OpcionSalirEventHandler;
 import fiuba.algo3.view.utilities.ReproductorFX;
 import fiuba.algo3.view.utilities.ReproductorMusica;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 
 
 public class ContenedorInicio extends BorderPane {
 
     VentanaDefault ventanaDefault;
-    ContenedorEleccionEquipos proximaEscena;
     Button botonJugar;
     Button botonSalir;
     ToggleButton botonMute;
@@ -27,10 +29,12 @@ public class ContenedorInicio extends BorderPane {
     public ContenedorInicio(VentanaDefault ventanaDefault) {
 
         this.ventanaDefault = ventanaDefault;
+        this.ventanaDefault.ocultarBarraDeMenu();
         cargarImagenDeFondo();
         cargarImagenesBotones();
         crearBotones();
         cargarMusicaDeFondo();
+        this.ventanaDefault.setOnKeyPressed(new EntrarAlJuegoConTeclaEnterHandler());
     }
 
 
@@ -95,9 +99,22 @@ public class ContenedorInicio extends BorderPane {
 
             else {
                 ReproductorMusica.setMute(false);
+                ReproductorFX.setMute(false);
                 botonMute.setGraphic(imagenUnMute);
             }
         } );
     }
 
+
+    private class EntrarAlJuegoConTeclaEnterHandler implements EventHandler<KeyEvent> {
+
+        @Override
+        public void handle(KeyEvent keyEvent) {
+
+            if (!keyEvent.getCode().equals(KeyCode.ENTER))
+                return;
+
+            botonJugar.fire();
+        }
+    }
 }

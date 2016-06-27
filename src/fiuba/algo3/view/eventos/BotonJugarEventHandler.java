@@ -27,6 +27,7 @@ public class BotonJugarEventHandler implements EventHandler<ActionEvent> {
         ReproductorFX.inicializarReproductorFX();
         ReproductorFX.reproducirFX(ReproductorFX.ROBOTIC);
         this.ventanaDefault.setCenter(escenaProxima);
+        this.ventanaDefault.mostrarBarraDeMenu();
     }
 
 }
