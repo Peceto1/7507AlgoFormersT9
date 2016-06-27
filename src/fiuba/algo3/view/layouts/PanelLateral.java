@@ -97,8 +97,8 @@ public class PanelLateral extends VBox {
         this.contenedorJuego.setMsjError(msjError);
 
         VBox espacio = new VBox();
-        espacio.setMinHeight(80);
-        espacio.setMaxHeight(80);
+        espacio.setMinHeight(50);
+        espacio.setMaxHeight(50);
 
         contenedorErrores.getChildren().addAll(titulo, msjError);
         this.getChildren().addAll(contenedorErrores, espacio);
