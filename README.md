@@ -53,11 +53,20 @@ Podés escribir en esa pantalla tu comentario, después apretar **CTRL+X** despu
 ### **Correcciones:** ###
 
 1-Distinguir cartel de error.
+
 2-Avisar que equipo se eligio. Mejorar la información.
+
 3- Avisar al jugador 2 que debe elegir.
+
 4-Mejorar visibilidad en la posicion inicial de los autobos.
+
 5-Mostrar nombre de los autobots/decepticons.
+
 6-No habilitar acciones (botones) de los algoformers a las superficies.
+
 7-Revisar cadaver
+
 8-Resaltar chispa
+
 9-Aumentar transparencia de los terrenos.
+
