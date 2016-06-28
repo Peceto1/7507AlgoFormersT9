@@ -60,7 +60,8 @@ public abstract class ElegirEquipoHandler implements EventHandler<ActionEvent> {
 
         else
             eleccion.setTextFill(Color.INDIANRED);
-
+        
+        
         eleccion.setText(input.getText().trim().toUpperCase() + " eligió " + equipo);
         VBox elecciones = (VBox) panelAbajo.lookup("#eleccionesVBox");
         elecciones.getChildren().add(eleccion);

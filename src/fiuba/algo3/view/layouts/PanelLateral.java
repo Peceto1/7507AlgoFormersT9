@@ -22,13 +22,11 @@ import javafx.scene.text.Text;
 public class PanelLateral extends VBox {
 
     private ContenedorJuego contenedorJuego;
-    private Juego juego;
     private Text msjError;
     private VistaProfileAlgoformers vistaProfiles;
 
     public PanelLateral(ContenedorJuego contenedorJuego, Background fondoPanel) {
         this.contenedorJuego = contenedorJuego;
-        this.juego = contenedorJuego.getJuego();
         this.msjError = contenedorJuego.getMsjError();
         this.setBackground(fondoPanel);
         this.setMinWidth(180);
@@ -42,7 +40,7 @@ public class PanelLateral extends VBox {
     }
 
 
-    private void dibujarInformacionDeTurno() {
+	private void dibujarInformacionDeTurno() {
         VBox panelInformacion = new VBox();
         panelInformacion.setSpacing(10);
         panelInformacion.setPadding(new Insets(10, 0, 5, 10));
@@ -244,8 +242,7 @@ public class PanelLateral extends VBox {
         contenedorImagenesAlgoformers.getChildren().add(grillaAlgoformers);
         this.getChildren().add(contenedorImagenesAlgoformers);
     }
-
-
+    
     public void actualizarStats(Algoformer algoformerSeleccionado, Bonus bonusSeleccionado, TerrenoAplicable terrenoSeleccionado){
     	Text textTerreno = (Text) this.lookup("#tipoTerrenoText");
     	Text textBonus = (Text) this.lookup("#tipoBonusText");
