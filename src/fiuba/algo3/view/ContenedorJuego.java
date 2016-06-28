@@ -103,9 +103,9 @@ public class ContenedorJuego extends BorderPane {
         bonusSeleccionado = Arena.getInstance().devolverBonusEn(ubicacion);
         panelLateral.actualizarStats(algoformerSeleccionado, bonusSeleccionado, terrenoSeleccionado);
         if (algoformerSeleccionado == null)
-        	deshabilitarAcciones(true);
-        else
-        	deshabilitarAcciones(false);
+        	mostrarAcciones(false);
+       else
+    	   mostrarAcciones(true);
     }
 
     private void setPantalla(PuntoPixels parPixel) {
@@ -185,11 +185,8 @@ public class ContenedorJuego extends BorderPane {
         return juego.getJugadorEnTurno();
     }
     
-    protected void deshabilitarAcciones(boolean disable) {
+    protected void mostrarAcciones(boolean disable) {
         HBox contenedorAcciones = (HBox) this.getPanelAbajo().lookup("#contenedorAcciones");
-        VBox contenedorCombinarse = (VBox) this.getPanelAbajo().lookup("#contenedorCombinarseVBox");
-        //ReproductorFX.reproducirFX(ReproductorFX.HITFX);
-        contenedorAcciones.setDisable(disable);
-        contenedorCombinarse.setDisable(disable);
+        contenedorAcciones.setVisible(disable);
     }    
 }
