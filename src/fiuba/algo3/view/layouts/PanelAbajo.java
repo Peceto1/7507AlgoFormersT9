@@ -37,6 +37,7 @@ public class PanelAbajo extends HBox {
         this.contenedorJuego = contenedorJuego;
         dibujarBloqueBotones();
         crearBotonesSepararseYCombinarse();
+        dibujarBotonChispa();
         crearBotonFinalizarTurno();
     }
 
@@ -202,6 +203,15 @@ public class PanelAbajo extends HBox {
         contenedorCombinarseSepararse.getChildren().addAll(combinarseButton, separarseButton);
     }
 
+    private void dibujarBotonChispa() {
+    	 HBox contenedorMostrarChispa = new HBox();
+    	 contenedorMostrarChispa.setPadding(new Insets(15, 0, 0, 50));
+    	Button botonChispa = new Button("Buscar\n Chispa");
+        botonChispa.setStyle("-fx-font: 24 arial; -fx-base: #64a500;");
+        botonChispa.setOnAction(new BotonMostrarChispa(contenedorJuego));
+        contenedorMostrarChispa.getChildren().add(botonChispa);
+        this.getChildren().add(contenedorMostrarChispa);
+	}
 
     private void crearBotonFinalizarTurno() {
         HBox contenedorFinalizarTurno = new HBox();
