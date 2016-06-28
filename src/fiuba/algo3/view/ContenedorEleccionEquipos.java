@@ -4,6 +4,8 @@ import fiuba.algo3.controller.BotonComenzarBatallaHandler;
 import fiuba.algo3.controller.ElegirAutobotsHandler;
 import fiuba.algo3.controller.ElegirDecepticonsHandler;
 import fiuba.algo3.model.juego.Juego;
+import fiuba.algo3.view.utilities.ReproductorFX;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -11,11 +13,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 
 
 public class ContenedorEleccionEquipos extends BorderPane {
@@ -40,6 +45,7 @@ public class ContenedorEleccionEquipos extends BorderPane {
         crearPanelCentro();
         crearPanelAutobots();
         crearPanelDecepticons();
+        this.ventanaDefault.setOnKeyPressed(new ErrorAlPresionarEnterHandler());
     }
 
 
@@ -57,7 +63,7 @@ public class ContenedorEleccionEquipos extends BorderPane {
         this.autobotsButton = new Button("", new ImageView(autobotsImage));
         autobotsButton.setFocusTraversable(false);
         autobotsButton.setStyle("-fx-base: #474747;");
-        autobotsButton.setOnAction(new ElegirAutobotsHandler(juego, nombreJugador, autobotsButton, msjError, nroJugador, panelAbajo));
+        autobotsButton.setOnAction(new ElegirAutobotsHandler(juego, nombreJugador, autobotsButton, msjError, nroJugador, panelAbajo, ventanaDefault));
         autobots.getChildren().add(autobotsButton);
         autobots.setPadding(new Insets(0, 0, 0, 25));
         autobots.setAlignment(Pos.CENTER);
@@ -73,7 +79,7 @@ public class ContenedorEleccionEquipos extends BorderPane {
         this.decepticonsButton = new Button("", new ImageView(decepticonsImage));
         decepticonsButton.setFocusTraversable(false);
         decepticonsButton.setStyle("-fx-base: #474747;");
-        decepticonsButton.setOnAction(new ElegirDecepticonsHandler(juego, nombreJugador, decepticonsButton, msjError, nroJugador, panelAbajo));
+        decepticonsButton.setOnAction(new ElegirDecepticonsHandler(juego, nombreJugador, decepticonsButton, msjError, nroJugador, panelAbajo, ventanaDefault));
         decepticons.getChildren().add(decepticonsButton);
         decepticons.setPadding(new Insets(0, 25, 0, 0));
         decepticons.setAlignment(Pos.CENTER);
@@ -135,17 +141,23 @@ public class ContenedorEleccionEquipos extends BorderPane {
         formulario.setPadding(new Insets(5, 10, 5, 10));
 
         this.nroJugador = new Text("Jugador 1");
-        nroJugador.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+        nroJugador.setFont(Font.font("Tahoma", FontWeight.BOLD, 20));
         nroJugador.setFill(Color.ANTIQUEWHITE);
         Text informacion = new Text("Elija un equipo");
         informacion.setFont(Font.font("Tahoma", FontWeight.LIGHT, 12));
+        informacion.setFill(Color.ANTIQUEWHITE);
         formulario.add(nroJugador, 0, 0);
         formulario.add(nombreJugador, 0, 1);
         formulario.add(informacion, 0, 2);
         formulario.add(botonLimpiar, 1, 2);
 
         this.msjError = new Label("");
-        msjError.setTextFill(Color.web("#FF0000"));
+        msjError.setAlignment(Pos.CENTER);
+        msjError.setTextAlignment(TextAlignment.CENTER);
+        msjError.setTextFill(Color.web("#9f0000"));
+        msjError.setFont(Font.font("Tahoma", FontWeight.BOLD, 12));
+        msjError.setMinSize(100, 30);
+        msjError.setWrapText(true);
 
         contenedorInput.getChildren().addAll(formulario, msjError);
 
@@ -173,4 +185,17 @@ public class ContenedorEleccionEquipos extends BorderPane {
     }
 
 
+    private class ErrorAlPresionarEnterHandler implements EventHandler<KeyEvent> {
+
+        @Override
+        public void handle(KeyEvent keyEvent) {
+
+            if (!keyEvent.getCode().equals(KeyCode.ENTER))
+                return;
+
+            ReproductorFX.reproducirFX(ReproductorFX.ERROR1);
+            msjError.setText("Ingrese su nombre y luego seleccione un equipo");
+        }
+
+    }
 }

@@ -3,6 +3,7 @@ package fiuba.algo3.controller;
 import fiuba.algo3.model.juego.Juego;
 import fiuba.algo3.view.ContenedorJuego;
 import fiuba.algo3.view.VentanaDefault;
+import fiuba.algo3.view.utilities.ReproductorFX;
 import fiuba.algo3.view.utilities.ReproductorMusica;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -44,6 +45,10 @@ public class BotonComenzarBatallaHandler implements EventHandler<ActionEvent> {
             ReproductorMusica.playBackGroundTheme("src/fiuba/algo3/view/resources/sounds/battleTheme.mp3", true);
             if (ReproductorMusica.isMute())
                 ReproductorMusica.setMute(true);
+        } );
+
+        ventanaDefault.setOnKeyPressed( (keyEvent) -> {
+            ReproductorFX.reproducirFX(ReproductorFX.ERROR1);
         } );
     }
 }

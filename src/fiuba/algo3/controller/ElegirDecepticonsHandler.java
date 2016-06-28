@@ -1,6 +1,7 @@
 package fiuba.algo3.controller;
 
 import fiuba.algo3.model.juego.Juego;
+import fiuba.algo3.view.VentanaDefault;
 import fiuba.algo3.view.utilities.ReproductorFX;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
@@ -14,7 +15,7 @@ public class ElegirDecepticonsHandler extends ElegirEquipoHandler {
     private Button decepticons;
 
 
-    public ElegirDecepticonsHandler(Juego juego, TextField input, Button decepticons, Label msjError, Text nroJugador, VBox panelAbajo) {
+    public ElegirDecepticonsHandler(Juego juego, TextField input, Button decepticons, Label msjError, Text nroJugador, VBox panelAbajo, VentanaDefault ventanaDefault) {
         this.juego = juego;
         this.input = input;
         this.decepticons = decepticons;
@@ -22,6 +23,7 @@ public class ElegirDecepticonsHandler extends ElegirEquipoHandler {
         this.nroJugador = nroJugador;
         this.panelAbajo = panelAbajo;
         this.equipo = "DECEPTICONS";
+        this.ventanaDefault = ventanaDefault;
     }
 
     @Override

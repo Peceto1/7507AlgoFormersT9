@@ -2,9 +2,12 @@ package fiuba.algo3.controller;
 
 import fiuba.algo3.model.juego.Juego;
 import fiuba.algo3.model.juego.YaExisteJugadorConEseNombreException;
+import fiuba.algo3.view.VentanaDefault;
+import fiuba.algo3.view.eventos.EntrarConTeclaEnterHandler;
 import fiuba.algo3.view.utilities.ReproductorFX;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
@@ -21,6 +24,7 @@ public abstract class ElegirEquipoHandler implements EventHandler<ActionEvent> {
     Text nroJugador;
     VBox panelAbajo;
     String equipo;
+    VentanaDefault ventanaDefault;
 
 
     Boolean ingresoValido() {
@@ -74,8 +78,11 @@ public abstract class ElegirEquipoHandler implements EventHandler<ActionEvent> {
 
         nroJugador.setText("Fin de Elección");
         nroJugador.setFill(Color.LIGHTGREEN);
+        nroJugador.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         input.setDisable(true);
-        panelAbajo.lookup("#botonComenzarBatalla").setVisible(true);
+        Button botonComenzarBatalla = (Button) panelAbajo.lookup("#botonComenzarBatalla");
+        botonComenzarBatalla.setVisible(true);
+        this.ventanaDefault.setOnKeyPressed(new EntrarConTeclaEnterHandler(botonComenzarBatalla));
     }
 
 
