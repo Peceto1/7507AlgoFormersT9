@@ -9,6 +9,7 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
 import javafx.util.Duration;
 
 public class BotonComenzarBatallaHandler implements EventHandler<ActionEvent> {
@@ -48,7 +49,8 @@ public class BotonComenzarBatallaHandler implements EventHandler<ActionEvent> {
         } );
 
         ventanaDefault.setOnKeyPressed( (keyEvent) -> {
-            ReproductorFX.reproducirFX(ReproductorFX.ERROR1);
+            if (keyEvent.getCode().equals(KeyCode.ENTER))
+                ReproductorFX.reproducirFX(ReproductorFX.ERROR1);
         } );
     }
 }
