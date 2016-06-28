@@ -49,4 +49,3 @@ Luego pegan los archivos en los que trabajaron y hacen un **PUSH**
 Te olvidaste de ponerle el comando -m "<Comentario>" al commit!! **Los comentarios son obligatorios para subir algo!!**
 
 Podés escribir en esa pantalla tu comentario, después apretar **CTRL+X** después **Y** (yes) y por último **ENTER** y se habrá realizado el commit. Ya podes hacer **PUSH**
-
