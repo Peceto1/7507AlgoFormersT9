@@ -1,12 +1,13 @@
 package fiuba.algo3.controller;
 
-import fiuba.algo3.model.arena.Arena;
 import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.juego.Juego;
 import fiuba.algo3.model.unidades.Algoformer;
 import fiuba.algo3.view.ContenedorJuego;
 import fiuba.algo3.view.layouts.PanelAbajo;
 import fiuba.algo3.view.layouts.PanelLateral;
+import fiuba.algo3.view.utilities.ConvertidorPuntoAPixels;
+import fiuba.algo3.view.utilities.PuntoPixels;
 import fiuba.algo3.view.utilities.ReproductorFX;
 import fiuba.algo3.view.utilities.ReproductorMusica;
 import javafx.event.ActionEvent;
@@ -62,23 +63,11 @@ public class BotonTerminarTurnoHandler implements EventHandler<ActionEvent> {
 
         this.contenedorJuego.panearCamara();
 
-    	String nombreJug = juego.getJugadorEnTurno().getNombre();
-        String equipoJug = juego.getJugadorEnTurno().getEquipo();
-        String numeroTurno = Integer.toString(juego.getTurno());
-        
-        botoneraDeDirecciones.setVisible(false);
-        botoneraDeAcciones.setDisable(false);
-        botoneraDeCombinacion.setDisable(false);
-        infoJugador.setText("Jugador: " + nombreJug);
-        infoTurno.setText("Turno: " + numeroTurno);
-        infoEquipo.setText("Equipo: " + equipoJug);
-
+        resetearBotonesDeAcciones();
+        actualizarInfoTurno();
+        actualizarAlgoformerSeleccionado();
         //
-        Algoformer ultimoUsado = juego.getJugadorEnTurno().getUltimoAlgoformerUtilizado();
-        contenedorJuego.setAccionado(ultimoUsado);
-        Punto ubicacionA = ultimoUsado.getUbicacion();
-        contenedorJuego.getPanelLateral().actualizarStats(ultimoUsado, Arena.getInstance().devolverBonusEn(ubicacionA),Arena.getInstance().devolverTerrenoEn(ubicacionA));
-
+        
         //
         msjError.setText("");
     }
@@ -95,6 +84,34 @@ public class BotonTerminarTurnoHandler implements EventHandler<ActionEvent> {
 		Optional<ButtonType> result = alert.showAndWait();
 		System.exit(0);
 		alert.show();
+    }
+    
+    private void actualizarInfoTurno(){
+    	
+    	String nombreJug = juego.getJugadorEnTurno().getNombre();
+        String equipoJug = juego.getJugadorEnTurno().getEquipo();
+        String numeroTurno = Integer.toString(juego.getTurno());
+        
+        
+    	infoJugador.setText("Jugador: " + nombreJug);
+        infoTurno.setText("Turno: " + numeroTurno);
+        infoEquipo.setText("Equipo: " + equipoJug);
+    }
+    
+    private void resetearBotonesDeAcciones(){
+    	botoneraDeDirecciones.setVisible(false);
+        botoneraDeAcciones.setDisable(false);
+        botoneraDeCombinacion.setDisable(false);
+    }
+    
+    private void actualizarAlgoformerSeleccionado(){
+    	Algoformer ultimoUsado = juego.getJugadorEnTurno().getUltimoAlgoformerUtilizado();
+        contenedorJuego.setAccionado(ultimoUsado);
+        Punto ubicacionA = ultimoUsado.getUbicacion();
+        ConvertidorPuntoAPixels conversor = new ConvertidorPuntoAPixels();
+        PuntoPixels ubicacionUltimoPixels = conversor.convertir(ubicacionA);
+        
+        contenedorJuego.seleccionarCasillero(ubicacionUltimoPixels.getX(), ubicacionUltimoPixels.getY());
     }
 
 
