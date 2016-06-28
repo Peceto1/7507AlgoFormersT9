@@ -37,7 +37,7 @@ public class ClickearEnemigoHandler implements EventHandler<MouseEvent> {
         this.msjError = contenedorJuego.getMsjError();
 
         ConvertidorPuntoAPixels conversor = new ConvertidorPuntoAPixels();
-        PuntoPixels ubicacionPixelsAtacado = new PuntoPixels((int) mouseEvent.getX(), (int) mouseEvent.getY());
+        PuntoPixels ubicacionPixelsAtacado = new PuntoPixels(mouseEvent.getX(), mouseEvent.getY());
         Punto ubicacionAtacado = conversor.reconvertir(ubicacionPixelsAtacado);
         Algoformer algoformerAtacado = Arena.getInstance().obtenerAlgoformerEn(ubicacionAtacado);
         
@@ -59,9 +59,10 @@ public class ClickearEnemigoHandler implements EventHandler<MouseEvent> {
 
 
         if (algoformerAtacado != null && !algoformerAtacado.estaVivo()){
+        	PuntoPixels ubicacionImagenAtacado = conversor.convertir(ubicacionAtacado);
         	VistaMapaAlgoformers vistaMapaAlgoformers = contenedorJuego.getVistaMapaAlgoformers();
             VistaAlgoformer vistaAtacado = vistaMapaAlgoformers.getVista(algoformerAtacado);
-        	vistaAtacado.limpiar(ubicacionPixelsAtacado.getX(),ubicacionPixelsAtacado.getY());
+        	vistaAtacado.limpiar(ubicacionImagenAtacado.getX(),ubicacionImagenAtacado.getY());
         }
     
         HBox contenedorTerminarTurno = (HBox) this.contenedorJuego.lookup("#ContenedorFinalizarTurno");

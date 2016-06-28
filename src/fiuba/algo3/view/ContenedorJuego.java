@@ -95,7 +95,7 @@ public class ContenedorJuego extends BorderPane {
 
     public void seleccionarCasillero(double x, double y) {
 
-        PuntoPixels parPixel = new PuntoPixels((int)x, (int)y);
+        PuntoPixels parPixel = new PuntoPixels(x, y);
         Punto ubicacion = conversor.reconvertir(parPixel);
 
         algoformerSeleccionado = Arena.getInstance().obtenerAlgoformerEn(ubicacion);

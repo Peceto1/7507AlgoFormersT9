@@ -26,7 +26,7 @@ public class VistaBonus implements Dibujable{
     }
 
     @Override
-    public void dibujar(int pixelX, int pixelY) {
+    public void dibujar(double pixelX, double pixelY) {
 
         int ajusteX = imageWidthSize/2;
         int ajusteY = imageHeightSize/2;
@@ -36,7 +36,7 @@ public class VistaBonus implements Dibujable{
 
     }
 
-    public void limpiar(int x, int y){
+    public void limpiar(double x, double y){
 
         x = x - imageWidthSize/2;
         y = y - imageHeightSize/2;
@@ -45,9 +45,8 @@ public class VistaBonus implements Dibujable{
         gc.clearRect(x, y, 40, 20);
 
     }
-    public void actualizar(int x, int y){
+    public void actualizar(double x, double y){
         limpiar(x,y);
     }
-
 
 }

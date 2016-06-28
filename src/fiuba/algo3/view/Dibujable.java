@@ -3,7 +3,7 @@ package fiuba.algo3.view;
 
 public interface Dibujable {
 
-    void dibujar(int x, int y);
-    void limpiar(int x, int y);
-    void actualizar(int x, int y);
+    void dibujar(double x, double y);
+    void limpiar(double x, double y);
+    void actualizar(double x, double y);
 }
