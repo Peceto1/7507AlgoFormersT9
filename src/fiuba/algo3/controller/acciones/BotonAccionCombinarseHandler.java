@@ -13,9 +13,7 @@ import fiuba.algo3.view.vistas.vistasAlgoformers.VistaAlgoformer;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class BotonAccionCombinarseHandler extends BotonAccionHandler implements EventHandler<ActionEvent> {
@@ -58,7 +56,7 @@ public class BotonAccionCombinarseHandler extends BotonAccionHandler implements 
 		VistaAlgoformer vistaCombinacion = contenedorJuego.getVistaMapaAlgoformers().getVista(combinacion);
 		PuntoPixels pixeleado = convertidor.convertir(combinacion.getUbicacion());
 		vistaCombinacion.dibujar(pixeleado.getX(),pixeleado.getY());
-
+		contenedorJuego.seleccionarCasillero(pixeleado.getX(),pixeleado.getY());
 		enTurno.setUltimoAlgoformerUtilizado(combinacion);
 		deshabilitarAcciones();
 

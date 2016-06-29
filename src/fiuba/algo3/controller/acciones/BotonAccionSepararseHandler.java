@@ -51,6 +51,7 @@ public class BotonAccionSepararseHandler extends BotonAccionHandler implements E
 			VistaAlgoformer vista = contenedorJuego.getVistaMapaAlgoformers().getVista(algoformerADibujar);
 			PuntoPixels posicionPixeles = convertidor.convertir(algoformerADibujar.getUbicacion());
 			vista.dibujar(posicionPixeles.getX(),posicionPixeles.getY());
+			contenedorJuego.seleccionarCasillero(posicionPixeles.getX(),posicionPixeles.getY());
 		}
 
 
