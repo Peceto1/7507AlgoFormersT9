@@ -6,7 +6,6 @@ import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
@@ -39,21 +38,21 @@ public class VistaProfileAlgoformers {
         algoformersProfiles.put(AlgoformerPool.getInstance().obtenerMegatron(), new Image(megatronProfileResource));
         algoformersProfiles.put(AlgoformerPool.getInstance().obtenerBonecrusher(), new Image(bonecrusherProfileResource));
         algoformersProfiles.put(AlgoformerPool.getInstance().obtenerFrenzy(), new Image(frenzyProfileResource));
-        algoformersProfiles.put(menasor, new Image(megatronProfileResource));
-        algoformersProfiles.put(superion, new Image(optimusProfileResource));
+        algoformersProfiles.put(menasor, new Image(menasorProfileResource));
+        algoformersProfiles.put(superion, new Image(superionProfileResource));
     }
 
     private Algoformer crearSuperion() {
-
         return new Superion(1000, new ArrayList<>(), new EstadoProto());
 
     }
 
-    private Algoformer crearMenasor(){
 
+    private Algoformer crearMenasor(){
         return new Menasor(1000, new ArrayList<>(), new EstadoProto());
 
     }
+
 
     public ImageView getVista(Algoformer algoformer, double size) {
         Image imagenAlgoformer = algoformersProfiles.get(algoformer);
