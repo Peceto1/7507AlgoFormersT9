@@ -15,6 +15,7 @@ import fiuba.algo3.view.utilities.PuntoPixels;
 import fiuba.algo3.view.vistas.VistaArena;
 import fiuba.algo3.view.vistas.VistaMapaAlgoformers;
 import fiuba.algo3.view.vistas.VistaMapaBonuses;
+import fiuba.algo3.view.vistas.VistaPosicionChispa;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
@@ -30,9 +31,11 @@ public class ContenedorJuego extends BorderPane {
     private ScrollPane contenedorCentral;
     private Canvas canvasAlgoformers;
     private Canvas canvasBonuses;
+    private Canvas canvasPosicionChispa;
     private VistaMapaAlgoformers vistaAlgoformers;
     private VistaMapaBonuses vistaBonuses;
     private VistaArena vistaArena;
+    private VistaPosicionChispa vistaPosicionChispa;
     private Background fondoPaneles = new Background(new BackgroundFill(Color.web("#000f3d"), null, null));
     private String estiloNegro = "-fx-base: #474747;";
     private Text msjError;
@@ -75,6 +78,7 @@ public class ContenedorJuego extends BorderPane {
 
         this.canvasBonuses = new Canvas(canvasSize, canvasSize);
         this.canvasAlgoformers = new Canvas(canvasSize, canvasSize);
+        this.canvasPosicionChispa = new Canvas(canvasSize,canvasSize);
 
         this.vistaArena = new VistaArena(102, 51);
         this.vistaArena.dibujarArena();
@@ -83,8 +87,10 @@ public class ContenedorJuego extends BorderPane {
 
         this.vistaAlgoformers = new VistaMapaAlgoformers(canvasAlgoformers);
         this.vistaAlgoformers.mostrar();
+        
+        this.vistaPosicionChispa = new VistaPosicionChispa(canvasPosicionChispa,juego.getPosicionChispa());
 
-        contenedorCanvases.getChildren().addAll(vistaArena, canvasBonuses, canvasAlgoformers);
+        contenedorCanvases.getChildren().addAll(vistaArena, canvasBonuses, canvasAlgoformers, canvasPosicionChispa);
         contenedorCentral.setContent(contenedorCanvases);
         contenedorCentral.setStyle(estiloNegro);
         contenedorCentral.setPannable(true);
@@ -161,6 +167,10 @@ public class ContenedorJuego extends BorderPane {
     public VistaMapaBonuses getVistaMapaBonuses() {
         return this.vistaBonuses;
     }
+    
+	public VistaPosicionChispa getVistaPosicionChispa() {
+		return this.vistaPosicionChispa;
+	}   
 
 
     public Algoformer getAlgoformerAccionado() {
@@ -186,5 +196,6 @@ public class ContenedorJuego extends BorderPane {
     protected void mostrarAcciones(boolean disable) {
         HBox contenedorAcciones = (HBox) this.getPanelAbajo().lookup("#contenedorAcciones");
         contenedorAcciones.setVisible(disable);
-    }    
+    }
+ 
 }
