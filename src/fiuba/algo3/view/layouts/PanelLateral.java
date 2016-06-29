@@ -8,6 +8,9 @@ import fiuba.algo3.model.unidades.AlgoformerPool;
 import fiuba.algo3.view.ContenedorJuego;
 import fiuba.algo3.view.eventos.ProfileOnClickHandler;
 import fiuba.algo3.view.vistas.VistaProfileAlgoformers;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -79,8 +82,8 @@ public class PanelLateral extends VBox {
 
     private void dibujarInformacionDeErrores() {
 
-        VBox contenedorErrores = new VBox(15);
-        contenedorErrores.setPadding(new Insets(15, 0, 0, 10));
+        VBox contenedorErrores = new VBox(10);
+        contenedorErrores.setPadding(new Insets(10, 0, 0, 10));
         contenedorErrores.setMinHeight(50);
         contenedorErrores.setMaxHeight(50);
         Label titulo = new Label("Información");
@@ -196,42 +199,30 @@ public class PanelLateral extends VBox {
         contenedorImagenesAlgoformers.setPadding(new Insets(10, 0, 10, 30));
 
         AlgoformerPool poolSingleton = AlgoformerPool.getInstance();
+        Algoformer optimus = poolSingleton.obtenerOptimus();
+        Algoformer bumblebee = poolSingleton.obtenerBumblebee();
+        Algoformer ratchet = poolSingleton.obtenerRatchet();
+        Algoformer megatron = poolSingleton.obtenerMegatron();
+        Algoformer bonecrusher = poolSingleton.obtenerBonecrusher();
+        Algoformer frenzy = poolSingleton.obtenerFrenzy();
 
-        Button profileOptimus = new Button("", vistaProfiles.getVista(poolSingleton.obtenerOptimus(), 50));
-        profileOptimus.setMinSize(50, 50);
-        profileOptimus.setMaxSize(50, 50);
-        profileOptimus.setBorder(new Border(new BorderStroke(Color.GREEN, BorderStrokeStyle.SOLID, null, new BorderWidths(1, 1, 1, 1))));
-        profileOptimus.setOnAction(new ProfileOnClickHandler(poolSingleton.obtenerOptimus(),contenedorJuego));
+        Button profileOptimus = new Button("", vistaProfiles.getVista(optimus, 50));
+        setearBoton(profileOptimus, optimus);
         
         Button profileBumblebee = new Button("", vistaProfiles.getVista(poolSingleton.obtenerBumblebee(), 50));
-        profileBumblebee.setMinSize(50, 50);
-        profileBumblebee.setMaxSize(50, 50);
-        profileBumblebee.setBorder(new Border(new BorderStroke(Color.GREEN, BorderStrokeStyle.SOLID, null, new BorderWidths(1, 1, 1, 1))));
-        profileBumblebee.setOnAction(new ProfileOnClickHandler(poolSingleton.obtenerBumblebee(),contenedorJuego));
+        setearBoton(profileBumblebee, bumblebee);
         
         Button profileRatchet = new Button("", vistaProfiles.getVista(poolSingleton.obtenerRatchet(), 50));
-        profileRatchet.setMinSize(50, 50);
-        profileRatchet.setMaxSize(50, 50);
-        profileRatchet.setBorder(new Border(new BorderStroke(Color.GREEN, BorderStrokeStyle.SOLID, null, new BorderWidths(1, 1, 1, 1))));
-        profileRatchet.setOnAction(new ProfileOnClickHandler(poolSingleton.obtenerRatchet(),contenedorJuego));
+        setearBoton(profileRatchet, ratchet);
         
         Button profileMegatron = new Button("", vistaProfiles.getVista(poolSingleton.obtenerMegatron(), 50));
-        profileMegatron.setMinSize(50, 50);
-        profileMegatron.setMaxSize(50, 50);
-        profileMegatron.setBorder(new Border(new BorderStroke(Color.RED, BorderStrokeStyle.SOLID, null, new BorderWidths(1, 1, 1, 1))));
-        profileMegatron.setOnAction(new ProfileOnClickHandler(poolSingleton.obtenerMegatron(),contenedorJuego));
+        setearBoton(profileMegatron, megatron);
         
         Button profileBonecrusher = new Button("", vistaProfiles.getVista(poolSingleton.obtenerBonecrusher(), 50));
-        profileBonecrusher.setMinSize(50, 50);
-        profileBonecrusher.setMaxSize(50, 50);
-        profileBonecrusher.setBorder(new Border(new BorderStroke(Color.RED, BorderStrokeStyle.SOLID, null, new BorderWidths(1, 1, 1, 1))));
-        profileBonecrusher.setOnAction(new ProfileOnClickHandler(poolSingleton.obtenerBonecrusher(),contenedorJuego));
+        setearBoton(profileBonecrusher, bonecrusher);
         
         Button profileFrenzy = new Button("", vistaProfiles.getVista(poolSingleton.obtenerFrenzy(), 50));
-        profileFrenzy.setMinSize(50, 50);
-        profileFrenzy.setMaxSize(50, 50);
-        profileFrenzy.setBorder(new Border(new BorderStroke(Color.RED, BorderStrokeStyle.SOLID, null, new BorderWidths(1, 1, 1, 1))));
-        profileFrenzy.setOnAction(new ProfileOnClickHandler(poolSingleton.obtenerFrenzy(),contenedorJuego));
+        setearBoton(profileFrenzy, frenzy);
         
         GridPane grillaAlgoformers = new GridPane();
         grillaAlgoformers.setHgap(10);
@@ -242,7 +233,16 @@ public class PanelLateral extends VBox {
         contenedorImagenesAlgoformers.getChildren().add(grillaAlgoformers);
         this.getChildren().add(contenedorImagenesAlgoformers);
     }
-    
+
+
+    private void setearBoton(Button boton, Algoformer algoformer) {
+        boton.setMinSize(50, 50);
+        boton.setMaxSize(50, 50);
+        boton.setOnAction(new ProfileOnClickHandler(algoformer, contenedorJuego));
+        algoformer.vidaProperty().addListener(new VidaPropertyListener(boton));
+    }
+
+
     public void actualizarStats(Algoformer algoformerSeleccionado, Bonus bonusSeleccionado, TerrenoAplicable terrenoSeleccionado){
     	Text textTerreno = (Text) this.lookup("#tipoTerrenoText");
     	Text textBonus = (Text) this.lookup("#tipoBonusText");
@@ -278,4 +278,20 @@ public class PanelLateral extends VBox {
     }
 
 
+    private class VidaPropertyListener implements ChangeListener<Number> {
+
+        Button profileButton;
+
+        VidaPropertyListener(Button botonADesabilitar) {
+            this.profileButton = botonADesabilitar;
+        }
+
+
+        @Override
+        public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+
+            if ( newValue.intValue() <= 0)
+                this.profileButton.setDisable(true);
+        }
+    }
 }

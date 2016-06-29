@@ -5,6 +5,7 @@ import fiuba.algo3.model.espacio.Direccion;
 import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.espacio.PuntoAireNoPuedeAscenderException;
 import fiuba.algo3.model.espacio.PuntoTierraNoPuedeDescenderException;
+import javafx.beans.property.SimpleIntegerProperty;
 
 import java.util.*;
 
@@ -19,6 +20,7 @@ public abstract class Algoformer {
 	Punto ubicacion;
 	List<Efecto> efectos;
 	boolean tiene_burbuja;
+	SimpleIntegerProperty vidaProperty;
 
 
 	Algoformer(String nombre, int vida, Estado estado) {
@@ -28,6 +30,7 @@ public abstract class Algoformer {
 		this.estado = estado;
 		this.efectos = new LinkedList<>();
 		this.tiene_burbuja = false;
+		this.vidaProperty = new SimpleIntegerProperty(this.vida);
 	}
 
 	
@@ -45,20 +48,29 @@ public abstract class Algoformer {
 		return this.vidaMax;
 	}
 
+
 	public int getAtk(){
 		return estado.ataque;
 	}
+
 	
 	public int getSpd(){
 		return estado.velocidad;
 	}
+
 	
 	public int getRange(){
 		return estado.rango;
 	}
 
+
 	public int getMovimientosRestantes() {
 		return this.estado.movimiento.getMovimientosRestantes();
+	}
+
+
+	public SimpleIntegerProperty vidaProperty() {
+		return this.vidaProperty;
 	}
 
 
@@ -124,6 +136,7 @@ public abstract class Algoformer {
 
 	public void recibirDanio(int danio){
 		this.vida = vida - danio;
+		this.vidaProperty().set(this.vida);
 	}
 
 
