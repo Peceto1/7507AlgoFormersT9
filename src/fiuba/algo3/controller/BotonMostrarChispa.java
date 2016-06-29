@@ -25,7 +25,6 @@ public class BotonMostrarChispa implements EventHandler<ActionEvent> {
 	@Override
 	public void handle(ActionEvent arg0) {
 		Punto posicionChispa = juego.getPosicionChispa();
-		contenedor.seleccionarCasillero(posicionChispa.getX(), posicionChispa.getY());
 		contenedor.panearCamara(posicionChispa);
 		vistaFlecha.dibujar();
 		PauseTransition delay = new PauseTransition(Duration.seconds(2));
