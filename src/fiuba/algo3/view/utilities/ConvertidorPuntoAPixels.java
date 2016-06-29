@@ -27,17 +27,17 @@ public class ConvertidorPuntoAPixels {
     }
 
     public Punto reconvertir(PuntoPixels par){
-        int pixX = par.getX();
-        int pixY = par.getY();
+    	double pixX = par.getX();
+    	double pixY = par.getY();
 
-        int puntoX = (pixX/40)+1;
-        int puntoY = (pixY/40)+1;
-        int nivel = (pixY/20)+1;
+    	double puntoX = (pixX/40)+1;
+    	double puntoY = (pixY/40)+1;
+    	double nivel = (pixY/20)+1;
 
-        if (nivel%2 == 0){
-            return new PuntoTierra(puntoX, puntoY);
+        if (((int)nivel)%2 == 0){
+            return new PuntoTierra((int) puntoX, (int) puntoY);
         }
-        return new PuntoAire(puntoX,puntoY);
+        return new PuntoAire((int) puntoX, (int) puntoY);
 
     }
 

@@ -51,7 +51,7 @@ public abstract class VistaAlgoformer implements Dibujable {
 
 
     @Override
-    public void dibujar(int x, int y) {
+    public void dibujar(double x, double y) {
 
         x = x - imageWidthSize/2;
         y = y - imageHeightSize/2;
@@ -62,7 +62,7 @@ public abstract class VistaAlgoformer implements Dibujable {
 
 
     @Override
-    public void actualizar(int x, int y) {
+    public void actualizar(double x, double y) {
         limpiar(x, y);
         PuntoPixels nuevoPunto = convertidor.convertir(this.algoformer.getUbicacion());
         dibujar(nuevoPunto.getX(), nuevoPunto.getY());
@@ -70,7 +70,7 @@ public abstract class VistaAlgoformer implements Dibujable {
 
 
     @Override
-    public void limpiar(int x, int y) {
+    public void limpiar(double x, double y) {
 
         x = x - imageWidthSize/2;
         y = y - imageHeightSize/2;

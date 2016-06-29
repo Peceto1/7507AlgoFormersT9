@@ -21,7 +21,7 @@ public class ProfileOnClickHandler implements EventHandler<ActionEvent> {
 		ConvertidorPuntoAPixels conversor = new ConvertidorPuntoAPixels();
 		PuntoPixels ubicacionPixels = conversor.convertir(algoformer.getUbicacion());
 		contenedor.seleccionarCasillero(ubicacionPixels.getX(), ubicacionPixels.getY());
-		contenedor.panearCamara(algoformer);
+		contenedor.panearCamara(algoformer.getUbicacion());
 	}
 
 }

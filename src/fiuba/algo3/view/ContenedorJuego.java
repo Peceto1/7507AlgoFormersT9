@@ -12,7 +12,6 @@ import fiuba.algo3.view.layouts.PanelAbajo;
 import fiuba.algo3.view.layouts.PanelLateral;
 import fiuba.algo3.view.utilities.ConvertidorPuntoAPixels;
 import fiuba.algo3.view.utilities.PuntoPixels;
-import fiuba.algo3.view.utilities.ReproductorFX;
 import fiuba.algo3.view.vistas.VistaArena;
 import fiuba.algo3.view.vistas.VistaMapaAlgoformers;
 import fiuba.algo3.view.vistas.VistaMapaBonuses;
@@ -95,7 +94,7 @@ public class ContenedorJuego extends BorderPane {
 
     public void seleccionarCasillero(double x, double y) {
 
-        PuntoPixels parPixel = new PuntoPixels((int)x, (int)y);
+        PuntoPixels parPixel = new PuntoPixels(x, y);
         Punto ubicacion = conversor.reconvertir(parPixel);
 
         algoformerSeleccionado = Arena.getInstance().obtenerAlgoformerEn(ubicacion);
@@ -128,10 +127,9 @@ public class ContenedorJuego extends BorderPane {
         
         setPantalla(ubicacionPixeles);
     }
-    
-    public void panearCamara(Algoformer algoformer) {
-    	Punto ubicacion = algoformer.getUbicacion();
-    	PuntoPixels ubicacionPixeles = conversor.convertir(ubicacion);
+        
+    public void panearCamara(Punto punto){
+    	PuntoPixels ubicacionPixeles = conversor.convertir(punto);
         
         setPantalla(ubicacionPixeles);
     }

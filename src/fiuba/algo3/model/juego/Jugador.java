@@ -37,6 +37,10 @@ public class Jugador {
 
 
     public Algoformer getUltimoAlgoformerUtilizado() {
+
+        if (!ultimoAlgoformerUtilizado.estaVivo() && cantidadAlgoformers() > 0)
+            return this.algoformers.get(0);
+
         return ultimoAlgoformerUtilizado;
     }
 

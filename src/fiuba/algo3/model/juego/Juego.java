@@ -111,6 +111,10 @@ public class Juego {
     public int getTurno() {
         return this.turno;
     }
+    
+    public Punto getPosicionChispa(){
+    	return this.posicionChispa;
+    }
 
 
     public Jugador getJugadorEnTurno() {
