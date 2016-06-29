@@ -183,6 +183,8 @@ public abstract class Algoformer {
 
 			if (arena.estaOcupado(actual))
 				iter.remove();
+			if (arena.devolverTerrenoEn(actual).devolverTipoTerreno().equals("Pantano"))
+				iter.remove();
 		}
 
 		return adyacentes;

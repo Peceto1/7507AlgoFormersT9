@@ -42,21 +42,26 @@ public class Menasor extends Decepticon {
             throw new NoPuedeSepararseException();
         this.estado.verificarProto();
 
+
         Arena arena = Arena.getInstance();
         arena.removerAlgoformerEn(this.ubicacion);
+
 
         distribuirDanioEntreMiembros(this.miembros);
         removerMuertos(this.miembros);
         transformarAlternosAHumanoide(this.miembros);
 
+
         Algoformer primero = this.miembros.remove(0);
         arena.ubicarAlgoformer(primero, this.ubicacion);
 
         int i = 0;
+
         for (Algoformer miembro : this.miembros) {
             arena.ubicarAlgoformer(miembro, puntosAdyacentesLibres.get(i));
             i++;
         }
+
 
         this.miembros.add(primero);
         return new ArrayList<>(this.miembros);

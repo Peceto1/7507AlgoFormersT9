@@ -2,7 +2,8 @@ package fiuba.algo3.model.unidades;
 
 public class NoPuedeSepararseException extends RuntimeException {
 
-    public String devolverMensajeError(){
+    @Override
+    public String getMessage(){
         return "Algoformer no se pueden separar";
     }
 

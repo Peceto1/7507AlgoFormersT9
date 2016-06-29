@@ -3,6 +3,7 @@ package fiuba.algo3.controller.acciones;
 import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.juego.Jugador;
 import fiuba.algo3.model.unidades.Algoformer;
+import fiuba.algo3.model.unidades.EstadoProtoNoPuedeRealizarAcciones;
 import fiuba.algo3.model.unidades.NoPuedeSepararseException;
 import fiuba.algo3.view.ContenedorJuego;
 import fiuba.algo3.view.utilities.ConvertidorPuntoAPixels;
@@ -32,8 +33,8 @@ public class BotonAccionSepararseHandler extends BotonAccionHandler implements E
 
 		try{
 			enTurno.separarAlgoformers();
-		}catch(NoPuedeSepararseException e){
-			contenedorJuego.getMsjError().setText(e.devolverMensajeError());
+		}catch(NoPuedeSepararseException | EstadoProtoNoPuedeRealizarAcciones e){
+			contenedorJuego.getMsjError().setText(e.getMessage());
 			return;
 		}
 
@@ -48,6 +49,7 @@ public class BotonAccionSepararseHandler extends BotonAccionHandler implements E
 		}
 
 		for(Algoformer algoformerADibujar: enTurno.getAlgoformers()){
+			System.out.printf("Nombre: %s, posicion X:%d, posicionY:%d \n",algoformerADibujar.getNombre(), algoformerADibujar.getUbicacion().getX(), algoformerADibujar.getUbicacion().getY());
 			VistaAlgoformer vista = contenedorJuego.getVistaMapaAlgoformers().getVista(algoformerADibujar);
 			PuntoPixels posicionPixeles = convertidor.convertir(algoformerADibujar.getUbicacion());
 			vista.dibujar(posicionPixeles.getX(),posicionPixeles.getY());

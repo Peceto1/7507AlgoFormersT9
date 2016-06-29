@@ -58,7 +58,7 @@ public class ClickearEnemigoHandler implements EventHandler<MouseEvent> {
             rehabilitarAcciones();
         }catch(EstadoProtoNoPuedeRealizarAcciones e){
             ReproductorFX.reproducirFX(ReproductorFX.ERROR1);
-            msjError.setText(e.devolverMensajeError());
+            msjError.setText(e.getMessage());
             rehabilitarAcciones();
         }
 
