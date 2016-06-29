@@ -51,6 +51,10 @@ public class VistaMapaAlgoformers {
             this.algoformersEnMapa.put(algoformer, new VistaMenasor(this.canvasDeLasVistas, algoformer));
     }
 
+    public void eliminarEntrada(Algoformer algoformer){
+        this.algoformersEnMapa.remove(algoformer);
+    }
+
     public void mostrar() {
 
         ConvertidorPuntoAPixels convertidor = new ConvertidorPuntoAPixels();
