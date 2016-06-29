@@ -1,6 +1,7 @@
 package fiuba.algo3.controller.acciones;
 
 import fiuba.algo3.model.unidades.Algoformer;
+import fiuba.algo3.model.unidades.EstadoProtoNoPuedeRealizarAcciones;
 import fiuba.algo3.model.unidades.ImposibleCapturarChispaException;
 import fiuba.algo3.view.ContenedorJuego;
 import fiuba.algo3.view.utilities.ReproductorFX;
@@ -32,6 +33,10 @@ public class BotonAccionCapturarChispaHandler extends BotonAccionHandler impleme
 		} catch (ImposibleCapturarChispaException e) {
 			ReproductorFX.reproducirFX(ReproductorFX.ERROR1);
 			this.msjError.setText("No se esta localizado sobre la chispa");
+			return;
+		} catch(EstadoProtoNoPuedeRealizarAcciones e){
+			ReproductorFX.reproducirFX(ReproductorFX.ERROR1);
+			this.msjError.setText(e.devolverMensajeError());
 			return;
 		}
 

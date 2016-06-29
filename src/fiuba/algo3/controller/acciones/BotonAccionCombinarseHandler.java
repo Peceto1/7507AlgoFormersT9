@@ -3,10 +3,12 @@ package fiuba.algo3.controller.acciones;
 import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.juego.Jugador;
 import fiuba.algo3.model.unidades.Algoformer;
+import fiuba.algo3.model.unidades.CombinacionYaSeEncuentraCombinadaException;
 import fiuba.algo3.model.unidades.NoHaySuficientesAlgoformersAdyacentesException;
 import fiuba.algo3.view.ContenedorJuego;
 import fiuba.algo3.view.utilities.ConvertidorPuntoAPixels;
 import fiuba.algo3.view.utilities.PuntoPixels;
+import fiuba.algo3.view.utilities.ReproductorFX;
 import fiuba.algo3.view.vistas.vistasAlgoformers.VistaAlgoformer;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -38,7 +40,12 @@ public class BotonAccionCombinarseHandler extends BotonAccionHandler implements 
 
 			enTurno.combinarAlgoformers();
 		}catch(NoHaySuficientesAlgoformersAdyacentesException e){
-			contenedorJuego.getMsjError().setText("Error");
+			ReproductorFX.reproducirFX(ReproductorFX.ERROR1);
+			contenedorJuego.getMsjError().setText(e.devolverMensajeError());
+			return;
+		}catch(CombinacionYaSeEncuentraCombinadaException e){
+			ReproductorFX.reproducirFX(ReproductorFX.ERROR1);
+			contenedorJuego.getMsjError().setText(e.devolverMensajeError());
 			return;
 		}
 

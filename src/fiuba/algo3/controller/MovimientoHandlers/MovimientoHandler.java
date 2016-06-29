@@ -4,6 +4,7 @@ package fiuba.algo3.controller.MovimientoHandlers;
 import fiuba.algo3.model.espacio.Direccion;
 import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.unidades.Algoformer;
+import fiuba.algo3.model.unidades.EstadoProtoNoPuedeRealizarAcciones;
 import fiuba.algo3.model.unidades.MovimientoNoValidoException;
 import fiuba.algo3.view.ContenedorJuego;
 import fiuba.algo3.view.utilities.ConvertidorPuntoAPixels;
@@ -41,6 +42,10 @@ public abstract class MovimientoHandler implements EventHandler<ActionEvent> {
         try {
             algoformerAMoverse.moverseHacia(obtenerDireccion());
         } catch (MovimientoNoValidoException e) {
+            ReproductorFX.reproducirFX(ReproductorFX.ERROR1);
+            this.msjError.setText(e.devolverMensajeError());
+            return;
+        } catch(EstadoProtoNoPuedeRealizarAcciones e){
             ReproductorFX.reproducirFX(ReproductorFX.ERROR1);
             this.msjError.setText(e.devolverMensajeError());
             return;

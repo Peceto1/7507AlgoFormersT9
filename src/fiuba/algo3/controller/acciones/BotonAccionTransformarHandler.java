@@ -2,10 +2,13 @@ package fiuba.algo3.controller.acciones;
 
 import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.unidades.Algoformer;
+import fiuba.algo3.model.unidades.CombinacionNoTieneAlternoException;
+import fiuba.algo3.model.unidades.EstadoProtoNoPuedeRealizarAcciones;
 import fiuba.algo3.model.unidades.MovimientoNoValidoException;
 import fiuba.algo3.view.ContenedorJuego;
 import fiuba.algo3.view.utilities.ConvertidorPuntoAPixels;
 import fiuba.algo3.view.utilities.PuntoPixels;
+import fiuba.algo3.view.utilities.ReproductorFX;
 import fiuba.algo3.view.vistas.VistaMapaAlgoformers;
 import fiuba.algo3.view.vistas.VistaMapaBonuses;
 import fiuba.algo3.view.vistas.vistasAlgoformers.VistaAlgoformer;
@@ -43,6 +46,14 @@ public class BotonAccionTransformarHandler extends BotonAccionHandler implements
         	algoformerATransformarse.transformarse();
         } catch (MovimientoNoValidoException e) {
             this.msjError.setText("No se puede transformar");// Solo ocurre en caso de un aereo intentando descender a pantano
+            return;
+        }catch (CombinacionNoTieneAlternoException e){
+            ReproductorFX.reproducirFX(ReproductorFX.ERROR1);
+            this.msjError.setText(e.devolverMensajeError());
+            return;
+        }catch(EstadoProtoNoPuedeRealizarAcciones e){
+            ReproductorFX.reproducirFX(ReproductorFX.ERROR1);
+            this.msjError.setText(e.devolverMensajeError());
             return;
         }
 

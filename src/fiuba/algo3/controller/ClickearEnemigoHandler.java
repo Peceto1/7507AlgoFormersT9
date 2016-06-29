@@ -3,6 +3,7 @@ package fiuba.algo3.controller;
 import fiuba.algo3.model.arena.Arena;
 import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.unidades.Algoformer;
+import fiuba.algo3.model.unidades.EstadoProtoNoPuedeRealizarAcciones;
 import fiuba.algo3.model.unidades.FueraDeRangoException;
 import fiuba.algo3.view.ContenedorJuego;
 import fiuba.algo3.view.utilities.ConvertidorPuntoAPixels;
@@ -52,6 +53,10 @@ public class ClickearEnemigoHandler implements EventHandler<MouseEvent> {
         }
 
         catch (FueraDeRangoException e) {
+            ReproductorFX.reproducirFX(ReproductorFX.ERROR1);
+            msjError.setText(e.devolverMensajeError());
+            rehabilitarAcciones();
+        }catch(EstadoProtoNoPuedeRealizarAcciones e){
             ReproductorFX.reproducirFX(ReproductorFX.ERROR1);
             msjError.setText(e.devolverMensajeError());
             rehabilitarAcciones();

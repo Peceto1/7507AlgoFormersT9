@@ -2,6 +2,7 @@ package fiuba.algo3.controller.acciones;
 
 import fiuba.algo3.controller.ClickearEnemigoHandler;
 import fiuba.algo3.model.unidades.Algoformer;
+import fiuba.algo3.model.unidades.EstadoProtoNoPuedeRealizarAcciones;
 import fiuba.algo3.view.ContenedorJuego;
 import javafx.event.ActionEvent;
 import javafx.scene.layout.HBox;
@@ -29,7 +30,7 @@ public class BotonAccionAtacarHandler extends BotonAccionHandler {
         HBox contenedorTerminarTurno = (HBox) this.contenedorJuego.lookup("#ContenedorFinalizarTurno");
         contenedorTerminarTurno.setDisable(true);
         deshabilitarAcciones();
-        
+
     }
     
     
