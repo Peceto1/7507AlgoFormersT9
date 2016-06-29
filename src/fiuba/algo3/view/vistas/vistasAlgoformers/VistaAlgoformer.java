@@ -50,6 +50,11 @@ public abstract class VistaAlgoformer implements Dibujable {
     }
 
 
+    public void cambiarImagenAHumanoide() {
+        this.indiceImagenActual = 0;
+    }
+
+
     @Override
     public void dibujar(double x, double y) {
 

@@ -44,6 +44,7 @@ public class BotonAccionCombinarseHandler extends BotonAccionHandler implements 
 
 		for (Map.Entry<VistaAlgoformer, Punto> par : mapaDeVistasPuntos.entrySet()) {
 			VistaAlgoformer vistaActual = par.getKey();
+			vistaActual.cambiarImagenAHumanoide();
 			Punto ubicacion = par.getValue();
 			if (ubicacion != null) {
 				PuntoPixels punto = convertidor.convertir(ubicacion);
