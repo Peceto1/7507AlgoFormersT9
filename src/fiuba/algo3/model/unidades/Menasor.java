@@ -9,12 +9,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-class Menasor extends Decepticon {
+public class Menasor extends Decepticon {
 
     private List<Algoformer> miembros;
 
 
-    Menasor(int vida, List<Decepticon> miembros, Estado estadoProto) {
+    public Menasor(int vida, List<Decepticon> miembros, Estado estadoProto) {
         super("Menasor", vida, estadoProto);
         this.miembros = new ArrayList<>(miembros);
     }
@@ -63,5 +63,14 @@ class Menasor extends Decepticon {
         return new ArrayList<>(this.miembros);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        return ((Algoformer)o).getNombre() == this.getNombre();
 
+    }
+
+    @Override
+    public int hashCode() {
+        return 0;
+    }
 }

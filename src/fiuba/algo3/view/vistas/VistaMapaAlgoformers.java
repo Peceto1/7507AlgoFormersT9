@@ -1,30 +1,34 @@
 package fiuba.algo3.view.vistas;
 
 import fiuba.algo3.model.espacio.Punto;
-import fiuba.algo3.model.unidades.Algoformer;
-import fiuba.algo3.model.unidades.AlgoformerPool;
+import fiuba.algo3.model.unidades.*;
 import fiuba.algo3.view.utilities.ConvertidorPuntoAPixels;
 import fiuba.algo3.view.utilities.PuntoPixels;
 import fiuba.algo3.view.vistas.vistasAlgoformers.*;
 import javafx.scene.canvas.Canvas;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
 public class VistaMapaAlgoformers {
 
     private Map<Algoformer, VistaAlgoformer> algoformersEnMapa;
+    private Canvas canvasDeLasVistas;
 
 
     public VistaMapaAlgoformers(Canvas canvasAlgoformers) {
         this.algoformersEnMapa = new HashMap<>();
+        this.canvasDeLasVistas = canvasAlgoformers;
         construirVistas(canvasAlgoformers);
     }
 
 
     private void construirVistas(Canvas canvasAlgoformers) {
         AlgoformerPool poolSingleton = AlgoformerPool.getInstance();
+
         this.algoformersEnMapa.put(poolSingleton.obtenerOptimus(), new VistaOptimus(canvasAlgoformers, poolSingleton.obtenerOptimus()));
         this.algoformersEnMapa.put(poolSingleton.obtenerBumblebee(), new VistaBumbleblee(canvasAlgoformers, poolSingleton.obtenerBumblebee()));
         this.algoformersEnMapa.put(poolSingleton.obtenerRatchet(), new VistaRatchet(canvasAlgoformers, poolSingleton.obtenerRatchet()));
@@ -39,6 +43,14 @@ public class VistaMapaAlgoformers {
     }
 
 
+    public void agregarEntradaCombinacion(Algoformer algoformer, String equipo){
+        this.algoformersEnMapa.remove(algoformer);
+        if (equipo.equals("AUTOBOTS"))
+            this.algoformersEnMapa.put(algoformer, new VistaSuperion(this.canvasDeLasVistas, algoformer));
+        if (equipo.equals("DECEPTICONS"))
+            this.algoformersEnMapa.put(algoformer, new VistaMenasor(this.canvasDeLasVistas, algoformer));
+    }
+
     public void mostrar() {
 
         ConvertidorPuntoAPixels convertidor = new ConvertidorPuntoAPixels();
@@ -47,9 +59,10 @@ public class VistaMapaAlgoformers {
 
             VistaAlgoformer vistaActual = par.getValue();
             Punto ubicacion = par.getKey().getUbicacion();
-
-            PuntoPixels punto = convertidor.convertir(ubicacion);
-            vistaActual.dibujar(punto.getX(), punto.getY());
+            if (ubicacion != null) {
+                PuntoPixels punto = convertidor.convertir(ubicacion);
+                vistaActual.dibujar(punto.getX(), punto.getY());
+            }
         }
     }
 

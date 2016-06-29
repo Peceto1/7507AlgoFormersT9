@@ -9,6 +9,11 @@ import fiuba.algo3.model.espacio.DireccionDerecha;
 import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.espacio.PuntoTierra;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 
 public class CombinacionTest {
 	
@@ -386,6 +391,43 @@ public class CombinacionTest {
 			entra = true;
 		}
 		Assert.assertTrue(entra);
+	}
+
+	//  PRUEBAS NUEVAS
+	@Test
+	public void HashAndaBien() {
+		Punto puntoInicioCentro = new PuntoTierra(25,25);
+		Punto puntoDerechoDeInicio = new PuntoTierra(26,25);
+		Punto puntoIzquierdoDeInicio = new PuntoTierra(24,25);
+
+
+		Algoformer megatron = instanciadorDeAlgoformers.obtenerMegatron();
+		Algoformer bonecrusher = instanciadorDeAlgoformers.obtenerBonecrusher();
+		Algoformer frenzy = instanciadorDeAlgoformers.obtenerFrenzy();
+
+		arena.ubicarAlgoformer(megatron, puntoInicioCentro);
+		arena.ubicarAlgoformer(bonecrusher, puntoDerechoDeInicio);
+		arena.ubicarAlgoformer(frenzy, puntoIzquierdoDeInicio);
+
+
+		megatron.combinarse();
+		Menasor menasor = (Menasor)arena.obtenerAlgoformerEn(puntoInicioCentro);
+
+
+		List<Decepticon> lista = new ArrayList<>();
+		lista.add((Decepticon)megatron);
+		lista.add((Decepticon)bonecrusher);
+		lista.add((Decepticon)frenzy);
+
+		Menasor copiaMenasor = new Menasor(1150,lista, new EstadoProto());
+
+
+		Map<Algoformer, String> tabla = new HashMap<>();
+		tabla.put(copiaMenasor, "Menasor");
+
+		System.out.println(tabla.get(menasor));
+		Assert.assertEquals(menasor,copiaMenasor);
+		Assert.assertTrue(tabla.get(menasor).equals("Menasor"));
 	}
 
 }

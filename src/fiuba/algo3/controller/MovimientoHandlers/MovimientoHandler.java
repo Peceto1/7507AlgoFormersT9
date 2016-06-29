@@ -37,7 +37,7 @@ public abstract class MovimientoHandler implements EventHandler<ActionEvent> {
 
         Algoformer algoformerAMoverse = this.contenedorJuego.getAlgoformerAccionado();
         PuntoPixels ubicacionPixelVieja = this.vistaMapaAlgoformers.getVista(algoformerAMoverse).getUbicacion();
-
+        //PuntoPixels ubicacionPixelVieja =
         try {
             algoformerAMoverse.moverseHacia(obtenerDireccion());
         } catch (MovimientoNoValidoException e) {

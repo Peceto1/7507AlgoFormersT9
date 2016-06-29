@@ -7,12 +7,12 @@ import fiuba.algo3.model.espacio.Punto;
 import java.util.ArrayList;
 import java.util.List;
 
-class Superion extends Autobot {
+public class Superion extends Autobot {
 
     private List<Algoformer> miembros;
 
 
-    Superion(int vida, List<Autobot> miembros, Estado estadoProto) {
+    public Superion(int vida, List<Autobot> miembros, Estado estadoProto) {
         super("Superion", vida, estadoProto);
         this.miembros = new ArrayList<>(miembros);
     }
@@ -61,4 +61,16 @@ class Superion extends Autobot {
         return new ArrayList<>(this.miembros);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        return ((Algoformer)o).getNombre() == this.getNombre();
+
+    }
+
+    @Override
+    public int hashCode() {
+        return 0;
+    }
 }
+
+
