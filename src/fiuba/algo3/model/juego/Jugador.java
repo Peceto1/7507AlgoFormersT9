@@ -138,9 +138,9 @@ public class Jugador {
 
 
     public void separarAlgoformers() {
-    	List<Algoformer> lista = algoformers.get(0).separarse();
+    	List<Algoformer> listaDeAlgoformers = algoformers.get(0).separarse();
     	this.algoformers.remove(0);
-    	this.algoformers.addAll(lista);
+    	this.algoformers.addAll(listaDeAlgoformers);
     }
 
 

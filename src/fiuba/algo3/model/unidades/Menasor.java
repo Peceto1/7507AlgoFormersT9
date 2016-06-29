@@ -40,7 +40,6 @@ public class Menasor extends Decepticon {
 
         if (puntosAdyacentesLibres.size() < 2)
             throw new NoPuedeSepararseException();
-
         this.estado.verificarProto();
 
         Arena arena = Arena.getInstance();
