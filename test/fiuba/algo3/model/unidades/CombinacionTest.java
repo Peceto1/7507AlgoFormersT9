@@ -395,7 +395,7 @@ public class CombinacionTest {
 
 	//  PRUEBAS NUEVAS
 	@Test
-	public void HashAndaBien() {
+	public void HashCodeYEqualsDeMenasorFuncionaCorrectamente() {
 		Punto puntoInicioCentro = new PuntoTierra(25,25);
 		Punto puntoDerechoDeInicio = new PuntoTierra(26,25);
 		Punto puntoIzquierdoDeInicio = new PuntoTierra(24,25);

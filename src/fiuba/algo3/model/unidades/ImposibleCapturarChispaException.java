@@ -2,7 +2,8 @@ package fiuba.algo3.model.unidades;
 
 public class ImposibleCapturarChispaException extends RuntimeException{
 
-    public String devolverMensajeError(){
+    @Override
+    public String getMessage(){
         return "Imposible capturar chispa";
     }
 

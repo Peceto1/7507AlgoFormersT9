@@ -2,7 +2,8 @@ package fiuba.algo3.model.unidades;
 
 public class NoHaySuficientesAlgoformersAdyacentesException extends RuntimeException {
 
-    public String devolverMensajeError(){
+    @Override
+    public String getMessage(){
         return "Las unidades no pueden combinarse";
     }
 
