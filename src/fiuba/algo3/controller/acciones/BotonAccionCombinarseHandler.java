@@ -57,7 +57,7 @@ public class BotonAccionCombinarseHandler extends BotonAccionHandler implements 
 		PuntoPixels pixeleado = convertidor.convertir(combinacion.getUbicacion());
 		vistaCombinacion.dibujar(pixeleado.getX(),pixeleado.getY());
 
-
+		deshabilitarAcciones();
 
 
 	}
