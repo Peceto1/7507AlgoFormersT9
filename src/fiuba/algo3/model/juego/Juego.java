@@ -7,6 +7,7 @@ import fiuba.algo3.model.unidades.AlgoformerPool;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 public class Juego {
@@ -141,13 +142,17 @@ public class Juego {
 
     public Jugador obtenerGanador() {
 
-        for (Jugador actual : jugadores)
+        Iterator<Jugador> iter = this.jugadores.iterator();
+
+        while (iter.hasNext()) {
+            Jugador actual = iter.next();
+
             if (actual.tieneChispa())
                 return actual;
 
-        for (Jugador actual : jugadores)
             if (!actual.tieneVivos())
-                jugadores.remove(actual);
+                iter.remove();
+        }
 
         if (jugadores.size() == 1)
             return jugadores.get(0);
