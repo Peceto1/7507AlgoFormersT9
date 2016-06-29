@@ -41,11 +41,7 @@ public abstract class MovimientoHandler implements EventHandler<ActionEvent> {
         //PuntoPixels ubicacionPixelVieja =
         try {
             algoformerAMoverse.moverseHacia(obtenerDireccion());
-        } catch (MovimientoNoValidoException e) {
-            ReproductorFX.reproducirFX(ReproductorFX.ERROR1);
-            this.msjError.setText(e.devolverMensajeError());
-            return;
-        } catch(EstadoProtoNoPuedeRealizarAcciones e){
+        } catch (MovimientoNoValidoException | EstadoProtoNoPuedeRealizarAcciones e) {
             ReproductorFX.reproducirFX(ReproductorFX.ERROR1);
             this.msjError.setText(e.getMessage());
             return;

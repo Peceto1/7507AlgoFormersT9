@@ -24,7 +24,6 @@ public class BotonAccionSepararseHandler extends BotonAccionHandler implements E
 	@Override
 	public void handle(ActionEvent arg0) {
 
-		//contenedorJuego.getMsjError().setText("NOT IMPLEMENTED YET");
 		Jugador enTurno = contenedorJuego.getJuego().getJugadorEnTurno();
 		ConvertidorPuntoAPixels convertidor = new ConvertidorPuntoAPixels();
 
@@ -49,7 +48,6 @@ public class BotonAccionSepararseHandler extends BotonAccionHandler implements E
 		}
 
 		for(Algoformer algoformerADibujar: enTurno.getAlgoformers()){
-			System.out.printf("Nombre: %s, posicion X:%d, posicionY:%d \n",algoformerADibujar.getNombre(), algoformerADibujar.getUbicacion().getX(), algoformerADibujar.getUbicacion().getY());
 			VistaAlgoformer vista = contenedorJuego.getVistaMapaAlgoformers().getVista(algoformerADibujar);
 			PuntoPixels posicionPixeles = convertidor.convertir(algoformerADibujar.getUbicacion());
 			vista.dibujar(posicionPixeles.getX(),posicionPixeles.getY());

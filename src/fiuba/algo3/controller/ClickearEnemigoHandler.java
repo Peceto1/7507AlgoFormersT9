@@ -52,11 +52,7 @@ public class ClickearEnemigoHandler implements EventHandler<MouseEvent> {
             rehabilitarAcciones();
         }
 
-        catch (FueraDeRangoException e) {
-            ReproductorFX.reproducirFX(ReproductorFX.ERROR1);
-            msjError.setText(e.devolverMensajeError());
-            rehabilitarAcciones();
-        }catch(EstadoProtoNoPuedeRealizarAcciones e){
+        catch (FueraDeRangoException | EstadoProtoNoPuedeRealizarAcciones e) {
             ReproductorFX.reproducirFX(ReproductorFX.ERROR1);
             msjError.setText(e.getMessage());
             rehabilitarAcciones();

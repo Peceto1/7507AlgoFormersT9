@@ -27,7 +27,6 @@ public class BotonAccionCombinarseHandler extends BotonAccionHandler implements 
 
 	@Override
 	public void handle(ActionEvent arg0) {
-		//contenedorJuego.getMsjError().setText("NOT IMPLEMENTED YET");
 		Jugador enTurno = contenedorJuego.getJuego().getJugadorEnTurno();
 		ConvertidorPuntoAPixels convertidor = new ConvertidorPuntoAPixels();
 
@@ -39,13 +38,9 @@ public class BotonAccionCombinarseHandler extends BotonAccionHandler implements 
 			}
 
 			enTurno.combinarAlgoformers();
-		}catch(NoHaySuficientesAlgoformersAdyacentesException e){
+		}catch(NoHaySuficientesAlgoformersAdyacentesException | CombinacionYaSeEncuentraCombinadaException e){
 			ReproductorFX.reproducirFX(ReproductorFX.ERROR1);
-			contenedorJuego.getMsjError().setText(e.devolverMensajeError());
-			return;
-		}catch(CombinacionYaSeEncuentraCombinadaException e){
-			ReproductorFX.reproducirFX(ReproductorFX.ERROR1);
-			contenedorJuego.getMsjError().setText(e.devolverMensajeError());
+			contenedorJuego.getMsjError().setText(e.getMessage());
 			return;
 		}
 
@@ -64,6 +59,7 @@ public class BotonAccionCombinarseHandler extends BotonAccionHandler implements 
 		PuntoPixels pixeleado = convertidor.convertir(combinacion.getUbicacion());
 		vistaCombinacion.dibujar(pixeleado.getX(),pixeleado.getY());
 
+		enTurno.setUltimoAlgoformerUtilizado(combinacion);
 		deshabilitarAcciones();
 
 

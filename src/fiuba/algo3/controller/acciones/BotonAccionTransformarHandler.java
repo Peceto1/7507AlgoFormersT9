@@ -47,11 +47,7 @@ public class BotonAccionTransformarHandler extends BotonAccionHandler implements
         } catch (MovimientoNoValidoException e) {
             this.msjError.setText("No se puede transformar");// Solo ocurre en caso de un aereo intentando descender a pantano
             return;
-        }catch (CombinacionNoTieneAlternoException e){
-            ReproductorFX.reproducirFX(ReproductorFX.ERROR1);
-            this.msjError.setText(e.devolverMensajeError());
-            return;
-        }catch(EstadoProtoNoPuedeRealizarAcciones e){
+        }catch (CombinacionNoTieneAlternoException | EstadoProtoNoPuedeRealizarAcciones e){
             ReproductorFX.reproducirFX(ReproductorFX.ERROR1);
             this.msjError.setText(e.getMessage());
             return;
