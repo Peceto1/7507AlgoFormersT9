@@ -53,7 +53,7 @@ public class BotonAccionTransformarHandler extends BotonAccionHandler implements
             return;
         }catch(EstadoProtoNoPuedeRealizarAcciones e){
             ReproductorFX.reproducirFX(ReproductorFX.ERROR1);
-            this.msjError.setText(e.devolverMensajeError());
+            this.msjError.setText(e.getMessage());
             return;
         }
 
