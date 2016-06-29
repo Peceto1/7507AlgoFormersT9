@@ -30,7 +30,7 @@ public abstract class ElegirEquipoHandler implements EventHandler<ActionEvent> {
     Boolean ingresoValido() {
         if (input.getText().trim().equals("")) {
             ReproductorFX.reproducirFX(ReproductorFX.ERROR1);
-            msjError.setText("Debe ingresar un nombre");
+            msjError.setText("Debe ingresar un nombre primero");
             this.input.requestFocus();
             return false;
         }

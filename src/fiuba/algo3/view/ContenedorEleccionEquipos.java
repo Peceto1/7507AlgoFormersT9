@@ -9,6 +9,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -60,15 +61,16 @@ public class ContenedorEleccionEquipos extends BorderPane {
     private void crearPanelAutobots() {
         autobots = new VBox();
         Image autobotsImage = new Image("file:src/fiuba/algo3/view/resources/images/teamAutobots.jpg");
-        this.autobotsButton = new Button("", new ImageView(autobotsImage));
+        this.autobotsButton = new Button("ELEGIR AUTOBOTS", new ImageView(autobotsImage));
+        autobotsButton.setContentDisplay(ContentDisplay.BOTTOM);
         autobotsButton.setFocusTraversable(false);
-        autobotsButton.setStyle("-fx-base: #474747;");
+        autobotsButton.setStyle("-fx-font: 20 tahoma;-fx-font-weight: bold;-fx-base: #474747;");
         autobotsButton.setOnAction(new ElegirAutobotsHandler(juego, nombreJugador, autobotsButton, msjError, nroJugador, panelAbajo, ventanaDefault));
         autobots.getChildren().add(autobotsButton);
         autobots.setPadding(new Insets(0, 0, 0, 25));
         autobots.setAlignment(Pos.CENTER);
-        autobotsButton.setMinSize(320, 620);
-        autobotsButton.setMaxSize(320, 620);
+        autobotsButton.setMinSize(320, 645);
+        autobotsButton.setMaxSize(320, 645);
         this.setLeft(autobots);
     }
 
@@ -76,15 +78,16 @@ public class ContenedorEleccionEquipos extends BorderPane {
     private void crearPanelDecepticons() {
         decepticons = new VBox();
         Image decepticonsImage = new Image("file:src/fiuba/algo3/view/resources/images/teamDecepticons.jpg");
-        this.decepticonsButton = new Button("", new ImageView(decepticonsImage));
+        this.decepticonsButton = new Button("ELEGIR DECEPTICONS", new ImageView(decepticonsImage));
+        decepticonsButton.setContentDisplay(ContentDisplay.BOTTOM);
         decepticonsButton.setFocusTraversable(false);
-        decepticonsButton.setStyle("-fx-base: #474747;");
+        decepticonsButton.setStyle("-fx-font: 20 tahoma;-fx-font-weight: bold;-fx-base: #474747;");
         decepticonsButton.setOnAction(new ElegirDecepticonsHandler(juego, nombreJugador, decepticonsButton, msjError, nroJugador, panelAbajo, ventanaDefault));
         decepticons.getChildren().add(decepticonsButton);
         decepticons.setPadding(new Insets(0, 25, 0, 0));
         decepticons.setAlignment(Pos.CENTER);
-        decepticonsButton.setMinSize(320, 620);
-        decepticonsButton.setMaxSize(320, 620);
+        decepticonsButton.setMinSize(320, 645);
+        decepticonsButton.setMaxSize(320, 645);
         this.setRight(decepticons);
     }
 
