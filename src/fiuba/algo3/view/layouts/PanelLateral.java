@@ -1,5 +1,6 @@
 package fiuba.algo3.view.layouts;
 
+import fiuba.algo3.controller.VidaPropertyListener;
 import fiuba.algo3.model.arena.Bonus;
 import fiuba.algo3.model.arena.TerrenoAplicable;
 import fiuba.algo3.model.juego.Juego;
@@ -9,8 +10,6 @@ import fiuba.algo3.view.BotonProfile;
 import fiuba.algo3.view.ContenedorJuego;
 import fiuba.algo3.view.eventos.ProfileOnClickHandler;
 import fiuba.algo3.view.vistas.VistaProfileAlgoformers;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -282,25 +281,8 @@ public class PanelLateral extends VBox {
     	cantSpd.setText(Integer.toString(algoformerSeleccionado.getSpd()));    	
     }
 
+
     public VistaProfileAlgoformers getVistaProfiles() {
         return this.vistaProfiles;
-    }
-
-
-    private class VidaPropertyListener implements ChangeListener<Number> {
-
-        Button profileButton;
-
-        VidaPropertyListener(Button botonADesabilitar) {
-            this.profileButton = botonADesabilitar;
-        }
-
-
-        @Override
-        public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-
-            if ( newValue.intValue() <= 0)
-                this.profileButton.setDisable(true);
-        }
     }
 }

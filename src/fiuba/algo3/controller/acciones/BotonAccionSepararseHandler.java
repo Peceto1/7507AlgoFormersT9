@@ -45,7 +45,7 @@ public class BotonAccionSepararseHandler extends BotonAccionHandler implements E
 		dibujarEquipoAlgoformers(enTurno, convertidor);
 
 		deshabilitarAcciones();
-		habilitarBotonProfileCombinacion(contenedorJuego.getJuego().getJugadorEnTurno().getEquipo(), true);
+		habilitarBotonProfileCombinacion(combinacion, contenedorJuego.getJuego().getJugadorEnTurno().getEquipo(), true);
 	}
 
 	private void dibujarEquipoAlgoformers(Jugador jugador, ConvertidorPuntoAPixels convertidor){

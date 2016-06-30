@@ -67,7 +67,7 @@ public class BotonAccionCombinarseHandler extends BotonAccionHandler implements 
 	private void dibujarCombinacion(VistaAlgoformer vistaDeAlgoformer, ConvertidorPuntoAPixels convertidor, Algoformer algoformerCombinado ){
 		PuntoPixels pixeleado = convertidor.convertir(algoformerCombinado.getUbicacion());
 		vistaDeAlgoformer.dibujar(pixeleado.getX(),pixeleado.getY());
-		habilitarBotonProfileCombinacion(contenedorJuego.getJuego().getJugadorEnTurno().getEquipo(), false);
+		habilitarBotonProfileCombinacion(algoformerCombinado, contenedorJuego.getJuego().getJugadorEnTurno().getEquipo(), false);
 		contenedorJuego.seleccionarCasillero(pixeleado.getX(),pixeleado.getY());
 	}
 
