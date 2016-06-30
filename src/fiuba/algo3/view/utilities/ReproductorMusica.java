@@ -27,6 +27,7 @@ public class ReproductorMusica {
         if (loopeable)
             musicPlayer.setCycleCount(MediaPlayer.INDEFINITE);
 
+        musicPlayer.setMute(isMute);
         musicPlayer.play();
     }
 
