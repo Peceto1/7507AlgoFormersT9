@@ -27,7 +27,6 @@ public class BotonAccionCombinarseHandler extends BotonAccionHandler implements 
 	public void handle(ActionEvent arg0) {
 		Jugador enTurno = contenedorJuego.getJuego().getJugadorEnTurno();
 		ConvertidorPuntoAPixels convertidor = new ConvertidorPuntoAPixels();
-
 		Map<VistaAlgoformer,Punto> mapaDeVistasPuntos = new HashMap<>();
 
 		try {
@@ -42,26 +41,34 @@ public class BotonAccionCombinarseHandler extends BotonAccionHandler implements 
 			return;
 		}
 
-		for (Map.Entry<VistaAlgoformer, Punto> par : mapaDeVistasPuntos.entrySet()) {
+		limpiarEquipo(mapaDeVistasPuntos, convertidor);
+
+		Algoformer combinacion = enTurno.getAlgoformers().get(0);
+		VistaAlgoformer vistaCombinacion =contenedorJuego.getVistaMapaAlgoformers().agregarEntradaCombinacion(combinacion, enTurno.getEquipo());
+		//VistaAlgoformer vistaCombinacion = contenedorJuego.getVistaMapaAlgoformers().getVista(combinacion);
+
+		dibujarCombinacion(vistaCombinacion, convertidor, combinacion);
+		enTurno.setUltimoAlgoformerUtilizado(combinacion);
+		deshabilitarAcciones();
+
+	}
+
+	private void limpiarEquipo(Map<VistaAlgoformer, Punto> hashDePuntosYVistas, ConvertidorPuntoAPixels convertidor){
+		for (Map.Entry<VistaAlgoformer, Punto> par : hashDePuntosYVistas.entrySet()) {
 			VistaAlgoformer vistaActual = par.getKey();
-			vistaActual.cambiarImagenAHumanoide();
 			Punto ubicacion = par.getValue();
 			if (ubicacion != null) {
 				PuntoPixels punto = convertidor.convertir(ubicacion);
 				vistaActual.limpiar(punto.getX(), punto.getY());
 			}
 		}
+	}
 
-		Algoformer combinacion = enTurno.getAlgoformers().get(0);
-		contenedorJuego.getVistaMapaAlgoformers().agregarEntradaCombinacion(combinacion, enTurno.getEquipo());
-		VistaAlgoformer vistaCombinacion = contenedorJuego.getVistaMapaAlgoformers().getVista(combinacion);
-		PuntoPixels pixeleado = convertidor.convertir(combinacion.getUbicacion());
-		vistaCombinacion.dibujar(pixeleado.getX(),pixeleado.getY());
-		contenedorJuego.seleccionarCasillero(pixeleado.getX(),pixeleado.getY());
-		enTurno.setUltimoAlgoformerUtilizado(combinacion);
-		deshabilitarAcciones();
+	private void dibujarCombinacion(VistaAlgoformer vistaDeAlgoformer, ConvertidorPuntoAPixels convertidor, Algoformer algoformerCombinado ){
+		PuntoPixels pixeleado = convertidor.convertir(algoformerCombinado.getUbicacion());
+		vistaDeAlgoformer.dibujar(pixeleado.getX(),pixeleado.getY());
 		habilitarBotonProfileCombinacion(contenedorJuego.getJuego().getJugadorEnTurno().getEquipo(), false);
-
+		contenedorJuego.seleccionarCasillero(pixeleado.getX(),pixeleado.getY());
 	}
 
 }

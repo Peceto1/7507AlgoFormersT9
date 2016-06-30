@@ -30,8 +30,9 @@ public class BotonAccionSepararseHandler extends BotonAccionHandler implements E
 		Jugador enTurno = contenedorJuego.getJuego().getJugadorEnTurno();
 		ConvertidorPuntoAPixels convertidor = new ConvertidorPuntoAPixels();
 
-		Map<VistaAlgoformer, Punto> mapa= new HashMap<>();
-		mapa.put(contenedorJuego.getVistaMapaAlgoformers().getVista(enTurno.getAlgoformers().get(0)),enTurno.getAlgoformers().get(0).getUbicacion());
+		Algoformer combinacion = enTurno.getAlgoformers().get(0);
+		VistaAlgoformer vistaDeCombinacion = contenedorJuego.getVistaMapaAlgoformers().getVista(combinacion);
+		PuntoPixels ubicacionDePixelesDeCombinacion = convertidor.convertir(combinacion.getUbicacion());
 
 		try{
 			enTurno.separarAlgoformers();
@@ -40,27 +41,22 @@ public class BotonAccionSepararseHandler extends BotonAccionHandler implements E
 			return;
 		}
 
+		vistaDeCombinacion.limpiar(ubicacionDePixelesDeCombinacion.getX(), ubicacionDePixelesDeCombinacion.getY());
+		dibujarEquipoAlgoformers(enTurno, convertidor);
 
-		for (Map.Entry<VistaAlgoformer, Punto> par : mapa.entrySet()) {
-			VistaAlgoformer vistaActual = par.getKey();
-			Punto ubicacion = par.getValue();
-			if (ubicacion != null) {
-				PuntoPixels punto = convertidor.convertir(ubicacion);
-				vistaActual.limpiar(punto.getX(), punto.getY());
-			}
-		}
+		deshabilitarAcciones();
+		habilitarBotonProfileCombinacion(contenedorJuego.getJuego().getJugadorEnTurno().getEquipo(), true);
+	}
 
-		for(Algoformer algoformerADibujar: enTurno.getAlgoformers()){
+	private void dibujarEquipoAlgoformers(Jugador jugador, ConvertidorPuntoAPixels convertidor){
+		for(Algoformer algoformerADibujar: jugador.getAlgoformers()){
 			VistaAlgoformer vista = contenedorJuego.getVistaMapaAlgoformers().getVista(algoformerADibujar);
+			vista.cambiarImagenAHumanoide();
 			PuntoPixels posicionPixeles = convertidor.convertir(algoformerADibujar.getUbicacion());
 			vista.dibujar(posicionPixeles.getX(),posicionPixeles.getY());
 			vistaMapaBonuses.actualizar(algoformerADibujar.getUbicacion());
 			contenedorJuego.seleccionarCasillero(posicionPixeles.getX(),posicionPixeles.getY());
 		}
-
-
-		deshabilitarAcciones();
-		habilitarBotonProfileCombinacion(contenedorJuego.getJuego().getJugadorEnTurno().getEquipo(), true);
 	}
 
 }

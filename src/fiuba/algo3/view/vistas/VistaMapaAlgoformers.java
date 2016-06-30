@@ -41,12 +41,14 @@ public class VistaMapaAlgoformers {
     }
 
 
-    public void agregarEntradaCombinacion(Algoformer algoformer, String equipo){
+    public VistaAlgoformer agregarEntradaCombinacion(Algoformer algoformer, String equipo){
         this.algoformersEnMapa.remove(algoformer);
-        if (equipo.equals("AUTOBOTS"))
+        if (equipo.equals("AUTOBOTS")) {
             this.algoformersEnMapa.put(algoformer, new VistaSuperion(this.canvasDeLasVistas, algoformer));
-        if (equipo.equals("DECEPTICONS"))
-            this.algoformersEnMapa.put(algoformer, new VistaMenasor(this.canvasDeLasVistas, algoformer));
+            return this.algoformersEnMapa.get(algoformer);
+        }
+        this.algoformersEnMapa.put(algoformer, new VistaMenasor(this.canvasDeLasVistas, algoformer));
+        return this.algoformersEnMapa.get(algoformer);
     }
 
     public void eliminarEntrada(Algoformer algoformer){
