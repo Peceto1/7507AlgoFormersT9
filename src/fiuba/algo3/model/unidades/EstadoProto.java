@@ -9,7 +9,7 @@ class EstadoProto extends Estado {
 	private int turnosRestantesParaCambio;
 
 	
-	public EstadoProto(){
+	EstadoProto(){
 		ataque = 0;
 		rango = 0;
 		velocidad = 0;

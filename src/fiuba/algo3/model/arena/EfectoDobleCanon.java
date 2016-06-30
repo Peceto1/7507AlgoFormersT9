@@ -4,7 +4,7 @@ import fiuba.algo3.model.unidades.Algoformer;
 
 public class EfectoDobleCanon extends Efecto {
 	
-	public EfectoDobleCanon(){
+	EfectoDobleCanon(){
 		this.turnosRestantes = 2;
 	}
 

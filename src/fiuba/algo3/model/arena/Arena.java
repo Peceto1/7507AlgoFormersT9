@@ -163,7 +163,7 @@ public class Arena {
     
     public Punto setChispaAleatorio(){
     	obtenerChispa(ubicacionChispa);
-    	Punto nuevaPosicionChispa = new PuntoTierra(26, random.nextInt(ALTO+1));
+    	Punto nuevaPosicionChispa = new PuntoTierra(26, (random.nextInt(ALTO)+1));
     	setTerrenoEnPunto(nuevaPosicionChispa,new Rocoso());
     	colocarChispa(nuevaPosicionChispa);
     	this.ubicacionChispa = nuevaPosicionChispa;

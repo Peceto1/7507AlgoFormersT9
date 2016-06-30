@@ -144,7 +144,7 @@ public class Jugador {
     }
 
 
-	public void resetStatsAlgoformers() {
+	void resetStatsAlgoformers() {
 		for (Algoformer actual: algoformers)
 			actual.resetearStats();
 	}

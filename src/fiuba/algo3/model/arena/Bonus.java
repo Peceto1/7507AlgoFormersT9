@@ -7,7 +7,7 @@ public abstract class Bonus {
 	String nombreBonus;
 	
 	
-	public void aplicarseSobre(Algoformer algoformer) {		
+	void aplicarseSobre(Algoformer algoformer) {
 		if (algoformer.contieneEfecto(efecto)){
 			algoformer.removerEfecto(efecto);
 		}
@@ -27,6 +27,7 @@ public abstract class Bonus {
 	public String getNombreBonus(){
 		return nombreBonus;
 	}
+
 
 	@Override
 	public boolean equals(Object o) {
