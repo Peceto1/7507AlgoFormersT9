@@ -32,7 +32,7 @@ public class BotonAccionCapturarChispaHandler extends BotonAccionHandler impleme
 			algoformerACapturar.capturarChispa();
 		} catch (ImposibleCapturarChispaException e) {
 			ReproductorFX.reproducirFX(ReproductorFX.ERROR1);
-			this.msjError.setText("No se esta localizado sobre la chispa");
+			this.msjError.setText(e.getMessage());
 			return;
 		} catch(EstadoProtoNoPuedeRealizarAcciones e){
 			ReproductorFX.reproducirFX(ReproductorFX.ERROR1);
