@@ -28,7 +28,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-import java.util.ArrayList;
 
 public class PanelAbajo extends HBox {
 
@@ -56,11 +55,11 @@ public class PanelAbajo extends HBox {
         contenedorProfilesCombinaciones.setPadding(new Insets(10, 0, 0, 33));
         contenedorProfilesCombinaciones.setId("profileCombinacionesHBox");
 
-        BotonProfile profileSuperion = new BotonProfile("", vistaProfiles.getVista(new Superion(0, new ArrayList<>(), null), 50));
+        BotonProfile profileSuperion = new BotonProfile("", vistaProfiles.getVista(new Superion(), 50));
         profileSuperion.setId("superionBotonProfile");
         profileSuperion.setDisable(true);
 
-        BotonProfile profileMenasor = new BotonProfile("", vistaProfiles.getVista(new Menasor(0, new ArrayList<>(), null), 50));
+        BotonProfile profileMenasor = new BotonProfile("", vistaProfiles.getVista(new Menasor(), 50));
         profileMenasor.setId("menasorBotonProfile");
         profileMenasor.setDisable(true);
 

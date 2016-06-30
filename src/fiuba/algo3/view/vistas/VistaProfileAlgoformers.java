@@ -48,13 +48,13 @@ public class VistaProfileAlgoformers {
 
 
     private Algoformer crearSuperion() {
-        return new Superion(0, new ArrayList<>(), null);
+        return new Superion();
 
     }
 
 
     private Algoformer crearMenasor(){
-        return new Menasor(0, new ArrayList<>(), null);
+        return new Menasor();
 
     }
 

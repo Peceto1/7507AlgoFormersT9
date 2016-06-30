@@ -18,6 +18,11 @@ public class Menasor extends Decepticon {
     }
 
 
+    public Menasor() {
+        super("Menasor", 0, null);
+    }
+
+
     @Override
     public void reiniciarMovimiento() {
         this.estado.reiniciarMovimiento(ubicacion);

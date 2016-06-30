@@ -12,9 +12,14 @@ public class Superion extends Autobot {
     private List<Algoformer> miembros;
 
 
-    public Superion(int vida, List<Autobot> miembros, Estado estadoProto) {
+    Superion(int vida, List<Autobot> miembros, Estado estadoProto) {
         super("Superion", vida, estadoProto);
         this.miembros = new ArrayList<>(miembros);
+    }
+
+
+    public Superion() {
+        super("Superion", 0, null);
     }
 
 
