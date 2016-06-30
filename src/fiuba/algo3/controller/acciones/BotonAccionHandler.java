@@ -58,9 +58,7 @@ public abstract class BotonAccionHandler implements EventHandler<ActionEvent> {
 
         if (equipo.equals("AUTOBOTS")) {
             botonProfileCombinacion = (BotonProfile) contenedorJuego.getPanelAbajo().lookup("#profileCombinacionesHBox").lookup("#superionBotonProfile");
-            botonProfileCombinacion.setDisable(deshabilitado);
-            botonProfileCombinacion.setOnAction(new ProfileOnClickHandler(combinacion, contenedorJuego));
-            combinacion.vidaProperty().addListener(new VidaPropertyListener(botonProfileCombinacion));
+            agregarComportamientosABoton(botonProfileCombinacion, deshabilitado, combinacion);
             grillaAlgoformers.lookup("#optimusBotonProfile").setDisable(!deshabilitado);
             grillaAlgoformers.lookup("#bumblebleeBotonProfile").setDisable(!deshabilitado);
             grillaAlgoformers.lookup("#ratchetBotonProfile").setDisable(!deshabilitado);
@@ -68,13 +66,16 @@ public abstract class BotonAccionHandler implements EventHandler<ActionEvent> {
         }
 
         botonProfileCombinacion = (BotonProfile) contenedorJuego.getPanelAbajo().lookup("#profileCombinacionesHBox").lookup("#menasorBotonProfile");
-        botonProfileCombinacion.setDisable(deshabilitado);
-        botonProfileCombinacion.setOnAction(new ProfileOnClickHandler(combinacion, contenedorJuego));
-        combinacion.vidaProperty().addListener(new VidaPropertyListener(botonProfileCombinacion));
+        agregarComportamientosABoton(botonProfileCombinacion, deshabilitado, combinacion);
         grillaAlgoformers.lookup("#megatronBotonProfile").setDisable(!deshabilitado);
         grillaAlgoformers.lookup("#bonecrusherBotonProfile").setDisable(!deshabilitado);
         grillaAlgoformers.lookup("#frenzyBotonProfile").setDisable(!deshabilitado);
     }
-    
+
+    private void agregarComportamientosABoton(BotonProfile botonDePerfil, boolean habilitacion, Algoformer combinacion){
+        botonDePerfil.setDisable(habilitacion);
+        botonDePerfil.setOnAction(new ProfileOnClickHandler(combinacion, contenedorJuego));
+        combinacion.vidaProperty().addListener(new VidaPropertyListener(botonDePerfil));
+    }
     
 }
