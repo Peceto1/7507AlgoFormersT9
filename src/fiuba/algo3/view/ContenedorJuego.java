@@ -6,7 +6,6 @@ import fiuba.algo3.model.arena.Bonus;
 import fiuba.algo3.model.arena.TerrenoAplicable;
 import fiuba.algo3.model.espacio.Punto;
 import fiuba.algo3.model.juego.Juego;
-import fiuba.algo3.model.juego.Jugador;
 import fiuba.algo3.model.unidades.Algoformer;
 import fiuba.algo3.view.layouts.PanelAbajo;
 import fiuba.algo3.view.layouts.PanelLateral;
@@ -186,14 +185,12 @@ public class ContenedorJuego extends BorderPane {
     public void setAccionado(Algoformer algoformerOpcional) {
         if (algoformerOpcional != null)
             this.algoformerSeleccionado = algoformerOpcional;
+
         this.algoformerAccionado = this.algoformerSeleccionado;
     }
 
-    public Jugador obtenerJugadorEnTurno(){
-        return juego.getJugadorEnTurno();
-    }
     
-    protected void mostrarAcciones(boolean disable) {
+    private void mostrarAcciones(boolean disable) {
         HBox contenedorAcciones = (HBox) this.getPanelAbajo().lookup("#contenedorAcciones");
         contenedorAcciones.setVisible(disable);
     }

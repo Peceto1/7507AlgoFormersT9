@@ -8,7 +8,11 @@ import fiuba.algo3.controller.acciones.BotonAccionCombinarseHandler;
 import fiuba.algo3.controller.acciones.BotonAccionTransformarHandler;
 import fiuba.algo3.controller.acciones.BotonAccionMoverHandler;
 import fiuba.algo3.controller.acciones.BotonAccionSepararseHandler;
+import fiuba.algo3.model.unidades.Menasor;
+import fiuba.algo3.model.unidades.Superion;
 import fiuba.algo3.view.ContenedorJuego;
+import fiuba.algo3.view.BotonProfile;
+import fiuba.algo3.view.vistas.VistaProfileAlgoformers;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -24,17 +28,22 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
+import java.util.ArrayList;
+
 public class PanelAbajo extends HBox {
 
     private ContenedorJuego contenedorJuego;
+    private VistaProfileAlgoformers vistaProfiles;
     private String estiloNegro = "-fx-base: #474747;";
 
     public PanelAbajo(ContenedorJuego contenedorJuego, Background fondoPanel) {
+        this.vistaProfiles = contenedorJuego.getPanelLateral().getVistaProfiles();
+        this.contenedorJuego = contenedorJuego;
         this.setSpacing(10);
         this.setBackground(fondoPanel);
         this.setMinHeight(120);
         this.setMaxHeight(120);
-        this.contenedorJuego = contenedorJuego;
+        dibujarBloqueProfileCombinaciones();
         dibujarBloqueBotones();
         crearBotonesSepararseYCombinarse();
         dibujarBotonChispa();
@@ -42,9 +51,27 @@ public class PanelAbajo extends HBox {
     }
 
 
+    private void dibujarBloqueProfileCombinaciones() {
+        HBox contenedorProfilesCombinaciones = new HBox(10);
+        contenedorProfilesCombinaciones.setPadding(new Insets(10, 0, 0, 33));
+        contenedorProfilesCombinaciones.setId("profileCombinacionesHBox");
+
+        BotonProfile profileSuperion = new BotonProfile("", vistaProfiles.getVista(new Superion(0, new ArrayList<>(), null), 50));
+        profileSuperion.setId("superionBotonProfile");
+        profileSuperion.setDisable(true);
+
+        BotonProfile profileMenasor = new BotonProfile("", vistaProfiles.getVista(new Menasor(0, new ArrayList<>(), null), 50));
+        profileMenasor.setId("menasorBotonProfile");
+        profileMenasor.setDisable(true);
+
+        contenedorProfilesCombinaciones.getChildren().addAll(profileSuperion, profileMenasor);
+        this.getChildren().add(contenedorProfilesCombinaciones);
+    }
+
+
     private void dibujarBloqueBotones() {
         HBox contenedorAcciones = new HBox();
-        contenedorAcciones.setPadding(new Insets(25, 0, 0, 250));
+        contenedorAcciones.setPadding(new Insets(25, 0, 0, 100));
         HBox contenedorDirecciones = new HBox();
         contenedorDirecciones.setPadding(new Insets(5, 0, 0, 10));
         contenedorDirecciones.setVisible(false);
@@ -185,8 +212,6 @@ public class PanelAbajo extends HBox {
     private void crearBotonesSepararseYCombinarse() {
     	VBox contenedorCombinarseSepararse = (VBox) this.lookup("#contenedorCombinarseVBox");
         contenedorCombinarseSepararse.setPadding(new Insets(25, 0, 0, 15));
-
-        // TODO falta implementar handlers de combinarse/separarse
 
         Button combinarseButton = new Button("Combinarse");
         combinarseButton.setStyle(estiloNegro);

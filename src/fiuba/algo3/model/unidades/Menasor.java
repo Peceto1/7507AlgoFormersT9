@@ -67,11 +67,17 @@ public class Menasor extends Decepticon {
         return new ArrayList<>(this.miembros);
     }
 
+
     @Override
     public boolean equals(Object o) {
-        return ((Algoformer)o).getNombre() == this.getNombre();
+
+        if (o.getClass() != this.getClass())
+            return false;
+
+        return ((Algoformer) o).getNombre().equals(this.getNombre());
 
     }
+
 
     @Override
     public int hashCode() {

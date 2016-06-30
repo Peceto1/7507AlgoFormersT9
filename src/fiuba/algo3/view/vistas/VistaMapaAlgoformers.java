@@ -7,9 +7,7 @@ import fiuba.algo3.view.utilities.PuntoPixels;
 import fiuba.algo3.view.vistas.vistasAlgoformers.*;
 import javafx.scene.canvas.Canvas;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 

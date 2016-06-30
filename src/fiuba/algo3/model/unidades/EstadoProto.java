@@ -4,7 +4,7 @@ import fiuba.algo3.model.arena.EfectoTormentaPsionica;
 import fiuba.algo3.model.espacio.Direccion;
 import fiuba.algo3.model.espacio.Punto;
 
-public class EstadoProto extends Estado {
+class EstadoProto extends Estado {
 
 	private int turnosRestantesParaCambio;
 

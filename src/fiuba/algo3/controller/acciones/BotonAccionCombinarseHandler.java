@@ -60,7 +60,7 @@ public class BotonAccionCombinarseHandler extends BotonAccionHandler implements 
 		contenedorJuego.seleccionarCasillero(pixeleado.getX(),pixeleado.getY());
 		enTurno.setUltimoAlgoformerUtilizado(combinacion);
 		deshabilitarAcciones();
-
+		habilitarBotonProfileCombinacion(contenedorJuego.getJuego().getJugadorEnTurno().getEquipo(), false);
 
 	}
 

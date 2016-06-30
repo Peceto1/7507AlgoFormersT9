@@ -56,6 +56,7 @@ public class BotonAccionSepararseHandler extends BotonAccionHandler implements E
 
 
 		deshabilitarAcciones();
+		habilitarBotonProfileCombinacion(contenedorJuego.getJuego().getJugadorEnTurno().getEquipo(), true);
 	}
 
 }

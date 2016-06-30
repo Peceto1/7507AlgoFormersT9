@@ -1,6 +1,10 @@
 package fiuba.algo3.view.vistas;
 
-import fiuba.algo3.model.unidades.*;
+
+import fiuba.algo3.model.unidades.Algoformer;
+import fiuba.algo3.model.unidades.AlgoformerPool;
+import fiuba.algo3.model.unidades.Menasor;
+import fiuba.algo3.model.unidades.Superion;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -42,14 +46,15 @@ public class VistaProfileAlgoformers {
         algoformersProfiles.put(superion, new Image(superionProfileResource));
     }
 
+
     private Algoformer crearSuperion() {
-        return new Superion(1000, new ArrayList<>(), new EstadoProto());
+        return new Superion(0, new ArrayList<>(), null);
 
     }
 
 
     private Algoformer crearMenasor(){
-        return new Menasor(1000, new ArrayList<>(), new EstadoProto());
+        return new Menasor(0, new ArrayList<>(), null);
 
     }
 
