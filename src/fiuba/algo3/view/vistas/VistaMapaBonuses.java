@@ -22,7 +22,6 @@ public class VistaMapaBonuses {
     VistaBonus vistaCanon;
     VistaBonus vistaFlash;
     VistaBonus vistaBurbuja;
-    VistaBonus vistaError;
     private VistaMapaChispa mapaChispa;
     private Canvas canvas;
 
@@ -37,6 +36,7 @@ public class VistaMapaBonuses {
         this.mapaChispa = new VistaMapaChispa(arenaDeJuegoSingleton.getChispa(), arenaDeJuegoSingleton.getUbicacionChispa());
     }
 
+
     public void mostrar() {
         obtenerPuntosConBonus();
 
@@ -50,35 +50,35 @@ public class VistaMapaBonuses {
         mapaChispa.dibujar(canvas);
     }
 
+
     private VistaBonus getVista(Bonus bonus) {
         return vistaDeBonuses.get(bonus);
     }
+
 
     public void actualizar(Punto puntoAActualizar){
 
         if (!bonusesEnMapa.containsKey(puntoAActualizar))
             return;
 
-        //Bonus bonusPisado = bonusesEnMapa.get(puntoAActualizar);
-
         ConvertidorPuntoAPixels conversor = new ConvertidorPuntoAPixels();
         PuntoPixels puntoPixeleado = conversor.convertir(puntoAActualizar);
-
-        //VistaBonus vista = vistaDeBonuses.get();
-        //System.out.println(vista);
-
 
         vistaCanon.actualizar(puntoPixeleado.getX(), puntoPixeleado.getY());
 
 
     }
 
+
     private void construirVistasBonuses(Canvas canvas){
-        vistaCanon = new vistaCanon(canvas);
-        vistaDeBonuses.put(new BonusDobleCanon(), new vistaCanon(canvas));
-        vistaDeBonuses.put(new BonusFlash(),new vistaFlash(canvas));
-        vistaDeBonuses.put(new BonusBurbujaInmaculada(), new vistaBurbuja(canvas));
+        vistaCanon = new VistaCanon(canvas);
+        vistaFlash = new VistaFlash(canvas);
+        vistaBurbuja = new VistaBurbuja(canvas);
+        vistaDeBonuses.put(new BonusDobleCanon(), vistaCanon);
+        vistaDeBonuses.put(new BonusFlash(), vistaFlash);
+        vistaDeBonuses.put(new BonusBurbujaInmaculada(), vistaBurbuja);
     }
+
 
     private void obtenerPuntosConBonus() {
 

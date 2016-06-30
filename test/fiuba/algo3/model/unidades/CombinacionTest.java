@@ -425,8 +425,7 @@ public class CombinacionTest {
 		Map<Algoformer, String> tabla = new HashMap<>();
 		tabla.put(copiaMenasor, "Menasor");
 
-		System.out.println(tabla.get(menasor));
-		Assert.assertEquals(menasor,copiaMenasor);
+		Assert.assertEquals(menasor, copiaMenasor);
 		Assert.assertTrue(tabla.get(menasor).equals("Menasor"));
 	}
 
