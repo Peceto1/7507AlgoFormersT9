@@ -55,11 +55,11 @@ public class PanelAbajo extends HBox {
         contenedorProfilesCombinaciones.setPadding(new Insets(10, 0, 0, 33));
         contenedorProfilesCombinaciones.setId("profileCombinacionesHBox");
 
-        BotonProfile profileSuperion = new BotonProfile("", vistaProfiles.getVista(new Superion(), 50));
+        BotonProfile profileSuperion = new BotonProfile("Focus Superion", vistaProfiles.getVista(new Superion(), 50));
         profileSuperion.setId("superionBotonProfile");
         profileSuperion.setDisable(true);
 
-        BotonProfile profileMenasor = new BotonProfile("", vistaProfiles.getVista(new Menasor(), 50));
+        BotonProfile profileMenasor = new BotonProfile("Focus Menasor", vistaProfiles.getVista(new Menasor(), 50));
         profileMenasor.setId("menasorBotonProfile");
         profileMenasor.setDisable(true);
 

@@ -205,27 +205,27 @@ public class PanelLateral extends VBox {
         Algoformer bonecrusher = poolSingleton.obtenerBonecrusher();
         Algoformer frenzy = poolSingleton.obtenerFrenzy();
 
-        BotonProfile profileOptimus = new BotonProfile("", vistaProfiles.getVista(optimus, 50));
+        BotonProfile profileOptimus = new BotonProfile("Focus Optimus", vistaProfiles.getVista(optimus, 50));
         profileOptimus.setId("optimusBotonProfile");
         setearBoton(profileOptimus, optimus);
         
-        BotonProfile profileBumblebee = new BotonProfile("", vistaProfiles.getVista(poolSingleton.obtenerBumblebee(), 50));
+        BotonProfile profileBumblebee = new BotonProfile("Focus Bumblebee", vistaProfiles.getVista(poolSingleton.obtenerBumblebee(), 50));
         profileBumblebee.setId("bumblebleeBotonProfile");
         setearBoton(profileBumblebee, bumblebee);
         
-        BotonProfile profileRatchet = new BotonProfile("", vistaProfiles.getVista(poolSingleton.obtenerRatchet(), 50));
+        BotonProfile profileRatchet = new BotonProfile("Focus Ratchet", vistaProfiles.getVista(poolSingleton.obtenerRatchet(), 50));
         profileRatchet.setId("ratchetBotonProfile");
         setearBoton(profileRatchet, ratchet);
         
-        BotonProfile profileMegatron = new BotonProfile("", vistaProfiles.getVista(poolSingleton.obtenerMegatron(), 50));
+        BotonProfile profileMegatron = new BotonProfile("Focus Megatron", vistaProfiles.getVista(poolSingleton.obtenerMegatron(), 50));
         profileMegatron.setId("megatronBotonProfile");
         setearBoton(profileMegatron, megatron);
         
-        BotonProfile profileBonecrusher = new BotonProfile("", vistaProfiles.getVista(poolSingleton.obtenerBonecrusher(), 50));
+        BotonProfile profileBonecrusher = new BotonProfile("Focus Bonecrusher", vistaProfiles.getVista(poolSingleton.obtenerBonecrusher(), 50));
         profileBonecrusher.setId("bonecrusherBotonProfile");
         setearBoton(profileBonecrusher, bonecrusher);
         
-        BotonProfile profileFrenzy = new BotonProfile("", vistaProfiles.getVista(poolSingleton.obtenerFrenzy(), 50));
+        BotonProfile profileFrenzy = new BotonProfile("Focus Frenzy", vistaProfiles.getVista(poolSingleton.obtenerFrenzy(), 50));
         profileFrenzy.setId("frenzyBotonProfile");
         setearBoton(profileFrenzy, frenzy);
         
