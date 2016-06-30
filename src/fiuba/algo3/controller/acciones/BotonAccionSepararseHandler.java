@@ -8,6 +8,7 @@ import fiuba.algo3.model.unidades.NoPuedeSepararseException;
 import fiuba.algo3.view.ContenedorJuego;
 import fiuba.algo3.view.utilities.ConvertidorPuntoAPixels;
 import fiuba.algo3.view.utilities.PuntoPixels;
+import fiuba.algo3.view.vistas.VistaMapaBonuses;
 import fiuba.algo3.view.vistas.vistasAlgoformers.VistaAlgoformer;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -16,9 +17,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class BotonAccionSepararseHandler extends BotonAccionHandler implements EventHandler<ActionEvent> {
+	private VistaMapaBonuses vistaMapaBonuses;
 	
 	public BotonAccionSepararseHandler(ContenedorJuego contenedor){
 		super(contenedor);
+		this.vistaMapaBonuses = contenedor.getVistaMapaBonuses();
 	}
 
 	@Override
@@ -51,6 +54,7 @@ public class BotonAccionSepararseHandler extends BotonAccionHandler implements E
 			VistaAlgoformer vista = contenedorJuego.getVistaMapaAlgoformers().getVista(algoformerADibujar);
 			PuntoPixels posicionPixeles = convertidor.convertir(algoformerADibujar.getUbicacion());
 			vista.dibujar(posicionPixeles.getX(),posicionPixeles.getY());
+			vistaMapaBonuses.actualizar(algoformerADibujar.getUbicacion());
 			contenedorJuego.seleccionarCasillero(posicionPixeles.getX(),posicionPixeles.getY());
 		}
 
