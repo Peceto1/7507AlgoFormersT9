@@ -210,7 +210,7 @@ public abstract class Algoformer {
 	}
 
 
-	public void limpiarEfectos(){
+	void limpiarEfectos(){
 		Iterator<Efecto> iter = efectos.listIterator();
 		
 		while (iter.hasNext()){
@@ -307,7 +307,7 @@ public abstract class Algoformer {
 	}
 
 
-	void pasarAHumanoide(Algoformer algoformer) {
+	private void pasarAHumanoide(Algoformer algoformer) {
 		algoformer.estado.pasarAHumanoide(algoformer);
 	}
 

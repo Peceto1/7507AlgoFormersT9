@@ -2,9 +2,9 @@ package fiuba.algo3.model.arena;
 
 import fiuba.algo3.model.unidades.Algoformer;
 
-public class NullEfecto extends Efecto {
+class NullEfecto extends Efecto {
 	
-	public NullEfecto(){
+	NullEfecto(){
 		turnosRestantes = 0;
 	}
 

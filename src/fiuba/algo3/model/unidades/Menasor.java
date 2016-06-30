@@ -3,10 +3,8 @@ package fiuba.algo3.model.unidades;
 
 import fiuba.algo3.model.arena.Arena;
 import fiuba.algo3.model.espacio.Punto;
-import fiuba.algo3.model.espacio.PuntoTierraNoPuedeDescenderException;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class Menasor extends Decepticon {

@@ -16,7 +16,7 @@ public abstract class Direccion {
     }
 
 
-    public static Direccion[] crearDireccionesEnTodoSentido() {
+    static Direccion[] crearDireccionesEnTodoSentido() {
         Direccion direcciones[] = { new DireccionArriba(), new DireccionAbajo(),
                                     new DireccionIzquierda(), new DireccionDerecha(),
                                     new DireccionDerechaAbajo(), new DireccionIzquierdaAbajo(),

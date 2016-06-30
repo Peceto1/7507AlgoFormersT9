@@ -32,6 +32,7 @@ abstract class EstadoHumanoide extends Estado{
         for (Autobot autobot : miembros) {
             vidaSuperion += autobot.getVida();
             arena.removerAlgoformerEn(autobot.getUbicacion());
+            autobot.limpiarEfectos();
         }
 
         Superion superion = new Superion(vidaSuperion, miembros, new EstadoProto());
@@ -54,6 +55,7 @@ abstract class EstadoHumanoide extends Estado{
         for (Decepticon decepticon : miembros) {
             vidaMenasor += decepticon.getVida();
             arena.removerAlgoformerEn(decepticon.getUbicacion());
+            decepticon.limpiarEfectos();
         }
 
         Menasor menasor = new Menasor(vidaMenasor, miembros, new EstadoProto());

@@ -22,11 +22,11 @@ class Casillero {
     }
 
     
-    void aplicarTerrenoSobre(Algoformer algoformer){
+    private void aplicarTerrenoSobre(Algoformer algoformer){
     	this.terreno.aplicarseSobre(algoformer);
     }
     
-    void aplicarBonusSobre(Algoformer algoformer){
+    private void aplicarBonusSobre(Algoformer algoformer){
     	this.bonus.aplicarseSobre(algoformer);
     	bonus.setEfecto(new NullEfecto());
     	bonus.setNombre("Sin Bonus");
@@ -79,7 +79,7 @@ class Casillero {
 	}
 
 
-	public TerrenoAplicable getTerreno() {
+	TerrenoAplicable getTerreno() {
 		return this.terreno;
 	}
 
@@ -89,7 +89,7 @@ class Casillero {
     }
 
 
-	public Chispa verChispa() {
+	Chispa verChispa() {
 		return this.chispa;
 		
 	}

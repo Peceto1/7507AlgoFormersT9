@@ -93,17 +93,6 @@ public class Juego {
     }
 
 
-    public Jugador getJugadorDeEquipo(String equipo) {
-
-        for (Jugador jugador : this.jugadores) {
-            if (jugador.getEquipo().equals(equipo))
-                return jugador;
-        }
-
-        throw new NoHayJugadorConEseEquipoException();
-    }
-
-
     public int getCantJugadores() {
         return this.jugadores.size();
     }

@@ -4,7 +4,7 @@ import fiuba.algo3.model.unidades.Algoformer;
 
 public class EfectoBurbujaInmaculada extends Efecto {
 	
-	public EfectoBurbujaInmaculada(){
+	EfectoBurbujaInmaculada(){
 		this.turnosRestantes = 2;
 	}
 

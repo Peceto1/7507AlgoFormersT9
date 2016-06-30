@@ -4,7 +4,7 @@ import fiuba.algo3.model.unidades.Algoformer;
 
 public class EfectoFlash extends Efecto {
 	
-	public EfectoFlash(){
+	EfectoFlash(){
 		this.turnosRestantes = 2;
 	}
 
